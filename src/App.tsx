@@ -1,13 +1,29 @@
-import Logo from './assets/images/logo.png'
-import Button from './components/UI/Button'
+import { ConfigProvider } from 'antd'
+import AppRouter from './routes/AppRouter'
 
-const App = () => {
-   return (
-      <div>
-         <img src={Logo} alt="fhsdljfhasdjkfhasjkfh" />
-         <Button>fjasdfasj</Button>
-      </div>
-   )
-}
+const App = () => (
+   <ConfigProvider
+      theme={{
+         token: {
+            colorPrimary: '#00a64f',
+            colorPrimaryHover: '#00b959',
+            borderRadius: 5,
+            fontFamily: 'Lato, sans-serif',
+         },
+
+         components: {
+            Select: {
+               colorBgContainer: '#00a64f ',
+            },
+
+            Button: {
+               colorLink: '#909CB5',
+            },
+         },
+      }}
+   >
+      <AppRouter />
+   </ConfigProvider>
+)
 
 export default App
