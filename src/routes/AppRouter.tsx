@@ -1,11 +1,11 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Header from '../layout/Header'
+import Landing from '../pages/Landing'
 
 const AppRouter = () => {
    const router = createBrowserRouter([
       {
          path: '/',
-         element: <Header />,
+         element: <Landing />,
       },
    ])
 
