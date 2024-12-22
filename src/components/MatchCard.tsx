@@ -23,17 +23,15 @@ const MatchCard: FC<IProps> = ({
       <MatchCardContainer vertical align="center">
          <Time>{dateTime}</Time>
 
-         <Flex className="main-info" align="center" justify=" space-between">
-            <Team gap={10} vertical align="center" justify="center">
+         <Flex className="main-info" align="center" justify="space-between">
+            <Team vertical align="center" justify="center">
                <TeamLogo src={team1Logo} alt={team1Name} />
-               {/* <span>{team1Name}</span> */}
             </Team>
             <Countdown vertical align="center" justify="center">
-               <p style={{ marginLeft: '5px' }}>0 : 4</p>
+               <p>0 : 4</p>
             </Countdown>
             <Team gap={10} vertical align="center" justify="center">
                <TeamLogo src={team2Logo} alt={team2Name} />
-               {/* <span>{team2Name}</span>/ */}
             </Team>
          </Flex>
       </MatchCardContainer>
@@ -47,10 +45,10 @@ const MatchCardContainer = styled(Flex)`
    color: #000;
    padding: 20px;
    text-align: center;
-   width: 310px;
+   width: 100%;
+   max-width: 310px;
    border: 1px solid #e5e5e5;
    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-   min-width: 300px;
    border-radius: 3px;
    transition: transform 0.3s ease;
    cursor: pointer;
@@ -72,14 +70,33 @@ const Team = styled(Flex)`
 `
 
 const TeamLogo = styled.img`
-   width: 50px;
+   width: 55px;
    height: auto;
    min-width: 30px;
-   margin-right: 10px;
+
+   @media (max-width: 768px) {
+      width: 45px;
+   }
+
+   @media (max-width: 600px) {
+      width: 70px;
+   }
+
+   @media (max-width: 480px) {
+      width: 40px;
+   }
 `
 
 const Time = styled.h3`
    margin: 10px 0;
+
+   @media (max-width: 768px) {
+      font-size: 18px;
+   }
+
+   @media (max-width: 600px) {
+      font-size: 16px;
+   }
 `
 
 const Countdown = styled(Flex)`
@@ -88,5 +105,13 @@ const Countdown = styled(Flex)`
    > p {
       font-size: 28px;
       font-weight: bold;
+
+      @media (max-width: 768px) {
+         font-size: 24px;
+      }
+
+      @media (max-width: 600px) {
+         font-size: 20px;
+      }
    }
 `

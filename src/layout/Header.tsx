@@ -5,7 +5,8 @@ import styled from 'styled-components'
 import { navigations } from '../configs'
 import { NavLink } from 'react-router-dom'
 import Partner1 from '../assets/images/nitro-logo.jpg'
-import Partner2 from '../assets/images/partner2.svg'
+import Partner2 from '../assets/images/partner2 copy.svg'
+import Partner2copy from '../assets/images/partner2.svg'
 import { useEffect, useState } from 'react'
 
 interface StyledContainerProps {
@@ -73,7 +74,7 @@ const Header = () => {
 
                   <Flex align="center" gap={20}>
                      <img className="partners-img" src={Partner1} alt="" />
-                     <Partner2 />
+                     {isscrolled ? <Partner2copy /> : <Partner2 />}
                      <img src={Logo} width="50" alt="logo" />
                   </Flex>
 
@@ -100,7 +101,7 @@ const Header = () => {
                      }}
                      open={searchVisible}
                      onOpenChange={setSearchVisible}
-                     // trigger={['click']}
+                     trigger={[]}
                      placement="bottomRight"
                   >
                      <Button onClick={handleSearchClick}>
