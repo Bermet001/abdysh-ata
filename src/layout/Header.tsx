@@ -85,6 +85,7 @@ const Header = () => {
                               label: (
                                  <Flex align="center">
                                     <StyledInput placeholder="Search..." />
+
                                     <Button
                                        type="primary"
                                        icon={<SearchOutlined />}
@@ -99,7 +100,7 @@ const Header = () => {
                      }}
                      open={searchVisible}
                      onOpenChange={setSearchVisible}
-                     trigger={['click']}
+                     // trigger={['click']}
                      placement="bottomRight"
                   >
                      <Button onClick={handleSearchClick}>
@@ -121,7 +122,7 @@ const StyledContainer = styled(Flex)<StyledContainerProps>`
    max-width: 1600px;
    margin: 0 auto;
    transition: background-color 0.3s ease, color 0.3s ease;
-   color: ${({ isscrolled }) => (isscrolled ? 'black' : 'white')};
+   color: ${({ isscrolled }) => (isscrolled == 'true' ? 'black' : 'white')};
 
    & .line {
       border: 0.5px solid;
@@ -136,7 +137,8 @@ const StyledContainer = styled(Flex)<StyledContainerProps>`
       width: 100%;
 
       > a {
-         color: ${({ isscrolled }) => (isscrolled ? 'black' : 'white')};
+         color: ${({ isscrolled }) =>
+            isscrolled == 'true' ? 'black' : 'white'};
          font-weight: 500;
       }
    }

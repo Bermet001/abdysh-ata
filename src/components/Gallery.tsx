@@ -108,6 +108,7 @@ const StyledContainer = styled.section`
    }
 
    > .ant-flex {
+      margin: 0 auto;
       max-width: 1600px;
    }
 

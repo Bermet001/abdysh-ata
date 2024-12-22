@@ -10,7 +10,7 @@ import {
    MailOutlined,
    PhoneOutlined,
 } from '@ant-design/icons'
-import Logo from "../assets/images/main-logo.png"
+import Logo from '../assets/images/main-logo.png'
 
 const Footer = () => {
    return (
@@ -110,6 +110,10 @@ const StyledFooter = styled.footer`
    padding: 80px 75px;
    background-color: #18191b;
    color: #fff;
+
+   h1 {
+      color: #fff;
+   }
 
    & > .inner {
       max-width: 1600px;
