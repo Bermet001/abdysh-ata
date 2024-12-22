@@ -1,5 +1,5 @@
-import { Affix, Button, Dropdown, Input, Flex, Drawer } from 'antd'
-import { SearchOutlined, MenuOutlined } from '@ant-design/icons'
+import { Affix, Button, Input, Flex, Drawer } from 'antd'
+import { SearchOutlined, MenuOutlined, CloseOutlined } from '@ant-design/icons'
 import Logo from '../assets/images/main-logo.png'
 import styled from 'styled-components'
 import { navigations } from '../configs'
@@ -17,6 +17,7 @@ const Header = () => {
    const [isscrolled, setIsScrolled] = useState(false)
    const [searchVisible, setSearchVisible] = useState(false)
    const [drawerVisible, setDrawerVisible] = useState(false)
+   const [searchQuery, setSearchQuery] = useState('')
 
    const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
@@ -31,10 +32,18 @@ const Header = () => {
 
    const handleSearchClick = () => {
       setSearchVisible(!searchVisible)
+      // Сбросить поисковый запрос при открытии инпута
+      if (!searchVisible) {
+         setSearchQuery('')
+      }
    }
 
    const handleDrawerToggle = () => {
       setDrawerVisible(!drawerVisible)
+   }
+
+   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setSearchQuery(e.target.value)
    }
 
    return (
@@ -74,55 +83,53 @@ const Header = () => {
                   gap={20}
                   align="center"
                >
-                  <nav className="desktop-nav">
-                     {navigations.map(({ path, title, id }) => (
-                        <NavLink key={id} to={path}>
-                           {title}
-                        </NavLink>
-                     ))}
-                  </nav>
-
-                  <Flex className="header-partners" align="center" gap={20}>
-                     <img className="partners-img" src={Partner1} alt="" />
-                     {isscrolled ? <Partner2copy /> : <Partner2 />}
-                     <img src={Logo} width="50" alt="logo" />
-                  </Flex>
-
-                  <Dropdown
-                     menu={{
-                        items: [
-                           {
-                              key: 'search',
-                              label: (
-                                 <Flex align="center">
-                                    <StyledInput placeholder="Search..." />
-                                    <Button
-                                       type="primary"
-                                       icon={<SearchOutlined />}
-                                       style={{ marginLeft: '10px' }}
-                                    >
-                                       Search
-                                    </Button>
-                                 </Flex>
-                              ),
-                           },
-                        ],
-                     }}
-                     open={searchVisible}
-                     onOpenChange={setSearchVisible}
-                     trigger={['contextMenu']}
-                     placement="bottomRight"
-                  >
-                     <Button
-                        className="search-desktop"
-                        style={{ border: 'none' }}
-                     >
-                        <SearchOutlined
-                           className="search-desktop"
-                           onClick={handleSearchClick}
+                  {/* Условное отображение */}
+                  {searchVisible ? (
+                     <>
+                        <StyledInput
+                           value={searchQuery}
+                           onChange={handleSearchChange}
+                           placeholder="Search..."
+                           autoFocus
+                           style={{ border: 'none' }}
                         />
-                     </Button>
-                  </Dropdown>
+                        <CloseOutlined onClick={handleSearchClick} />
+
+                        <Button type="primary">Поиск</Button>
+                     </>
+                  ) : (
+                     <>
+                        <nav className="desktop-nav">
+                           {navigations.map(({ path, title, id }) => (
+                              <NavLink key={id} to={path}>
+                                 {title}
+                              </NavLink>
+                           ))}
+                        </nav>
+
+                        <Flex
+                           className="header-partners"
+                           align="center"
+                           gap={20}
+                        >
+                           <img
+                              className="partners-img"
+                              src={Partner1}
+                              alt=""
+                           />
+                           {isscrolled ? <Partner2copy /> : <Partner2 />}
+                           <img src={Logo} width="50" alt="logo" />
+                        </Flex>
+
+                        <Button
+                           className="search-desktop"
+                           style={{ border: 'none' }}
+                           onClick={handleSearchClick}
+                        >
+                           <SearchOutlined />
+                        </Button>
+                     </>
+                  )}
 
                   <MenuOutlined
                      className="mobile-menu"
@@ -185,14 +192,6 @@ const StyledContainer = styled(Flex)<StyledContainerProps>`
    .ant-btn-variant-outlined {
       padding: 22px 10px;
       border-radius: 10px;
-
-      .anticon-search {
-         svg {
-            width: 1.9rem;
-            height: 1.9rem;
-            cursor: pointer;
-         }
-      }
    }
 
    .ant-drawer-header {
@@ -250,17 +249,11 @@ const StyledContainer = styled(Flex)<StyledContainerProps>`
             fill: #000;
          }
       }
-
-      /* .search-desktop {
-         display: none;
-      } */
-   }
-
-   @media (max-width: 480px) {
    }
 `
 
 const StyledInput = styled(Input)`
-   width: 70vw;
+   width: 100%;
+   height: 40px;
    border-radius: 4px;
 `
