@@ -14,6 +14,10 @@ const contentStyle: CSSProperties = {
 const images = [stadion2, stadion3, banner2]
 
 const StyledCarousel = styled(Carousel)`
+   /* .ant-carousel { */
+   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+   /* } */
+
    .ant-carousel .slick-prev {
       opacity: 1;
    }
