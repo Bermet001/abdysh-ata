@@ -169,6 +169,16 @@ const StyledContainer = styled(Flex)<StyledContainerProps>`
    transition: background-color 0.3s ease, color 0.3s ease;
    color: ${({ isscrolled }) => (isscrolled === 'true' ? 'black' : 'white')};
 
+   .search-desktop {
+      /* color: transparent; */
+
+      svg {
+         width: 1.5rem;
+         height: 1.5rem;
+         fill: #000;
+      }
+   }
+
    & .line {
       border: 0.5px solid;
       height: 25px;
@@ -220,6 +230,12 @@ const StyledContainer = styled(Flex)<StyledContainerProps>`
 
       .search-desktop {
          color: transparent;
+
+         svg {
+            width: 2rem;
+            height: 2rem;
+            fill: #000;
+         }
       }
 
       .mobile-menu {
