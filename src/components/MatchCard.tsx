@@ -1,7 +1,6 @@
 import styled from 'styled-components'
-import { Button, Flex } from 'antd'
-// import { ClockCircleOutlined } from '@ant-design/icons'
-import { FC, useEffect, useState } from 'react'
+import { Flex } from 'antd'
+import { FC } from 'react'
 
 interface IProps {
    team1Logo: string
@@ -19,43 +18,24 @@ const MatchCard: FC<IProps> = ({
    team2Logo,
    team2Name,
    dateTime,
-   countdown,
-   arena,
 }) => {
-   const [isMatchOver, setIsMatchOver] = useState(false)
-
-   useEffect(() => {
-      const matchTime = new Date(dateTime).getTime()
-      const currentTime = Date.now()
-
-      if (currentTime > matchTime) {
-         setIsMatchOver(true)
-      }
-   }, [dateTime])
-
    return (
       <MatchCardContainer vertical align="center">
          <Time>{dateTime}</Time>
 
-         <Flex gap={20} className="main-info" align="center" justify="center">
-            <Team vertical align="center" justify="center">
+         <Flex className="main-info" align="center" justify=" space-between">
+            <Team gap={10} vertical align="center" justify="center">
                <TeamLogo src={team1Logo} alt={team1Name} />
-               <span>{team1Name}</span>
+               {/* <span>{team1Name}</span> */}
             </Team>
             <Countdown vertical align="center" justify="center">
-               <p style={{ marginLeft: '5px' }}>{countdown}</p>
-               <span>дней часов минут</span>
+               <p style={{ marginLeft: '5px' }}>0 : 4</p>
             </Countdown>
-            <Team vertical align="center" justify="center">
+            <Team gap={10} vertical align="center" justify="center">
                <TeamLogo src={team2Logo} alt={team2Name} />
-               <span>{team2Name}</span>
+               {/* <span>{team2Name}</span>/ */}
             </Team>
          </Flex>
-
-         <Arena>{arena}</Arena>
-         <BuyTicketsButton type="primary">
-            {isMatchOver ? 'Смотреть эфир' : 'Купить билет'}
-         </BuyTicketsButton>
       </MatchCardContainer>
    )
 }
@@ -67,14 +47,23 @@ const MatchCardContainer = styled(Flex)`
    color: #000;
    padding: 20px;
    text-align: center;
-   width: 420px;
+   width: 310px;
    border: 1px solid #e5e5e5;
    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-   min-width: 400px;
+   min-width: 300px;
    border-radius: 3px;
+   transition: transform 0.3s ease;
+   cursor: pointer;
+
+   &:hover {
+      transform: translateY(-6px);
+   }
 
    > .main-info {
-      min-height: 170px;
+      min-height: 120px;
+      padding: 20px;
+      width: 100%;
+      justify-content: space-between;
    }
 `
 
@@ -83,9 +72,9 @@ const Team = styled(Flex)`
 `
 
 const TeamLogo = styled.img`
-   width: 80px;
+   width: 50px;
    height: auto;
-   min-width: 80px;
+   min-width: 30px;
    margin-right: 10px;
 `
 
@@ -97,20 +86,7 @@ const Countdown = styled(Flex)`
    margin: 10px 0;
 
    > p {
-      font-size: 20px;
-   }
-`
-
-const Arena = styled.div`
-   margin: 10px 0;
-`
-
-const BuyTicketsButton = styled(Button)`
-   width: 60%;
-   /* background-color: #ff4d4f; */
-   border: none;
-
-   &:hover {
-      /* background-color: #ff7875; */
+      font-size: 28px;
+      font-weight: bold;
    }
 `

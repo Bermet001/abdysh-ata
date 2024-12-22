@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 const MatchInfo = () => {
    return (
-      <StyledContainer justify="space-around">
+      <StyledContainer justify="space-between" gap={15}>
          {matches.map((match, index) => (
             <MatchCard key={index} {...match} />
          ))}
@@ -19,4 +19,5 @@ const StyledContainer = styled(Flex)`
    margin-top: -100px;
    position: relative;
    z-index: 1;
+   padding: 0 75px;
 `

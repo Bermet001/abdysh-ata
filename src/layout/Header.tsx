@@ -1,74 +1,79 @@
-import { useState } from 'react'
-import { Affix, Button, Drawer, Flex, Menu, Space } from 'antd'
-import {
-   CloseOutlined,
-   DownOutlined,
-   MenuOutlined,
-   SearchOutlined,
-} from '@ant-design/icons'
+import { Affix, Button, Dropdown, Input, Menu, Flex } from 'antd'
+import { SearchOutlined } from '@ant-design/icons'
 import Logo from '../assets/images/logo.png'
 import styled from 'styled-components'
 import { navigations } from '../configs'
 import { NavLink } from 'react-router-dom'
 import Partner1 from '../assets/images/nitro-logo.jpg'
 import Partner2 from '../assets/images/partner2.svg'
+import { useEffect, useState } from 'react'
+
+interface StyledContainerProps {
+   isScrolled: boolean
+}
 
 const Header = () => {
-   const [open, setOpen] = useState(false)
+   const [isScrolled, setIsScrolled] = useState(false)
+   const [searchVisible, setSearchVisible] = useState(false)
 
-   const toggleDrawer = () => setOpen((prev) => !prev)
+   const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50)
+   }
+
+   useEffect(() => {
+      window.addEventListener('scroll', handleScroll)
+      return () => {
+         window.removeEventListener('scroll', handleScroll)
+      }
+   }, [])
+
+   const handleSearchClick = () => {
+      setSearchVisible(!searchVisible)
+   }
+
+   const menu = (
+      <Menu style={{ padding: '10px', minWidth: '300px' }}>
+         <Menu.Item>
+            <Flex align="center">
+               <StyledInput placeholder="Search..." />
+               <Button
+                  type="primary"
+                  icon={<SearchOutlined />}
+                  style={{ marginLeft: '10px' }}
+               >
+                  Search
+               </Button>
+            </Flex>
+         </Menu.Item>
+      </Menu>
+   )
 
    return (
-      <header>
-         <Affix offsetTop={0}>
-            <StyledContainer gap={20} justify="space-between" align="center">
+      <header
+         style={{
+            position: 'fixed',
+            top: 0,
+            zIndex: 100,
+            bottom: '0',
+            width: '100%',
+            height: '70px',
+         }}
+      >
+         <Affix
+            style={{ backgroundColor: isScrolled ? '#fff' : 'transparent' }}
+            offsetTop={0}
+         >
+            <StyledContainer
+               gap={20}
+               justify="space-between"
+               align="center"
+               isScrolled={isScrolled}
+            >
                <Flex align="center" gap={15}>
-                  <MenuOutlined onClick={toggleDrawer} />
-                  <div className="line" />
                   <NavLink to="/">
                      <img src={Logo} width="50" alt="logo" />
                   </NavLink>
                </Flex>
-
-               <Drawer
-                  extra={
-                     <Space>
-                        <Button onClick={toggleDrawer}>
-                           <CloseOutlined />
-                        </Button>
-                     </Space>
-                  }
-                  title="Basic Drawer"
-                  placement="left"
-                  closable={false}
-                  onClose={toggleDrawer}
-                  open={open}
-                  getContainer={false}
-               >
-                  <Menu mode="inline">
-                     <Menu.Item key="1">Fútbol</Menu.Item>
-                     <Menu.SubMenu
-                        key="sub1"
-                        title="Baloncesto"
-                        icon={<DownOutlined />}
-                     >
-                        <Menu.Item key="2">Primer Equipo Baloncesto</Menu.Item>
-                        <Menu.Item key="3">Cantera Baloncesto</Menu.Item>
-                     </Menu.SubMenu>
-                     <Menu.Item key="4">Calendario</Menu.Item>
-                     <Menu.Item key="5">RMTV en directo</Menu.Item>
-                     <Menu.Item key="6">Club</Menu.Item>
-                     <Menu.Item key="7">Estadio Bernabéu</Menu.Item>
-                     <Menu.Item key="8">Noticias</Menu.Item>
-                     <Menu.Item key="9">Fundación Real Madrid</Menu.Item>
-                     <Menu.Item key="10">
-                        Escuela Universitaria Real Madrid
-                     </Menu.Item>
-                     <Menu.Item key="11">RM Next</Menu.Item>
-                     <Menu.Item key="12">Tienda Online</Menu.Item>
-                  </Menu>
-                  {/* <p>Some contents...</p> */}
-               </Drawer>
 
                <Flex
                   style={{ width: '100%' }}
@@ -90,13 +95,19 @@ const Header = () => {
                      <img src={Logo} width="50" alt="logo" />
                   </Flex>
 
-                  <Button>
-                     <SearchOutlined />
-                  </Button>
+                  <Dropdown
+                     overlay={menu}
+                     visible={searchVisible}
+                     onVisibleChange={setSearchVisible}
+                     trigger={['click']}
+                     placement="bottomRight"
+                  >
+                     <Button onClick={handleSearchClick}>
+                        <SearchOutlined />
+                     </Button>
+                  </Dropdown>
                </Flex>
             </StyledContainer>
-
-            <hr style={{ opacity: '0.5' }} />
          </Affix>
       </header>
    )
@@ -104,23 +115,18 @@ const Header = () => {
 
 export default Header
 
-const StyledContainer = styled(Flex)`
+const StyledContainer = styled(Flex)<StyledContainerProps>`
    padding: 15px 30px;
    width: 100%;
-   background-color: #fff;
+   max-width: 1600px;
+   margin: 0 auto;
+   transition: background-color 0.3s ease, color 0.3s ease;
+   color: ${({ isScrolled }) => (isScrolled ? 'black' : 'white')};
 
    & .line {
       border: 0.5px solid;
       height: 25px;
       opacity: 0.2;
-   }
-
-   .anticon-menu {
-      svg {
-         width: 1.3rem;
-         height: 1.3rem;
-         cursor: pointer;
-      }
    }
 
    & nav {
@@ -130,7 +136,7 @@ const StyledContainer = styled(Flex)`
       width: 100%;
 
       > a {
-         color: black;
+         color: ${({ isScrolled }) => (isScrolled ? 'black' : 'white')};
          font-weight: 500;
       }
    }
@@ -155,4 +161,9 @@ const StyledContainer = styled(Flex)`
          flex: 2;
       }
    }
+`
+
+const StyledInput = styled(Input)`
+   width: 85vw;
+   border-radius: 4px;
 `

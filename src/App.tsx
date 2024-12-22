@@ -15,10 +15,9 @@ const App = () => (
             Select: {
                colorBgContainer: '#00a64f ',
             },
-
             Button: {
                colorLink: '#909CB5',
-               borderRadius: 0,
+               borderRadius: 3,
             },
          },
       }}
