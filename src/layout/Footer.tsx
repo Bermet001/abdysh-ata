@@ -1,6 +1,5 @@
 import { Flex } from 'antd'
 import styled from 'styled-components'
-import Logo from '../assets/images/logo.png'
 import Telegram from '..//assets/icons/telegram.svg'
 import Instagram from '..//assets/icons/instagramm.svg'
 import Whatsapp from '..//assets/icons/whatsapp.svg'
@@ -18,7 +17,7 @@ const Footer = () => {
          <Flex className="inner" vertical gap={15}>
             <Flex justify="space-between" align="center">
                <Flex align="center">
-                  <img width={100} src={Logo} alt="logo" />
+                  {/* <img width={100} src={Logo} alt="logo" /> */}
                   <h1>Abdysh-ata</h1>
                </Flex>
 
