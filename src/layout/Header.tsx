@@ -44,7 +44,7 @@ const Header = () => {
             top: 0,
             zIndex: 100,
             width: '100%',
-            height: '70px',
+            height: '50px',
          }}
       >
          <Affix
@@ -155,7 +155,7 @@ const Header = () => {
 export default Header
 
 const StyledContainer = styled(Flex)<StyledContainerProps>`
-   padding: 15px 30px;
+   padding: 5px 30px;
    width: 100%;
    max-width: 1600px;
    margin: 0 auto;

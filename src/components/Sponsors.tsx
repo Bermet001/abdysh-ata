@@ -10,7 +10,7 @@ const Sponsors = () => {
 
          <Swiper
             loop={true}
-            slidesPerView={5}
+            slidesPerView={6}
             spaceBetween={30}
             autoplay={{
                delay: 2500,

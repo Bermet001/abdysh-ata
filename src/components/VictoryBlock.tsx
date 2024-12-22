@@ -76,17 +76,21 @@ const StyledCard = styled(Card)`
    text-align: start;
    border-radius: 10px;
    margin-top: -60px;
+   max-width: 250px;
+   min-width: 240px;
 
    .trophy-image {
       width: 200px;
+      max-width: 200px;
       height: 250px;
+
       object-fit: cover;
    }
 `
 
 const VictoryDes = styled.div`
    width: 100vw;
-   height: 45vh;
+   height: 350px;
    display: flex;
    flex-direction: column;
    background-image: url(${Image});
