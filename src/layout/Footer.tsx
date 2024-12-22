@@ -10,6 +10,7 @@ import {
    MailOutlined,
    PhoneOutlined,
 } from '@ant-design/icons'
+import Logo from "../assets/images/main-logo.png"
 
 const Footer = () => {
    return (
@@ -17,7 +18,7 @@ const Footer = () => {
          <Flex className="inner" vertical gap={15}>
             <Flex justify="space-between" align="center">
                <Flex align="center">
-                  {/* <img width={100} src={Logo} alt="logo" /> */}
+                  <img width={100} src={Logo} alt="logo" />
                   <h1>Abdysh-ata</h1>
                </Flex>
 

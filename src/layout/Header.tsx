@@ -1,6 +1,6 @@
 import { Affix, Button, Dropdown, Input, Flex } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
-import Logo from '../assets/images/logo.png'
+import Logo from '../assets/images/main-logo.png'
 import styled from 'styled-components'
 import { navigations } from '../configs'
 import { NavLink } from 'react-router-dom'

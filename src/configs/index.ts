@@ -4,7 +4,7 @@ import Trophy3 from '../assets/images/victory/km2488.jpg'
 import Trophy4 from '../assets/images/victory/km2802.jpg'
 import Nitro from '../assets/images/nitro-logo.jpg'
 import cola from '../assets/images/cola2.png'
-import Logo from '../assets/images/logo.png'
+import Logo from '../assets/images/main-logo.png'
 
 const navigations = [
    { path: '/', title: 'Главная', id: 1 },
