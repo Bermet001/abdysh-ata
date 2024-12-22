@@ -127,7 +127,7 @@ const Header = () => {
                   <MenuOutlined
                      className="mobile-menu"
                      onClick={handleDrawerToggle}
-                     style={{ display: 'block' }}
+                     style={{ display: 'none' }}
                   />
                </Flex>
             </StyledContainer>
@@ -234,7 +234,6 @@ const StyledContainer = styled(Flex)<StyledContainerProps>`
 
       .main-logo {
          width: 80px;
-
       }
    }
 
