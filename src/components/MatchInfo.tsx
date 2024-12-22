@@ -28,7 +28,7 @@ const StyledContainer = styled.section`
    z-index: 1;
    padding: 0 75px;
    width: 100%;
-
+   
    & .container {
       display: flex;
       flex-wrap: wrap;
@@ -52,6 +52,8 @@ const StyledContainer = styled.section`
    }
 
    @media (max-width: 600px) {
+    padding: 0 30px;
+
       .container {
          flex-direction: column;
          align-items: center;

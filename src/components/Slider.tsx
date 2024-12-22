@@ -1,8 +1,8 @@
 import { CSSProperties, FC } from 'react'
 import { Carousel } from 'antd'
 import banner2 from '../assets/images/banner2.jpg'
-import banner3 from '../assets/images/banner3.jpg'
-import stadion from '../assets/images/stadion.jpg'
+import stadion2 from '../assets/images/background.jpg'
+import stadion3 from '../assets/images/background2.jpg'
 
 const contentStyle: CSSProperties = {
    margin: 0,
@@ -10,7 +10,7 @@ const contentStyle: CSSProperties = {
    objectFit: 'cover',
 }
 
-const images = [stadion, banner2, banner3]
+const images = [stadion2, stadion3, banner2]
 
 const Slider: FC = () => (
    <Carousel dots={false} arrows autoplay autoplaySpeed={7000} infinite>

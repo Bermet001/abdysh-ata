@@ -49,7 +49,7 @@ const MatchCardContainer = styled(Flex)`
    max-width: 310px;
    border: 1px solid #e5e5e5;
    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-   border-radius: 3px;
+   border-radius: 10px;
    transition: transform 0.3s ease;
    cursor: pointer;
 

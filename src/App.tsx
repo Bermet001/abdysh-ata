@@ -7,7 +7,7 @@ const App = () => (
          token: {
             colorPrimary: '#00a64f',
             colorPrimaryHover: '#00b959',
-            borderRadius: 5,
+            borderRadius: 10,
             fontFamily: 'Lato, sans-serif',
          },
 
@@ -17,7 +17,7 @@ const App = () => (
             },
             Button: {
                colorLink: '#909CB5',
-               borderRadius: 3,
+               borderRadius: 10,
             },
          },
       }}

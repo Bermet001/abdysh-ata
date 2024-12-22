@@ -7,6 +7,11 @@ import cola from '../assets/images/cola2.png'
 import Logo from '../assets/images/main-logo.png'
 import Barselona from '../assets/images/barselona.png'
 import Match from '../assets/images/match.jpg'
+import Product1 from '../assets/images/products/clothe1.png'
+import Product2 from '../assets/images/products/clothe2.png'
+import Product3 from '../assets/images/products/clothe5.png'
+import Product4 from '../assets/images/products/clothe9.png'
+import Product5 from '../assets/images/products/clothe4.png'
 
 const navigations = [
    { path: '/', title: 'Главная', id: 1 },
@@ -81,49 +86,49 @@ const products = [
       id: 1,
       name: 'Catch Gloves',
       price: '$25.00',
-      img: 'https://via.placeholder.com/200x150',
+      img: Product5,
    },
    {
       id: 2,
       name: 'Shin Pads',
       price: '$17.00',
-      img: 'https://via.placeholder.com/200x150',
+      img: Product2,
    },
    {
       id: 3,
       name: 'Unisex Cleats',
       price: '$85.00',
-      img: 'https://via.placeholder.com/200x150',
+      img: Product3,
    },
    {
       id: 4,
       name: 'Yellow T-Shirts',
       price: '$45.00',
-      img: 'https://via.placeholder.com/200x150',
+      img: Product4,
    },
    {
       id: 5,
       name: 'Yellow T-Shirts',
       price: '$45.00',
-      img: 'https://via.placeholder.com/200x150',
+      img: Product1,
    },
    {
       id: 43,
       name: 'Yellow T-Shirts',
       price: '$45.00',
-      img: 'https://via.placeholder.com/200x150',
+      img: Product3,
    },
    {
       id: 42,
       name: 'Yellow T-Shirts',
       price: '$45.00',
-      img: 'https://via.placeholder.com/200x150',
+      img: Product2,
    },
    {
       id: 41,
       name: 'Yellow T-Shirts',
       price: '$45.00',
-      img: 'https://via.placeholder.com/200x150',
+      img: Product4,
    },
 ]
 

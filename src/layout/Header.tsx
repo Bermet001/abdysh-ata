@@ -1,5 +1,5 @@
-import { Affix, Button, Dropdown, Input, Flex } from 'antd'
-import { SearchOutlined } from '@ant-design/icons'
+import { Affix, Button, Dropdown, Input, Flex, Drawer } from 'antd'
+import { SearchOutlined, MenuOutlined } from '@ant-design/icons'
 import Logo from '../assets/images/main-logo.png'
 import styled from 'styled-components'
 import { navigations } from '../configs'
@@ -16,6 +16,7 @@ interface StyledContainerProps {
 const Header = () => {
    const [isscrolled, setIsScrolled] = useState(false)
    const [searchVisible, setSearchVisible] = useState(false)
+   const [drawerVisible, setDrawerVisible] = useState(false)
 
    const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
@@ -30,6 +31,10 @@ const Header = () => {
 
    const handleSearchClick = () => {
       setSearchVisible(!searchVisible)
+   }
+
+   const handleDrawerToggle = () => {
+      setDrawerVisible(!drawerVisible)
    }
 
    return (
@@ -54,7 +59,12 @@ const Header = () => {
             >
                <Flex align="center" gap={15}>
                   <NavLink to="/">
-                     <img src={Logo} width="50" alt="logo" />
+                     <img
+                        className="main-logo"
+                        src={Logo}
+                        width="50"
+                        alt="logo"
+                     />
                   </NavLink>
                </Flex>
 
@@ -64,7 +74,7 @@ const Header = () => {
                   gap={20}
                   align="center"
                >
-                  <nav>
+                  <nav className="desktop-nav">
                      {navigations.map(({ path, title, id }) => (
                         <NavLink key={id} to={path}>
                            {title}
@@ -72,7 +82,7 @@ const Header = () => {
                      ))}
                   </nav>
 
-                  <Flex align="center" gap={20}>
+                  <Flex className="header-partners" align="center" gap={20}>
                      <img className="partners-img" src={Partner1} alt="" />
                      {isscrolled ? <Partner2copy /> : <Partner2 />}
                      <img src={Logo} width="50" alt="logo" />
@@ -86,7 +96,6 @@ const Header = () => {
                               label: (
                                  <Flex align="center">
                                     <StyledInput placeholder="Search..." />
-
                                     <Button
                                        type="primary"
                                        icon={<SearchOutlined />}
@@ -104,13 +113,41 @@ const Header = () => {
                      trigger={[]}
                      placement="bottomRight"
                   >
-                     <Button onClick={handleSearchClick}>
-                        <SearchOutlined />
+                     <Button
+                        className="search-desktop"
+                        style={{ border: 'none' }}
+                     >
+                        <SearchOutlined
+                           className="search-desktop"
+                           onClick={handleSearchClick}
+                        />
                      </Button>
                   </Dropdown>
+
+                  <MenuOutlined
+                     className="mobile-menu"
+                     onClick={handleDrawerToggle}
+                     style={{ display: 'block' }}
+                  />
                </Flex>
             </StyledContainer>
          </Affix>
+
+         <Drawer
+            title="Навигация"
+            placement="right"
+            closable={true}
+            onClose={handleDrawerToggle}
+            open={drawerVisible}
+         >
+            <Flex vertical align="start">
+               {navigations.map(({ path, title, id }) => (
+                  <NavLink key={id} to={path} onClick={handleDrawerToggle}>
+                     {title}
+                  </NavLink>
+               ))}
+            </Flex>
+         </Drawer>
       </header>
    )
 }
@@ -123,7 +160,7 @@ const StyledContainer = styled(Flex)<StyledContainerProps>`
    max-width: 1600px;
    margin: 0 auto;
    transition: background-color 0.3s ease, color 0.3s ease;
-   color: ${({ isscrolled }) => (isscrolled == 'true' ? 'black' : 'white')};
+   color: ${({ isscrolled }) => (isscrolled === 'true' ? 'black' : 'white')};
 
    & .line {
       border: 0.5px solid;
@@ -139,8 +176,9 @@ const StyledContainer = styled(Flex)<StyledContainerProps>`
 
       > a {
          color: ${({ isscrolled }) =>
-            isscrolled == 'true' ? 'black' : 'white'};
+            isscrolled === 'true' ? 'black' : 'white'};
          font-weight: 500;
+         margin-right: 15px;
       }
    }
 
@@ -164,9 +202,66 @@ const StyledContainer = styled(Flex)<StyledContainerProps>`
          flex: 2;
       }
    }
+
+   @media (max-width: 1260px) {
+      .desktop-nav {
+         a {
+            font-size: 13px;
+         }
+      }
+   }
+   @media (max-width: 1150px) {
+      .desktop-nav {
+         display: none;
+      }
+
+      .header-partners {
+         display: none;
+      }
+
+      .search-desktop {
+         color: transparent;
+      }
+
+      .mobile-menu {
+         display: block;
+         svg {
+            width: 2rem;
+            height: 2rem;
+            fill: #000;
+         }
+      }
+
+      .main-logo {
+         width: 80px;
+
+      }
+   }
+
+   @media (max-width: 768px) {
+      padding: 10px 20px;
+      justify-content: space-between;
+      width: 100%;
+
+      .mobile-menu {
+         display: block;
+         svg {
+            width: 1.4rem;
+            height: 1.4rem;
+            fill: #000;
+         }
+      }
+
+      /* .search-desktop {
+         display: none;
+      } */
+   }
+
+   @media (max-width: 480px) {
+   }
 `
 
 const StyledInput = styled(Input)`
-   width: 85vw;
+   width: 70vw;
    border-radius: 4px;
 `

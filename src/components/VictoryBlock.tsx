@@ -74,7 +74,7 @@ const Description = styled.p`
 
 const StyledCard = styled(Card)`
    text-align: start;
-   border-radius: 5px;
+   border-radius: 10px;
    margin-top: -60px;
 
    .trophy-image {
@@ -137,7 +137,7 @@ const StyledButton = styled(Button)`
    color: white;
    padding: 25px 40px;
    font-size: 1rem;
-   border-radius: 5px;
+   border-radius: 8px;
 
    &:focus {
       outline: none;

@@ -1,16 +1,22 @@
 import styled from 'styled-components'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Card, Button } from 'antd'
+import { Card, Button, Flex } from 'antd'
 import { products } from '../configs'
+import { RightOutlined } from '@ant-design/icons'
 
 const ProductSlider = () => {
    return (
       <Container>
-         <h1>НАШ ОНЛАЙН МАГАЗИН </h1>
+         <Flex justify="space-between" align="start">
+            <h1>НАШ ОНЛАЙН МАГАЗИН </h1>
+
+            <StyledButtonView type="primary">
+               Посмотреть все товары <RightOutlined />
+            </StyledButtonView>
+         </Flex>
 
          <Swiper
             spaceBetween={10}
-            navigation
             breakpoints={{
                640: {
                   slidesPerView: 3,
@@ -43,6 +49,7 @@ export default ProductSlider
 const Container = styled.div`
    margin: auto;
    padding: 120px 75px 0 75px;
+   max-width: 1600px;
 
    h1 {
       margin-bottom: 50px;
@@ -51,8 +58,7 @@ const Container = styled.div`
 `
 
 const StyledCard = styled(Card)`
-   border: 1px solid #ccc;
-   border-radius: 5px;
+   border-radius: 10px;
    transition: transform 0.3s;
    width: 100%;
    cursor: pointer;
@@ -73,4 +79,20 @@ const StyledButton = styled(Button)`
    margin-top: 10px;
    border: none;
    width: 100%;
+`
+
+const StyledButtonView = styled(Button)`
+   padding: 23px 25px;
+   border: none;
+   color: white;
+   border-radius: 8px;
+   cursor: pointer;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-weight: 500;
+
+   svg {
+      margin-left: 5px;
+   }
 `

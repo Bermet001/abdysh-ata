@@ -1,8 +1,8 @@
 import { Button, Flex } from 'antd'
 import styled from 'styled-components'
-import image1 from '../assets/images/image2.jpeg'
+// import image1 from '../assets/images/image2.jpeg'
 import image2 from '../assets/images/image12.webp'
-import image3 from '../assets/images/image6.avif'
+// import image3 from '../assets/images/image6.avif'
 import image6 from '../assets/images/image8.jpg'
 import image7 from '../assets/images/image9.jpg'
 import { RightOutlined } from '@ant-design/icons'
@@ -10,22 +10,24 @@ import { RightOutlined } from '@ant-design/icons'
 const Gallery = () => {
    return (
       <StyledContainer>
-         <Flex vertical gap={10}>
-            <Flex align="enter" gap={10} justify="space-between">
-               <h1 className="main-title">КАДРЫ И ВИДЕО С СОБЫТИЙ </h1>
+         <Flex vertical gap={40}>
+            <Flex align="center" gap={10} justify="space-between">
+               <h1 className="main-title" style={{ margin: 0 }}>
+                  КАДРЫ И ВИДЕО С СОБЫТИЙ
+               </h1>
                <StyledButton type="primary">
                   Посмотреть все <RightOutlined />
                </StyledButton>
             </Flex>
 
-            <Flex gap={10}>
+            <Flex gap={10} className="image-gallery">
                <Flex vertical gap={10}>
                   <ImageWrapper>
                      <img width="100%" height="263.5" src={image7} alt="" />
                      <Overlay>
                         <h3>Solutions</h3>
                         <Flex gap={10} align="center">
-                           <p>TechVision Solutions</p>
+                           <p>TechVisiofasn Solutions</p>
                            <button>
                               <RightOutlined />
                            </button>
@@ -34,7 +36,7 @@ const Gallery = () => {
                   </ImageWrapper>
 
                   <ImageWrapper>
-                     <img width="500" height="500" src={image2} alt="" />
+                     <img width="100%" height="auto" src={image2} alt="" />
                      <Overlay>
                         <h3>Solutions</h3>
                         <Flex gap={10} align="center">
@@ -47,20 +49,28 @@ const Gallery = () => {
                   </ImageWrapper>
                </Flex>
 
-               <Flex vertical gap={10}>
-                  <ImageWrapper>
-                     <img width="470" height={500} src={image3} alt="" />
+               {/* <Flex vertical gap={10}> */}
+               {/* <ImageWrapper>
+                     <img
+                        width="500"
+                        className="image
+                     "
+                        height="auto"
+                        src={image3}
+                        alt=""
+                     />
                      <Overlay>
                         <h3>Solutions</h3>
                         <Flex gap={10} align="center">
-                           <p>TechVision Solutions</p>
+                           <p>TecfasdfhVision Solutions</p>
                            <button>
                               <RightOutlined />
                            </button>
                         </Flex>
                      </Overlay>
-                  </ImageWrapper>
-                  <ImageWrapper>
+                  </ImageWrapper> */}
+
+               {/* <ImageWrapper>
                      <img width="100%" height="auto" src={image1} alt="" />
                      <Overlay>
                         <h3>Solutions</h3>
@@ -71,12 +81,12 @@ const Gallery = () => {
                            </button>
                         </Flex>
                      </Overlay>
-                  </ImageWrapper>
-               </Flex>
+                  </ImageWrapper> */}
+               {/* </Flex> */}
 
                <Flex gap={10}>
                   <ImageWrapper>
-                     <img width="300" height="773.5" src={image6} alt="" />
+                     <img width="100%" src={image6} alt="" />
                      <Overlay>
                         <h3>Solutions</h3>
                         <Flex gap={10} align="center">
@@ -104,7 +114,7 @@ const StyledContainer = styled.section`
 
    img {
       object-fit: cover;
-      border-radius: 5px;
+      border-radius: 10px;
    }
 
    > .ant-flex {
@@ -115,6 +125,14 @@ const StyledContainer = styled.section`
    .description {
       color: grey;
    }
+
+   @media (max-width: 768px) {
+      padding: 60px 30px;
+   }
+
+   @media (max-width: 480px) {
+      padding: 30px 15px;
+   }
 `
 
 const ImageWrapper = styled.div`
@@ -124,10 +142,18 @@ const ImageWrapper = styled.div`
 
    img {
       transition: transform 0.3s ease;
+      width: 100%;
+      height: 100%;
    }
 
    &:hover img {
       transform: scale(1.03);
+   }
+
+   @media (max-width: 768px) {
+      img {
+         height: auto;
+      }
    }
 `
 
@@ -136,7 +162,7 @@ const Overlay = styled.div`
    left: 0;
    right: 0;
    bottom: 0;
-   background: #fff;
+   background: rgba(255, 255, 255, 0.8);
    display: flex;
    align-items: center;
    justify-content: center;
@@ -174,11 +200,12 @@ const StyledButton = styled(Button)`
    padding: 23px 25px;
    border: none;
    color: white;
-   border-radius: 5px;
+   border-radius: 8px;
    cursor: pointer;
    display: flex;
    align-items: center;
    justify-content: center;
+   font-weight: 500;
 
    svg {
       margin-left: 5px;
