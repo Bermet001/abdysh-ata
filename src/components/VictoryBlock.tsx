@@ -54,11 +54,6 @@ const Container = styled.div`
    padding: 120px 0;
    color: black;
 
-   /* & .trophy {
-      padding: 0 75px;
-      position: relative;
-      z-index: 10;
-   } */
    & .trophy {
       padding: 0 calc(75px + 1rem);
       position: relative;

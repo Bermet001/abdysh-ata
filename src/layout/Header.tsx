@@ -121,11 +121,8 @@ const StyledContainer = styled(Flex)<StyledContainerProps>`
    max-width: 1600px;
    margin: 0 auto;
    transition: background-color 0.3s ease, color 0.3s ease;
-   color: ${({ isscrolled }) => {
-      console.log(isscrolled, 'bermets')
+   color: ${({ isscrolled }) => (isscrolled ? 'black' : 'white')};
 
-      return isscrolled ? 'black' : 'white'
-   }};
    & .line {
       border: 0.5px solid;
       height: 25px;
