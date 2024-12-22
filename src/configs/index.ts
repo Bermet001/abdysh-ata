@@ -3,7 +3,8 @@ import Trophy2 from '../assets/images/victory/Sab31a1b941684013a365e5c8c386f0c1m
 import Trophy3 from '../assets/images/victory/km2488.jpg'
 import Trophy4 from '../assets/images/victory/km2802.jpg'
 import Nitro from '../assets/images/nitro-logo.jpg'
-import cola from '../assets/images/cola2.png'
+import Partner from '../assets/images/logo45.png'
+
 import Logo from '../assets/images/main-logo.png'
 import Barselona from '../assets/images/barselona.png'
 import Match from '../assets/images/match.jpg'
@@ -134,13 +135,13 @@ const products = [
 
 const sponsorsData = [
    { id: 1, img: Nitro, alt: 'Nitro Logo' },
-   { id: 2, img: cola, alt: 'Sponsor 2' },
+   { id: 2, img: Partner, alt: 'Sponsor 2' },
    { id: 4, img: Nitro, alt: 'Nitro Logo' },
-   { id: 50, img: cola, alt: 'Sponsor 2' },
+   { id: 50, img: Partner, alt: 'Sponsor 2' },
    { id: 5, img: Nitro, alt: 'Sponsor 2' },
-   { id: 57, img: cola, alt: 'Sponsor 2' },
+   { id: 57, img: Partner, alt: 'Sponsor 2' },
    { id: 52, img: Nitro, alt: 'Sponsor 2' },
-   { id: 53, img: cola, alt: 'Sponsor 2' },
+   { id: 53, img: Partner, alt: 'Sponsor 2' },
 ]
 
 export { navigations, matches, teams, leagues, products, sponsorsData }
