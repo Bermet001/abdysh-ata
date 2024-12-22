@@ -110,7 +110,7 @@ const Header = () => {
                      }}
                      open={searchVisible}
                      onOpenChange={setSearchVisible}
-                     trigger={[]}
+                     trigger={['contextMenu']}
                      placement="bottomRight"
                   >
                      <Button
