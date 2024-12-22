@@ -102,7 +102,7 @@ const products = [
       img: 'https://via.placeholder.com/200x150',
    },
    {
-      id: 4,
+      id: 5,
       name: 'Yellow T-Shirts',
       price: '$45.00',
       img: 'https://via.placeholder.com/200x150',
@@ -131,7 +131,7 @@ const sponsorsData = [
    { id: 1, img: Nitro, alt: 'Nitro Logo' },
    { id: 2, img: cola, alt: 'Sponsor 2' },
    { id: 4, img: Nitro, alt: 'Nitro Logo' },
-   { id: 5, img: cola, alt: 'Sponsor 2' },
+   { id: 50, img: cola, alt: 'Sponsor 2' },
    { id: 5, img: Nitro, alt: 'Sponsor 2' },
    { id: 57, img: cola, alt: 'Sponsor 2' },
    { id: 52, img: Nitro, alt: 'Sponsor 2' },

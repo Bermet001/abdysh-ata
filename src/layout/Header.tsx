@@ -1,4 +1,4 @@
-import { Affix, Button, Dropdown, Input, Menu, Flex } from 'antd'
+import { Affix, Button, Dropdown, Input, Flex } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
 import Logo from '../assets/images/logo.png'
 import styled from 'styled-components'
@@ -9,11 +9,11 @@ import Partner2 from '../assets/images/partner2.svg'
 import { useEffect, useState } from 'react'
 
 interface StyledContainerProps {
-   isScrolled: boolean
+   isscrolled: string
 }
 
 const Header = () => {
-   const [isScrolled, setIsScrolled] = useState(false)
+   const [isscrolled, setIsScrolled] = useState(false)
    const [searchVisible, setSearchVisible] = useState(false)
 
    const handleScroll = () => {
@@ -31,43 +31,25 @@ const Header = () => {
       setSearchVisible(!searchVisible)
    }
 
-   const menu = (
-      <Menu style={{ padding: '10px', minWidth: '300px' }}>
-         <Menu.Item>
-            <Flex align="center">
-               <StyledInput placeholder="Search..." />
-               <Button
-                  type="primary"
-                  icon={<SearchOutlined />}
-                  style={{ marginLeft: '10px' }}
-               >
-                  Search
-               </Button>
-            </Flex>
-         </Menu.Item>
-      </Menu>
-   )
-
    return (
       <header
          style={{
             position: 'fixed',
             top: 0,
             zIndex: 100,
-            bottom: '0',
             width: '100%',
             height: '70px',
          }}
       >
          <Affix
-            style={{ backgroundColor: isScrolled ? '#fff' : 'transparent' }}
+            style={{ backgroundColor: isscrolled ? '#fff' : 'transparent' }}
             offsetTop={0}
          >
             <StyledContainer
                gap={20}
                justify="space-between"
                align="center"
-               isScrolled={isScrolled}
+               isscrolled={isscrolled.toString()}
             >
                <Flex align="center" gap={15}>
                   <NavLink to="/">
@@ -96,9 +78,27 @@ const Header = () => {
                   </Flex>
 
                   <Dropdown
-                     overlay={menu}
-                     visible={searchVisible}
-                     onVisibleChange={setSearchVisible}
+                     menu={{
+                        items: [
+                           {
+                              key: 'search',
+                              label: (
+                                 <Flex align="center">
+                                    <StyledInput placeholder="Search..." />
+                                    <Button
+                                       type="primary"
+                                       icon={<SearchOutlined />}
+                                       style={{ marginLeft: '10px' }}
+                                    >
+                                       Search
+                                    </Button>
+                                 </Flex>
+                              ),
+                           },
+                        ],
+                     }}
+                     open={searchVisible}
+                     onOpenChange={setSearchVisible}
                      trigger={['click']}
                      placement="bottomRight"
                   >
@@ -121,8 +121,11 @@ const StyledContainer = styled(Flex)<StyledContainerProps>`
    max-width: 1600px;
    margin: 0 auto;
    transition: background-color 0.3s ease, color 0.3s ease;
-   color: ${({ isScrolled }) => (isScrolled ? 'black' : 'white')};
+   color: ${({ isscrolled }) => {
+      console.log(isscrolled, 'bermets')
 
+      return isscrolled ? 'black' : 'white'
+   }};
    & .line {
       border: 0.5px solid;
       height: 25px;
@@ -136,7 +139,7 @@ const StyledContainer = styled(Flex)<StyledContainerProps>`
       width: 100%;
 
       > a {
-         color: ${({ isScrolled }) => (isScrolled ? 'black' : 'white')};
+         color: ${({ isscrolled }) => (isscrolled ? 'black' : 'white')};
          font-weight: 500;
       }
    }
