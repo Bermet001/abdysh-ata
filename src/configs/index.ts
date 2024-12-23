@@ -4,6 +4,9 @@ import Trophy3 from '../assets/images/victory/km2488.jpg'
 import Trophy4 from '../assets/images/victory/km2802.jpg'
 import Nitro from '../assets/images/nitro-logo.jpg'
 import Partner from '../assets/images/logo45.png'
+import banner2 from '../assets/images/banner2.jpg'
+import stadion2 from '../assets/images/background.jpg'
+import stadion3 from '../assets/images/background2.jpg'
 
 import Logo from '../assets/images/main-logo.png'
 import Barselona from '../assets/images/barselona.png'
@@ -144,4 +147,44 @@ const sponsorsData = [
    { id: 53, img: Partner, alt: 'Sponsor 2' },
 ]
 
-export { navigations, matches, teams, leagues, products, sponsorsData }
+const banners = [
+   {
+      id: 1,
+      title: 'Итоги сезона 2023: Путь к победе',
+      subtitle: 'Команда А на вершине!',
+      description:
+         'Команда А продемонстрировала выдающиеся результаты в этом сезоне, завоевав множество титулов и сердца болельщиков.',
+      additionalText: 'Следите за нашими достижениями!',
+      imageUrl: stadion3,
+   },
+   {
+      id: 2,
+      title: 'Финал Кубка: Встреча лучших команд',
+      subtitle: 'Команда Б против Команды В',
+      description:
+         'В этом финале встретятся две сильнейшие команды. Ожидайте захватывающую игру!',
+      additionalText: 'Не пропустите матч на стадионе!',
+      imageUrl: stadion2,
+   },
+   {
+      id: 5,
+      title: 'Результаты первого квалификационного раунда',
+      subtitle: 'История, полная достижений',
+      description:
+         'Описание второго баннера. Здесь можно добавить больше информации.',
+      additionalText: 'Дополнительная информация о втором баннере.',
+      imageUrl: stadion3,
+   },
+   {
+      id: 3,
+      title: 'Команда В: Будущее Футбола',
+      subtitle: 'Молодые звезды под нашим крылом',
+      description:
+         'Команда В — это молодая и перспективная команда, которая активно развивает молодые таланты. Они стремятся к успеху и готовы покорить вершины.',
+      additionalText:
+         'Следите за нашими играми и поддерживайте молодых игроков!',
+      imageUrl: banner2,
+   },
+]
+
+export { navigations, matches, teams, leagues, products, sponsorsData, banners }

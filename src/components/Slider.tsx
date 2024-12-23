@@ -1,54 +1,20 @@
-import { CSSProperties, FC } from 'react'
-import { Carousel } from 'antd'
-import banner2 from '../assets/images/banner2.jpg'
-import stadion2 from '../assets/images/background.jpg'
-import stadion3 from '../assets/images/background2.jpg'
+import { FC } from 'react'
+import { Carousel, Button } from 'antd'
+
 import styled from 'styled-components'
-
-const contentStyle: CSSProperties = {
-   margin: 0,
-   height: '600px',
-   objectFit: 'cover',
-}
-
-const images = [stadion2, stadion3, banner2]
-
-const StyledCarousel = styled(Carousel)`
-   /* .ant-carousel { */
-   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-   /* } */
-
-   .ant-carousel .slick-prev {
-      opacity: 1;
-   }
-   .ant-carousel .slick-next {
-      opacity: 1 !important;
-   }
-
-   .slick-prev,
-   .slick-next {
-      color: white;
-      opacity: 1;
-   }
-
-   .slick-prev:before,
-   .slick-next:before {
-      opacity: 1;
-      color: white;
-      &:hover,
-      &:active,
-      &:focus {
-         opacity: 1 !important;
-      }
-   }
-`
+import { banners } from '../configs'
+import { NavLink } from 'react-router-dom'
 
 const Slider: FC = () => (
    <StyledCarousel dots={false} arrows autoplay autoplaySpeed={6000} infinite>
-      {images.map((image, index) => (
-         <div key={index}>
-            <div style={contentStyle}>
-               <img width="100%" src={image} alt={`Slide ${index + 1}`} />
+      {banners.map((item, index) => (
+         <div className="main-container" key={index}>
+            <img src={item.imageUrl} alt={`Slide ${index + 1}`} />
+            <div className="content">
+               <h1>{item.title}</h1>
+               <StyledButtonView type="primary">
+                  <NavLink to={`/banner/${item.id}`}>Читать дальше</NavLink>
+               </StyledButtonView>
             </div>
          </div>
       ))}
@@ -56,3 +22,60 @@ const Slider: FC = () => (
 )
 
 export default Slider
+
+const StyledCarousel = styled(Carousel)`
+   color: white;
+
+   .slick-slide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 600px;
+      position: relative;
+   }
+
+   .slick-slide img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+   }
+
+   .content {
+      position: relative;
+      z-index: 2;
+      color: white;
+   }
+
+   .content h1 {
+      font-size: 60px;
+      margin-bottom: 50px;
+      color: white;
+      width: 550px;
+      line-height: 1;
+   }
+
+   .main-container {
+      padding: 120px 75px;
+   }
+`
+
+const StyledButtonView = styled(Button)`
+   padding: 23px 45px;
+   border: none;
+   color: white;
+   border-radius: 3px;
+   cursor: pointer;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-weight: 500;
+   font-family: 'Roboto Condensed', serif;
+
+   svg {
+      margin-left: 5px;
+   }
+`

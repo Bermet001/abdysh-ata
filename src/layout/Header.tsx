@@ -170,8 +170,6 @@ const StyledContainer = styled(Flex)<StyledContainerProps>`
    color: ${({ isscrolled }) => (isscrolled === 'true' ? 'black' : 'white')};
 
    .search-desktop {
-      /* color: transparent; */
-
       svg {
          width: 1.5rem;
          height: 1.5rem;
