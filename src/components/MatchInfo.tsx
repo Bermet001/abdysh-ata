@@ -23,11 +23,13 @@ const MatchInfo = () => {
 export default MatchInfo
 
 const StyledContainer = styled.section`
+   margin: 0 auto;
    margin-top: -100px;
    position: relative;
    z-index: 1;
-   padding: 0 75px;
    width: 100%;
+   padding: 0 75px;
+   max-width: 1600px;
 
    & .container {
       display: flex;
