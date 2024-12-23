@@ -32,7 +32,6 @@ const Header = () => {
 
    const handleSearchClick = () => {
       setSearchVisible(!searchVisible)
-      // Сбросить поисковый запрос при открытии инпута
       if (!searchVisible) {
          setSearchQuery('')
       }

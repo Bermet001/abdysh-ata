@@ -4,7 +4,6 @@ import Trophy3 from '../assets/images/victory/km2488.jpg'
 import Trophy4 from '../assets/images/victory/km2802.jpg'
 import Nitro from '../assets/images/nitro-logo.jpg'
 import Partner from '../assets/images/logo45.png'
-import banner2 from '../assets/images/banner2.jpg'
 import stadion2 from '../assets/images/background.jpg'
 import stadion3 from '../assets/images/background2.jpg'
 import Logo from '../assets/images/main-logo.png'
@@ -19,6 +18,7 @@ import news from '../assets/images/image.jpeg'
 import news2 from '../assets/images/image12.webp'
 import news4 from '../assets/images/image9.jpg'
 import news5 from '../assets/images/images3.jpeg'
+import banner from '../assets/images/banner.avif'
 
 const navigations = [
    { path: '/', title: 'Главная', id: 1 },
@@ -186,7 +186,7 @@ const banners = [
          'Команда В — это молодая и перспективная команда, которая активно развивает молодые таланты. Они стремятся к успеху и готовы покорить вершины.',
       additionalText:
          'Следите за нашими играми и поддерживайте молодых игроков!',
-      imageUrl: banner2,
+      imageUrl: banner,
    },
 ]
 

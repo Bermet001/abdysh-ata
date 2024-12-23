@@ -1,6 +1,5 @@
 import { FC } from 'react'
 import { Carousel, Button } from 'antd'
-
 import styled from 'styled-components'
 import { banners } from '../configs'
 import { NavLink } from 'react-router-dom'
@@ -9,6 +8,7 @@ const Slider: FC = () => (
    <StyledCarousel dots={false} arrows autoplay autoplaySpeed={6000} infinite>
       {banners.map((item, index) => (
          <div className="main-container" key={index}>
+            <Overlay />
             <img src={item.imageUrl} alt={`Slide ${index + 1}`} />
             <div className="content">
                <h1>{item.title}</h1>
@@ -47,7 +47,10 @@ const StyledCarousel = styled(Carousel)`
    .content {
       position: relative;
       z-index: 2;
+      top: 50px;
       color: white;
+      width: 1600px;
+      margin: 0 auto;
    }
 
    .content h1 {
@@ -61,6 +64,16 @@ const StyledCarousel = styled(Carousel)`
    .main-container {
       padding: 120px 75px;
    }
+`
+
+const Overlay = styled.div`
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0, 0, 0, 0.237);
+   z-index: 1;
 `
 
 const StyledButtonView = styled(Button)`

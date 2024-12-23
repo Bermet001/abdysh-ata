@@ -59,11 +59,6 @@ const BannerInner: FC = () => {
          <br />
          <br />
          <br />
-
-
-
-
-         
          <Sponsors />
       </BannerSection>
    )

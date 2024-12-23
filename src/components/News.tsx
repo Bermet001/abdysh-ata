@@ -9,7 +9,7 @@ const News = () => {
          <Flex justify="space-between">
             <h1 className="main-title">ПОСЛЕДНИЕ НОВОСТИ</h1>
             <StyledButton type="primary">
-               Посмотреть все новости <RightOutlined />{' '}
+               Посмотреть все новости <RightOutlined />
             </StyledButton>
          </Flex>
 
@@ -32,7 +32,7 @@ const News = () => {
 export default News
 
 const NewsContainer = styled.div`
-   padding: 120px 75px;
+   padding: 120px 75px 0;
    max-width: 1600px;
    margin: 0 auto;
 `

@@ -58,6 +58,8 @@ const Container = styled.div`
       padding: 0 calc(75px + 1rem);
       position: relative;
       z-index: 10;
+      margin: 0 auto;
+      width: 1600px;
    }
 `
 
@@ -98,12 +100,12 @@ const VictoryDes = styled.div`
    background-position: center;
    background-repeat: no-repeat;
    position: relative;
+   padding: 100px 75px 0 75px;
 
    .inner {
       max-width: 1600px;
       margin: 0 auto;
       width: 100%;
-      padding: 100px 75px 0 50px;
    }
 
    &::before {
