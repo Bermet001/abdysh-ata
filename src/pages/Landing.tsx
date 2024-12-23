@@ -6,6 +6,7 @@ import Sponsors from '../components/Sponsors'
 import Gallery from '../components/Gallery'
 import VictoryBlock from '../components/VictoryBlock'
 import ProductSlider from '../components/Products'
+import News from '../components/News'
 
 const Landing = () => {
    return (
@@ -14,6 +15,7 @@ const Landing = () => {
          <Slider />
          <MatchInfo />
          <ProductSlider />
+         <News />
          <Gallery />
          <VictoryBlock />
          <Sponsors />

@@ -7,7 +7,6 @@ import Partner from '../assets/images/logo45.png'
 import banner2 from '../assets/images/banner2.jpg'
 import stadion2 from '../assets/images/background.jpg'
 import stadion3 from '../assets/images/background2.jpg'
-
 import Logo from '../assets/images/main-logo.png'
 import Barselona from '../assets/images/barselona.png'
 import Match from '../assets/images/match.jpg'
@@ -16,6 +15,10 @@ import Product2 from '../assets/images/products/clothe2.png'
 import Product3 from '../assets/images/products/clothe5.png'
 import Product4 from '../assets/images/products/clothe9.png'
 import Product5 from '../assets/images/products/clothe4.png'
+import news from '../assets/images/image.jpeg'
+import news2 from '../assets/images/image12.webp'
+import news4 from '../assets/images/image9.jpg'
+import news5 from '../assets/images/images3.jpeg'
 
 const navigations = [
    { path: '/', title: 'Главная', id: 1 },
@@ -187,4 +190,51 @@ const banners = [
    },
 ]
 
-export { navigations, matches, teams, leagues, products, sponsorsData, banners }
+const newsItems = [
+   {
+      id: 1,
+      title: 'Барса 105-79 Андорра: завершение сезона',
+      date: '2 дня назад',
+      category: 'Баскетбол',
+      imageUrl: news,
+   },
+
+   {
+      id: 3,
+      title: 'Жерар Пике: Я обещаю, что мы будем бороться за все',
+      date: '3 дня назад',
+      category: 'Футбол',
+      imageUrl: news2,
+   },
+   {
+      id: 4,
+      title: 'Результаты матчей: Севилья Больон 86-84',
+      date: '4 дня назад',
+      category: 'Баскетбол',
+      imageUrl: stadion3,
+   },
+   {
+      id: 5,
+      title: 'Теннис: Нэйт 9-4 Барса победила серию',
+      date: '5 дней назад',
+      category: 'Теннис',
+      imageUrl: news4,
+   },
+   {
+      id: 6,
+      title: 'Теннис: 2-6 Барса выходит в финал',
+      date: '6 дней назад',
+      category: 'Теннис',
+      imageUrl: news5,
+   },
+]
+export {
+   navigations,
+   matches,
+   teams,
+   leagues,
+   products,
+   sponsorsData,
+   banners,
+   newsItems,
+}
