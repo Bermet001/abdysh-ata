@@ -24,7 +24,7 @@ const navigations = [
    { path: '/', title: 'Главная', id: 1 },
    { path: '/', title: 'Команды', id: 2 },
    { path: '/', title: 'О клубе', id: 3 },
-   { path: '/', title: 'Матчи', id: 4 },
+   { path: '/match', title: 'Матчи', id: 4 },
    { path: '/', title: 'Таблица рейтинга', id: 5 },
    { path: '/', title: 'Партнеры', id: 6 },
    { path: '/', title: 'Наши достижения', id: 7 },
@@ -193,9 +193,9 @@ const banners = [
 const newsItems = [
    {
       id: 1,
-      title: 'Барса 105-79 Андорра: завершение сезона',
+      title: 'Абдыш-ата 105-79 Андорра: завершение сезона',
       date: '2 дня назад',
-      category: 'Баскетбол',
+      category: 'Футбол',
       imageUrl: news,
    },
 
@@ -208,23 +208,23 @@ const newsItems = [
    },
    {
       id: 4,
-      title: 'Результаты матчей: Севилья Больон 86-84',
+      title: 'Футбол матчей: Севилья Больон 86-84',
       date: '4 дня назад',
-      category: 'Баскетбол',
+      category: 'Футбол',
       imageUrl: stadion3,
    },
    {
       id: 5,
-      title: 'Теннис: Нэйт 9-4 Барса победила серию',
+      title: 'Футбол: Нэйт 9-4 Абдыш-ата победила серию',
       date: '5 дней назад',
-      category: 'Теннис',
+      category: 'Футбол',
       imageUrl: news4,
    },
    {
       id: 6,
-      title: 'Теннис: 2-6 Барса выходит в финал',
+      title: 'Футбол: 2-6 Абдыш-ата выходит в финал',
       date: '6 дней назад',
-      category: 'Теннис',
+      category: 'Футбол',
       imageUrl: news5,
    },
 ]

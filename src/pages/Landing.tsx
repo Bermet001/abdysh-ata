@@ -1,17 +1,15 @@
-import Header from '../layout/Header'
 import Slider from '../components/Slider'
 import MatchInfo from '../components/MatchInfo'
-import Footer from '../layout/Footer'
 import Sponsors from '../components/Sponsors'
 import Gallery from '../components/Gallery'
 import VictoryBlock from '../components/VictoryBlock'
 import ProductSlider from '../components/Products'
 import News from '../components/News'
+import { FC } from 'react'
 
-const Landing = () => {
+const Landing: FC = () => {
    return (
-      <div>
-         <Header />
+      <>
          <Slider />
          <MatchInfo />
          <ProductSlider />
@@ -19,8 +17,7 @@ const Landing = () => {
          <Gallery />
          <VictoryBlock />
          <Sponsors />
-         <Footer />
-      </div>
+      </>
    )
 }
 

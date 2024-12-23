@@ -1,16 +1,13 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Landing from '../pages/Landing'
-import BannerInner from '../pages/BannerInner'
+import UserLayout from '../layout/UserLayout'
+import { USER_ROUTES } from './UserRoutes'
 
 const AppRouter = () => {
    const router = createBrowserRouter([
       {
          path: '/',
-         element: <Landing />,
-      },
-      {
-         path: 'banner/:id',
-         element: <BannerInner />,
+         element: <UserLayout />,
+         children: USER_ROUTES,
       },
    ])
 
