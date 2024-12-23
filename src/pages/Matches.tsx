@@ -3,6 +3,7 @@ import { Table, Button } from 'antd'
 import barcelonaLogo from '../assets/images/main-logo.png'
 import benficaLogo from '../assets/images/barselona.png'
 import sportingLogo from '../assets/images/match.jpg'
+import ldsjd from '../assets/images/banner.avif'
 
 const data = [
    {
@@ -97,30 +98,51 @@ const SchedulMatches = () => {
    ]
 
    return (
-      <StyledContainer>
-         <h1 className="main-title">Расписание матчей</h1>
-         <Table
-            columns={columns}
-            dataSource={data}
-            pagination={false}
-            scroll={{ x: 'max-content' }}
-         />
-      </StyledContainer>
+      <StyledMainContainer>
+         <div className="main-container">
+            <Overlay />
+            <img
+               style={{ objectFit: 'cover' }}
+               width="100%"
+               className="image-background"
+               height={400}
+               src={ldsjd}
+            />
+         </div>
+         <StyledContainer>
+            <h1 className="main-title">Расписание матчей</h1>
+            <Table
+               columns={columns}
+               dataSource={data}
+               pagination={false}
+               scroll={{ x: 'max-content' }}
+            />
+         </StyledContainer>
+      </StyledMainContainer>
    )
 }
 
 export default SchedulMatches
 
+const StyledMainContainer = styled.div`
+   .main-container {
+      position: relative;
+   }
+
+   .image-background {
+      object-fit: cover;
+   }
+`
+
 const StyledContainer = styled.div`
-   padding: 120px 75px;
    margin: auto;
    background: white;
    border-radius: 8px;
-   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-   padding: 20px;
+   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+   padding: 20px 75px;
 
    h1 {
-      margin-top: 100px;
+      margin-top: 20px;
    }
 
    .ant-table {
@@ -142,4 +164,14 @@ const TeamWrapper = styled.div`
       height: 30px;
       margin-right: 10px;
    }
+`
+
+const Overlay = styled.div`
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 99%;
+   background-color: rgba(0, 0, 0, 0.401);
+   z-index: 1;
 `

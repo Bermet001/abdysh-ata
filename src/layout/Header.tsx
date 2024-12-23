@@ -1,4 +1,4 @@
-import { Affix, Button, Input, Flex, Drawer } from 'antd'
+import { Affix, Button, Input, Flex, Drawer, Dropdown, Menu } from 'antd'
 import { SearchOutlined, MenuOutlined, CloseOutlined } from '@ant-design/icons'
 import Logo from '../assets/images/main-logo.png'
 import styled from 'styled-components'
@@ -82,7 +82,6 @@ const Header = () => {
                   gap={20}
                   align="center"
                >
-                  {/* Условное отображение */}
                   {searchVisible ? (
                      <>
                         <StyledInput
@@ -99,11 +98,36 @@ const Header = () => {
                   ) : (
                      <>
                         <nav className="desktop-nav">
-                           {navigations.map(({ path, title, id }) => (
-                              <NavLink key={id} to={path}>
-                                 {title}
-                              </NavLink>
-                           ))}
+                           {navigations.map(({ path, title, id, sub_nav }) => {
+                              const menuItems = sub_nav
+                                 ? sub_nav.map(
+                                      ({
+                                         path: subPath,
+                                         title: subTitle,
+                                         id: subId,
+                                      }) => ({
+                                         key: subId,
+                                         label: (
+                                            <NavLink to={subPath}>
+                                               {subTitle}
+                                            </NavLink>
+                                         ),
+                                      })
+                                   )
+                                 : []
+
+                              const menu = <Menu items={menuItems} />
+
+                              return (
+                                 <Dropdown
+                                    key={id}
+                                    overlay={menu}
+                                    trigger={['hover']}
+                                 >
+                                    <NavLink to={path}>{title}</NavLink>
+                                 </Dropdown>
+                              )
+                           })}
                         </nav>
 
                         <Flex
@@ -117,6 +141,7 @@ const Header = () => {
                               alt=""
                            />
                            {isscrolled ? <Partner2copy /> : <Partner2 />}
+
                            <img src={Logo} width="50" alt="logo" />
                         </Flex>
 

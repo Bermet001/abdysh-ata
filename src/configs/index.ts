@@ -22,13 +22,99 @@ import banner from '../assets/images/banner.avif'
 
 const navigations = [
    { path: '/', title: 'Главная', id: 1 },
-   { path: '/', title: 'Команды', id: 2 },
-   { path: '/', title: 'О клубе', id: 3 },
+   {
+      path: '/',
+      title: 'Команды',
+      id: 2,
+      sub_nav: [
+         {
+            path: '/',
+            title: 'ФК Абдыш-Ата',
+            id: 21,
+         },
+         {
+            path: '/',
+            title: 'ФК Абдыш-Ата 2',
+            id: 22,
+         },
+         {
+            path: '/',
+            title: 'ФК Абдыш-Ата U-19',
+            id: 23,
+         },
+         {
+            path: '/',
+            title: 'Футбольная Академия',
+            id: 24,
+         },
+         {
+            path: '/',
+            title: 'ФК Наше',
+            id: 25,
+         },
+      ],
+   },
+   {
+      path: '/',
+      title: 'О клубе',
+      sub_nav: [
+         {
+            path: '/',
+            title: 'История ',
+            id: 21,
+         },
+         {
+            path: '/',
+            title: 'Руководство',
+            id: 22,
+         },
+         {
+            path: '/',
+            title: 'Контакты',
+            id: 23,
+         },
+      ],
+      id: 3,
+   },
+
    { path: '/match', title: 'Матчи', id: 4 },
+
+   {
+      path: '/',
+      title: 'Инфраструктура',
+
+      sub_nav: [
+         {
+            path: '/',
+            title: 'СК Нитро-Арена ',
+            id: 21,
+         },
+         {
+            path: '/',
+            title: 'СК Спорт-Сити',
+            id: 22,
+         },
+         {
+            path: '/',
+            title: 'Стадион Центральный',
+            id: 23,
+         },
+         {
+            path: '/',
+            title: 'Тренажерный зал',
+            id: 24,
+         },
+         {
+            path: '/',
+            title: 'Батутный зал',
+            id: 25,
+         },
+      ],
+      id: 8,
+   },
    { path: '/', title: 'Таблица рейтинга', id: 5 },
    { path: '/', title: 'Партнеры', id: 6 },
    { path: '/', title: 'Наши достижения', id: 7 },
-   { path: '/', title: 'Контакты', id: 8 },
 ]
 
 const matches = [
