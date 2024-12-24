@@ -53,13 +53,14 @@ const Container = styled.div`
    text-align: center;
    padding: 120px 0;
    color: black;
+   max-width: 1600px;
 
    & .trophy {
       padding: 0 calc(75px + 1rem);
       position: relative;
       z-index: 10;
       margin: 0 auto;
-      width: 1600px;
+      width: 100%;
    }
 `
 
