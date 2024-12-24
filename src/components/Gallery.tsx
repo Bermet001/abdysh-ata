@@ -86,7 +86,7 @@ const Gallery = () => {
 
                <Flex gap={10}>
                   <ImageWrapper>
-                     <img width="100%" src={image6} alt="" />
+                     <img width="100%"  src={image6} alt="" />
                      <Overlay>
                         <h3>Solutions</h3>
                         <Flex gap={10} align="center">
@@ -143,7 +143,6 @@ const ImageWrapper = styled.div`
    img {
       transition: transform 0.3s ease;
       width: 100%;
-      height: 100%;
    }
 
    &:hover img {

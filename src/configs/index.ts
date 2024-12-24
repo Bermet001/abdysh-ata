@@ -16,9 +16,9 @@ import Product4 from '../assets/images/products/clothe9.png'
 import Product5 from '../assets/images/products/clothe4.png'
 import news from '../assets/images/image.jpeg'
 import news2 from '../assets/images/image12.webp'
-import news4 from '../assets/images/image9.jpg'
 import news5 from '../assets/images/images3.jpeg'
 import banner from '../assets/images/banner.avif'
+import news6 from '../assets/images/new.jpg'
 
 const navigations = [
    { path: '/', title: 'Главная', id: 1 },
@@ -304,7 +304,7 @@ const newsItems = [
       title: 'Футбол: Нэйт 9-4 Абдыш-ата победила серию',
       date: '5 дней назад',
       category: 'Футбол',
-      imageUrl: news4,
+      imageUrl: news6,
    },
    {
       id: 6,

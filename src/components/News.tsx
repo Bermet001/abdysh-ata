@@ -39,7 +39,7 @@ const NewsContainer = styled.div`
 
 const CardsContainer = styled.div`
    display: grid;
-   grid-template-columns: repeat(auto-fill, minmax(245px, 1fr));
+   grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
    gap: 16px;
 `
 
@@ -50,6 +50,9 @@ const NewsCard = styled.div`
    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
    transition: transform 0.3s;
    cursor: pointer;
+   .ant-ribbon-wrapper {
+      width: calc(25% - 20px);
+   }
 `
 
 const NewsImage = styled.img`

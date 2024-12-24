@@ -53,7 +53,7 @@ const Container = styled.div`
    text-align: center;
    padding: 120px 0;
    color: black;
-   max-width: 1600px;
+   /* margin: 0 auto; */
 
    & .trophy {
       padding: 0 calc(75px + 1rem);
@@ -61,6 +61,7 @@ const Container = styled.div`
       z-index: 10;
       margin: 0 auto;
       width: 100%;
+      max-width: 1600px;
    }
 `
 

@@ -188,7 +188,7 @@ export default Header
 const StyledContainer = styled(Flex)<StyledContainerProps>`
    padding: 5px 30px;
    width: 100%;
-   /* max-width: 1600px; */
+   max-width: 1600px;
    margin: 0 auto;
    transition: background-color 0.3s ease, color 0.3s ease;
    color: ${({ isscrolled }) => (isscrolled == 'true' ? 'black' : 'white')};

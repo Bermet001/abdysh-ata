@@ -49,7 +49,7 @@ const StyledCarousel = styled(Carousel)`
       z-index: 2;
       top: 50px;
       color: white;
-      /* width: 1600px; */
+      max-width: 1600px;
       margin: 0 auto;
    }
 
