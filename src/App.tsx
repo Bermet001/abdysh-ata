@@ -17,7 +17,7 @@ const App = () => (
             },
             Button: {
                colorLink: '#909CB5',
-               borderRadius: 10,
+               borderRadius: 6,
             },
          },
       }}

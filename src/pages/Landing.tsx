@@ -6,6 +6,7 @@ import VictoryBlock from '../components/VictoryBlock'
 import ProductSlider from '../components/Products'
 import News from '../components/News'
 import { FC } from 'react'
+import Team from '../components/Team'
 
 const Landing: FC = () => {
    return (
@@ -14,6 +15,7 @@ const Landing: FC = () => {
          <MatchInfo />
          <ProductSlider />
          <News />
+         <Team />
          <Gallery />
          <VictoryBlock />
          <Sponsors />

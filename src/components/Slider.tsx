@@ -10,6 +10,7 @@ const Slider: FC = () => (
          <div className="main-container" key={index}>
             <Overlay />
             <img src={item.imageUrl} alt={`Slide ${index + 1}`} />
+
             <div className="content">
                <h1>{item.title}</h1>
                <StyledButtonView type="primary">
@@ -80,7 +81,6 @@ const StyledButtonView = styled(Button)`
    padding: 23px 45px;
    border: none;
    color: white;
-   border-radius: 3px;
    cursor: pointer;
    display: flex;
    align-items: center;

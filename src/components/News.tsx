@@ -50,6 +50,7 @@ const NewsCard = styled.div`
    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
    transition: transform 0.3s;
    cursor: pointer;
+
    .ant-ribbon-wrapper {
       width: calc(25% - 20px);
    }
@@ -60,6 +61,10 @@ const NewsImage = styled.img`
    height: 150px;
    object-fit: cover;
    transition: transform 0.3s;
+
+   ${NewsCard}:hover & {
+      transform: translateY(-20px);
+   }
 `
 
 const NewsContent = styled.div`
@@ -67,7 +72,7 @@ const NewsContent = styled.div`
    transition: transform 0.3s;
 
    ${NewsCard}:hover & {
-      transform: translateY(-6px);
+      transform: translateY(-15px);
    }
 `
 

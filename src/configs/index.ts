@@ -9,16 +9,31 @@ import stadion3 from '../assets/images/background2.jpg'
 import Logo from '../assets/images/main-logo.png'
 import Barselona from '../assets/images/barselona.png'
 import Match from '../assets/images/match.jpg'
+// store
 import Product1 from '../assets/images/products/clothe1.png'
 import Product2 from '../assets/images/products/clothe2.png'
 import Product3 from '../assets/images/products/clothe5.png'
 import Product4 from '../assets/images/products/clothe9.png'
 import Product5 from '../assets/images/products/clothe4.png'
+// new
 import news from '../assets/images/image.jpeg'
 import news2 from '../assets/images/image12.webp'
 import news5 from '../assets/images/images3.jpeg'
 import banner from '../assets/images/banner.avif'
 import news6 from '../assets/images/new.jpg'
+// players
+import player from '../assets/images/players/player_1.jpg'
+import player2 from '../assets/images/players/player2.jpg'
+import player3 from '../assets/images/players/player3.jpg'
+import player4 from '../assets/images/players/player5.jpg'
+
+const teams = [
+   { path: '/', title: 'ФК Абдыш-Ата', id: 1 },
+   { path: '/', title: 'ФК Абдыш-Ата 2', id: 2 },
+   { path: '/', title: 'ФК Абдыш-Ата U-19', id: 3 },
+   { path: '/', title: 'Футбольная Академия', id: 4 },
+   { path: '/', title: 'ФК Наше', id: 5 },
+]
 
 const navigations = [
    { path: '/', title: 'Главная', id: 1 },
@@ -26,34 +41,9 @@ const navigations = [
       path: '/',
       title: 'Команды',
       id: 2,
-      sub_nav: [
-         {
-            path: '/',
-            title: 'ФК Абдыш-Ата',
-            id: 21,
-         },
-         {
-            path: '/',
-            title: 'ФК Абдыш-Ата 2',
-            id: 22,
-         },
-         {
-            path: '/',
-            title: 'ФК Абдыш-Ата U-19',
-            id: 23,
-         },
-         {
-            path: '/',
-            title: 'Футбольная Академия',
-            id: 24,
-         },
-         {
-            path: '/',
-            title: 'ФК Наше',
-            id: 25,
-         },
-      ],
+      sub_nav: teams,
    },
+
    {
       path: '/',
       title: 'О клубе',
@@ -157,14 +147,6 @@ const matches = [
       countdown: '72 : 23 : 34',
       arena: 'ЛУКОЙЛ Арена',
    },
-]
-
-const teams = [
-   { path: '/', title: 'ФК Абдыш-Ата', id: 1 },
-   { path: '/', title: 'ФК Абдыш-Ата 2', id: 2 },
-   { path: '/', title: 'ФК Абдыш-Ата U-19', id: 3 },
-   { path: '/', title: 'Футбольная Академия', id: 4 },
-   { path: '/', title: 'ФК Наше', id: 5 },
 ]
 
 const leagues = [
@@ -313,11 +295,91 @@ const newsItems = [
       category: 'Футбол',
       imageUrl: news5,
    },
+   {
+      id: 7,
+      title: 'Жерар Пике: Я обещаю, что мы будем бороться за все',
+      date: '3 дня назад',
+      category: 'Футбол',
+      imageUrl: news2,
+   },
+   {
+      id: 8,
+      title: 'Футбол матчей: Севилья Больон 86-84',
+      date: '4 дня назад',
+      category: 'Футбол',
+      imageUrl: stadion3,
+   },
+   {
+      id: 9,
+      title: 'Абдыш-ата 105-79 Андорра: завершение сезона',
+      date: '2 дня назад',
+      category: 'Футбол',
+      imageUrl: news,
+   },
+
+   {
+      id: 10,
+      title: 'Жерар Пике: Я обещаю, что мы будем бороться за все',
+      date: '3 дня назад',
+      category: 'Футбол',
+      imageUrl: news2,
+   },
+   {
+      id: 11,
+      title: 'Футбол: Нэйт 9-4 Абдыш-ата победила серию',
+      date: '5 дней назад',
+      category: 'Футбол',
+      imageUrl: news6,
+   },
+]
+
+const team = [
+   {
+      id: 1,
+      image: player,
+      full_name: 'Бекжан Сагынбаев',
+      position: 'Вратарь',
+      fact: 'Один из лучших нападающих в истории, статистика польского форварда говорит сама за себя',
+      bio: 'Благодаря своим техническим качествам он может отлично подключаться к атакам и за пределами поля. Левандовски привнесет в атаку «Барсы» голы, опыт и ноу-хау.  ',
+   },
+   {
+      id: 2,
+      image: player2,
+      full_name: 'Бекжан Сагынбаев',
+      position: 'Вратарь',
+      fact: 'Один из лучших нападающих в истории, статистика польского форварда говорит сама за себя',
+      bio: 'Благодаря своим техническим качествам он может отлично подключаться к атакам и за пределами поля. Левандовски привнесет в атаку «Барсы» голы, опыт и ноу-хау.  ',
+   },
+   {
+      id: 3,
+      image: player3,
+      full_name: 'Бекжан Сагынбаев',
+      position: 'Вратарь',
+      fact: 'Один из лучших нападающих в истории, статистика польского форварда говорит сама за себя',
+      bio: 'Благодаря своим техническим качествам он может отлично подключаться к атакам и за пределами поля. Левандовски привнесет в атаку «Барсы» голы, опыт и ноу-хау.  ',
+   },
+   {
+      id: 4,
+      image: player4,
+      full_name: 'Бекжан Сагынбаев',
+      position: 'Вратарь',
+      fact: 'Один из лучших нападающих в истории, статистика польского форварда говорит сама за себя',
+      bio: 'Благодаря своим техническим качествам он может отлично подключаться к атакам и за пределами поля. Левандовски привнесет в атаку «Барсы» голы, опыт и ноу-хау.  ',
+   },
+   {
+      id: 5,
+      image: player,
+      full_name: 'Бекжан Сагынбаев',
+      position: 'Вратарь',
+      fact: 'Один из лучших нападающих в истории, статистика польского форварда говорит сама за себя',
+      bio: 'Благодаря своим техническим качествам он может отлично подключаться к атакам и за пределами поля. Левандовски привнесет в атаку «Барсы» голы, опыт и ноу-хау.  ',
+   },
 ]
 export {
    navigations,
    matches,
    teams,
+   team,
    leagues,
    products,
    sponsorsData,
