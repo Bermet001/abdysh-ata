@@ -53,7 +53,6 @@ const Container = styled.div`
    text-align: center;
    padding: 120px 0;
    color: black;
-   /* margin: 0 auto; */
 
    & .trophy {
       padding: 0 calc(75px + 1rem);
@@ -105,7 +104,7 @@ const VictoryDes = styled.div`
    padding: 100px 75px 0 75px;
 
    .inner {
-      max-width: 1600px;
+      max-width: 1500px;
       margin: 0 auto;
       width: 100%;
    }
