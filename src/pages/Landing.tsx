@@ -7,16 +7,20 @@ import ProductSlider from '../components/Products'
 import News from '../components/News'
 import { FC } from 'react'
 import Team from '../components/Team'
+import Stories from '../components/Stories'
 
 const Landing: FC = () => {
    return (
       <>
          <Slider />
          <MatchInfo />
+         {/*  */}
+         <Stories />
+         {/*  */}
          <ProductSlider />
          <News />
-         <Team />
          <Gallery />
+         <Team />
          <VictoryBlock />
          <Sponsors />
       </>

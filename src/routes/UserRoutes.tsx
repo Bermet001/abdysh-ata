@@ -2,6 +2,8 @@ import { lazy } from 'react'
 import Suspense from './Suspense'
 import BannerInner from '../pages/BannerInner'
 import SchedulMatche from '../pages/Matches'
+import Team from '../pages/Team'
+import Player from '../pages/inner-pages/Player'
 const Landing = lazy(() => import('../pages/Landing'))
 
 export const USER_ROUTES = [
@@ -22,5 +24,15 @@ export const USER_ROUTES = [
    {
       path: 'banner/:id',
       element: <BannerInner />,
+   },
+
+   {
+      path: 'players',
+      element: <Team />,
+   },
+
+   {
+      path: 'player/:id',
+      element: <Player />,
    },
 ]

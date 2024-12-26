@@ -1,8 +1,6 @@
 import { Button, Flex } from 'antd'
 import styled from 'styled-components'
-// import image1 from '../assets/images/image2.jpeg'
 import image2 from '../assets/images/image12.webp'
-// import image3 from '../assets/images/image6.avif'
 import image6 from '../assets/images/image8.jpg'
 import image7 from '../assets/images/image9.jpg'
 import { RightOutlined } from '@ant-design/icons'
@@ -20,8 +18,12 @@ const Gallery = () => {
                </StyledButton>
             </Flex>
 
-            <Flex gap={10} className="image-gallery">
-               <Flex vertical gap={10}>
+            <Flex
+               gap={20}
+               style={{ height: '872.7px' }}
+               className="image-gallery"
+            >
+               <Flex vertical gap={20}>
                   <ImageWrapper>
                      <img width="100%" height="263.5" src={image7} alt="" />
                      <Overlay>
@@ -49,44 +51,9 @@ const Gallery = () => {
                   </ImageWrapper>
                </Flex>
 
-               {/* <Flex vertical gap={10}> */}
-               {/* <ImageWrapper>
-                     <img
-                        width="500"
-                        className="image
-                     "
-                        height="auto"
-                        src={image3}
-                        alt=""
-                     />
-                     <Overlay>
-                        <h3>Solutions</h3>
-                        <Flex gap={10} align="center">
-                           <p>TecfasdfhVision Solutions</p>
-                           <button>
-                              <RightOutlined />
-                           </button>
-                        </Flex>
-                     </Overlay>
-                  </ImageWrapper> */}
-
-               {/* <ImageWrapper>
-                     <img width="100%" height="auto" src={image1} alt="" />
-                     <Overlay>
-                        <h3>Solutions</h3>
-                        <Flex gap={10} align="center">
-                           <p>TechVision Solutions</p>
-                           <button>
-                              <RightOutlined />
-                           </button>
-                        </Flex>
-                     </Overlay>
-                  </ImageWrapper> */}
-               {/* </Flex> */}
-
-               <Flex gap={10}>
+               <Flex gap={20}>
                   <ImageWrapper>
-                     <img width="100%"  src={image6} alt="" />
+                     <img width="100%" src={image6} alt="" />
                      <Overlay>
                         <h3>Solutions</h3>
                         <Flex gap={10} align="center">
