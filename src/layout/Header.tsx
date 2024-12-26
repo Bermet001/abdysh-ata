@@ -4,8 +4,9 @@ import Logo from '../assets/images/main-logo.png'
 import styled from 'styled-components'
 import { navigations } from '../configs'
 import { NavLink } from 'react-router-dom'
-import Partner1 from '../assets/images/nitro-logo.jpg'
+import Partner1 from '../assets/images/nitro-logo.png'
 import Partner2 from '../assets/images/partner2 copy.svg'
+import Nashe from '../assets/images/nashe-logo.jpg'
 import Partner2copy from '../assets/images/partner2.svg'
 import { useEffect, useState } from 'react'
 
@@ -142,7 +143,7 @@ const Header = () => {
                            />
                            {isscrolled ? <Partner2copy /> : <Partner2 />}
 
-                           <img src={Logo} width="50" alt="logo" />
+                           <img src={Nashe} width="50" alt="logo" />
                         </Flex>
 
                         <Button
