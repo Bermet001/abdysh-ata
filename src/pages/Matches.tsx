@@ -93,7 +93,7 @@ const SchedulMatches = () => {
       {
          title: 'Действие',
          key: 'action',
-         render: () => <Button type="primary">Билеты</Button>,
+         render: () => <Button type="primary">Смотреть</Button>,
       },
    ]
 
