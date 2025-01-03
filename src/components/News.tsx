@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { newsItems } from '../configs'
 import { Button, Flex } from 'antd'
 import { RightOutlined } from '@ant-design/icons'
+import { NavLink } from 'react-router-dom'
 
 const News = () => {
    return (
@@ -16,12 +17,14 @@ const News = () => {
          <CardsContainer>
             {newsItems.map((item) => (
                <NewsCard key={item.id}>
-                  <NewsImage src={item.imageUrl} alt={item.title} />
-                  <NewsContent>
-                     <Category>{item.category}</Category>
-                     <Title>{item.title}</Title>
-                     <Date>{item.date}</Date>
-                  </NewsContent>
+                  <NavLink to={`news/${item.id}`}>
+                     <NewsImage src={item.imageUrl} alt={item.title} />
+                     <NewsContent>
+                        <Category>{item.category}</Category>
+                        <Title>{item.title}</Title>
+                        <Date>{item.date}</Date>
+                     </NewsContent>
+                  </NavLink>
                </NewsCard>
             ))}
          </CardsContainer>

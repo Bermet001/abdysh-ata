@@ -4,6 +4,7 @@ import BannerInner from '../pages/BannerInner'
 import SchedulMatche from '../pages/Matches'
 import Team from '../pages/Team'
 import Player from '../pages/inner-pages/Player'
+import New from '../pages/inner-pages/New'
 const Landing = lazy(() => import('../pages/Landing'))
 
 export const USER_ROUTES = [
@@ -34,5 +35,9 @@ export const USER_ROUTES = [
    {
       path: 'player/:id',
       element: <Player />,
+   },
+   {
+      path: 'news/:id',
+      element: <New />,
    },
 ]

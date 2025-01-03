@@ -6,7 +6,9 @@ const Player = () => {
    return (
       <StyledContainer>
          <Flex className="content" align="center">
-            <PlayerImage src={image} alt="Player" />
+            <Flex>
+               <PlayerImage src={image} alt="Player" />
+            </Flex>
 
             <PlayerInfo>
                <PlayerCard>
@@ -15,6 +17,7 @@ const Player = () => {
                      <PlayerName>1 Marc-André TER STEGEN</PlayerName>
                   </PlayerDetails>
                </PlayerCard>
+
                <PlayerBio>
                   A keeper with great reflexes and also excellent with the ball
                   at his feet. Marc-André ter Stegen signed for FC Barcelona in
@@ -22,7 +25,6 @@ const Player = () => {
                   April 1992, he quickly made a name as one of Europe’s most
                   promising goalkeepers.
                </PlayerBio>
-               <ReadMoreButton>READ FULL BIO +</ReadMoreButton>
             </PlayerInfo>
          </Flex>
       </StyledContainer>
@@ -30,40 +32,42 @@ const Player = () => {
 }
 
 export default Player
-
 const StyledContainer = styled.section`
    background: linear-gradient(to bottom, #23a356, #18191b);
    padding: 30px;
-   height: 100vh;
    display: flex;
    align-items: center;
    justify-content: center;
-   color: white;
+
+   .content {
+      margin-top: 40px;
+      border-radius: 6px;
+      background-color: white;
+      width: 100%;
+   }
 `
 
 const PlayerImage = styled.img`
-   width: 450px;
+   width: 400px;
    border-radius: 10px;
-   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 `
 
 const PlayerInfo = styled.div`
-   margin-left: 40px; /* Отступ от изображения */
+   margin-left: 40px;
    background-color: rgba(255, 255, 255, 0.1);
    padding: 20px;
    border-radius: 10px;
-   max-width: 400px; /* Максимальная ширина блока с информацией */
-   backdrop-filter: blur(10px); /* Эффект размытия фона */
+   max-width: 400px;
+   backdrop-filter: blur(10px);
+   color: black;
 `
 
 const PlayerCard = styled.div`
    display: flex;
    align-items: center;
-   background-color: #08111f;
    padding: 15px;
    border-radius: 6px;
-   color: white;
-   margin-bottom: 20px; /* Отступ снизу */
+   margin-bottom: 20px;
 `
 
 const PlayerDetails = styled.div`
@@ -72,31 +76,17 @@ const PlayerDetails = styled.div`
 
 const PlayerPosition = styled.div`
    font-size: 14px;
-   color: #bbb; /* Более светлый цвет для позиции */
+   color: black;
 `
 
 const PlayerName = styled.div`
    font-size: 20px;
    font-weight: bold;
+   color: black;
 `
 
 const PlayerBio = styled.p`
    font-size: 16px;
-   color: #f9f9f9; /* Светлый цвет текста */
    margin: 10px 0;
-`
-
-const ReadMoreButton = styled.button`
-   background-color: #23a356;
-   color: white;
-   border: none;
-   padding: 10px 20px;
-   border-radius: 5px;
-   cursor: pointer;
-   font-weight: bold;
-   transition: background-color 0.3s;
-
-   &:hover {
-      background-color: #1e8b4e; /* Потемнение при наведении */
-   }
+   color: black;
 `
