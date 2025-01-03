@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { FC, useState } from 'react'
 import styled from 'styled-components'
 import { newsItems } from '../../configs/index'
 import { NavLink } from 'react-router-dom'
@@ -12,7 +12,7 @@ interface NewsItem {
    date: string
 }
 
-const NewsPage: React.FC = () => {
+const NewsPage: FC = () => {
    const [currentPage, setCurrentPage] = useState(1)
    const itemsPerPage = 10
 
