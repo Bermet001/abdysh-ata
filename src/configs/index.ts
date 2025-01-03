@@ -331,6 +331,34 @@ const newsItems = [
       category: 'Футбол',
       imageUrl: news6,
    },
+   {
+      id: 50,
+      title: 'Футбол: Нэйт 9-4 Абдыш-ата победила серию',
+      date: '5 дней назад',
+      category: 'Футбол',
+      imageUrl: news6,
+   },
+   {
+      id: 623,
+      title: 'Футбол: 2-6 Абдыш-ата выходит в финал',
+      date: '6 дней назад',
+      category: 'Футбол',
+      imageUrl: news5,
+   },
+   {
+      id: 765,
+      title: 'Жерар Пике: Я обещаю, что мы будем бороться за все',
+      date: '3 дня назад',
+      category: 'Футбол',
+      imageUrl: news2,
+   },
+   {
+      id: 890,
+      title: 'Футбол матчей: Севилья Больон 86-84',
+      date: '4 дня назад',
+      category: 'Футбол',
+      imageUrl: stadion3,
+   },
 ]
 
 const team = [

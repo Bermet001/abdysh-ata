@@ -7,6 +7,8 @@ import News from '../../components/News'
 const { Title, Paragraph } = Typography
 
 const New: FC = () => {
+   window.scrollTo(0, 0)
+
    return (
       <StyledContainer>
          <BackgroundContainer></BackgroundContainer>

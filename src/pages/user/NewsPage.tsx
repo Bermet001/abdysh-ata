@@ -1,25 +1,37 @@
+import React, { useState } from 'react'
 import styled from 'styled-components'
-import { newsItems } from '../configs'
-import { Button, Flex } from 'antd'
-import { RightOutlined } from '@ant-design/icons'
+import { newsItems } from '../../configs/index'
 import { NavLink } from 'react-router-dom'
+import { Pagination as AntPagination } from 'antd'
 
-const News = () => {
+interface NewsItem {
+   id: number
+   imageUrl: string
+   title: string
+   category: string
+   date: string
+}
+
+const NewsPage: React.FC = () => {
+   const [currentPage, setCurrentPage] = useState(1)
+   const itemsPerPage = 10
+
+   window.scrollTo({
+      top: 100,
+   })
+
+   const startIndex = (currentPage - 1) * itemsPerPage
+   const endIndex = startIndex + itemsPerPage
+   const currentItems = newsItems.slice(startIndex, endIndex) as NewsItem[]
+
+   const onPageChange = (page: number) => setCurrentPage(page)
+
    return (
       <NewsContainer>
-         <Flex justify="space-between">
-            <h1 className="main-title">ПОСЛЕДНИЕ НОВОСТИ</h1>
-            <StyledButton type="primary">
-               <NavLink to="/news">
-                  Посмотреть все новости <RightOutlined />
-               </NavLink>
-            </StyledButton>
-         </Flex>
-
          <CardsContainer>
-            {newsItems.slice(0, 10).map((item) => (
+            {currentItems.map((item) => (
                <NewsCard key={item.id}>
-                  <NavLink to={`news/${item.id}`}>
+                  <NavLink to={`/news/${item.id}`}>
                      <NewsImage src={item.imageUrl} alt={item.title} />
                      <NewsContent>
                         <Category>{item.category}</Category>
@@ -30,16 +42,29 @@ const News = () => {
                </NewsCard>
             ))}
          </CardsContainer>
+
+         <StyledPagination
+            current={currentPage}
+            total={newsItems.length}
+            pageSize={itemsPerPage}
+            onChange={onPageChange}
+            showSizeChanger={false}
+         />
       </NewsContainer>
    )
 }
 
-export default News
+export default NewsPage
 
 const NewsContainer = styled.div`
    padding: 120px 75px 0;
    max-width: 1600px;
    margin: 0 auto;
+   margin-bottom: 40px;
+   min-height: 700px;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
 `
 
 const CardsContainer = styled.div`
@@ -97,18 +122,31 @@ const Date = styled.p`
    color: #aaa;
 `
 
-const StyledButton = styled(Button)`
-   padding: 23px 25px;
-   border: none;
-   color: white;
-   border-radius: 8px;
-   cursor: pointer;
+const StyledPagination = styled(AntPagination)`
    display: flex;
-   align-items: center;
    justify-content: center;
-   font-weight: 500;
+   align-items: end;
+   margin-top: 20px;
 
-   svg {
-      margin-left: 5px;
+   .ant-pagination-item {
+      border-color: #04a54f;
+      border-radius: 6px;
+
+      &:hover {
+         border-color: #04a54f;
+      }
+   }
+
+   .ant-pagination-item-active {
+      background-color: #04a54f;
+      border-color: #04a54f;
+
+      a {
+         color: white;
+
+         &:hover {
+            color: white !important;
+         }
+      }
    }
 `
