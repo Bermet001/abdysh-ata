@@ -6,6 +6,7 @@ import Team from '../pages/Team'
 import Player from '../pages/inner-pages/Player'
 import New from '../pages/inner-pages/New'
 import NewsPage from '../pages/user/NewsPage'
+import Coaches from '../pages/user/team/Сoaches'
 const Landing = lazy(() => import('../pages/Landing'))
 
 export const USER_ROUTES = [
@@ -44,5 +45,9 @@ export const USER_ROUTES = [
    {
       path: 'news',
       element: <NewsPage />,
+   },
+   {
+      path: 'coaches',
+      element: <Coaches />,
    },
 ]

@@ -3,7 +3,11 @@ import styled from 'styled-components'
 import image2 from '../assets/images/image12.webp'
 import image6 from '../assets/images/image8.jpg'
 import image7 from '../assets/images/image9.jpg'
-import { RightOutlined } from '@ant-design/icons'
+import {
+   EyeOutlined,
+   RightOutlined,
+   RightSquareOutlined,
+} from '@ant-design/icons'
 
 const Gallery = () => {
    return (
@@ -26,6 +30,8 @@ const Gallery = () => {
                <Flex vertical gap={20}>
                   <ImageWrapper>
                      <img width="100%" height="263.5" src={image7} alt="" />
+
+                     <DarkOverlay />
                      <Overlay>
                         <h3>Solutions</h3>
                         <Flex gap={10} align="center">
@@ -39,13 +45,17 @@ const Gallery = () => {
 
                   <ImageWrapper>
                      <img width="100%" height="auto" src={image2} alt="" />
+                     <DarkOverlay />
+
                      <Overlay>
-                        <h3>Solutions</h3>
+                        {/* <h3>Solutions</h3> */}
                         <Flex gap={10} align="center">
-                           <p>TechVision Solutions</p>
+                           {/* <p>TechVision Solutions</p>
                            <button>
                               <RightOutlined />
-                           </button>
+                           </button> */}
+                           <StyledEyeOutlined />
+                           <StyledRightSquareOutlined />
                         </Flex>
                      </Overlay>
                   </ImageWrapper>
@@ -54,13 +64,12 @@ const Gallery = () => {
                <Flex gap={20}>
                   <ImageWrapper>
                      <img width="100%" src={image6} alt="" />
+                     <DarkOverlay />
+
                      <Overlay>
-                        <h3>Solutions</h3>
                         <Flex gap={10} align="center">
-                           <p>TechVision Solutions</p>
-                           <button>
-                              <RightOutlined />
-                           </button>
+                           <StyledEyeOutlined />
+                           <StyledRightSquareOutlined />
                         </Flex>
                      </Overlay>
                   </ImageWrapper>
@@ -122,12 +131,11 @@ const ImageWrapper = styled.div`
       }
    }
 `
-
 const Overlay = styled.div`
    position: absolute;
-   left: 0;
-   right: 0;
-   bottom: 0;
+   left: 50%;
+   bottom: -100%;
+   transform: translateX(-50%);
    background: rgb(255, 255, 255);
    display: flex;
    align-items: center;
@@ -139,7 +147,6 @@ const Overlay = styled.div`
    transition: opacity 0.3s ease, transform 0.3s ease;
    border-radius: 5px;
    padding: 5px;
-   transform: translateY(100%);
 
    h3,
    p {
@@ -158,8 +165,40 @@ const Overlay = styled.div`
 
    ${ImageWrapper}:hover & {
       opacity: 1;
-      transform: translateY(0);
+      bottom: 0;
+      transform: translateX(-50%);
    }
+`
+
+const DarkOverlay = styled.div`
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   background: rgba(0, 0, 0, 0.166);
+   opacity: 0;
+   transition: opacity 0.3s ease;
+   border-radius: 10px;
+   transition: transform 0.3s ease;
+
+   ${ImageWrapper}:hover & {
+      opacity: 1;
+      transform: scale(1.03);
+   }
+`
+
+const StyledEyeOutlined = styled(EyeOutlined)`
+   font-size: 24px;
+   color: green;
+   border: 3px solid green;
+   border-radius: 2px;
+   padding: 2px;
+`
+
+const StyledRightSquareOutlined = styled(RightSquareOutlined)`
+   font-size: 38px;
+   color: green;
 `
 
 const StyledButton = styled(Button)`
