@@ -1,5 +1,6 @@
 import { Card, Flex, Typography } from 'antd'
-import styled from 'styled-components'
+import { FC } from 'react'
+import styled, { keyframes } from 'styled-components'
 
 const { Title } = Typography
 
@@ -12,7 +13,7 @@ interface CoachProps {
    biography?: string
 }
 
-const Coach: React.FC<CoachProps> = ({
+const Coach: FC<CoachProps> = ({
    img,
    name,
    surename,
@@ -30,11 +31,11 @@ const Coach: React.FC<CoachProps> = ({
             >
                <Flex gap={80} vertical justify="center">
                   <h1 className="coach-full-name">
-                     <p className="coach-name"> {name}</p>
+                     <AnimatedName>{name}</AnimatedName>
                      <br />
-                     {surename}
+                     <AnimatedSurname>{surename}</AnimatedSurname>
                   </h1>
-                  <StyledCard>
+                  <AnimatedCard>
                      <Flex vertical gap={15}>
                         <Flex vertical>
                            <StyledTitle level={5}>Должность</StyledTitle>
@@ -46,10 +47,9 @@ const Coach: React.FC<CoachProps> = ({
                            <StyledText>{dateOfBirth}</StyledText>
                         </Flex>
                      </Flex>
-                  </StyledCard>
+                  </AnimatedCard>
                </Flex>
-
-               <img className="photo" src={img} alt="" />
+               <AnimatedImage src={img} alt="" />
             </Flex>
 
             <Flex vertical className="biography-box">
@@ -63,6 +63,28 @@ const Coach: React.FC<CoachProps> = ({
 
 export default Coach
 
+const fadeIn = keyframes`
+   from {
+      opacity: 0;
+      transform: translateY(-20px);
+   }
+   to {
+      opacity: 1;
+      transform: translateY(0);
+   }
+`
+
+const slideInLeft = keyframes`
+   from {
+      opacity: 0;
+      transform: translateX(-30px);
+   }
+   to {
+      opacity: 1;
+      transform: translateX(0);
+   }
+`
+
 const StyledComponent = styled(Flex)`
    margin: 0 auto;
 
@@ -70,19 +92,11 @@ const StyledComponent = styled(Flex)`
       padding: 150px 75px 0;
       max-width: 1600px;
    }
+
    .coach-full-name {
       line-height: 0.6;
       font-size: 55px;
       font-family: 'Inter', serif;
-
-      > .coach-name {
-         font-size: 30px;
-      }
-   }
-
-   .photo {
-      width: 500px;
-      height: auto;
    }
 
    .biography-box {
@@ -117,6 +131,12 @@ const StyledCard = styled(Card)`
    }
 `
 
+const AnimatedCard = styled(StyledCard)`
+   opacity: 0;
+   animation: ${slideInLeft} 0.9s ease-in-out forwards;
+   animation-delay: 0.7s;
+`
+
 const StyledTitle = styled(Title)`
    color: #333;
    font-size: 17px;
@@ -125,4 +145,26 @@ const StyledTitle = styled(Title)`
 const StyledText = styled.h1`
    font-size: 30px;
    color: #00a64f;
+`
+
+const AnimatedImage = styled.img`
+   width: 500px;
+   height: auto;
+   opacity: 0;
+   animation: ${fadeIn} 0.9s ease-in-out forwards;
+   animation-delay: 0.3s;
+`
+
+const AnimatedName = styled.span`
+   opacity: 0;
+   animation: ${fadeIn} 0.9s ease-in-out forwards;
+   font-size: 30px;
+   line-height: 2;
+   animation-delay: 0.5s;
+`
+
+const AnimatedSurname = styled.span`
+   opacity: 0;
+   animation: ${fadeIn} 0.9s ease-in-out forwards;
+   animation-delay: 0.8s;
 `
