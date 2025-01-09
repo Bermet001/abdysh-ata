@@ -1,8 +1,5 @@
 const TeamWrapper = () => {
-   return <div>
-
-    
-   </div>
+   return <div></div>
 }
 
 export default TeamWrapper

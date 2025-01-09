@@ -86,7 +86,6 @@ const StyledContainer = styled.section`
 const PlayerImage = styled.img`
    width: 400px;
    border-radius: 10px;
-   /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); */
 `
 
 const PlayerInfo = styled.div`
@@ -153,5 +152,4 @@ const DetailLabel = styled.span`
 
 const DetailValue = styled.span`
    color: #666;
-   /* margin-bottom: 10px; */
 `
