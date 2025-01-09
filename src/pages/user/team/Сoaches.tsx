@@ -17,9 +17,11 @@ const Сoaches = () => {
                         src={img}
                         alt={`${name} ${surename}`}
                      />
+
                      <h2 className="coach-name">{name}</h2>
                      <h1 className="coach-surname">{surename}</h1>
                      <p className="coach-position">{position}</p>
+
                      <Button type="primary" className="more-info-btn">
                         <NavLink to={`/coaches/${id}`}>
                            Смотреть профиль
