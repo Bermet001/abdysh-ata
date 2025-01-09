@@ -1,8 +1,14 @@
 import { Card, Flex, Typography } from 'antd'
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import styled, { keyframes } from 'styled-components'
+import { coaches } from '../../../configs'
 
 const { Title } = Typography
+interface AchievementshProps {
+   image?: string
+   text: string
+}
 
 interface CoachProps {
    img?: string
@@ -11,16 +17,32 @@ interface CoachProps {
    position?: string
    dateOfBirth?: string
    biography?: string
+   achievements?: AchievementshProps[]
 }
 
-const Coach: FC<CoachProps> = ({
-   img,
-   name,
-   surename,
-   position,
-   dateOfBirth,
-   biography,
-}) => {
+const Coach: FC = () => {
+   const { id } = useParams()
+
+   const [selectedCoach, setSelectedCoach] = useState<CoachProps | null>(null)
+   useEffect(() => {
+      const foundCoach = coaches.find((coach) => coach.id.toString() === id)
+      setSelectedCoach(foundCoach || null)
+   }, [id])
+
+   if (!selectedCoach) {
+      return <div>Загрузка...</div>
+   }
+
+   const {
+      img,
+      name,
+      surename,
+      position,
+      dateOfBirth,
+      biography,
+      achievements,
+   } = selectedCoach
+
    return (
       <StyledComponent>
          <Flex vertical>
@@ -55,6 +77,33 @@ const Coach: FC<CoachProps> = ({
             <Flex vertical className="biography-box">
                <h2 className="main-title">Биография</h2>
                <p className="bio">{biography}</p>
+
+               <br />
+               <br />
+
+               <h2 className="main-title">Достижения</h2>
+
+               <Flex gap={50} justify="start" className="">
+                  {achievements?.map(({ image, text }) => (
+                     <StyledCard>
+                        <img
+                           className="trophy-image"
+                           width="100%"
+                           height="220px"
+                           src={image}
+                           alt="trophy"
+                        />
+
+                        <h2>{text}</h2>
+                     </StyledCard>
+                  ))}
+               </Flex>
+
+               <br />
+               <br />
+
+               <h2 className="main-title">Ассистенты</h2>
+               <div></div>
             </Flex>
          </Flex>
       </StyledComponent>
@@ -87,6 +136,7 @@ const slideInLeft = keyframes`
 
 const StyledComponent = styled(Flex)`
    margin: 0 auto;
+   margin-bottom: 80px;
 
    .frist-part-coach {
       padding: 150px 75px 0;
@@ -120,21 +170,25 @@ const StyledComponent = styled(Flex)`
 `
 
 const StyledCard = styled(Card)`
-   margin: 20px auto;
-   width: 500px;
-   background-color: #f0f2f5;
+   width: 220px;
+   background-color: #fff;
    border-radius: 6px;
    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 
    .ant-typography {
       margin: 0;
    }
+
+   .trophy-image {
+      object-fit: cover;
+   }
 `
 
 const AnimatedCard = styled(StyledCard)`
    opacity: 0;
+   width: 520px;
    animation: ${slideInLeft} 0.9s ease-in-out forwards;
-   animation-delay: 0.7s;
+   animation-delay: 0.4s;
 `
 
 const StyledTitle = styled(Title)`
@@ -151,8 +205,12 @@ const AnimatedImage = styled.img`
    width: 500px;
    height: auto;
    opacity: 0;
-   animation: ${fadeIn} 0.9s ease-in-out forwards;
+   animation: ${fadeIn} 0.4s ease-in-out forwards;
    animation-delay: 0.3s;
+
+   -webkit-box-shadow: inset 0px -186px 162px -200px rgba(0, 166, 79, 1);
+   -moz-box-shadow: inset 0px -186px 162px -200px rgba(0, 166, 79, 1);
+   box-shadow: inset 0px -186px 162px -200px rgba(0, 166, 79, 1);
 `
 
 const AnimatedName = styled.span`
@@ -160,11 +218,11 @@ const AnimatedName = styled.span`
    animation: ${fadeIn} 0.9s ease-in-out forwards;
    font-size: 30px;
    line-height: 2;
-   animation-delay: 0.5s;
+   animation-delay: 0.3s;
 `
 
 const AnimatedSurname = styled.span`
    opacity: 0;
-   animation: ${fadeIn} 0.9s ease-in-out forwards;
-   animation-delay: 0.8s;
+   animation: ${fadeIn} 0.6s ease-in-out forwards;
+   animation-delay: 0.5s;
 `

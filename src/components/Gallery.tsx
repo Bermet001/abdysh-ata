@@ -22,38 +22,26 @@ const Gallery = () => {
                </StyledButton>
             </Flex>
 
-            <Flex
-               gap={20}
-               style={{ height: '872.7px' }}
-               className="image-gallery"
-            >
+            <Flex gap={20} className="image-gallery">
                <Flex vertical gap={20}>
                   <ImageWrapper>
-                     <img width="100%" height="263.5" src={image7} alt="" />
+                     <img height="100%" width="100%" src={image7} alt="" />
 
                      <DarkOverlay />
                      <Overlay>
-                        <h3>Solutions</h3>
-                        <Flex gap={10} align="center">
-                           <p>TechVisiofasn Solutions</p>
-                           <button>
-                              <RightOutlined />
-                           </button>
+                        <Flex gap={15} align="center">
+                           <StyledEyeOutlined />
+                           <StyledRightSquareOutlined />
                         </Flex>
                      </Overlay>
                   </ImageWrapper>
 
                   <ImageWrapper>
-                     <img width="100%" height="auto" src={image2} alt="" />
+                     <img height="100%" width="100%" src={image2} alt="" />
                      <DarkOverlay />
 
                      <Overlay>
-                        {/* <h3>Solutions</h3> */}
-                        <Flex gap={10} align="center">
-                           {/* <p>TechVision Solutions</p>
-                           <button>
-                              <RightOutlined />
-                           </button> */}
+                        <Flex gap={15} align="center">
                            <StyledEyeOutlined />
                            <StyledRightSquareOutlined />
                         </Flex>
@@ -63,11 +51,11 @@ const Gallery = () => {
 
                <Flex gap={20}>
                   <ImageWrapper>
-                     <img width="100%" src={image6} alt="" />
+                     <img height="100%" width="100%" src={image6} alt="" />
                      <DarkOverlay />
 
                      <Overlay>
-                        <Flex gap={10} align="center">
+                        <Flex gap={15} align="center">
                            <StyledEyeOutlined />
                            <StyledRightSquareOutlined />
                         </Flex>
@@ -87,6 +75,7 @@ const StyledContainer = styled.section`
    flex-direction: column;
    justify-content: center;
    padding: 120px 75px 0 75px;
+   /* max-height: 900px; */
 
    img {
       object-fit: cover;
@@ -133,40 +122,26 @@ const ImageWrapper = styled.div`
 `
 const Overlay = styled.div`
    position: absolute;
-   left: 50%;
-   bottom: -100%;
-   transform: translateX(-50%);
-   background: rgb(255, 255, 255);
+   top: 50%;
+   left: 0%;
+   right: 0%;
+   bottom: 50%;
    display: flex;
    align-items: center;
    justify-content: center;
    opacity: 0;
    flex-direction: column;
-   width: 99%;
+   width: 100%;
    height: auto;
-   transition: opacity 0.3s ease, transform 0.3s ease;
+   transition: opacity 0.8s ease, transform 0.5s ease;
    border-radius: 5px;
    padding: 5px;
-
-   h3,
-   p {
-      margin: 0;
-      padding: 0;
-   }
-
-   button {
-      padding: 10px 11px;
-      border: none;
-      background-color: #007bff;
-      color: white;
-      border-radius: 50%;
-      cursor: pointer;
-   }
 
    ${ImageWrapper}:hover & {
       opacity: 1;
       bottom: 0;
       transform: translateX(-50%);
+      transform: translateY(-50%);
    }
 `
 
@@ -176,7 +151,7 @@ const DarkOverlay = styled.div`
    left: 0;
    right: 0;
    bottom: 0;
-   background: rgba(0, 0, 0, 0.166);
+   background: rgba(0, 0, 0, 0.365);
    opacity: 0;
    transition: opacity 0.3s ease;
    border-radius: 10px;
@@ -190,15 +165,15 @@ const DarkOverlay = styled.div`
 
 const StyledEyeOutlined = styled(EyeOutlined)`
    font-size: 24px;
-   color: green;
-   border: 3px solid green;
+   color: white;
+   border: 3px solid white;
    border-radius: 2px;
    padding: 2px;
 `
 
 const StyledRightSquareOutlined = styled(RightSquareOutlined)`
    font-size: 38px;
-   color: green;
+   color: white;
 `
 
 const StyledButton = styled(Button)`

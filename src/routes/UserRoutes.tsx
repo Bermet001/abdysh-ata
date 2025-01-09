@@ -7,6 +7,7 @@ import Player from '../pages/inner-pages/Player'
 import New from '../pages/inner-pages/New'
 import NewsPage from '../pages/user/NewsPage'
 import Coaches from '../pages/user/team/Сoaches'
+import Coach from '../pages/user/team/Coach'
 const Landing = lazy(() => import('../pages/Landing'))
 
 export const USER_ROUTES = [
@@ -49,5 +50,10 @@ export const USER_ROUTES = [
    {
       path: 'coaches',
       element: <Coaches />,
+   },
+
+   {
+      path: 'coaches/:id',
+      element: <Coach />,
    },
 ]

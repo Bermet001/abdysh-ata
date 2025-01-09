@@ -88,7 +88,7 @@ const Header = () => {
                         <StyledInput
                            value={searchQuery}
                            onChange={handleSearchChange}
-                           placeholder="Search..."
+                           placeholder="Поиск..."
                            autoFocus
                            style={{ border: 'none' }}
                         />

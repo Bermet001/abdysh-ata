@@ -1,17 +1,34 @@
 import styled from 'styled-components'
 import { coaches } from '../../../configs'
+import { Button, Flex } from 'antd'
+import { NavLink } from 'react-router-dom'
 
 const Сoaches = () => {
    return (
       <StyledContainer>
-         {coaches.map(({ name, surename, position, img }) => (
-            <StyledCard>
-               <img className="coach-photo" src={img} alt="Дмитрий Комбаров" />
-               <h2 className="coach-name">{name}</h2>
-               <h1 className="coach-surname">{surename}</h1>
-               <p className="coach-position">{position}</p>
-            </StyledCard>
-         ))}
+         <h1 className="main-title ">Тренерский штаб</h1>
+
+         <Flex justify="space-around" wrap>
+            {coaches.map(({ name, surename, position, img, id }) => (
+               <StyledCard key={id}>
+                  <div className="card-coach">
+                     <img
+                        className="coach-photo"
+                        src={img}
+                        alt={`${name} ${surename}`}
+                     />
+                     <h2 className="coach-name">{name}</h2>
+                     <h1 className="coach-surname">{surename}</h1>
+                     <p className="coach-position">{position}</p>
+                     <Button type="primary" className="more-info-btn">
+                        <NavLink to={`/coaches/${id}`}>
+                           Смотреть профиль
+                        </NavLink>
+                     </Button>
+                  </div>
+               </StyledCard>
+            ))}
+         </Flex>
       </StyledContainer>
    )
 }
@@ -20,23 +37,40 @@ export default Сoaches
 
 const StyledContainer = styled.section`
    max-width: 1600px;
+   padding: 0 75px;
+   margin: 0 auto;
+   margin-bottom: 80px;
+   margin-top: 180px;
 `
 
 const StyledCard = styled.div`
+   position: relative;
    display: flex;
    flex-direction: column;
    align-items: center;
    justify-content: center;
-   color: white;
    text-align: center;
-   padding: 40px;
-   border-radius: 15px;
+   overflow: hidden;
+
+   .card-coach {
+      padding: 40px;
+      transition: filter 0.3s ease;
+   }
+
+   &:hover .card-coach {
+      .coach-photo,
+      .coach-position {
+         filter: blur(2px);
+      }
+   }
 
    .coach-photo {
-      width: 300px;
+      width: 350px;
       height: auto;
-      border-radius: 10px;
       margin-bottom: 20px;
+      -webkit-box-shadow: inset 0px -186px 162px -200px rgba(0, 166, 79, 1);
+      -moz-box-shadow: inset 0px -186px 162px -200px rgba(0, 166, 79, 1);
+      box-shadow: inset 0px -186px 162px -200px rgba(0, 166, 79, 1);
    }
 
    .coach-name {
@@ -52,30 +86,27 @@ const StyledCard = styled.div`
    }
 
    .coach-position {
-      font-size: 18px;
-      font-weight: 300;
+      font-weight: 400;
       margin: 0;
+      color: #d1d1d1;
    }
 
-   /* Optional: Add snowflake animation */
-   &::after {
-      content: '';
+   .more-info-btn {
       position: absolute;
-      top: 10px;
-      left: 10px;
-      width: 100%;
-      height: 100%;
-      background: url('path/to/snowflake.png') no-repeat;
-      opacity: 0.5;
-      animation: snowAnimation 10s linear infinite;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-10%);
+      padding: 20px 30px;
+      border: none;
+      color: white;
+      cursor: pointer;
+      opacity: 0;
+      transition: top 0.5s ease, opacity 0.3s ease;
    }
 
-   @keyframes snowAnimation {
-      0% {
-         transform: translateY(0);
-      }
-      100% {
-         transform: translateY(100%);
-      }
+   &:hover .more-info-btn {
+      top: 65%;
+      opacity: 1;
+      transform: translate(-50%, -50%);
    }
 `

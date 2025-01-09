@@ -21,7 +21,9 @@ const Sponsors = () => {
          >
             {sponsorsData.map((sponsor) => (
                <SwiperSlide key={sponsor.id}>
-                  <img height="auto" src={sponsor.img} alt={sponsor.alt} />
+                  <a href={sponsor.link}>
+                     <img height="auto" src={sponsor.img} alt={sponsor.alt} />
+                  </a>
                </SwiperSlide>
             ))}
          </Swiper>
