@@ -14,9 +14,7 @@ const Landing: FC = () => {
       <>
          <Slider />
          <MatchInfo />
-         {/*  */}
          <Stories />
-         {/*  */}
          <ProductSlider />
          <News />
          <Gallery />
