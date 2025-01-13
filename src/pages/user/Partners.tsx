@@ -11,13 +11,11 @@ const Partners = () => {
                <Content>
                   <h1 className="main-title">Спонсоры Абдыш ата</h1>
                   <p>
-                     FC Абдыш ата is the most loved multi-sports club in the
-                     world, a brand that is globally recognised for its sporting
-                     excellence, for always promoting sport values and for
-                     openly expressing a strong social vocation. A club with
-                     more than 120 years of history that has built its legacy
-                     believing in talent, effort and teamwork to become 'More
-                     than a Club'.
+                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                     Architecto, expedita aperiam. Enim quod iusto perspiciatis
+                     voluptates fuga ad placeat ea amet ipsam obcaecati
+                     cupiditate quidem, quisquam voluptatum adipisci, repellat
+                     odit?
                   </p>
                </Content>
             </div>

@@ -30,9 +30,6 @@ const NewsPage: FC = () => {
    const [currentPage, setCurrentPage] = useState(1)
    const itemsPerPage = 10
 
-   window.scrollTo({
-      top: 100,
-   })
    const onSearch: SearchProps['onSearch'] = (value, _e, info) =>
       console.log(info?.source, value)
 

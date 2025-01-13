@@ -125,6 +125,8 @@ const SchedulMatches = () => {
 export default SchedulMatches
 
 const StyledMainContainer = styled.div`
+   margin-bottom: 50px;
+
    .main-container {
       position: relative;
    }
@@ -138,7 +140,7 @@ const StyledContainer = styled.div`
    margin: auto;
    background: white;
    border-radius: 8px;
-   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+   /* box-shadow: 0 2px 2px rgba(0, 0, 0, 0.094); */
    padding: 20px 75px;
 
    h1 {
