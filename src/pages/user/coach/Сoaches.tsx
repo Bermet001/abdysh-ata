@@ -41,8 +41,6 @@ const StyledContainer = styled.section`
    max-width: 1600px;
    padding: 0 75px;
    margin: 0 auto;
-   margin-bottom: 80px;
-   margin-top: 180px;
 `
 
 const StyledCard = styled.div`

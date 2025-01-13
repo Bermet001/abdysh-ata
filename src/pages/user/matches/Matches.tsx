@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 import { Table, Button } from 'antd'
-import barcelonaLogo from '../assets/images/main-logo.png'
-import benficaLogo from '../assets/images/barselona.png'
-import sportingLogo from '../assets/images/match.jpg'
-import ldsjd from '../assets/images/banner.avif'
+import barcelonaLogo from '../../../assets/images/main-logo.png'
+import benficaLogo from '../../../assets/images/barselona.png'
+import sportingLogo from '../../../assets/images/match.jpg'
+import ldsjd from '../../../assets/images/banner.avif'
 
 const data = [
    {

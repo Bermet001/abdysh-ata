@@ -63,6 +63,7 @@ const NewsPage: FC = () => {
                onOk={onOk}
             />
          </Flex>
+
          <CardsContainer>
             {currentItems.map((item) => (
                <NewsCard key={item.id}>

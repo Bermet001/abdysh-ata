@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom'
 import { FC, useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { banners } from '../configs'
-import Sponsors from '../components/Sponsors'
-import ProductSlider from '../components/Products'
-import MatchInfo from '../components/MatchInfo'
+import { banners } from '../../../configs'
+import Sponsors from '../../../components/Sponsors'
+import ProductSlider from '../../../components/Products'
+import MatchInfo from '../../../components/MatchInfo'
 
 interface Banner {
    id: number
@@ -32,33 +32,16 @@ const BannerInner: FC = () => {
       <BannerSection>
          <BannerImage src={bannerData.imageUrl} alt={bannerData.title} />
          <Overlay />
+
          <BannerContent>
             <h1 className="banner-title">{bannerData.title}</h1>
             <p>{bannerData.description}</p>
             <AdditionalText>{bannerData.additionalText}</AdditionalText>
          </BannerContent>
-         <br />
-         <br />
-         <br />
-         <br />
-         <br />
-         <br />
-         <br />
-         <MatchInfo /> <br />
-         <br />
-         <br />
-         <br />
-         <br />
-         <br />
          <MatchInfo />
+
          <ProductSlider />
-         <br />
-         <br />
-         <br />
-         <br />
-         <br />
-         <br />
-         <br />
+         <div className="space" />
          <Sponsors />
       </BannerSection>
    )
@@ -73,6 +56,10 @@ const BannerSection = styled.section`
       font-size: 60px;
       color: white;
       margin-bottom: 30px;
+   }
+
+   .space {
+      margin-top: 130px;
    }
 `
 

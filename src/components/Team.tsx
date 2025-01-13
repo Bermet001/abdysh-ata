@@ -15,7 +15,7 @@ const Team = () => {
          <Flex justify="space-between" align="start">
             <h1>ИГРОКИ</h1>
             <StyledButtonView type="primary">
-               Посмотреть все команды <RightOutlined />
+               Посмотреть всю команду <RightOutlined />
             </StyledButtonView>
          </Flex>
 

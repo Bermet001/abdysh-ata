@@ -5,11 +5,6 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import honours from '../../../configs'
 
 const Player = () => {
-   window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-   })
-
    return (
       <StyledContainer>
          <Flex vertical className="main-box">
@@ -142,9 +137,6 @@ const StyledContainer = styled.section`
       object-fit: cover;
    }
 
-   .accomplishments {
-   }
-
    .main-box {
       background-color: white;
       padding: 0 40px;
@@ -200,11 +192,12 @@ const slideInRight = keyframes`
    from {
       transform: translateX(10px);
    }
+
    to {
       opacity: 1;
       transform: translateX(0);
    }
-`
+   `
 
 const PlayerInfo = styled.div`
    margin-left: 40px;
@@ -229,6 +222,7 @@ const slideInLeft = keyframes`
    from {
       transform: translateY(30px);
    }
+
    to {
       opacity: 1;
       transform: translateY(0);

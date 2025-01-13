@@ -1,8 +1,8 @@
 import { FC } from 'react'
 import { Typography, Card, Flex } from 'antd'
 import styled from 'styled-components'
-import image from '../../assets/images/background2.jpg'
-import News from '../../components/News'
+import image from '../../../assets/images/background2.jpg'
+import News from '../../../components/News'
 
 const { Title, Paragraph } = Typography
 
