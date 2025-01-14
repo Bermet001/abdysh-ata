@@ -54,41 +54,45 @@ const SchedulMatches = () => {
          title: 'Дата',
          dataIndex: 'date',
          key: 'date',
-      },
-      {
-         title: 'Время',
-         dataIndex: 'time',
-         key: 'time',
-      },
-      {
-         title: 'Команда',
-         dataIndex: 'logo',
-         key: 'team',
-         render: (logo: string | undefined, record: { team: string }) => (
-            <TeamWrapper>
-               <img src={logo} alt={record.team} />
-               <span>{record.team}</span>
-            </TeamWrapper>
-         ),
-      },
-      {
-         title: 'Противник',
-         dataIndex: 'opponentLogo',
-         key: 'opponent',
-         render: (
-            opponentLogo: string | undefined,
-            record: { opponent: string }
-         ) => (
-            <TeamWrapper>
-               <img src={opponentLogo} alt={record.opponent} />
-               <span>{record.opponent}</span>
-            </TeamWrapper>
+         render: (text: string, record: { time: string; date: string }) => (
+            <DateTimeWrapper>
+               <Date>{record.date}</Date>
+               <Time>{record.time}</Time>
+            </DateTimeWrapper>
          ),
       },
       {
          title: 'Лига',
          dataIndex: 'league',
          key: 'league',
+         render: (text: string) => <League>{text}</League>,
+      },
+      {
+         title: 'Команды',
+         key: 'teams',
+         render: (
+            text: string,
+            record: {
+               team: string
+               opponent: string
+               logo: string
+               opponentLogo: string
+            }
+         ) => (
+            <TeamsWrapper>
+               <TeamWrapper className="team-box">
+                  <span>{record.team}</span>
+                  <img src={record.logo} alt={record.team} />
+               </TeamWrapper>
+
+               <Vs>vs</Vs>
+
+               <TeamWrapper className="team-box">
+                  <img src={record.opponentLogo} alt={record.opponent} />
+                  <span>{record.opponent}</span>
+               </TeamWrapper>
+            </TeamsWrapper>
+         ),
       },
       {
          title: 'Действие',
@@ -109,13 +113,16 @@ const SchedulMatches = () => {
                src={ldsjd}
             />
          </div>
+
          <StyledContainer>
             <h1 className="main-title">Расписание матчей</h1>
+
             <Table
                columns={columns}
                dataSource={data}
                pagination={false}
                scroll={{ x: 'max-content' }}
+               rowClassName="table-row"
             />
          </StyledContainer>
       </StyledMainContainer>
@@ -134,17 +141,27 @@ const StyledMainContainer = styled.div`
    .image-background {
       object-fit: cover;
    }
+
+   .team-box {
+      display: flex;
+      width: 200px;
+   }
+
+   .team-box:first-child {
+      display: flex;
+      justify-content: end;
+   }
 `
 
 const StyledContainer = styled.div`
    margin: auto;
    background: white;
    border-radius: 8px;
-   /* box-shadow: 0 2px 2px rgba(0, 0, 0, 0.094); */
    padding: 20px 75px;
 
    h1 {
       margin-top: 20px;
+      color: green;
    }
 
    .ant-table {
@@ -153,19 +170,72 @@ const StyledContainer = styled.div`
    }
 
    .ant-table th {
-      background-color: #f2f2f2;
+      background-color: #e8f5e9;
+      text-align: center;
    }
+
+   .ant-table-tbody > tr > td {
+      padding: 10px;
+   }
+
+   .table-row {
+      border-bottom: 1px solid #e0e0e0;
+   }
+
+   .ant-table-thead > tr > th:first-child,
+   .ant-table-thead > tr > th:last-child {
+      text-align: start;
+   }
+
+   .ant-table-thead > tr > th {
+      text-align: center;
+   }
+`
+
+const TeamsWrapper = styled.div`
+   display: flex;
+   align-items: center;
+   justify-content: center;
 `
 
 const TeamWrapper = styled.div`
    display: flex;
    align-items: center;
+   margin: 0 10px;
+   font-weight: 700;
 
    img {
-      width: 30px;
-      height: 30px;
+      width: 50px;
+      height: 50px;
       margin-right: 10px;
    }
+`
+
+const Vs = styled.span`
+   font-weight: bold;
+   margin: 0 10px;
+   color: green;
+`
+
+const DateTimeWrapper = styled.div`
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+`
+
+const Date = styled.span`
+   font-weight: bold;
+   font-size: 16px;
+   color: #333;
+`
+
+const Time = styled.span`
+   color: #888;
+`
+
+const League = styled.span`
+   font-weight: bold;
+   color: green;
 `
 
 const Overlay = styled.div`
@@ -174,6 +244,6 @@ const Overlay = styled.div`
    left: 0;
    width: 100%;
    height: 99%;
-   background-color: rgba(0, 0, 0, 0.401);
+   background-color: rgba(0, 0, 0, 0.4);
    z-index: 1;
 `

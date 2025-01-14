@@ -20,9 +20,7 @@ const Header = () => {
    const [drawerVisible, setDrawerVisible] = useState(false)
    const [searchQuery, setSearchQuery] = useState('')
 
-   const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-   }
+   const handleScroll = () => setIsScrolled(window.scrollY > 50)
 
    useEffect(() => {
       window.addEventListener('scroll', handleScroll)
@@ -38,13 +36,10 @@ const Header = () => {
       }
    }
 
-   const handleDrawerToggle = () => {
-      setDrawerVisible(!drawerVisible)
-   }
+   const handleDrawerToggle = () => setDrawerVisible(!drawerVisible)
 
-   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) =>
       setSearchQuery(e.target.value)
-   }
 
    return (
       <header

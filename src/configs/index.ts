@@ -33,6 +33,12 @@ import coach from '../assets/images/coaches/image.png'
 import coach2 from '../assets/images/coaches/image2.png'
 import coach3 from '../assets/images/coaches/image5.png'
 import coach4 from '../assets/images/coaches/image3.png'
+// infras
+import image from '../assets/images/insrastracture/infrastracture.jpg'
+import image2 from '../assets/images/insrastracture/infrastracture11.jpg'
+import image3 from '../assets/images/insrastracture/infrastracture22.jpeg'
+import image4 from '../assets/images/insrastracture/infrastracture1234.jpg'
+import image5 from '../assets/images/insrastracture/infrastracture3342.jpg'
 
 const teams = [
    { path: '/team', title: 'ФК Абдыш-Ата', id: 1 },
@@ -77,7 +83,7 @@ const navigations = [
    { path: '/match', title: 'Матчи', id: 4 },
 
    {
-      path: '/',
+      path: '/infrastracture',
       title: 'Инфраструктура',
 
       sub_nav: [
@@ -111,7 +117,7 @@ const navigations = [
    },
    { path: '/', title: 'Таблица рейтинга', id: 5 },
    { path: '/partners', title: 'Партнеры', id: 6 },
-   { path: '/', title: 'Наши достижения', id: 7 },
+   { path: '/trophy', title: 'Наши достижения', id: 7 },
 ]
 
 const matches = [
@@ -776,11 +782,42 @@ const honours = [
    },
 ]
 
-export default honours
-
+const infrastructure = [
+   {
+      id: 1,
+      image: image,
+      name: 'СК Спорт-Сити',
+      address: 'г. Бишкек, ул. Спортивная, 10',
+   },
+   {
+      id: 2,
+      image: image5,
+      name: 'Стадион Центральный',
+      address: 'г. Бишкек, ул. Центральная, 5',
+   },
+   {
+      id: 3,
+      image: image2,
+      name: 'Стадион Нитро-Арена',
+      address: 'г. Бишкек, ул. Нитро, 15',
+   },
+   {
+      id: 4,
+      image: image3,
+      name: 'Батутный зал',
+      address: 'г. Бишкек, ул. Батутная, 20',
+   },
+   {
+      id: 5,
+      image: image4,
+      name: 'СК Абдыш-Ата',
+      address: 'г. Бишкек, ул. Абдыш-Ата, 8',
+   },
+]
 export {
    navigations,
    matches,
+   honours,
    teams,
    team,
    leagues,
@@ -789,6 +826,6 @@ export {
    banners,
    coaches,
    newsItems,
-   honours,
    team_page,
+   infrastructure,
 }

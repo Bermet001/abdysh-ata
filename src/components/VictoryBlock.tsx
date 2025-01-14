@@ -4,6 +4,7 @@ import Image from '../assets/images/image7.jpg'
 
 import { RightOutlined } from '@ant-design/icons'
 import { leagues } from '../configs'
+import { NavLink } from 'react-router-dom'
 
 const VictoryBlock = () => {
    return (
@@ -21,7 +22,9 @@ const VictoryBlock = () => {
                </Flex>
 
                <StyledButton type="primary">
-                  Все трофеи <RightOutlined />
+                  <NavLink to={'/trophy'}>
+                     Все трофеи <RightOutlined />
+                  </NavLink>
                </StyledButton>
             </Flex>
          </VictoryDes>

@@ -2,7 +2,7 @@ import { Flex } from 'antd'
 import styled, { keyframes } from 'styled-components'
 import image from '../../../assets/images/players/image.png'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import honours from '../../../configs'
+import { honours } from '../../../configs'
 
 const Player = () => {
    return (

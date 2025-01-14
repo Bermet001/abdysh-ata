@@ -1,5 +1,10 @@
+import { Flex } from 'antd'
+import styled from 'styled-components'
+
 const Raiting = () => {
-   return <div></div>
+   return <StyledContainer> </StyledContainer>
 }
 
 export default Raiting
+
+const StyledContainer = styled(Flex)

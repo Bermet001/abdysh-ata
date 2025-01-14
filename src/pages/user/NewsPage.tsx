@@ -20,9 +20,8 @@ type RangePickerProps = GetProps<typeof DatePicker.RangePicker>
 
 const { RangePicker } = DatePicker
 
-const onOk = (value: DatePickerProps['value'] | RangePickerProps['value']) => {
+const onOk = (value: DatePickerProps['value'] | RangePickerProps['value']) =>
    console.log('onOk: ', value)
-}
 
 const { Search } = Input
 
