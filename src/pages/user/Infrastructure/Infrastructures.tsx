@@ -8,12 +8,33 @@ interface StyledCardProps {
    bgImage: string
 }
 
+const Infrastructures: FC = () => (
+   <main>
+      <CollageContainer wrap>
+         {infrastructure.map((item) => (
+            <NavLink to={`/infrastructure/${item.id}`}>
+               <StyledCard key={item.id} hoverable bgImage={item.image}>
+                  <div className="ant-card-body">
+                     <h3>{item.name}</h3>
+
+                     <p>{item.address}</p>
+                  </div>
+               </StyledCard>
+            </NavLink>
+         ))}
+      </CollageContainer>
+   </main>
+)
+
+export default Infrastructures
+
 const CollageContainer = styled(Flex)`
-   display: grid;
-   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
    gap: 16px;
    padding: 20px;
    background-color: #f0f2f5;
+   border-radius: 6px;
+   margin: 0 75px;
+   margin-top: 80px;
 `
 
 const StyledCard = styled(Card)<StyledCardProps>`
@@ -23,8 +44,8 @@ const StyledCard = styled(Card)<StyledCardProps>`
    background-image: url(${(props) => props.bgImage});
    background-size: cover;
    background-position: center;
-   height: auto;
-   width: 100%;
+   height: 250px;
+   width: 300px;
    color: white;
 
    .ant-card-body {
@@ -37,21 +58,3 @@ const StyledCard = styled(Card)<StyledCardProps>`
       margin: 0;
    }
 `
-
-const Infrastructures: FC = () => (
-   <CollageContainer>
-      {infrastructure.map((item) => (
-         <NavLink to={`/infrastructure/${item.id}`}>
-            <StyledCard key={item.id} hoverable bgImage={item.image}>
-               <div className="ant-card-body">
-                  <h3>{item.name}</h3>
-
-                  <p>{item.address}</p>
-               </div>
-            </StyledCard>
-         </NavLink>
-      ))}
-   </CollageContainer>
-)
-
-export default Infrastructures
