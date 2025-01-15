@@ -41,6 +41,7 @@ const VictoryBlock = () => {
                         alt="trophy"
                      />
                      <p>{date}</p>
+
                      <h2>{name}</h2>
                   </StyledCard>
                </Col>

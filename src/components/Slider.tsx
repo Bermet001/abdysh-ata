@@ -13,6 +13,7 @@ const Slider: FC = () => (
 
             <div className="content">
                <h1>{item.title}</h1>
+
                <StyledButtonView type="primary">
                   <NavLink to={`/banner/${item.id}`}>Читать дальше</NavLink>
                </StyledButtonView>

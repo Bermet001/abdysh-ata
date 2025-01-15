@@ -13,6 +13,7 @@ import Contacts from '../pages/user/Contacts'
 import History from '../pages/user/History'
 import Infrastructures from '../pages/user/Infrastructure/Infrastructures'
 import Trophy from '../pages/user/trophy/Trophy'
+import Infrastracture from '../pages/user/Infrastructure/Infrastracture'
 const Landing = lazy(() => import('../pages/Landing'))
 
 export const USER_ROUTES = [
@@ -71,6 +72,10 @@ export const USER_ROUTES = [
    {
       path: 'infrastracture',
       element: <Infrastructures />,
+   },
+   {
+      path: 'infrastructure/:id',
+      element: <Infrastracture />,
    },
    {
       path: 'trophy',

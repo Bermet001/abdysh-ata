@@ -57,6 +57,7 @@ const Coach: FC = () => {
                      <br />
                      <AnimatedSurname>{surename}</AnimatedSurname>
                   </h1>
+
                   <AnimatedCard>
                      <Flex vertical gap={15}>
                         <Flex vertical>
