@@ -784,11 +784,18 @@ const honours = [
 
 const infrastructure = [
    {
+      id: 4,
+      image: image3,
+      name: 'Батутный зал',
+      address: 'г. Бишкек, ул. Батутная, 20',
+   },
+   {
       id: 1,
       image: image,
       name: 'СК Спорт-Сити',
-      address: 'г. Бишкек, ул. Спортивная, 10',
+      address: 'Спортивная, 10',
    },
+
    {
       id: 2,
       image: image5,
@@ -796,22 +803,36 @@ const infrastructure = [
       address: 'г. Бишкек, ул. Центральная, 5',
    },
    {
-      id: 3,
-      image: image2,
-      name: 'Стадион Нитро-Арена',
-      address: 'г. Бишкек, ул. Нитро, 15',
-   },
-   {
-      id: 4,
-      image: image3,
-      name: 'Батутный зал',
-      address: 'г. Бишкек, ул. Батутная, 20',
-   },
-   {
       id: 5,
       image: image4,
       name: 'СК Абдыш-Ата',
       address: 'г. Бишкек, ул. Абдыш-Ата, 8',
+   },
+
+   {
+      id: 3341,
+      image: image5,
+      name: 'Стадион Центральный',
+      address: 'г. Бишкек, ул. Центральная, 5',
+   },
+   {
+      id: 11234123,
+      image: image,
+      name: 'СК Спорт-Сити',
+      address: 'Спортивная, 10',
+   },
+   {
+      id: 414,
+      image: image3,
+      name: 'Батутный зал',
+      address: 'г. Бишкек, ул. Батутная, 20',
+   },
+
+   {
+      id: 3,
+      image: image2,
+      name: 'Стадион Нитро-Арена',
+      address: 'г. Бишкек, ул. Нитро, 15',
    },
 ]
 export {
