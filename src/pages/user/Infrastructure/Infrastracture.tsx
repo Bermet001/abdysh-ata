@@ -1,8 +1,5 @@
-import { SetStateAction, useState } from 'react'
 import styled from 'styled-components'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { FreeMode, Navigation, Thumbs } from 'swiper/modules'
-import { Flex } from 'antd'
+import { Flex, Image } from 'antd'
 
 const images = [
    'https://swiperjs.com/demos/images/nature-1.jpg',
@@ -13,59 +10,18 @@ const images = [
    'https://swiperjs.com/demos/images/nature-10.jpg',
    'https://swiperjs.com/demos/images/nature-10.jpg',
    'https://swiperjs.com/demos/images/nature-10.jpg',
-   'https://swiperjs.com/demos/images/nature-2.jpg',
-   'https://swiperjs.com/demos/images/nature-5.jpg',
-   'https://swiperjs.com/demos/images/nature-5.jpg',
-   'https://swiperjs.com/demos/images/nature-6.jpg',
-   'https://swiperjs.com/demos/images/nature-7.jpg',
-   'https://swiperjs.com/demos/images/nature-8.jpg',
-   'https://swiperjs.com/demos/images/nature-9.jpg',
-   'https://swiperjs.com/demos/images/nature-10.jpg',
-   'https://swiperjs.com/demos/images/nature-10.jpg',
    'https://swiperjs.com/demos/images/nature-10.jpg',
 ]
 
 const Infrastructure = () => {
-   const [thumbsSwiper, setThumbsSwiper] = useState(null)
-
-   const handleSwiper = (swiper: SetStateAction<null>) =>
-      setThumbsSwiper(swiper)
-
    return (
       <StyledContainr>
          <Flex className="first-block" gap={40}>
             <Flex vertical>
-               <StyledSwiper
-                  loop={true}
-                  spaceBetween={10}
-                  navigation={true}
-                  thumbs={{ swiper: thumbsSwiper }}
-                  modules={[FreeMode, Navigation, Thumbs]}
-               >
-                  {images?.map((image, index) => (
-                     <SwiperSlide key={index}>
-                        <img src={image} alt={`Nature ${index + 1}`} />
-                     </SwiperSlide>
-                  ))}
-               </StyledSwiper>
-
-               <br />
-
-               <StyledThumbSwiper
-                  onSwiper={handleSwiper}
-                  spaceBetween={10}
-                  slidesPerView={4}
-                  freeMode={true}
-                  loop={true}
-                  watchSlidesProgress={true}
-                  modules={[FreeMode, Navigation, Thumbs]}
-               >
-                  {images?.map((image, index) => (
-                     <SwiperSlide key={index}>
-                        <img src={image} alt={`Nature ${index + 1}`} />
-                     </SwiperSlide>
-                  ))}
-               </StyledThumbSwiper>
+               <Image
+                  className="main-image"
+                  src="https://swiperjs.com/demos/images/nature-10.jpg"
+               />
             </Flex>
 
             <Flex justify="start" gap={30} vertical>
@@ -102,13 +58,54 @@ const Infrastructure = () => {
             </Flex>
          </Flex>
 
-         <Flex vertical gap={10} className="map-block">
+         <Flex vertical className="media">
+            <h2 className="main-title">Видео</h2>
+
+            <Flex gap={20}>
+               <iframe
+                  width="560"
+                  height="240"
+                  src="https://www.youtube.com/embed/xx-fB-Ml_Yg?si=6ADORznAJs9OdMD6"
+                  title="YouTube video player"
+                  className="video"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+               />
+               <iframe
+                  width="560"
+                  height="240"
+                  src="https://www.youtube.com/embed/xx-fB-Ml_Yg?si=6ADORznAJs9OdMD6"
+                  title="YouTube video player"
+                  className="video"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+               />
+               <iframe
+                  width="560"
+                  height="240"
+                  src="https://www.youtube.com/embed/xx-fB-Ml_Yg?si=6ADORznAJs9OdMD6"
+                  title="YouTube video player"
+                  className="video"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+               />
+            </Flex>
+         </Flex>
+
+         <Flex vertical gap={20} wrap className="galery">
+            <h3></h3>
+
+            <Flex gap={20} wrap>
+               {images.map((item) => (
+                  <img className="galery-image" src={item} alt="image" />
+               ))}
+            </Flex>
+         </Flex>
+
+         <Flex vertical className="map-block">
             <h2>Маршрут</h2>
 
             <iframe
                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6887.935602500561!2d74.84216768171416!3d42.88937676368082!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x389eaee0c1efa677%3A0xcf6c142d63f73f90!2z0KbQtdC90YLRgNCw0LvRjNC90YvQuSDRgNGL0L3QvtC6INCz0L7RgNC-0LTQsCDQmtCw0L3Rgg!5e0!3m2!1sru!2skg!4v1736931000952!5m2!1sru!2skg"
                width="100%"
-               height="200"
+               height="300"
                loading="lazy"
                style={{ borderRadius: '6px', border: 'none' }}
             />
@@ -126,6 +123,13 @@ const StyledContainr = styled.main`
    .first-block {
       margin-bottom: 50px;
 
+      .main-image {
+         object-fit: cover;
+         height: 400px;
+         width: 650px;
+         border-radius: 6px;
+      }
+
       .main-title {
          margin-bottom: 0px;
          font-size: 40px;
@@ -135,6 +139,31 @@ const StyledContainr = styled.main`
          span {
             color: grey;
          }
+      }
+   }
+
+   .galery {
+      padding: 0 100px;
+      margin-top: 90px;
+
+      img {
+         width: calc(100% / 3 - 20px);
+         height: 250px;
+         object-fit: cover;
+         border-radius: 6px;
+      }
+   }
+
+   .media {
+      .main-title {
+         margin-bottom: 30px;
+         font-size: 40px;
+      }
+
+      margin-top: 70px;
+      .video {
+         border-radius: 6px;
+         border: none;
       }
    }
 
@@ -150,8 +179,11 @@ const StyledContainr = styled.main`
    }
 
    .map-block {
+      margin-top: 80px;
+
       h2 {
          font-size: 40px;
+         margin-bottom: 20px;
       }
 
       margin-bottom: 30px;
@@ -169,42 +201,6 @@ const StyledContainr = styled.main`
          width: 650px;
          font-weight: 300;
          font-size: 18px;
-      }
-   }
-`
-
-const StyledSwiper = styled(Swiper)`
-   width: 700px;
-   height: 360px;
-   border-radius: 6px;
-
-   .swiper-slide {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      img {
-         width: 100%;
-         height: 100%;
-         object-fit: cover;
-      }
-   }
-`
-
-const StyledThumbSwiper = styled(Swiper)`
-   width: 700px;
-   height: 100px;
-
-   .swiper-slide {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      img {
-         width: 100%;
-         border-radius: 6px;
-         height: 100%;
-         object-fit: cover;
       }
    }
 `
