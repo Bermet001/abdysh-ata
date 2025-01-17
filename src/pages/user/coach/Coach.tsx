@@ -137,7 +137,6 @@ const slideInLeft = keyframes`
 
 const StyledComponent = styled(Flex)`
    margin: 0 auto;
-   margin-bottom: 80px;
 
    .frist-part-coach {
       padding: 150px 75px 0;
