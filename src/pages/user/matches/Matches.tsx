@@ -54,7 +54,7 @@ const SchedulMatches = () => {
          title: 'Дата',
          dataIndex: 'date',
          key: 'date',
-         render: (text: string, record: { time: string; date: string }) => (
+         render: (_text: string, record: { time: string; date: string }) => (
             <DateTimeWrapper>
                <Date>{record.date}</Date>
                <Time>{record.time}</Time>
@@ -70,15 +70,12 @@ const SchedulMatches = () => {
       {
          title: 'Команды',
          key: 'teams',
-         render: (
-            text: string,
-            record: {
-               team: string
-               opponent: string
-               logo: string
-               opponentLogo: string
-            }
-         ) => (
+         render: (record: {
+            team: string
+            opponent: string
+            logo: string
+            opponentLogo: string
+         }) => (
             <TeamsWrapper>
                <TeamWrapper className="team-box">
                   <span>{record.team}</span>
