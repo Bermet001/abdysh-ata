@@ -26,6 +26,7 @@ const Container = styled.main`
    margin: auto;
    padding: 120px 75px 0 75px;
    max-width: 1600px;
+   margin-bottom: 80px;
 `
 
 const ProductsContainer = styled.div`

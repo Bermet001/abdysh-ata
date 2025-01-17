@@ -18,7 +18,7 @@ const ProductSlider = () => {
             </StyledButtonView>
          </Flex>
 
-         <Swiper  
+         <Swiper
             spaceBetween={10}
             breakpoints={{
                640: {
