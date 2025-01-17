@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Card, Button, Flex } from 'antd'
 import { products } from '../configs'
 import { RightOutlined } from '@ant-design/icons'
+import { NavLink } from 'react-router-dom'
 
 const ProductSlider = () => {
    return (
@@ -11,11 +12,13 @@ const ProductSlider = () => {
             <h1>НАШ ОНЛАЙН МАГАЗИН </h1>
 
             <StyledButtonView type="primary">
-               Посмотреть все товары <RightOutlined />
+               <NavLink to="/shop">
+                  Посмотреть все товары <RightOutlined />
+               </NavLink>
             </StyledButtonView>
          </Flex>
 
-         <Swiper
+         <Swiper  
             spaceBetween={10}
             breakpoints={{
                640: {

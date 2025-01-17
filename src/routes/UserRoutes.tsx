@@ -15,6 +15,7 @@ import Infrastructures from '../pages/user/Infrastructure/Infrastructures'
 import Trophy from '../pages/user/trophy/Trophy'
 import Infrastracture from '../pages/user/Infrastructure/Infrastracture'
 import Rating from '../pages/user/rating-table/Rating'
+import Shop from '../pages/user/shop/Shop'
 const Landing = lazy(() => import('../pages/Landing'))
 
 export const USER_ROUTES = [
@@ -86,5 +87,9 @@ export const USER_ROUTES = [
    {
       path: 'rating',
       element: <Rating />,
+   },
+   {
+      path: 'shop',
+      element: <Shop />,
    },
 ]
