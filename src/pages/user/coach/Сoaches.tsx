@@ -39,7 +39,7 @@ export default Сoaches
 
 const StyledContainer = styled.section`
    max-width: 1600px;
-   padding: 0 75px;
+   /* padding: 0 75px;/ */
    margin: 0 auto;
 `
 

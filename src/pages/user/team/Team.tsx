@@ -37,7 +37,7 @@ export default Team
 
 const Container = styled.div`
    margin: auto;
-   padding: 0px 75px 0 75px;
+   /* padding: 0px 75px 0 75px; */
    max-width: 1600px;
 
    h1 {
