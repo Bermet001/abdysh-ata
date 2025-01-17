@@ -115,7 +115,7 @@ const navigations = [
       ],
       id: 8,
    },
-   { path: '/', title: 'Таблица рейтинга', id: 5 },
+   { path: '/rating', title: 'Таблица рейтинга', id: 5 },
    { path: '/partners', title: 'Партнеры', id: 6 },
    { path: '/trophy', title: 'Наши достижения', id: 7 },
 ]

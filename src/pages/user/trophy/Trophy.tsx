@@ -9,6 +9,7 @@ import Team from '../../../assets/images/heistory/team.webp'
 
 const Trophy = () => {
    const [visibleCount, setVisibleCount] = useState(10)
+
    // useEffect(() => {
    //    // window.scrollTo(0, 0)
    // })
@@ -68,6 +69,7 @@ const Trophy = () => {
             <br />
             <br />
             <br />
+
             {visibleCount < trophyData.length && (
                <Button onClick={handleShowMore} type="link">
                   Смотреть еще

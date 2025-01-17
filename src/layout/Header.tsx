@@ -3,7 +3,7 @@ import { SearchOutlined, MenuOutlined, CloseOutlined } from '@ant-design/icons'
 import Logo from '../assets/images/main-logo.png'
 import styled from 'styled-components'
 import { navigations } from '../configs'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import Partner1 from '../assets/images/nitro-logo.png'
 import Partner2 from '../assets/images/partner2 copy.svg'
 import Nashe from '../assets/images/nashe-logo.jpg'
@@ -19,6 +19,7 @@ const Header = () => {
    const [searchVisible, setSearchVisible] = useState(false)
    const [drawerVisible, setDrawerVisible] = useState(false)
    const [searchQuery, setSearchQuery] = useState('')
+   const location = useLocation()
 
    const handleScroll = () => setIsScrolled(window.scrollY > 50)
 
@@ -41,6 +42,8 @@ const Header = () => {
    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) =>
       setSearchQuery(e.target.value)
 
+   const isOnDifferentPage = location.pathname !== '/'
+
    return (
       <header
          style={{
@@ -52,14 +55,17 @@ const Header = () => {
          }}
       >
          <Affix
-            style={{ backgroundColor: isscrolled ? '#fff' : 'transparent' }}
+            style={{
+               backgroundColor:
+                  isOnDifferentPage || isscrolled ? '#fff' : 'transparent',
+            }}
             offsetTop={0}
          >
             <StyledContainer
                gap={20}
                justify="space-between"
                align="center"
-               isscrolled={isscrolled.toString()}
+               isscrolled={isOnDifferentPage ? 'true' : isscrolled.toString()}
             >
                <Flex align="center" gap={15}>
                   <NavLink to="/">
@@ -187,7 +193,10 @@ const StyledContainer = styled(Flex)<StyledContainerProps>`
    max-width: 1600px;
    margin: 0 auto;
    transition: background-color 0.3s ease, color 0.3s ease;
-   color: ${({ isscrolled }) => (isscrolled == 'true' ? 'black' : 'white')};
+   color: ${({ isscrolled }) =>
+      isscrolled === 'true' || window.location.pathname === '/special'
+         ? 'black'
+         : 'white'};
 
    .search-desktop {
       svg {
