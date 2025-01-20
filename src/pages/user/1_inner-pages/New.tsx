@@ -11,12 +11,13 @@ const New: FC = () => {
 
    return (
       <StyledContainer>
-         <BackgroundContainer></BackgroundContainer>
+         <BackgroundContainer />
 
          <ContentCard>
             <Flex gap={20} vertical align="center">
                <Flex vertical>
                   <StyledTitle level={1}>Raul Neto leaves Barça</StyledTitle>
+
                   <Flex justify="space-between" className="date-info">
                      <Paragraph>
                         <a style={{ color: '#888', fontSize: '0.9em' }} href="">

@@ -73,6 +73,7 @@ const Coach: FC = () => {
                         </Flex>
                      </AnimatedCard>
                   </Flex>
+
                   <AnimatedImage src={img} alt="" />
                </Flex>
 

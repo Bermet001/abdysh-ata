@@ -1,6 +1,6 @@
 import { FC, useState } from 'react'
 import styled from 'styled-components'
-import { newsItems } from '../../configs/index'
+import { newsItems } from '../../configs'
 import { NavLink } from 'react-router-dom'
 import { Pagination as AntPagination, Flex } from 'antd'
 import { DatePicker } from 'antd'

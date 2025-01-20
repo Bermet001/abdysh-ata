@@ -1,52 +1,7 @@
 import styled from 'styled-components'
 import { Table, Button } from 'antd'
-import barcelonaLogo from '../../../assets/images/main-logo.png'
-import benficaLogo from '../../../assets/images/barselona.png'
-import sportingLogo from '../../../assets/images/match.jpg'
 import ldsjd from '../../../assets/images/banner.avif'
-
-const data = [
-   {
-      key: '1',
-      date: '05 Января 2025',
-      time: '20:00',
-      team: 'Aбдыш-ата',
-      opponent: 'команда',
-      league: 'La Liga',
-      logo: barcelonaLogo,
-      opponentLogo: sportingLogo,
-   },
-   {
-      key: '2',
-      date: '06 Января 2025',
-      time: '21:00',
-      team: 'Спортивный клуб',
-      opponent: 'ФК Барселона',
-      league: 'La Liga',
-      logo: sportingLogo,
-      opponentLogo: benficaLogo,
-   },
-   {
-      key: '3',
-      date: '07 Января 2025',
-      time: '19:00',
-      team: 'Жетафе',
-      opponent: 'Aбдыш-ата',
-      league: 'La Liga',
-      logo: barcelonaLogo,
-      opponentLogo: sportingLogo,
-   },
-   {
-      key: '4',
-      date: '08 Января 2025',
-      time: '18:00',
-      team: 'Бенфика',
-      opponent: 'ФК Барселона',
-      league: 'La Liga',
-      opponentLogo: sportingLogo,
-      logo: sportingLogo,
-   },
-]
+import { data } from '../../../configs'
 
 const SchedulMatches = () => {
    const columns = [

@@ -1,7 +1,4 @@
-import {
-   // useEffect,
-   useState,
-} from 'react'
+import { useState } from 'react'
 import { Button, Flex } from 'antd'
 import styled, { keyframes } from 'styled-components'
 import TrophyRoom from '../../../assets/images/Trophy/TrophyRoom.webp'
@@ -9,10 +6,6 @@ import Team from '../../../assets/images/heistory/team.webp'
 
 const Trophy = () => {
    const [visibleCount, setVisibleCount] = useState(10)
-
-   // useEffect(() => {
-   //    // window.scrollTo(0, 0)
-   // })
 
    const trophyData = Array(20).fill({
       title: 'Bemchik',

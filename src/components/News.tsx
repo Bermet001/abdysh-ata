@@ -21,7 +21,7 @@ const News = () => {
 
          <CardsContainer>
             {newsItems.slice(0, 10).map((item) => (
-               <NewsCard {...item} />
+               <NewsCard key={item.id} {...item} />
             ))}
          </CardsContainer>
       </NewsContainer>

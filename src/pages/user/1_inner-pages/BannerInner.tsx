@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom'
 import { FC, useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { banners } from '../../../configs'
 import Sponsors from '../../../components/Sponsors'
 import ProductSlider from '../../../components/Products'
 import MatchInfo from '../../../components/MatchInfo'
+import { banners } from '../../../configs'
 
 interface Banner {
    id: number

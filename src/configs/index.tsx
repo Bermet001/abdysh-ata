@@ -39,6 +39,29 @@ import image2 from '../assets/images/insrastracture/infrastracture11.jpg'
 import image3 from '../assets/images/insrastracture/infrastracture22.jpeg'
 import image4 from '../assets/images/insrastracture/infrastracture1234.jpg'
 import image5 from '../assets/images/insrastracture/infrastracture3342.jpg'
+// match
+import { ColumnType } from 'antd/es/table'
+import { Key } from 'react'
+import { Flex } from 'antd'
+// rating
+import barcelonaLogo from '../assets/images/barselona.png'
+import benficaLogo from '../assets/images/barselona.png'
+import sportingLogo from '../assets/images/match.jpg'
+
+interface TeamData {
+   key: string
+   team: string
+   logo: string
+   won: number
+   drawn: number
+   lost: number
+   for: number
+   against: number
+   goalDifference: number
+   points: number
+   form: string[]
+   played: number
+}
 
 const teams = [
    { path: '/team', title: 'ФК Абдыш-Ата', id: 1 },
@@ -302,21 +325,21 @@ const newsItems = [
    },
 
    {
-      id: 3,
+      id: 2,
       title: 'Жерар Пике: Я обещаю, что мы будем бороться за все',
       date: '3 дня назад',
       category: 'Футбол',
       imageUrl: news2,
    },
    {
-      id: 4,
+      id: 3,
       title: 'Футбол матчей: Севилья Больон 86-84',
       date: '4 дня назад',
       category: 'Футбол',
       imageUrl: stadion3,
    },
    {
-      id: 5,
+      id: 4,
       title: 'Футбол: Нэйт 9-4 Абдыш-ата победила серию',
       date: '5 дней назад',
       category: 'Футбол',
@@ -366,28 +389,28 @@ const newsItems = [
       imageUrl: news6,
    },
    {
-      id: 50,
+      id: 12,
       title: 'Футбол: Нэйт 9-4 Абдыш-ата победила серию',
       date: '5 дней назад',
       category: 'Футбол',
       imageUrl: news6,
    },
    {
-      id: 623,
+      id: 13,
       title: 'Футбол: 2-6 Абдыш-ата выходит в финал',
       date: '6 дней назад',
       category: 'Футбол',
       imageUrl: news5,
    },
    {
-      id: 765,
+      id: 14,
       title: 'Жерар Пике: Я обещаю, что мы будем бороться за все',
       date: '3 дня назад',
       category: 'Футбол',
       imageUrl: news2,
    },
    {
-      id: 890,
+      id: 15,
       title: 'Футбол матчей: Севилья Больон 86-84',
       date: '4 дня назад',
       category: 'Футбол',
@@ -835,6 +858,171 @@ const infrastructure = [
       address: 'г. Бишкек, ул. Нитро, 15',
    },
 ]
+
+const columns: ColumnType<TeamData>[] = [
+   {
+      title: 'Team',
+      dataIndex: 'team',
+      key: 'team',
+      width: '250px',
+      render: (text: string, record: TeamData) => (
+         <Flex align="center">
+            <img
+               src={record.logo}
+               alt={`${record.team} logo`}
+               style={{ width: '30px', height: '30px', marginRight: '10px' }}
+            />
+            {text}
+         </Flex>
+      ),
+   },
+   {
+      title: 'Played',
+      dataIndex: 'played',
+      key: 'played',
+      align: 'center',
+   },
+   {
+      title: 'Won',
+      dataIndex: 'won',
+      key: 'won',
+      align: 'center',
+   },
+   {
+      title: 'Drawn',
+      dataIndex: 'drawn',
+      key: 'drawn',
+      align: 'center',
+   },
+   {
+      title: 'Lost',
+      dataIndex: 'lost',
+      key: 'lost',
+      align: 'center',
+   },
+   {
+      title: 'For',
+      dataIndex: 'for',
+      key: 'for',
+      align: 'center',
+   },
+   {
+      title: 'Against',
+      dataIndex: 'against',
+      key: 'against',
+      align: 'center',
+   },
+   {
+      title: 'Goal Difference',
+      dataIndex: 'goalDifference',
+      key: 'goalDifference',
+      align: 'center',
+   },
+   {
+      title: 'Points',
+      dataIndex: 'points',
+      key: 'points',
+      align: 'center',
+   },
+   {
+      title: 'Form',
+      dataIndex: 'form',
+      key: 'form',
+      align: 'start',
+      render: (form: string[]) => (
+         <Flex>
+            {form.map((color: string, index: Key) => (
+               <span
+                  key={index}
+                  style={{
+                     display: 'inline-block',
+                     width: '10px',
+                     height: '10px',
+                     backgroundColor: color,
+                     borderRadius: '50%',
+                     marginRight: '5px',
+                  }}
+               />
+            ))}
+         </Flex>
+      ),
+   },
+]
+
+const dataSource: TeamData[] = [
+   {
+      key: '1',
+      team: 'Liverpool',
+      logo: 'https://upload.wikimedia.org/wikipedia/en/0/0c/Liverpool_FC.svg',
+      played: 6,
+      won: 6,
+      drawn: 0,
+      lost: 0,
+      for: 13,
+      against: 1,
+      goalDifference: 12,
+      points: 18,
+      form: ['red', 'grey', 'red', 'green'],
+   },
+   {
+      key: '2',
+      team: 'Barcelona',
+      logo: 'https://upload.wikimedia.org/wikipedia/en/4/47/FC_Barcelona.svg',
+      played: 6,
+      won: 5,
+      drawn: 1,
+      lost: 0,
+      for: 21,
+      against: 7,
+      goalDifference: 14,
+      points: 15,
+      form: ['green', 'grey', 'red', 'green'],
+   },
+]
+
+const data = [
+   {
+      key: '1',
+      date: '05 Января 2025',
+      time: '20:00',
+      team: 'Aбдыш-ата',
+      opponent: 'команда',
+      league: 'La Liga',
+      logo: barcelonaLogo,
+      opponentLogo: sportingLogo,
+   },
+   {
+      key: '2',
+      date: '06 Января 2025',
+      time: '21:00',
+      team: 'Спортивный клуб',
+      opponent: 'ФК Барселона',
+      league: 'La Liga',
+      logo: sportingLogo,
+      opponentLogo: benficaLogo,
+   },
+   {
+      key: '3',
+      date: '07 Января 2025',
+      time: '19:00',
+      team: 'Жетафе',
+      opponent: 'Aбдыш-ата',
+      league: 'La Liga',
+      logo: barcelonaLogo,
+      opponentLogo: sportingLogo,
+   },
+   {
+      key: '4',
+      date: '08 Января 2025',
+      time: '18:00',
+      team: 'Бенфика',
+      opponent: 'ФК Барселона',
+      league: 'La Liga',
+      opponentLogo: sportingLogo,
+      logo: sportingLogo,
+   },
+]
+
 export {
    navigations,
    matches,
@@ -849,4 +1037,9 @@ export {
    newsItems,
    team_page,
    infrastructure,
+   // table
+   columns,
+   dataSource,
+   // rating
+   data,
 }

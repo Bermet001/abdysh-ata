@@ -90,8 +90,6 @@ const Infrastructure = () => {
          </Flex>
 
          <Flex vertical gap={20} wrap className="galery">
-            <h3></h3>
-
             <Flex gap={20} wrap>
                {images.map((item) => (
                   <img className="galery-image" src={item} alt="image" />
