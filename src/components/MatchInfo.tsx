@@ -6,16 +6,11 @@ import styled from 'styled-components'
 const MatchInfo = () => {
    return (
       <StyledContainer>
-         <Flex
-            gap={15}
-            className="container"
-            justify="center"
-            style={{ margin: '0 auto' }}
-         >
+         <StyledFlexContainer>
             {matches.map((match, index) => (
                <MatchCard key={index} {...match} />
             ))}
-         </Flex>
+         </StyledFlexContainer>
       </StyledContainer>
    )
 }
@@ -30,26 +25,22 @@ const StyledContainer = styled.section`
    width: 100%;
    padding: 0 75px;
    max-width: 1600px;
+`
 
-   & .container {
-      display: flex;
-      justify-content: center;
+const StyledFlexContainer = styled(Flex)`
+   gap: 15px;
+   justify-content: center;
 
-      @media (max-width: 800px) {
-         gap: 10px;
-      }
-      @media (max-width: 1200px) {
-         flex-wrap: wrap;
-      }
+   @media (max-width: 1200px) {
+      flex-wrap: wrap;
    }
 
    @media (max-width: 800px) {
-      .container {
-         flex-direction: row;
-         justify-content: space-between;
-      }
+      gap: 10px;
+      flex-direction: row;
+      justify-content: space-between;
 
-      & > .container > div {
+      > div {
          flex: 0 0 calc(50% - 10px);
          max-width: calc(50% - 10px);
       }
@@ -57,13 +48,10 @@ const StyledContainer = styled.section`
 
    @media (max-width: 600px) {
       padding: 0 30px;
+      flex-direction: column;
+      align-items: center;
 
-      .container {
-         flex-direction: column;
-         align-items: center;
-      }
-
-      & > .container > div {
+      > div {
          flex: 0 0 100%;
          max-width: 100%;
       }

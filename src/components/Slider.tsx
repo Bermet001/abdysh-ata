@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { Carousel, Button } from 'antd'
+import { Carousel, Button, Flex } from 'antd'
 import styled from 'styled-components'
 import { banners } from '../configs'
 import { NavLink } from 'react-router-dom'
@@ -11,13 +11,13 @@ const Slider: FC = () => (
             <Overlay />
             <img src={item.imageUrl} alt={`Slide ${index + 1}`} />
 
-            <div className="content">
+            <Flex align="start" vertical className="content">
                <h1>{item.title}</h1>
 
                <StyledButtonView type="primary">
                   <NavLink to={`/banner/${item.id}`}>Читать дальше</NavLink>
                </StyledButtonView>
-            </div>
+            </Flex>
          </div>
       ))}
    </StyledCarousel>
@@ -29,9 +29,6 @@ const StyledCarousel = styled(Carousel)`
    color: white;
 
    .slick-slide {
-      display: flex;
-      justify-content: center;
-      align-items: center;
       height: 600px;
       position: relative;
    }

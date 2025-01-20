@@ -1,21 +1,22 @@
 import styled from 'styled-components'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Card, Button, Flex } from 'antd'
+import { Card, Flex, Button as AntdButton } from 'antd'
 import { products } from '../configs'
 import { RightOutlined } from '@ant-design/icons'
 import { NavLink } from 'react-router-dom'
+import Button from './UI/Button'
 
 const ProductSlider = () => {
    return (
       <Container>
          <Flex justify="space-between" align="start">
-            <h1>НАШ ОНЛАЙН МАГАЗИН </h1>
+            <h2 className="main-title">НАШ ОНЛАЙН МАГАЗИН </h2>
 
-            <StyledButtonView type="primary">
+            <Button type="primary">
                <NavLink to="/shop">
                   Посмотреть все товары <RightOutlined />
                </NavLink>
-            </StyledButtonView>
+            </Button>
          </Flex>
 
          <Swiper
@@ -78,24 +79,8 @@ const StyledCard = styled(Card)`
    }
 `
 
-const StyledButton = styled(Button)`
+const StyledButton = styled(AntdButton)`
    margin-top: 10px;
    border: none;
    width: 100%;
-`
-
-const StyledButtonView = styled(Button)`
-   padding: 23px 25px;
-   border: none;
-   color: white;
-   border-radius: 8px;
-   cursor: pointer;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   font-weight: 500;
-
-   svg {
-      margin-left: 5px;
-   }
 `

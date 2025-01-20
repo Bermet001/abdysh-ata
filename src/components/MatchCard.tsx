@@ -27,9 +27,11 @@ const MatchCard: FC<IProps> = ({
             <Team vertical align="center" justify="center">
                <TeamLogo src={team1Logo} alt={team1Name} />
             </Team>
+
             <Countdown vertical align="center" justify="center">
                <p>0 : 4</p>
             </Countdown>
+
             <Team gap={10} vertical align="center" justify="center">
                <TeamLogo src={team2Logo} alt={team2Name} />
             </Team>

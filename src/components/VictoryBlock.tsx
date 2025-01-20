@@ -1,7 +1,6 @@
 import styled from 'styled-components'
-import { Card, Col, Button, Flex } from 'antd'
+import { Card, Col, Flex, Button } from 'antd'
 import Image from '../assets/images/image7.jpg'
-
 import { RightOutlined } from '@ant-design/icons'
 import { leagues } from '../configs'
 import { NavLink } from 'react-router-dom'

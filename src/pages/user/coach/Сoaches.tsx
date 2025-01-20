@@ -19,7 +19,7 @@ const Сoaches = () => {
                      />
 
                      <h2 className="coach-name">{name}</h2>
-                     <h1 className="coach-surname">{surename}</h1>
+                     <h2 className="coach-surname">{surename}</h2>
                      <p className="coach-position">{position}</p>
 
                      <Button type="primary" className="more-info-btn">
@@ -37,7 +37,7 @@ const Сoaches = () => {
 
 export default Сoaches
 
-const StyledContainer = styled.div`
+const StyledContainer = styled.section`
    max-width: 1600px;
    margin: 0 auto;
 `

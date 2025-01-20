@@ -61,7 +61,7 @@ const Footer = () => {
                         <p>+777 124 653</p>
                      </a>
 
-                     <a href="">
+                     <a href="mailto:abdyshata@gmail.com">
                         <MailOutlined />
                         <p>abdyshata@gmail.com</p>
                      </a>

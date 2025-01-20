@@ -1,9 +1,10 @@
 import styled from 'styled-components'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Card, Button, Flex } from 'antd'
+import { Card, Flex } from 'antd'
 import { team } from '../configs'
 import { RightOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
+import Button from './UI/Button'
 
 interface CardBackgroundProps {
    image: string
@@ -14,9 +15,9 @@ const Team = () => {
       <Container>
          <Flex justify="space-between" align="start">
             <h1>ИГРОКИ</h1>
-            <StyledButtonView type="primary">
+            <Button type="primary">
                Посмотреть всю команду <RightOutlined />
-            </StyledButtonView>
+            </Button>
          </Flex>
 
          <Swiper
@@ -139,21 +140,5 @@ const PlayerPosition = styled.h3`
 
    ${StyledCard}:hover & {
       transform: translateY(5px);
-   }
-`
-
-const StyledButtonView = styled(Button)`
-   padding: 23px 25px;
-   border: none;
-   color: white;
-   border-radius: 8px;
-   cursor: pointer;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   font-weight: 500;
-
-   svg {
-      margin-left: 5px;
    }
 `

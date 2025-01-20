@@ -1,4 +1,4 @@
-import { Button, Flex } from 'antd'
+import { Flex } from 'antd'
 import styled from 'styled-components'
 import image2 from '../assets/images/image12.webp'
 import image6 from '../assets/images/image8.jpg'
@@ -8,6 +8,7 @@ import {
    RightOutlined,
    RightSquareOutlined,
 } from '@ant-design/icons'
+import Button from './UI/Button'
 
 const Gallery = () => {
    return (
@@ -17,9 +18,10 @@ const Gallery = () => {
                <h1 className="main-title" style={{ margin: 0 }}>
                   КАДРЫ И ВИДЕО С СОБЫТИЙ
                </h1>
-               <StyledButton type="primary">
+
+               <Button type="primary">
                   Посмотреть все <RightOutlined />
-               </StyledButton>
+               </Button>
             </Flex>
 
             <Flex gap={20} className="image-gallery">
@@ -174,20 +176,4 @@ const StyledEyeOutlined = styled(EyeOutlined)`
 const StyledRightSquareOutlined = styled(RightSquareOutlined)`
    font-size: 38px;
    color: white;
-`
-
-const StyledButton = styled(Button)`
-   padding: 23px 25px;
-   border: none;
-   color: white;
-   border-radius: 8px;
-   cursor: pointer;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   font-weight: 500;
-
-   svg {
-      margin-left: 5px;
-   }
 `
