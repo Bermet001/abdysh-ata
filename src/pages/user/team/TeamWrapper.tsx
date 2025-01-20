@@ -28,7 +28,7 @@ const TeamWrapper: React.FC = () => (
 
 export default TeamWrapper
 
-const StyledContainer = styled.section`
+const StyledContainer = styled.main`
    margin-top: 100px;
    margin-bottom: 80px;
    padding: 0 75px;

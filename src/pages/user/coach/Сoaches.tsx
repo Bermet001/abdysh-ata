@@ -37,7 +37,7 @@ const Сoaches = () => {
 
 export default Сoaches
 
-const StyledContainer = styled.section`
+const StyledContainer = styled.div`
    max-width: 1600px;
    margin: 0 auto;
 `

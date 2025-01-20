@@ -69,7 +69,7 @@ const New: FC = () => {
 
 export default New
 
-const StyledContainer = styled.section`
+const StyledContainer = styled.main`
    margin-bottom: 40px;
 `
 

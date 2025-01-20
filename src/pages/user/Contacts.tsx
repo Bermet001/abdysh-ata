@@ -140,7 +140,7 @@ const Contacts = () => {
 
 export default Contacts
 
-const StyledContainer = styled.div`
+const StyledContainer = styled.main`
    margin-top: 150px;
 
    .main-container {

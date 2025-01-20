@@ -112,7 +112,7 @@ const fadeInUp = keyframes`
 }
 `
 
-const StyledContainer = styled.section`
+const StyledContainer = styled.main`
    max-width: 1600px;
    margin: 0 auto;
 

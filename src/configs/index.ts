@@ -236,7 +236,7 @@ const sponsorsData = [
    { id: 4, img: nashe, alt: 'Nitro Logo', link: 'https://www.nashe.ru/' },
    { id: 5, img: Nitro, alt: 'Sponsor 2', link: 'https://hydra.kg/' },
    {
-      id: 50,
+      id: 50343,
       img: logoABdysh,
       alt: 'Sponsor 2',
       link: 'https://abdysh-ata.kg/',

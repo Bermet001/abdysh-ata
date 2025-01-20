@@ -11,7 +11,7 @@ import Stories from '../components/Stories'
 
 const Landing: FC = () => {
    return (
-      <>
+      <main>
          <Slider />
          <MatchInfo />
          <Stories />
@@ -21,7 +21,7 @@ const Landing: FC = () => {
          <Team />
          <VictoryBlock />
          <Sponsors />
-      </>
+      </main>
    )
 }
 

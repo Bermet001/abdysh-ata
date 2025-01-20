@@ -44,70 +44,72 @@ const Coach: FC = () => {
    } = selectedCoach
 
    return (
-      <StyledComponent>
-         <Flex vertical>
-            <Flex
-               className="frist-part-coach"
-               justify="space-between"
-               align="end"
-            >
-               <Flex gap={80} vertical justify="center">
-                  <h1 className="coach-full-name">
-                     <AnimatedName>{name}</AnimatedName>
-                     <br />
-                     <AnimatedSurname>{surename}</AnimatedSurname>
-                  </h1>
+      <main>
+         <StyledComponent>
+            <Flex vertical>
+               <Flex
+                  className="frist-part-coach"
+                  justify="space-between"
+                  align="end"
+               >
+                  <Flex gap={80} vertical justify="center">
+                     <h1 className="coach-full-name">
+                        <AnimatedName>{name}</AnimatedName>
+                        <br />
+                        <AnimatedSurname>{surename}</AnimatedSurname>
+                     </h1>
 
-                  <AnimatedCard>
-                     <Flex vertical gap={15}>
-                        <Flex vertical>
-                           <StyledTitle level={5}>Должность</StyledTitle>
-                           <StyledText>{position}</StyledText>
+                     <AnimatedCard>
+                        <Flex vertical gap={15}>
+                           <Flex vertical>
+                              <StyledTitle level={5}>Должность</StyledTitle>
+                              <StyledText>{position}</StyledText>
+                           </Flex>
+
+                           <Flex vertical>
+                              <StyledTitle level={5}>Дата рождения</StyledTitle>
+                              <StyledText>{dateOfBirth}</StyledText>
+                           </Flex>
                         </Flex>
-
-                        <Flex vertical>
-                           <StyledTitle level={5}>Дата рождения</StyledTitle>
-                           <StyledText>{dateOfBirth}</StyledText>
-                        </Flex>
-                     </Flex>
-                  </AnimatedCard>
-               </Flex>
-               <AnimatedImage src={img} alt="" />
-            </Flex>
-
-            <Flex vertical className="biography-box">
-               <h2 className="main-title">Биография</h2>
-               <p className="bio">{biography}</p>
-
-               <br />
-               <br />
-
-               <h2 className="main-title">Достижения</h2>
-
-               <Flex gap={50} justify="start" className="">
-                  {achievements?.map(({ image, text }) => (
-                     <StyledCard>
-                        <img
-                           className="trophy-image"
-                           width="100%"
-                           height="220px"
-                           src={image}
-                           alt="trophy"
-                        />
-
-                        <h2>{text}</h2>
-                     </StyledCard>
-                  ))}
+                     </AnimatedCard>
+                  </Flex>
+                  <AnimatedImage src={img} alt="" />
                </Flex>
 
-               <br />
-               <br />
+               <Flex vertical className="biography-box">
+                  <h2 className="main-title">Биография</h2>
+                  <p className="bio">{biography}</p>
 
-               <h2 className="main-title">Ассистенты</h2>
-               <div></div>
+                  <br />
+                  <br />
+
+                  <h2 className="main-title">Достижения</h2>
+
+                  <Flex gap={50} justify="start" className="">
+                     {achievements?.map(({ image, text }) => (
+                        <StyledCard>
+                           <img
+                              className="trophy-image"
+                              width="100%"
+                              height="220px"
+                              src={image}
+                              alt="trophy"
+                           />
+
+                           <h2>{text}</h2>
+                        </StyledCard>
+                     ))}
+                  </Flex>
+
+                  <br />
+                  <br />
+
+                  <h2 className="main-title">Ассистенты</h2>
+                  <div></div>
+               </Flex>
             </Flex>
-         </Flex>
-      </StyledComponent>
+         </StyledComponent>
+      </main>
    )
 }
 

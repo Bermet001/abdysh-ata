@@ -2,10 +2,6 @@ import { ConfigProvider } from 'antd'
 import AppRouter from './routes/AppRouter'
 
 const App = () => {
-   window.scrollTo({
-      top: 100,
-   })
-
    return (
       <ConfigProvider
          theme={{

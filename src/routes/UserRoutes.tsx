@@ -27,6 +27,7 @@ export const USER_ROUTES = [
          </Suspense>
       ),
    },
+
    {
       path: 'match',
       element: <SchedulMatche />,

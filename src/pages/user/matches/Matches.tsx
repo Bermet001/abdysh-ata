@@ -128,7 +128,7 @@ const SchedulMatches = () => {
 
 export default SchedulMatches
 
-const StyledMainContainer = styled.div`
+const StyledMainContainer = styled.main`
    margin-bottom: 50px;
 
    .main-container {

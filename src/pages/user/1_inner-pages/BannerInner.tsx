@@ -49,7 +49,7 @@ const BannerInner: FC = () => {
 
 export default BannerInner
 
-const BannerSection = styled.section`
+const BannerSection = styled.main`
    color: white;
 
    .banner-title {

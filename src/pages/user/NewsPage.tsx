@@ -88,7 +88,7 @@ const NewsPage: FC = () => {
 
 export default NewsPage
 
-const NewsContainer = styled.div`
+const NewsContainer = styled.main`
    padding: 120px 75px 0;
    max-width: 1600px;
    margin: 0 auto;
