@@ -37,6 +37,7 @@ const Infrastructure = () => {
                         <span>Адрес: </span> 1223 саоыкл5 са
                      </p>
                   </Flex>
+
                   <p className="info">
                      <span>Размеры: </span>500fs
                   </p>

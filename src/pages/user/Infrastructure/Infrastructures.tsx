@@ -54,11 +54,6 @@ const CollageContainer = styled(Flex)`
    margin: 0 75px;
    margin-top: 80px;
    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-   transition: transform 0.3s ease;
-
-   &:hover {
-      transform: scale(1.02);
-   }
 `
 
 const StyledCard = styled(Card)<StyledCardProps>`

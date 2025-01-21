@@ -16,6 +16,8 @@ import Trophy from '../pages/user/trophy/Trophy'
 import Infrastracture from '../pages/user/Infrastructure/Infrastracture'
 import Rating from '../pages/user/rating-table/Rating'
 import Shop from '../pages/user/shop/Shop'
+import Gallery from '../pages/user/gallery/Gallery'
+import Photo from '../pages/user/gallery/Photo'
 const Landing = lazy(() => import('../pages/Landing'))
 
 export const USER_ROUTES = [
@@ -92,5 +94,15 @@ export const USER_ROUTES = [
    {
       path: 'shop',
       element: <Shop />,
+   },
+
+   {
+      path: 'gallery',
+      element: <Gallery />,
+   },
+
+   {
+      path: 'gallery/:id',
+      element: <Photo />,
    },
 ]

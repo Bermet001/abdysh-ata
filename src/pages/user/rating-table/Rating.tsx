@@ -10,6 +10,7 @@ const Rating = () => {
                <h2>Таблица рейтинга</h2>
 
                <br />
+
                <Table
                   dataSource={dataSource}
                   columns={columns}

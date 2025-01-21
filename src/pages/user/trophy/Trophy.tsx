@@ -1,19 +1,42 @@
-import { useState } from 'react'
-import { Button, Flex } from 'antd'
+import { useEffect, useState } from 'react'
+import { Flex } from 'antd'
 import styled, { keyframes } from 'styled-components'
 import TrophyRoom from '../../../assets/images/Trophy/TrophyRoom.webp'
 import Team from '../../../assets/images/heistory/team.webp'
 
-const Trophy = () => {
-   const [visibleCount, setVisibleCount] = useState(10)
+interface TrophyItem {
+   title: string
+   description: string
+}
 
-   const trophyData = Array(20).fill({
+const Trophy = () => {
+   const [isUserScrolling, setIsUserScrolling] = useState<boolean>(false)
+   const trophyData: TrophyItem[] = Array(20).fill({
       title: 'Bemchik',
       description:
          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim at eveniet corrupti mollitia repellat excepturi voluptatibus deserunt pariatur, odio sed laudantium iste dicta distinctio ad quisquam commodi dignissimos libero sequi?',
    })
 
-   const handleShowMore = () => setVisibleCount((prevCount) => prevCount + 10)
+   useEffect(() => {
+      const handleScroll = () => setIsUserScrolling(true)
+
+      const scrollDown = () =>
+         !isUserScrolling
+            ? window.scrollBy({
+                 top: 50,
+                 behavior: 'smooth',
+              })
+            : null
+
+      window.addEventListener('wheel', handleScroll, { passive: false })
+
+      const interval = setInterval(scrollDown, 70)
+
+      return () => {
+         clearInterval(interval)
+         window.removeEventListener('wheel', handleScroll)
+      }
+   }, [isUserScrolling])
 
    return (
       <StyledContainer vertical>
@@ -21,6 +44,7 @@ const Trophy = () => {
             <div className="first-part">
                <Flex className="first" align="end">
                   <DarkOverlay />
+
                   <Flex justify="end" vertical className="container">
                      <h1 className="title">ТРОФЕЙНАЯ КОМНАТА</h1>
                      <p>В этом разделе вы можете посмотреть наши достижения</p>
@@ -36,7 +60,7 @@ const Trophy = () => {
          </p>
 
          <Flex vertical className="trophy-block-container">
-            {trophyData.slice(0, visibleCount).map((item, index) => (
+            {trophyData.map((item, index) => (
                <Flex
                   key={index}
                   className="trophy-block"
@@ -48,7 +72,6 @@ const Trophy = () => {
 
                   <Flex align="start" gap={40} vertical className="texstovka">
                      <h2>{item.title}</h2>
-
                      <p>{item.description}</p>
 
                      <p>
@@ -58,16 +81,6 @@ const Trophy = () => {
                   </Flex>
                </Flex>
             ))}
-
-            <br />
-            <br />
-            <br />
-
-            {visibleCount < trophyData.length && (
-               <Button onClick={handleShowMore} type="link">
-                  Смотреть еще
-               </Button>
-            )}
          </Flex>
       </StyledContainer>
    )
@@ -77,13 +90,12 @@ export default Trophy
 
 const fadeInUp = keyframes`
 0% {
-    opacity: 0;
-    transform: translateY(20px);
+   opacity: 0;
+   transform: translateY(20px);
 }
-
 100% {
-    opacity: 1;
-    transform: translateY(0);
+   opacity: 1;
+   transform: translateY(0);
 }
 `
 

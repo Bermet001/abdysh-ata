@@ -10,6 +10,7 @@ const Preloader: FC<PreloaderProps> = ({ className }) => {
       <PreloaderContainer className={className}>
          <AnimationPreloader>
             <Spinner />
+
             <TxtLoading>
                <Letter data-text-preloader="A"> A </Letter>
                <Letter data-text-preloader="B"> B </Letter>

@@ -3,12 +3,9 @@ import styled from 'styled-components'
 import image2 from '../assets/images/image12.webp'
 import image6 from '../assets/images/image8.jpg'
 import image7 from '../assets/images/image9.jpg'
-import {
-   EyeOutlined,
-   RightOutlined,
-   RightSquareOutlined,
-} from '@ant-design/icons'
+import { EyeOutlined, RightOutlined } from '@ant-design/icons'
 import Button from './UI/Button'
+import { NavLink } from 'react-router-dom'
 
 const Gallery = () => {
    return (
@@ -20,7 +17,9 @@ const Gallery = () => {
                </h1>
 
                <Button type="primary">
-                  Посмотреть все <RightOutlined />
+                  <NavLink to="/gallery">
+                     Посмотреть все <RightOutlined />
+                  </NavLink>
                </Button>
             </Flex>
 
@@ -32,8 +31,15 @@ const Gallery = () => {
                      <DarkOverlay />
                      <Overlay>
                         <Flex gap={15} align="center">
-                           <StyledEyeOutlined />
-                           <StyledRightSquareOutlined />
+                           <Flex vertical gap={10} align="center">
+                              <StyledEyeOutlined />
+                              <p style={{ color: 'white' }}>Посмотреть</p>
+                           </Flex>
+
+                           <Flex vertical gap={10} align="center">
+                              <StyledRightSquareOutlined />
+                              <p style={{ color: 'white' }}>Подробнее</p>
+                           </Flex>
                         </Flex>
                      </Overlay>
                   </ImageWrapper>
@@ -44,8 +50,15 @@ const Gallery = () => {
 
                      <Overlay>
                         <Flex gap={15} align="center">
-                           <StyledEyeOutlined />
-                           <StyledRightSquareOutlined />
+                           <Flex vertical gap={10} align="center">
+                              <StyledEyeOutlined />
+                              <p style={{ color: 'white' }}>Посмотреть</p>
+                           </Flex>
+
+                           <Flex vertical gap={10} align="center">
+                              <StyledRightSquareOutlined />
+                              <p style={{ color: 'white' }}>Подробнее</p>
+                           </Flex>
                         </Flex>
                      </Overlay>
                   </ImageWrapper>
@@ -58,8 +71,15 @@ const Gallery = () => {
 
                      <Overlay>
                         <Flex gap={15} align="center">
-                           <StyledEyeOutlined />
-                           <StyledRightSquareOutlined />
+                           <Flex vertical gap={10} align="center">
+                              <StyledEyeOutlined />
+                              <p style={{ color: 'white' }}>Посмотреть</p>
+                           </Flex>
+
+                           <Flex vertical gap={10} align="center">
+                              <StyledRightSquareOutlined />
+                              <p style={{ color: 'white' }}>Подробнее</p>
+                           </Flex>
                         </Flex>
                      </Overlay>
                   </ImageWrapper>
@@ -77,7 +97,6 @@ const StyledContainer = styled.section`
    flex-direction: column;
    justify-content: center;
    padding: 120px 75px 0 75px;
-   /* max-height: 900px; */
 
    img {
       object-fit: cover;
@@ -169,11 +188,16 @@ const StyledEyeOutlined = styled(EyeOutlined)`
    font-size: 24px;
    color: white;
    border: 3px solid white;
-   border-radius: 2px;
-   padding: 2px;
+   border-radius: 6px;
+   padding: 5px;
+   cursor: pointer;
 `
 
-const StyledRightSquareOutlined = styled(RightSquareOutlined)`
-   font-size: 38px;
+const StyledRightSquareOutlined = styled(RightOutlined)`
+   font-size: 24px;
    color: white;
+   border: 3px solid white;
+   border-radius: 6px;
+   padding: 5px;
+   cursor: pointer;
 `

@@ -37,7 +37,6 @@ export default Team
 
 const Container = styled.div`
    margin: auto;
-   /* padding: 0px 75px 0 75px; */
    max-width: 1600px;
 
    h1 {
@@ -47,7 +46,7 @@ const Container = styled.div`
 `
 
 const StyledCard = styled(Card)`
-   border-radius: 6px;
+   border-radius: 8px;
    width: 100%;
    overflow: hidden;
    position: relative;
