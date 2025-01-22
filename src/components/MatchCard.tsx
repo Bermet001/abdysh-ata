@@ -64,11 +64,38 @@ const MatchCardContainer = styled(Flex)`
       padding: 20px;
       width: 100%;
       justify-content: space-between;
+
+      @media (max-width: 1000px) {
+         padding: 0px 15px;
+         min-height: 110px;
+      }
+
+      @media (max-width: 470px) {
+         padding: 5px;
+         min-height: 60px;
+      }
+   }
+
+   @media (max-width: 1325px) {
+      padding: 10px 0px;
+   }
+
+   @media (max-width: 880px) {
+      padding: 10px;
+      max-width: 210px;
+   }
+   @media (max-width: 470px) {
+      max-width: 160px;
    }
 `
 
 const Team = styled(Flex)`
    margin: 10px 0;
+   flex-direction: column;
+
+   @media (max-width: 600px) {
+      margin: 5px 0;
+   }
 `
 
 const TeamLogo = styled.img`
@@ -76,16 +103,19 @@ const TeamLogo = styled.img`
    height: auto;
    min-width: 30px;
 
-   @media (max-width: 768px) {
-      width: 45px;
+   @media (max-width: 1050px) {
+      width: 40px;
    }
 
-   @media (max-width: 600px) {
-      width: 70px;
+   @media (max-width: 768px) {
+      width: 35px;
    }
 
    @media (max-width: 480px) {
-      width: 40px;
+      width: 30px;
+   }
+   @media (max-width: 380px) {
+      width: 17px;
    }
 `
 
@@ -93,11 +123,15 @@ const Time = styled.h3`
    margin: 10px 0;
 
    @media (max-width: 768px) {
-      font-size: 18px;
+      font-size: 17px;
    }
 
    @media (max-width: 600px) {
-      font-size: 16px;
+      font-size: 14px;
+   }
+
+   @media (max-width: 480px) {
+      font-size: 13px;
    }
 `
 
@@ -108,12 +142,20 @@ const Countdown = styled(Flex)`
       font-size: 28px;
       font-weight: bold;
 
-      @media (max-width: 768px) {
-         font-size: 24px;
+      @media (max-width: 1200px) {
+         font-size: 26px;
+      }
+
+      @media (max-width: 1000px) {
+         font-size: 23px;
       }
 
       @media (max-width: 600px) {
          font-size: 20px;
+      }
+
+      @media (max-width: 480px) {
+         font-size: 18px;
       }
    }
 `

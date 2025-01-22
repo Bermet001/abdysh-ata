@@ -19,6 +19,7 @@ const Header = () => {
    const [searchVisible, setSearchVisible] = useState(false)
    const [drawerVisible, setDrawerVisible] = useState(false)
    const [searchQuery, setSearchQuery] = useState('')
+
    const location = useLocation()
 
    const handleScroll = () => setIsScrolled(window.scrollY > 50)
@@ -79,9 +80,9 @@ const Header = () => {
                </Flex>
 
                <Flex
-                  style={{ width: '100%' }}
                   justify="space-between"
                   gap={20}
+                  className="main-nav"
                   align="center"
                >
                   {searchVisible ? (
@@ -160,13 +161,12 @@ const Header = () => {
                   <MenuOutlined
                      className="mobile-menu"
                      onClick={handleDrawerToggle}
-                     style={{ display: 'none' }}
                   />
                </Flex>
             </StyledContainer>
          </Affix>
 
-         <Drawer
+         <StyledDrawer
             title="Навигация"
             placement="right"
             closable={true}
@@ -180,7 +180,7 @@ const Header = () => {
                   </NavLink>
                ))}
             </Flex>
-         </Drawer>
+         </StyledDrawer>
       </header>
    )
 }
@@ -231,22 +231,23 @@ const StyledContainer = styled(Flex)<StyledContainerProps>`
       border-radius: 10px;
    }
 
-   .ant-drawer-header {
-      flex-direction: row-reverse;
-
-      .ant-drawer-extra {
-         flex: 2;
-      }
+   .main-nav {
+      width: 100%;
    }
 
-   @media (max-width: 1260px) {
+   @media (max-width: 1360px) {
       .desktop-nav {
          a {
             font-size: 13px;
          }
       }
    }
-   @media (max-width: 1150px) {
+
+   @media (max-width: 1170px) {
+      .main-nav {
+         width: auto;
+      }
+
       .desktop-nav {
          display: none;
       }
@@ -255,41 +256,58 @@ const StyledContainer = styled(Flex)<StyledContainerProps>`
          display: none;
       }
 
+      .mobile-menu {
+         display: block;
+      }
+
+      .search-desktop {
+         display: none;
+
+         svg {
+            width: 1.5rem;
+            height: 1.5rem;
+            fill: #000;
+         }
+      }
+
       .search-desktop {
          color: transparent;
 
          svg {
             width: 2rem;
             height: 2rem;
+
             fill: #000;
          }
       }
 
       .mobile-menu {
          display: block;
+
          svg {
-            width: 2rem;
-            height: 2rem;
-            fill: #000;
+            width: 1.5rem;
+            height: 1.5rem;
+            fill: ${({ isscrolled }) =>
+               isscrolled === 'true' ? 'black' : 'white'};
          }
       }
 
       .main-logo {
-         width: 80px;
+         width: 65px;
       }
    }
 
    @media (max-width: 768px) {
-      padding: 10px 20px;
-      justify-content: space-between;
-      width: 100%;
+      padding: 5px 20px;
+
+      .main-logo {
+         width: 50px;
+      }
 
       .mobile-menu {
-         display: block;
          svg {
-            width: 1.4rem;
-            height: 1.4rem;
-            fill: #000;
+            width: 1.2rem;
+            height: 1.2rem;
          }
       }
    }
@@ -299,4 +317,14 @@ const StyledInput = styled(Input)`
    width: 100%;
    height: 40px;
    border-radius: 4px;
+
+   @media (max-width: 1170px) {
+      display: none;
+   }
+`
+
+const StyledDrawer = styled(Drawer)`
+   .ant-drawer-header-title {
+      flex-direction: row-reverse !important;
+   }
 `

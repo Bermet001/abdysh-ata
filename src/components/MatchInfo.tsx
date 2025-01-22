@@ -2,14 +2,48 @@ import { Flex } from 'antd'
 import { matches } from '../configs'
 import MatchCard from './MatchCard'
 import styled from 'styled-components'
+import { useEffect, useState } from 'react'
+
+interface Match {
+   team1Logo: string
+   team1Name: string
+   team2Logo: string
+   team2Name: string
+   dateTime: string
+   countdown: string
+   arena: string
+}
 
 const MatchInfo = () => {
+   const [visibleCount, setVisibleCount] = useState<number>(matches.length)
+
+   useEffect(() => {
+      const handleResize = () => {
+         if (window.innerWidth <= 690) {
+            setVisibleCount(2)
+         } else if (window.innerWidth <= 880) {
+            setVisibleCount(3)
+         } else {
+            setVisibleCount(matches.length)
+         }
+      }
+
+      handleResize()
+      window.addEventListener('resize', handleResize)
+
+      return () => {
+         window.removeEventListener('resize', handleResize)
+      }
+   }, [])
+
    return (
       <StyledContainer>
          <StyledFlexContainer>
-            {matches.map((match, index) => (
-               <MatchCard key={index} {...match} />
-            ))}
+            {matches
+               .slice(0, visibleCount)
+               .map((match: Match, index: number) => (
+                  <MatchCard key={index} {...match} />
+               ))}
          </StyledFlexContainer>
       </StyledContainer>
    )
@@ -25,35 +59,28 @@ const StyledContainer = styled.section`
    width: 100%;
    padding: 0 75px;
    max-width: 1600px;
+
+   @media (max-width: 1450px) {
+      padding: 0 20px;
+   }
+
+   @media (max-width: 600px) {
+      padding: 0 20px;
+      margin-top: -70px;
+   }
 `
 
 const StyledFlexContainer = styled(Flex)`
    gap: 15px;
    justify-content: center;
+   flex-wrap: nowrap;
 
-   @media (max-width: 1200px) {
+   @media (max-width: 880px) {
       flex-wrap: wrap;
-   }
-
-   @media (max-width: 800px) {
       gap: 10px;
-      flex-direction: row;
-      justify-content: space-between;
-
-      > div {
-         flex: 0 0 calc(50% - 10px);
-         max-width: calc(50% - 10px);
-      }
    }
 
-   @media (max-width: 600px) {
-      padding: 0 30px;
-      flex-direction: column;
-      align-items: center;
-
-      > div {
-         flex: 0 0 100%;
-         max-width: 100%;
-      }
+   @media (max-width: 680px) {
+      flex-wrap: nowrap;
    }
 `

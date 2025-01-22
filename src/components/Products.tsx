@@ -9,8 +9,8 @@ import Button from './UI/Button'
 const ProductSlider = () => {
    return (
       <Container>
-         <Flex justify="space-between" align="start">
-            <h2 className="main-title">НАШ ОНЛАЙН МАГАЗИН </h2>
+         <Flex gap={10} justify="space-between" align="start">
+            <h2 className="main-title">НАШ ОНЛАЙН МАГАЗИН</h2>
 
             <Button type="primary">
                <NavLink to="/shop">
@@ -22,10 +22,19 @@ const ProductSlider = () => {
          <Swiper
             spaceBetween={10}
             breakpoints={{
+               200: {
+                  slidesPerView: 2,
+               },
                640: {
+                  slidesPerView: 2,
+               },
+               768: {
                   slidesPerView: 3,
                },
                1024: {
+                  slidesPerView: 4,
+               },
+               1440: {
                   slidesPerView: 5,
                },
             }}
@@ -55,9 +64,8 @@ const Container = styled.div`
    padding: 120px 75px 0 75px;
    max-width: 1600px;
 
-   h1 {
-      margin-bottom: 50px;
-      font-size: 40px;
+   @media (max-width: 1024px) {
+      padding: 80px 20px;
    }
 `
 
@@ -72,10 +80,18 @@ const StyledCard = styled(Card)`
       border-top-right-radius: 8px;
       object-fit: cover;
       height: 250px;
+
+      @media (max-width: 768px) {
+         height: 200px;
+      }
    }
 
    .ant-card-body {
       padding: 15px;
+
+      @media (max-width: 768px) {
+         padding: 10px;
+      }
    }
 `
 

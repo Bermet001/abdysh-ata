@@ -10,19 +10,24 @@ import {
    MailOutlined,
    PhoneOutlined,
 } from '@ant-design/icons'
+
 import Logo from '../assets/images/main-logo.png'
 
 const Footer = () => {
    return (
       <StyledFooter>
          <Flex className="inner" vertical gap={15}>
-            <Flex justify="space-between" align="center">
-               <Flex align="center">
+            <Flex
+               className="first-block"
+               justify="space-between"
+               align="center"
+            >
+               <Flex className="logo" align="center">
                   <img width={100} src={Logo} alt="logo" />
                   <h1>Abdysh-ata</h1>
                </Flex>
 
-               <Flex align="center" gap={30}>
+               <Flex className="socials" align="center" gap={30}>
                   <a href="">
                      <Telegram />
                   </a>
@@ -37,12 +42,12 @@ const Footer = () => {
                </Flex>
             </Flex>
             <div className="line" />
-            <Flex justify="space-between">
+            <Flex className="footer-main-info-box" justify="space-between">
                <Flex vertical gap={20}>
                   <p className="title">Разделы сайта</p>
 
                   <nav>
-                     <Flex vertical gap={12}>
+                     <Flex className="footer-nav" vertical gap={12}>
                         {navigations.map(({ path, title, id }) => (
                            <NavLink key={id} to={path}>
                               {title}
@@ -52,7 +57,7 @@ const Footer = () => {
                   </nav>
                </Flex>
 
-               <Flex vertical gap={20}>
+               <Flex className="footer-nav" vertical gap={20}>
                   <p className="title">Контакты</p>
 
                   <Flex gap={10} vertical>
@@ -73,7 +78,7 @@ const Footer = () => {
                   </Flex>
                </Flex>
 
-               <Flex vertical gap={20}>
+               <Flex className="footer-nav" vertical gap={20}>
                   <p className="title">Команды</p>
 
                   <nav>
@@ -93,12 +98,12 @@ const Footer = () => {
                      width="450"
                      height="100%"
                      loading="lazy"
+                     className="footer-map"
                   />
                </Flex>
             </Flex>
 
             <div className="line" />
-            {/* <Flex></Flex> */}
          </Flex>
       </StyledFooter>
    )
@@ -144,5 +149,96 @@ const StyledFooter = styled.footer`
    a:hover {
       transform: translateX(5px);
       color: #00a64f;
+   }
+
+   @media (max-width: 1220px) {
+      padding: 80px 30px;
+      .inner {
+         .first-block {
+            .logo {
+               img {
+                  width: 4rem;
+               }
+
+               h1 {
+                  font-size: 25px;
+               }
+            }
+         }
+      }
+
+      .footer-main-info-box {
+         flex-wrap: wrap;
+         gap: 30px;
+
+         .title {
+            font-size: 23px;
+         }
+
+         .footer-nav {
+            a {
+               font-size: 14px;
+            }
+
+            gap: 7px !important;
+         }
+
+         .footer-map {
+            width: 100%;
+            min-width: 200px;
+            height: auto;
+         }
+      }
+   }
+
+   @media (max-width: 765px) {
+      padding: 80px 20px;
+
+      .inner {
+         .first-block {
+            .logo {
+               img {
+                  width: 3rem;
+               }
+
+               h1 {
+                  font-size: 20px;
+               }
+            }
+
+            .socials {
+               gap: 15px !important;
+
+               > a {
+                  svg {
+                     width: 17px;
+                     height: 17px;
+                  }
+               }
+            }
+         }
+      }
+   }
+
+   @media (max-width: 425px) {
+      .footer-main-info-box {
+         .title {
+            font-size: 20px;
+         }
+
+         .footer-nav {
+            a {
+               font-size: 13px;
+            }
+
+            gap: 7px !important;
+         }
+
+         .footer-map {
+            width: 100%;
+            min-width: 200px;
+            height: auto;
+         }
+      }
    }
 `

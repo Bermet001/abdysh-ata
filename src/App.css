@@ -27,6 +27,23 @@ a {
    margin-bottom: 60px;
 }
 
+@media (max-width: 900px) {
+   .main-title {
+      font-size: 35px;
+   }
+}
+@media (max-width: 800px) {
+   .main-title {
+      font-size: 30px;
+   }
+}
+
+@media (max-width: 660px) {
+   .main-title {
+      font-size: 25px;
+   }
+}
+
 .victory-des {
    background-image: url(./assets/images/image7.jpg);
 }

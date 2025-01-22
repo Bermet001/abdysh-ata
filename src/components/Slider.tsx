@@ -63,6 +63,64 @@ const StyledCarousel = styled(Carousel)`
    .main-container {
       padding: 120px 75px;
    }
+
+   @media (max-width: 1000px) {
+      .slick-slide {
+         height: 500px;
+      }
+
+      .content h1 {
+         font-size: 50px;
+         width: 60%;
+      }
+
+      .main-container {
+         padding: 80px 20px;
+      }
+   }
+
+   @media (max-width: 800px) {
+      .slick-slide {
+         height: 400px;
+      }
+
+      .content {
+         top: 40px;
+      }
+
+      .content h1 {
+         font-size: 40px;
+         margin-bottom: 30px;
+         width: 70%;
+      }
+
+      .main-container {
+         padding: 60px 20px;
+      }
+   }
+
+   @media (max-width: 600px) {
+      .slick-slide {
+         height: 300px;
+      }
+
+      .content h1 {
+         font-size: 30px;
+         margin-bottom: 20px;
+      }
+
+      .main-container {
+         padding: 40px 20px;
+      }
+   }
+
+   @media (max-width: 500px) {
+      .content h1 {
+         font-size: 28px;
+         margin-bottom: 20px;
+         width: 70%;
+      }
+   }
 `
 
 const Overlay = styled.div`
@@ -88,5 +146,14 @@ const StyledButtonView = styled(Button)`
 
    svg {
       margin-left: 5px;
+   }
+
+   @media (max-width: 900px) {
+      padding: 20px 35px;
+      font-size: 14px;
+   }
+   @media (max-width: 600px) {
+      padding: 10px 20px;
+      font-size: 10px;
    }
 `
