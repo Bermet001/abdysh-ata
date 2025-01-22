@@ -9,20 +9,18 @@ import { FC } from 'react'
 import Team from '../components/Team'
 import Stories from '../components/Stories'
 
-const Landing: FC = () => {
-   return (
-      <main>
-         <Slider />
-         <MatchInfo />
-         <Stories />
-         <ProductSlider />
-         {/* <News />
-         <Gallery />
+const Landing: FC = () => (
+   <main>
+      <Slider />
+      <MatchInfo />
+      <Stories />
+      <ProductSlider />
+      <News />
+      {/* <Gallery />
          <Team />
          <VictoryBlock />
          <Sponsors /> */}
-      </main>
-   )
-}
+   </main>
+)
 
 export default Landing
