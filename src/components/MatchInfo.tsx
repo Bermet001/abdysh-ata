@@ -66,7 +66,7 @@ const StyledContainer = styled.section`
 
    @media (max-width: 600px) {
       padding: 0 20px;
-      margin-top: -70px;
+      margin-top: -60px;
    }
 `
 

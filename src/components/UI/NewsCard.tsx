@@ -35,6 +35,11 @@ const StyledNewsCard = styled.div`
    transition: transform 0.3s;
    cursor: pointer;
    display: flex;
+   flex-direction: column; // Ensure vertical layout
+
+   &:hover {
+      transform: translateY(-5px); // Subtle hover effect
+   }
 `
 
 const NewsImage = styled.img`
@@ -44,7 +49,7 @@ const NewsImage = styled.img`
    transition: transform 0.3s;
 
    ${StyledNewsCard}:hover & {
-      transform: translateY(-20px);
+      transform: scale(1.05); // Slight zoom effect on hover
    }
 
    @media (max-width: 768px) {

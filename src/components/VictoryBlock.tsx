@@ -1,5 +1,6 @@
 import styled from 'styled-components'
-import { Card, Col, Flex, Button } from 'antd'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Card, Flex, Button } from 'antd'
 import Image from '../assets/images/image7.jpg'
 import { RightOutlined } from '@ant-design/icons'
 import { leagues } from '../configs'
@@ -28,24 +29,39 @@ const VictoryBlock = () => {
             </Flex>
          </VictoryDes>
 
-         <Flex className="trophy" justify="space-between">
-            {leagues.map(({ id, name, date, trophy }) => (
-               <Col span={5} key={id}>
-                  <StyledCard>
-                     <img
-                        className="trophy-image"
-                        width={300}
-                        height={340}
-                        src={trophy}
-                        alt="trophy"
-                     />
-                     <p>{date}</p>
-
-                     <h2>{name}</h2>
-                  </StyledCard>
-               </Col>
-            ))}
-         </Flex>
+         <SliderContainer>
+            <Swiper
+               spaceBetween={20}
+               slidesPerView={1}
+               breakpoints={{
+                  480: {
+                     slidesPerView: 2,
+                  },
+                  768: {
+                     slidesPerView: 3,
+                  },
+                  1024: {
+                     slidesPerView: 4,
+                  },
+               }}
+            >
+               {leagues.map(({ id, name, date, trophy }) => (
+                  <SwiperSlide key={id}>
+                     <StyledCard>
+                        <img
+                           className="trophy-image"
+                           width={200}
+                           height={250}
+                           src={trophy}
+                           alt="trophy"
+                        />
+                        <p>{date}</p>
+                        <h2>{name}</h2>
+                     </StyledCard>
+                  </SwiperSlide>
+               ))}
+            </Swiper>
+         </SliderContainer>
       </Container>
    )
 }
@@ -57,8 +73,13 @@ const Container = styled.div`
    padding: 120px 0;
    color: black;
 
-   & .trophy {
-      padding: 0 calc(75px + 1rem);
+   @media (max-width: 1024px) {
+      overflow: hidden;
+      padding: 80px 0;
+   }
+
+   & .swiper {
+      padding: 0 calc(15px + 1rem);
       position: relative;
       z-index: 10;
       margin: 0 auto;
@@ -67,8 +88,28 @@ const Container = styled.div`
    }
 `
 
+const SliderContainer = styled.div`
+   width: 100%;
+   max-width: 1600px;
+   margin: 0 auto;
+   padding: 0 15px;
+   margin-top: -100px;
+
+   @media (max-width: 768px) {
+      margin-top: -50px;
+   }
+`
+
 const Title = styled.h1`
    margin-bottom: 20px;
+
+   @media (max-width: 768px) {
+      font-size: 36px;
+   }
+
+   @media (max-width: 480px) {
+      font-size: 28px;
+   }
 `
 
 const Description = styled.p`
@@ -76,21 +117,52 @@ const Description = styled.p`
    font-size: 1rem;
    color: white;
    width: 700px;
+
+   @media (max-width: 768px) {
+      font-size: 0.9rem;
+      width: 100%;
+   }
+
+   @media (max-width: 480px) {
+      font-size: 0.8rem;
+   }
 `
 
 const StyledCard = styled(Card)`
    text-align: start;
    border-radius: 10px;
-   margin-top: -60px;
-   max-width: 250px;
-   min-width: 240px;
+   margin: 10px;
 
    .trophy-image {
-      width: 200px;
-      max-width: 200px;
-      height: 250px;
-
+      width: 100%;
+      height: auto;
       object-fit: cover;
+      min-height: 290px;
+   }
+
+   h2 {
+      font-size: 1.2rem;
+      margin-top: 10px;
+
+      @media (max-width: 768px) {
+         font-size: 1rem;
+      }
+
+      @media (max-width: 480px) {
+         font-size: 0.9rem;
+      }
+   }
+
+   p {
+      font-size: 0.9rem;
+
+      @media (max-width: 768px) {
+         font-size: 0.8rem;
+      }
+
+      @media (max-width: 480px) {
+         font-size: 0.7rem;
+      }
    }
 `
 
@@ -129,6 +201,14 @@ const VictoryDes = styled.div`
 
    h1 {
       font-size: 45px !important;
+
+      @media (max-width: 768px) {
+         font-size: 36px;
+      }
+
+      @media (max-width: 480px) {
+         font-size: 28px;
+      }
    }
 
    h1,
@@ -151,5 +231,15 @@ const StyledButton = styled(Button)`
 
    &:focus {
       outline: none;
+   }
+
+   @media (max-width: 768px) {
+      padding: 20px 30px;
+      font-size: 0.9rem;
+   }
+
+   @media (max-width: 480px) {
+      padding: 15px 20px;
+      font-size: 0.8rem;
    }
 `

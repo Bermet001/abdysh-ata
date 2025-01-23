@@ -24,7 +24,7 @@ const Gallery = () => {
             </Flex>
 
             <Flex gap={20} className="image-gallery">
-               <Flex vertical gap={20}>
+               <Flex className="gallery-image" vertical gap={20}>
                   <ImageWrapper>
                      <img height="100%" width="100%" src={image7} alt="" />
 
@@ -33,12 +33,22 @@ const Gallery = () => {
                         <Flex gap={15} align="center">
                            <Flex vertical gap={10} align="center">
                               <StyledEyeOutlined />
-                              <p style={{ color: 'white' }}>Посмотреть</p>
+                              <p
+                                 className="explanation"
+                                 style={{ color: 'white' }}
+                              >
+                                 Посмотреть
+                              </p>
                            </Flex>
 
                            <Flex vertical gap={10} align="center">
                               <StyledRightSquareOutlined />
-                              <p style={{ color: 'white' }}>Подробнее</p>
+                              <p
+                                 className="explanation"
+                                 style={{ color: 'white' }}
+                              >
+                                 Подробнее
+                              </p>
                            </Flex>
                         </Flex>
                      </Overlay>
@@ -52,12 +62,22 @@ const Gallery = () => {
                         <Flex gap={15} align="center">
                            <Flex vertical gap={10} align="center">
                               <StyledEyeOutlined />
-                              <p style={{ color: 'white' }}>Посмотреть</p>
+                              <p
+                                 className="explanation"
+                                 style={{ color: 'white' }}
+                              >
+                                 Посмотреть
+                              </p>
                            </Flex>
 
                            <Flex vertical gap={10} align="center">
                               <StyledRightSquareOutlined />
-                              <p style={{ color: 'white' }}>Подробнее</p>
+                              <p
+                                 className="explanation"
+                                 style={{ color: 'white' }}
+                              >
+                                 Подробнее
+                              </p>
                            </Flex>
                         </Flex>
                      </Overlay>
@@ -73,12 +93,22 @@ const Gallery = () => {
                         <Flex gap={15} align="center">
                            <Flex vertical gap={10} align="center">
                               <StyledEyeOutlined />
-                              <p style={{ color: 'white' }}>Посмотреть</p>
+                              <p
+                                 className="explanation"
+                                 style={{ color: 'white' }}
+                              >
+                                 Посмотреть
+                              </p>
                            </Flex>
 
                            <Flex vertical gap={10} align="center">
                               <StyledRightSquareOutlined />
-                              <p style={{ color: 'white' }}>Подробнее</p>
+                              <p
+                                 className="explanation"
+                                 style={{ color: 'white' }}
+                              >
+                                 Подробнее
+                              </p>
                            </Flex>
                         </Flex>
                      </Overlay>
@@ -97,6 +127,7 @@ const StyledContainer = styled.section`
    flex-direction: column;
    justify-content: center;
    padding: 120px 75px 0 75px;
+   overflow: hidden;
 
    img {
       object-fit: cover;
@@ -112,8 +143,20 @@ const StyledContainer = styled.section`
       color: grey;
    }
 
+   @media (max-width: 1024px) {
+      padding: 120px 20px 0 20px;
+   }
+
    @media (max-width: 768px) {
       padding: 60px 30px;
+
+      .image-gallery {
+         gap: 10px !important;
+
+         .gallery-image {
+            gap: 10px !important;
+         }
+      }
    }
 
    @media (max-width: 480px) {
@@ -138,6 +181,7 @@ const ImageWrapper = styled.div`
    @media (max-width: 768px) {
       img {
          height: auto;
+         border-radius: 6px;
       }
    }
 `
@@ -164,6 +208,28 @@ const Overlay = styled.div`
       transform: translateX(-50%);
       transform: translateY(-50%);
    }
+
+   @media (max-width: 768px) {
+      padding: 3px;
+
+      .explanation {
+         font-size: 12px;
+      }
+
+      .image-gallery {
+         gap: 10px !important;
+
+         .gallery-image {
+            gap: 10px !important;
+         }
+      }
+   }
+
+   @media (max-width: 480px) {
+      .explanation {
+         font-size: 10px;
+      }
+   }
 `
 
 const DarkOverlay = styled.div`
@@ -182,6 +248,10 @@ const DarkOverlay = styled.div`
       opacity: 1;
       transform: scale(1.03);
    }
+
+   @media (max-width: 768px) {
+      border-radius: 6px;
+   }
 `
 
 const StyledEyeOutlined = styled(EyeOutlined)`
@@ -191,6 +261,18 @@ const StyledEyeOutlined = styled(EyeOutlined)`
    border-radius: 6px;
    padding: 5px;
    cursor: pointer;
+
+   @media (max-width: 768px) {
+      padding: 5px;
+      border: 2px solid white;
+      font-size: 16px;
+   }
+
+   @media (max-width: 480px) {
+      border: 1.5px solid white;
+      padding: 5px;
+      font-size: 11px;
+   }
 `
 
 const StyledRightSquareOutlined = styled(RightOutlined)`
@@ -200,4 +282,16 @@ const StyledRightSquareOutlined = styled(RightOutlined)`
    border-radius: 6px;
    padding: 5px;
    cursor: pointer;
+
+   @media (max-width: 768px) {
+      padding: 5px;
+      border: 2px solid white;
+      font-size: 16px;
+   }
+
+   @media (max-width: 480px) {
+      border: 1.5px solid white;
+      padding: 5px;
+      font-size: 11px;
+   }
 `

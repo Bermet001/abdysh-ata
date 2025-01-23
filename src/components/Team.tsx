@@ -22,7 +22,14 @@ const Team = () => {
 
          <Swiper
             spaceBetween={10}
+            slidesPerView={1}
             breakpoints={{
+               200: {
+                  slidesPerView: 1.1,
+               },
+               768: {
+                  slidesPerView: 3,
+               },
                1024: {
                   slidesPerView: 4,
                },
@@ -55,9 +62,22 @@ const Container = styled.div`
    padding: 120px 75px 0 75px;
    max-width: 1600px;
 
+   @media (max-width: 1024px) {
+      padding: 20px 20px 0;
+      overflow: hidden;
+   }
+
    h1 {
       margin-bottom: 50px;
       font-size: 40px;
+
+      @media (max-width: 768px) {
+         font-size: 32px;
+      }
+
+      @media (max-width: 480px) {
+         font-size: 28px;
+      }
    }
 `
 
@@ -73,6 +93,14 @@ const StyledCard = styled(Card)`
    .ant-card-body {
       height: 100%;
       padding: 0;
+   }
+
+   @media (max-width: 768px) {
+      height: 350px;
+   }
+
+   @media (max-width: 480px) {
+      height: 300px;
    }
 `
 
@@ -115,6 +143,14 @@ const PlayerNumber = styled.div`
       opacity: 1;
       transform: translateY(30px);
    }
+
+   @media (max-width: 768px) {
+      font-size: 80px;
+   }
+
+   @media (max-width: 480px) {
+      font-size: 60px;
+   }
 `
 
 const PlayerName = styled.h2`
@@ -128,6 +164,14 @@ const PlayerName = styled.h2`
    ${StyledCard}:hover & {
       transform: translateY(5px);
    }
+
+   @media (max-width: 768px) {
+      font-size: 20px;
+   }
+
+   @media (max-width: 480px) {
+      font-size: 18px;
+   }
 `
 
 const PlayerPosition = styled.h3`
@@ -140,5 +184,13 @@ const PlayerPosition = styled.h3`
 
    ${StyledCard}:hover & {
       transform: translateY(5px);
+   }
+
+   @media (max-width: 768px) {
+      font-size: 16px;
+   }
+
+   @media (max-width: 480px) {
+      font-size: 14px;
    }
 `

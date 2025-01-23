@@ -12,7 +12,9 @@ const News = () => {
 
    useEffect(() => {
       const handleResize = () => {
-         if (window.innerWidth <= 1120) {
+         if (window.innerWidth <= 600) {
+            setVisibleCount(6)
+         } else if (window.innerWidth <= 900) {
             setVisibleCount(6)
          } else {
             setVisibleCount(10)
@@ -26,11 +28,11 @@ const News = () => {
          window.removeEventListener('resize', handleResize)
       }
    }, [])
+
    return (
       <NewsContainer>
-         <Flex justify="space-between" align="center">
+         <Flex justify="space-between">
             <h2 className="main-title">ПОСЛЕДНИЕ НОВОСТИ</h2>
-
             <Button type="primary">
                <NavLink to="/news">
                   Посмотреть все новости <RightOutlined />
@@ -55,11 +57,15 @@ const NewsContainer = styled.div`
    margin: 0 auto;
 
    @media (max-width: 1024px) {
-      padding: 80px 50px;
+      padding: 80px 20px;
    }
 
    @media (max-width: 768px) {
       padding: 60px 30px;
+   }
+
+   @media (max-width: 480px) {
+      padding: 40px 20px;
    }
 
    h2 {
@@ -67,6 +73,7 @@ const NewsContainer = styled.div`
 
       @media (max-width: 768px) {
          font-size: 28px;
+         text-align: center;
       }
 
       @media (max-width: 480px) {
@@ -77,21 +84,18 @@ const NewsContainer = styled.div`
 
 const CardsContainer = styled.div`
    display: grid;
-   grid-template-columns: repeat(
-      auto-fill,
-      minmax(230px, 1fr)
-   ); // Default grid layout
+   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
    gap: 16px;
 
-   @media (max-width: 880px) {
+   @media (max-width: 900px) {
       grid-template-columns: repeat(3, 1fr);
    }
 
-   @media (max-width: 768px) {
+   @media (max-width: 600px) {
       grid-template-columns: repeat(2, 1fr);
    }
 
    @media (max-width: 480px) {
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, 1fr);
    }
 `

@@ -10,7 +10,6 @@ const Sponsors = () => {
 
          <Swiper
             loop={true}
-            slidesPerView={6}
             spaceBetween={30}
             autoplay={{
                delay: 2500,
@@ -18,6 +17,23 @@ const Sponsors = () => {
             }}
             modules={[Pagination, Autoplay]}
             className="mySwiper"
+            breakpoints={{
+               200: {
+                  slidesPerView: 3,
+               },
+               768: {
+                  slidesPerView: 4,
+               },
+               1024: {
+                  slidesPerView: 4,
+               },
+               1440: {
+                  slidesPerView: 5,
+               },
+               1600: {
+                  slidesPerView: 6,
+               },
+            }}
          >
             {sponsorsData.map((sponsor) => (
                <SwiperSlide key={sponsor.id}>
@@ -38,6 +54,10 @@ const StyledContainer = styled.section`
    text-align: center;
    max-width: 1600px;
    margin: 0 auto;
+
+   @media (max-width: 1024px) {
+      padding: 60px 20px 0;
+   }
 
    .swiper {
       width: 100%;
