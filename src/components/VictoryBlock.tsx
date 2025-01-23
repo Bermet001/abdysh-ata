@@ -34,7 +34,7 @@ const VictoryBlock = () => {
                spaceBetween={20}
                slidesPerView={1}
                breakpoints={{
-                  480: {
+                  200: {
                      slidesPerView: 2,
                   },
                   768: {
@@ -50,8 +50,6 @@ const VictoryBlock = () => {
                      <StyledCard>
                         <img
                            className="trophy-image"
-                           width={200}
-                           height={250}
                            src={trophy}
                            alt="trophy"
                         />
@@ -134,10 +132,9 @@ const StyledCard = styled(Card)`
    margin: 10px;
 
    .trophy-image {
-      width: 100%;
-      height: auto;
+      width: 200px;
+      height: 250px;
       object-fit: cover;
-      min-height: 290px;
    }
 
    h2 {
