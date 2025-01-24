@@ -12,7 +12,7 @@ const Team = () => {
       <Container>
          <h1 className="main-title"> Название команды</h1>
 
-         <Flex wrap gap={30}>
+         <Flex className="team-container" wrap gap={30}>
             {team_page.map(({ image, id, full_name, position, number }) => (
                <Flex key={id}>
                   <Link to={`/player/${id}`}>
@@ -40,8 +40,19 @@ const Container = styled.div`
    max-width: 1600px;
 
    h1 {
-      margin-bottom: 50px;
+      margin-bottom: 40px;
       font-size: 40px;
+   }
+
+   @media (max-width: 1024px) {
+      h1 {
+         margin-bottom: 40px;
+         font-size: 40px;
+      }
+
+      .team-container {
+         gap: 10px !important;
+      }
    }
 `
 

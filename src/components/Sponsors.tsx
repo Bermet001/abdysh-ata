@@ -50,7 +50,7 @@ const Sponsors = () => {
 export default Sponsors
 
 const StyledContainer = styled.section`
-   padding: 0 0 120px 0;
+   padding: 0 0 60px 0;
    text-align: center;
    max-width: 1600px;
    margin: 0 auto;

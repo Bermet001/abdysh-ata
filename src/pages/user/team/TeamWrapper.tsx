@@ -1,4 +1,4 @@
-import React from 'react'
+import { FC } from 'react'
 import { Tabs } from 'antd'
 import type { TabsProps } from 'antd'
 import Team from './Team'
@@ -20,7 +20,7 @@ const items: TabsProps['items'] = [
    },
 ]
 
-const TeamWrapper: React.FC = () => (
+const TeamWrapper: FC = () => (
    <StyledContainer>
       <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
    </StyledContainer>
@@ -29,27 +29,16 @@ const TeamWrapper: React.FC = () => (
 export default TeamWrapper
 
 const StyledContainer = styled.main`
-   margin-top: 100px;
+   margin-top: 80px;
    margin-bottom: 80px;
    padding: 0 75px;
 
-   .ant-tabs-nav-list {
-      /* width: 100%; */
+   @media (max-width: 1024px) {
+      padding: 0 30px;
    }
 
-   .ant-tabs-nav-wrap {
-      /* height: 100%; */
-      /* width: 100%; */
-
-      .ant-tabs-tab {
-         width: 100%;
-         border-radius: 3px 3px 0 0 !important;
-         /* border: 1px solid #d2d1d1 !important; */
-      }
-   }
-
-   .ant-tabs-tab-active {
-      /* background-color: #eaeaea !important; */
-      /* border-bottom-color: #d2d1d1 !important; */
+   .ant-tabs-tab {
+      width: 100%;
+      border-radius: 3px 3px 0 0 !important;
    }
 `

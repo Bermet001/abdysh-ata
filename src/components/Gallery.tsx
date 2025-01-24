@@ -144,7 +144,7 @@ const StyledContainer = styled.section`
    }
 
    @media (max-width: 1024px) {
-      padding: 120px 20px 0 20px;
+      padding: 40px 20px 0 20px;
    }
 
    @media (max-width: 768px) {

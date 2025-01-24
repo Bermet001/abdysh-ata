@@ -62,7 +62,7 @@ const History = () => {
             <Flex vertical>
                <h3 className="main-title">Мы сегодня это</h3>
                <StyledParagraph>
-                  <Flex>
+                  <Flex className="second-block">
                      <p className="last">
                         Lorem ipsum dolor sit amet, consectetur adipisicing
                         elit. Ratione aliquid numquam assumenda et fugit
@@ -112,12 +112,21 @@ const fadeInUp = keyframes`
 }
 `
 
+const Overlay = styled.div`
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   background: rgba(0, 0, 0, 0.5);
+   z-index: 1;
+`
 const StyledContainer = styled.main`
    max-width: 1600px;
    margin: 0 auto;
 
    .partners-container {
-      padding: 50px 300px 150px;
+      padding: 50px 0 150px;
    }
 
    .first-part {
@@ -133,17 +142,43 @@ const StyledContainer = styled.main`
       animation-name: ${fadeInUp};
       animation-delay: 0.5s;
 
+      @media (max-width: 1024px) {
+         padding: 20px;
+
+         .second-block {
+            flex-direction: column;
+
+            svg {
+               width: 100%;
+               height: auto;
+            }
+         }
+      }
+
       .main-title {
          margin-bottom: 10px;
          text-transform: uppercase;
          transition: color 0.3s ease;
          animation-name: ${fadeInUp};
          animation-delay: 0.5s;
+         font-size: 2rem;
+
+         @media (max-width: 768px) {
+            font-size: 1.8rem;
+         }
+
+         @media (max-width: 480px) {
+            font-size: 1.5rem;
+         }
       }
    }
 
    .last {
       width: 70%;
+
+      @media (max-width: 768px) {
+         width: 100%;
+      }
    }
 `
 
@@ -156,17 +191,17 @@ const BackgroundSection = styled.div`
    background-size: cover;
    background-position: center;
    background-repeat: no-repeat;
-   margin: 0px 0;
-`
+   margin: 0;
 
-const Overlay = styled.div`
-   position: absolute;
-   top: 0;
-   left: 0;
-   right: 0;
-   bottom: 0;
-   background: rgba(0, 0, 0, 0.5);
-   z-index: 1;
+   @media (max-width: 768px) {
+      height: 400px;
+      padding-top: 150px;
+   }
+
+   @media (max-width: 480px) {
+      height: 300px;
+      padding-top: 100px;
+   }
 `
 
 const Content = styled.div`
@@ -192,6 +227,15 @@ const Content = styled.div`
       color: white;
       text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
       transition: color 0.3s ease;
+
+      @media (max-width: 768px) {
+         width: 80%;
+         font-size: 14px;
+      }
+
+      @media (max-width: 480px) {
+         font-size: 12px;
+      }
    }
 
    &:hover .main-title,
@@ -204,4 +248,12 @@ const StyledParagraph = styled(Paragraph)`
    font-size: 1rem;
    color: #808080;
    font-weight: 300;
+
+   @media (max-width: 768px) {
+      font-size: 0.9rem;
+   }
+
+   @media (max-width: 480px) {
+      font-size: 0.8rem;
+   }
 `

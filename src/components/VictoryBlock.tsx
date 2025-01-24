@@ -37,10 +37,14 @@ const VictoryBlock = () => {
                   200: {
                      slidesPerView: 2,
                   },
+                  580: {
+                     slidesPerView: 3,
+                  },
+
                   768: {
                      slidesPerView: 3,
                   },
-                  1024: {
+                  1130: {
                      slidesPerView: 4,
                   },
                }}
@@ -48,13 +52,15 @@ const VictoryBlock = () => {
                {leagues.map(({ id, name, date, trophy }) => (
                   <SwiperSlide key={id}>
                      <StyledCard>
-                        <img
-                           className="trophy-image"
-                           src={trophy}
-                           alt="trophy"
-                        />
-                        <p>{date}</p>
-                        <h2>{name}</h2>
+                        <Flex vertical>
+                           <img
+                              className="trophy-image"
+                              src={trophy}
+                              alt="trophy"
+                           />
+                           <p>{date}</p>
+                           <h2>{name}</h2>
+                        </Flex>
                      </StyledCard>
                   </SwiperSlide>
                ))}
@@ -73,7 +79,12 @@ const Container = styled.div`
 
    @media (max-width: 1024px) {
       overflow: hidden;
-      padding: 80px 0;
+      padding: 0;
+      padding-top: 60px;
+
+      .swiper {
+         padding: 0px !important;
+      }
    }
 
    & .swiper {
@@ -100,14 +111,6 @@ const SliderContainer = styled.div`
 
 const Title = styled.h1`
    margin-bottom: 20px;
-
-   @media (max-width: 768px) {
-      font-size: 36px;
-   }
-
-   @media (max-width: 480px) {
-      font-size: 28px;
-   }
 `
 
 const Description = styled.p`
@@ -116,13 +119,17 @@ const Description = styled.p`
    color: white;
    width: 700px;
 
+   @media (max-width: 1024px) {
+      width: 60%;
+   }
+
    @media (max-width: 768px) {
       font-size: 0.9rem;
-      width: 100%;
+      width: 80%;
    }
 
    @media (max-width: 480px) {
-      font-size: 0.8rem;
+      font-size: 0.6rem;
    }
 `
 
@@ -131,15 +138,49 @@ const StyledCard = styled(Card)`
    border-radius: 10px;
    margin: 10px;
 
+   @media (max-width: 830px) {
+      margin: 0px;
+
+      .ant-card-body {
+         padding: 10px !important;
+      }
+   }
+
    .trophy-image {
       width: 200px;
       height: 250px;
+      object-position: top;
       object-fit: cover;
+      width: 100%;
+      margin: 0 auto;
+
+      @media (max-width: 910px) {
+         width: 100%;
+         height: 200px;
+      }
+
+      @media (max-width: 830px) {
+         width: 100%;
+         min-height: 190px;
+         max-height: 190px;
+      }
+      @media (max-width: 450px) {
+         width: 100%;
+         min-height: 160px;
+         max-height: 165px;
+      }
    }
 
    h2 {
       font-size: 1.2rem;
       margin-top: 10px;
+
+      @media (max-width: 830px) {
+         margin-top: 5px;
+         font-size: 0.9rem;
+         max-height: 45px;
+         min-height: 45px;
+      }
 
       @media (max-width: 768px) {
          font-size: 1rem;
@@ -153,12 +194,16 @@ const StyledCard = styled(Card)`
    p {
       font-size: 0.9rem;
 
+      @media (max-width: 830px) {
+         font-size: 0.7rem;
+      }
+
       @media (max-width: 768px) {
          font-size: 0.8rem;
       }
 
       @media (max-width: 480px) {
-         font-size: 0.7rem;
+         font-size: 0.5rem;
       }
    }
 `
@@ -174,6 +219,10 @@ const VictoryDes = styled.div`
    background-repeat: no-repeat;
    position: relative;
    padding: 100px 75px 0 75px;
+
+   @media (max-width: 1024px) {
+      padding: 70px 20px 0 20px;
+   }
 
    .inner {
       max-width: 1500px;
@@ -197,10 +246,14 @@ const VictoryDes = styled.div`
    }
 
    h1 {
-      font-size: 45px !important;
+      font-size: 45px;
 
       @media (max-width: 768px) {
          font-size: 36px;
+      }
+
+      @media (max-width: 630px) {
+         font-size: 30px;
       }
 
       @media (max-width: 480px) {

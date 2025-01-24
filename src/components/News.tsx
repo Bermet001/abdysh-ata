@@ -57,7 +57,7 @@ const NewsContainer = styled.div`
    margin: 0 auto;
 
    @media (max-width: 1024px) {
-      padding: 80px 20px;
+      padding: 60px 20px;
    }
 
    @media (max-width: 768px) {
@@ -70,6 +70,7 @@ const NewsContainer = styled.div`
 
    h2 {
       font-size: 40px;
+      margin-bottom: 40px;
 
       @media (max-width: 768px) {
          font-size: 28px;
