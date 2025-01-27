@@ -7,7 +7,7 @@ const { Search } = Input
 const Shop = () => {
    return (
       <Container>
-         <Flex align="center" justify="space-between" gap={150}>
+         <Flex align="center" justify="space-between" gap={50}>
             <StyledSelect
                defaultValue="lucy"
                style={{ width: 120 }}
@@ -49,11 +49,10 @@ const Container = styled.main`
    gap: 30px;
 
    @media (max-width: 1024px) {
-      padding: 20px;
+      padding: 90px 20px 30px;
    }
-
-   @media (max-width: 768px) {
-      padding: 20px 10px;
+   @media (max-width: 480px) {
+      margin-bottom: 0px;
    }
 `
 
@@ -63,15 +62,16 @@ const ProductsContainer = styled.div`
    gap: 20px;
 
    @media (max-width: 1024px) {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
    }
 
    @media (max-width: 768px) {
-      grid-template-columns: repeat(2, 1fr); // 2 карточки в ряд на мобильных
+      grid-template-columns: repeat(2, 1fr);
    }
 
    @media (max-width: 480px) {
-      grid-template-columns: 1fr; // 1 карточка в ряд на маленьких экранах
+      gap: 10px;
+      grid-template-columns: repeat(2, 1fr);
    }
 `
 
@@ -85,10 +85,18 @@ const StyledCard = styled(Card)`
       border-top-right-radius: 8px;
       object-fit: cover;
       height: 250px;
+
+      @media (max-width: 480px) {
+         height: 130px;
+      }
    }
 
    .ant-card-body {
       padding: 15px;
+
+      @media (max-width: 480px) {
+         padding: 10px;
+      }
    }
 `
 
