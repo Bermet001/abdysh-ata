@@ -33,7 +33,7 @@ const SchedulMatches = () => {
          }) => (
             <TeamsWrapper>
                <TeamWrapper className="team-box">
-                  <span>{record.team}</span>
+                  <span className="team-name">{record.team}</span>
                   <img src={record.logo} alt={record.team} />
                </TeamWrapper>
 
@@ -41,7 +41,7 @@ const SchedulMatches = () => {
 
                <TeamWrapper className="team-box">
                   <img src={record.opponentLogo} alt={record.opponent} />
-                  <span>{record.opponent}</span>
+                  <span className="team-name">{record.opponent}</span>
                </TeamWrapper>
             </TeamsWrapper>
          ),
@@ -103,6 +103,12 @@ const StyledMainContainer = styled.main`
       display: flex;
       justify-content: end;
    }
+
+   @media (max-width: 900px) {
+      .team-box {
+         width: 100%;
+      }
+   }
 `
 
 const StyledContainer = styled.div`
@@ -111,9 +117,24 @@ const StyledContainer = styled.div`
    border-radius: 8px;
    padding: 20px 75px;
 
+   @media (max-width: 1024px) {
+      padding: 95px 20px;
+
+      .main-title {
+         margin-bottom: 20px;
+      }
+   }
+
+   @media (max-width: 900px) {
+      .team-name {
+         display: none;
+      }
+   }
+
    h1 {
       margin-top: 20px;
       color: green;
+      font-size: 24px;
    }
 
    .ant-table {
@@ -142,6 +163,19 @@ const StyledContainer = styled.div`
    .ant-table-thead > tr > th {
       text-align: center;
    }
+
+   @media (max-width: 768px) {
+      padding: 10px;
+
+      h1 {
+         font-size: 20px;
+      }
+
+      .ant-table th,
+      .ant-table td {
+         font-size: 14px;
+      }
+   }
 `
 
 const TeamsWrapper = styled.div`
@@ -161,12 +195,27 @@ const TeamWrapper = styled.div`
       height: 50px;
       margin-right: 10px;
    }
+
+   @media (max-width: 768px) {
+      margin: 0;
+   }
+
+   @media (max-width: 768px) {
+      img {
+         width: 30px;
+         height: 30px;
+      }
+   }
 `
 
 const Vs = styled.span`
    font-weight: bold;
    margin: 0 10px;
    color: green;
+
+   @media (max-width: 768px) {
+      font-size: 12px;
+   }
 `
 
 const DateTimeWrapper = styled.div`
@@ -179,15 +228,27 @@ const Date = styled.span`
    font-weight: bold;
    font-size: 16px;
    color: #333;
+
+   @media (max-width: 768px) {
+      font-size: 14px;
+   }
 `
 
 const Time = styled.span`
    color: #888;
+
+   @media (max-width: 768px) {
+      font-size: 12px;
+   }
 `
 
 const League = styled.span`
    font-weight: bold;
    color: green;
+
+   @media (max-width: 768px) {
+      font-size: 14px;
+   }
 `
 
 const Overlay = styled.div`

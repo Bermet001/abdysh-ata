@@ -48,6 +48,14 @@ const StyledContainer = styled.main`
 
    .partners-container {
       padding: 50px 300px 150px;
+
+      @media (max-width: 1024px) {
+         padding: 20px;
+      }
+
+      @media (max-width: 500px) {
+         gap: 22px !important;
+      }
    }
 
    .first-part {
@@ -65,7 +73,12 @@ const BackgroundSection = styled.div`
    background-size: cover;
    background-position: center;
    background-repeat: no-repeat;
-   margin: 0px 0;
+   margin: 0;
+
+   @media (max-width: 768px) {
+      padding-top: 170px;
+      height: 300px;
+   }
 `
 
 const Content = styled.div`
@@ -78,6 +91,10 @@ const Content = styled.div`
       color: white;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
       transition: color 0.3s ease;
+
+      @media (max-width: 768px) {
+         font-size: 28px;
+      }
    }
 
    > p {
@@ -89,6 +106,12 @@ const Content = styled.div`
       color: white;
       text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
       transition: color 0.3s ease;
+
+      @media (max-width: 768px) {
+         width: 90%;
+         font-size: 10px;
+         color: #ffcc00;
+      }
    }
 
    &:hover .main-title,
@@ -123,13 +146,8 @@ const SponsorItem = styled.div`
       transform: translateY(-6px);
    }
 
-   @media (max-width: 768px) {
-      flex: 0 0 calc(50% - 20px);
-      max-width: calc(50% - 20px);
-   }
-
-   @media (max-width: 480px) {
-      flex: 0 0 100%;
+   @media (max-width: 500px) {
+      flex: 0 0 calc(20% - 10px);
       max-width: 100%;
    }
 `

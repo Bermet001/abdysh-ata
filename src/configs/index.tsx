@@ -861,12 +861,16 @@ const infrastructure = [
 
 const columns: ColumnType<TeamData>[] = [
    {
-      title: 'Team',
+      title: 'Команда',
       dataIndex: 'team',
       key: 'team',
-      width: '250px',
+
       render: (text: string, record: TeamData) => (
-         <Flex align="center">
+         <Flex
+            className="first-block-box"
+            style={{ width: '250px' }}
+            align="center"
+         >
             <img
                src={record.logo}
                alt={`${record.team} logo`}
@@ -877,55 +881,55 @@ const columns: ColumnType<TeamData>[] = [
       ),
    },
    {
-      title: 'Played',
+      title: 'Игры',
       dataIndex: 'played',
       key: 'played',
       align: 'center',
    },
    {
-      title: 'Won',
+      title: 'Победы',
       dataIndex: 'won',
       key: 'won',
       align: 'center',
    },
    {
-      title: 'Drawn',
+      title: 'Ничьи',
       dataIndex: 'drawn',
       key: 'drawn',
       align: 'center',
    },
    {
-      title: 'Lost',
+      title: 'Поражения',
       dataIndex: 'lost',
       key: 'lost',
       align: 'center',
    },
    {
-      title: 'For',
+      title: 'Забито',
       dataIndex: 'for',
       key: 'for',
       align: 'center',
    },
    {
-      title: 'Against',
+      title: 'Пропущено',
       dataIndex: 'against',
       key: 'against',
       align: 'center',
    },
    {
-      title: 'Goal Difference',
+      title: 'Разница',
       dataIndex: 'goalDifference',
       key: 'goalDifference',
       align: 'center',
    },
    {
-      title: 'Points',
+      title: 'Очки',
       dataIndex: 'points',
       key: 'points',
       align: 'center',
    },
    {
-      title: 'Form',
+      title: 'Форма',
       dataIndex: 'form',
       key: 'form',
       align: 'start',

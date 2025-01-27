@@ -5,15 +5,12 @@ import { products } from '../../../configs'
 const { Search } = Input
 
 const Shop = () => {
-   // const handleChange = (value: string) => console.log(`selected ${value}`)
-
    return (
       <Container>
          <Flex align="center" justify="space-between" gap={150}>
             <StyledSelect
                defaultValue="lucy"
                style={{ width: 120 }}
-               // onChange={handleChange}
                options={[
                   { value: 'jack', label: 'Jack' },
                   { value: 'lucy', label: 'Lucy' },
@@ -32,7 +29,6 @@ const Shop = () => {
                   cover={<img alt={product.name} src={product.img} />}
                >
                   <Card.Meta title={product.name} description={product.price} />
-
                   <StyledButton type="primary">Оформить заказ</StyledButton>
                </StyledCard>
             ))}
@@ -51,12 +47,32 @@ const Container = styled.main`
    display: flex;
    flex-direction: column;
    gap: 30px;
+
+   @media (max-width: 1024px) {
+      padding: 20px;
+   }
+
+   @media (max-width: 768px) {
+      padding: 20px 10px;
+   }
 `
 
 const ProductsContainer = styled.div`
    display: grid;
    grid-template-columns: repeat(5, 1fr);
    gap: 20px;
+
+   @media (max-width: 1024px) {
+      grid-template-columns: repeat(3, 1fr);
+   }
+
+   @media (max-width: 768px) {
+      grid-template-columns: repeat(2, 1fr); // 2 карточки в ряд на мобильных
+   }
+
+   @media (max-width: 480px) {
+      grid-template-columns: 1fr; // 1 карточка в ряд на маленьких экранах
+   }
 `
 
 const StyledCard = styled(Card)`
@@ -152,6 +168,7 @@ const StyledSearch = styled(Search)`
    & button:hover {
       transform: translateY(0);
    }
+
    .ant-input::placeholder {
       font-size: 17px;
    }

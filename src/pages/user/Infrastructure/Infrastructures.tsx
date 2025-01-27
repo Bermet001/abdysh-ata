@@ -54,6 +54,16 @@ const CollageContainer = styled(Flex)`
    margin: 0 75px;
    margin-top: 80px;
    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+
+   @media (max-width: 1024px) {
+      margin: 80px 20px;
+   }
+
+   @media (max-width: 768px) {
+      flex-direction: column;
+      margin: 0;
+      padding: 80px 10px;
+   }
 `
 
 const StyledCard = styled(Card)<StyledCardProps>`
@@ -63,9 +73,17 @@ const StyledCard = styled(Card)<StyledCardProps>`
    background-position: center;
    height: 300px;
    min-width: 100%;
-   max-width: 600px;
+   width: calc(37% - 20px);
    color: white;
    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+   @media (max-width: 1415px) {
+      .block {
+         padding: 15px !important;
+      }
+
+      max-width: 360px;
+   }
 
    .ant-card-body {
       padding: 0;
@@ -113,7 +131,26 @@ const StyledCard = styled(Card)<StyledCardProps>`
       font-size: 1rem;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
    }
+
+   @media (max-width: 768px) {
+      height: 200px;
+      max-width: 100%;
+      .block {
+         padding: 10px;
+
+         h3 {
+            font-size: 1.5rem;
+         }
+
+         .info-block {
+            p {
+               font-size: 12px;
+            }
+         }
+      }
+   }
 `
+
 const StyledButton = styled(Button)`
    background-color: transparent;
    color: white;

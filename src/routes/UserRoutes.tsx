@@ -41,7 +41,7 @@ export const USER_ROUTES = [
       path: 'match',
       element: (
          <Suspense>
-            <SchedulMatche />,
+            <SchedulMatche />
          </Suspense>
       ),
    },
@@ -49,7 +49,7 @@ export const USER_ROUTES = [
       path: 'banner/:id',
       element: (
          <Suspense>
-            <BannerInner />,
+            <BannerInner />
          </Suspense>
       ),
    },
@@ -57,7 +57,7 @@ export const USER_ROUTES = [
       path: 'player/:id',
       element: (
          <Suspense>
-            <Player />,
+            <Player />
          </Suspense>
       ),
    },
@@ -65,7 +65,7 @@ export const USER_ROUTES = [
       path: 'news/:id',
       element: (
          <Suspense>
-            <New />,
+            <New />
          </Suspense>
       ),
    },
@@ -73,7 +73,7 @@ export const USER_ROUTES = [
       path: 'news',
       element: (
          <Suspense>
-            <NewsPage />,
+            <NewsPage />
          </Suspense>
       ),
    },
@@ -81,7 +81,7 @@ export const USER_ROUTES = [
       path: 'coaches',
       element: (
          <Suspense>
-            <Coaches />,
+            <Coaches />
          </Suspense>
       ),
    },
@@ -89,7 +89,7 @@ export const USER_ROUTES = [
       path: 'team',
       element: (
          <Suspense>
-            <TeamWrapper />,
+            <TeamWrapper />
          </Suspense>
       ),
    },
@@ -97,7 +97,7 @@ export const USER_ROUTES = [
       path: 'coaches/:id',
       element: (
          <Suspense>
-            <Coach />,
+            <Coach />
          </Suspense>
       ),
    },
@@ -105,7 +105,7 @@ export const USER_ROUTES = [
       path: 'partners',
       element: (
          <Suspense>
-            <Partners />,
+            <Partners />
          </Suspense>
       ),
    },
@@ -113,7 +113,7 @@ export const USER_ROUTES = [
       path: 'contacts',
       element: (
          <Suspense>
-            <Contacts />,
+            <Contacts />
          </Suspense>
       ),
    },
@@ -121,7 +121,7 @@ export const USER_ROUTES = [
       path: 'history',
       element: (
          <Suspense>
-            <History />,
+            <History />
          </Suspense>
       ),
    },
@@ -129,7 +129,7 @@ export const USER_ROUTES = [
       path: 'infrastracture',
       element: (
          <Suspense>
-            <Infrastructures />,
+            <Infrastructures />
          </Suspense>
       ),
    },
@@ -137,7 +137,7 @@ export const USER_ROUTES = [
       path: 'infrastructure/:id',
       element: (
          <Suspense>
-            <Infrastracture />,
+            <Infrastracture />
          </Suspense>
       ),
    },
@@ -145,7 +145,7 @@ export const USER_ROUTES = [
       path: 'trophy',
       element: (
          <Suspense>
-            <Trophy />,
+            <Trophy />
          </Suspense>
       ),
    },
@@ -154,7 +154,7 @@ export const USER_ROUTES = [
       path: 'rating',
       element: (
          <Suspense>
-            <Rating />,
+            <Rating />
          </Suspense>
       ),
    },
@@ -162,7 +162,7 @@ export const USER_ROUTES = [
       path: 'shop',
       element: (
          <Suspense>
-            <Shop />,
+            <Shop />
          </Suspense>
       ),
    },
@@ -171,7 +171,7 @@ export const USER_ROUTES = [
       path: 'gallery',
       element: (
          <Suspense>
-            <Gallery />,
+            <Gallery />
          </Suspense>
       ),
    },
@@ -180,7 +180,7 @@ export const USER_ROUTES = [
       path: 'gallery/:id',
       element: (
          <Suspense>
-            <Photo />,
+            <Photo />
          </Suspense>
       ),
    },

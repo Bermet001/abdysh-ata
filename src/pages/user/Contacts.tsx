@@ -152,6 +152,8 @@ const StyledContainer = styled.main`
    }
 
    @media (max-width: 1000px) {
+      margin-top: 95px;
+
       .main-container {
          margin-left: 40px;
       }
