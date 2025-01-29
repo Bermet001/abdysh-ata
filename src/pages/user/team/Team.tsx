@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Card, Flex } from 'antd'
+import { Card, Col, Flex } from 'antd'
 import { team_page } from '../../../configs'
 import { Link } from 'react-router-dom'
 
@@ -13,19 +13,21 @@ const Team = () => {
 
          <TeamContainer className="team-container" wrap gap={30}>
             {team_page.map(({ image, id, full_name, position, number }) => (
-               <Flex key={id}>
-                  <Link to={`/player/${id}`}>
-                     <StyledCard>
-                        <CardBackground image={image}>
-                           <Overlay>
-                              <PlayerNumber>{number}</PlayerNumber>
-                              <PlayerName>{full_name}</PlayerName>
-                              <PlayerPosition>{position}</PlayerPosition>
-                           </Overlay>
-                        </CardBackground>
-                     </StyledCard>
-                  </Link>
-               </Flex>
+               <Col>
+                  <Flex key={id}>
+                     <Link to={`/player/${id}`}>
+                        <StyledCard>
+                           <CardBackground image={image}>
+                              <Overlay>
+                                 <PlayerNumber>{number}</PlayerNumber>
+                                 <PlayerName>{full_name}</PlayerName>
+                                 <PlayerPosition>{position}</PlayerPosition>
+                              </Overlay>
+                           </CardBackground>
+                        </StyledCard>
+                     </Link>
+                  </Flex>
+               </Col>
             ))}
          </TeamContainer>
       </Container>

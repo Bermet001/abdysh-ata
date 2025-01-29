@@ -270,6 +270,8 @@ const StyledFirstPart = styled(Flex)`
    }
 
    @media (max-width: 768px) {
+      height: 40vh;
+
       .container {
          .title {
             font-size: 40px;
@@ -278,6 +280,8 @@ const StyledFirstPart = styled(Flex)`
    }
 
    @media (max-width: 610px) {
+      height: 40vh;
+
       .container {
          .title {
             font-size: 25px;
