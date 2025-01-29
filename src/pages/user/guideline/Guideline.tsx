@@ -95,6 +95,7 @@ const Guideline: FC = () => {
                >
                   <StyledCard>
                      <InfoCircleOutlined className="info-icon" />
+
                      <Image src={photo} alt={director.name} />
                      <h3 className="name-p">{director.name}</h3>
                      <CardContent>{director.position}</CardContent>

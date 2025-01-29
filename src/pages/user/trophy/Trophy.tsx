@@ -181,6 +181,15 @@ const StyledContainer = styled(Flex)`
                }
             }
 
+            @media (max-width: 400px) {
+               gap: 10px !important;
+
+               .text-info {
+                  gap: 10px !important;
+                  font-size: 8px;
+               }
+            }
+
             h2 {
                font-family: 'Inter', serif;
                font-size: 35px;
@@ -192,6 +201,10 @@ const StyledContainer = styled(Flex)`
 
                @media (max-width: 610px) {
                   font-size: 20px;
+               }
+
+               @media (max-width: 400px) {
+                  font-size: 18px;
                }
             }
          }
