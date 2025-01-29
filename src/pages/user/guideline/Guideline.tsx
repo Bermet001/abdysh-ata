@@ -83,18 +83,14 @@ const Guideline: FC = () => {
       <StyledContainer>
          <h1 className="main-title">Руководство</h1>
 
-         <Row gutter={[16, 16]}>
-            {data.directors.map((director, index) => (
-               <Col
-                  onClick={() => showModal(director)}
-                  xs={24}
-                  sm={12}
-                  md={8}
-                  lg={7}
-                  key={index}
-               >
+         <Row gutter={[10, 10]}>
+            {data.directors.map((director) => (
+               <Col xs={12} sm={12} md={8} lg={7} key={director.id}>
                   <StyledCard>
-                     <InfoCircleOutlined className="info-icon" />
+                     <InfoCircleOutlined
+                        onClick={() => showModal(director)}
+                        className="info-icon"
+                     />
 
                      <Image src={photo} alt={director.name} />
                      <h3 className="name-p">{director.name}</h3>
@@ -133,20 +129,37 @@ const StyledContainer = styled.main`
    }
 
    @media (max-width: 768px) {
+      padding: 50px 20px;
+
       .main-title {
          margin-bottom: 30px;
+         font-size: 24px;
       }
    }
 
    .ant-card .ant-card-body {
       padding-top: 15px !important;
+
+      @media (max-width: 570px) {
+         padding: 13px;
+      }
+   }
+
+   @media (max-width: 570px) {
+      .ant-card {
+         margin: 0;
+      }
    }
 `
 
 const StyledCard = styled(Card)`
    margin: 10px;
-   border-radius: 10px;
+   border-radius: 15px;
    transition: transform 0.3s, box-shadow 0.3s;
+
+   @media (max-width: 570px) {
+      border-radius: 8px;
+   }
 
    .info-icon {
       svg {
@@ -161,6 +174,11 @@ const StyledCard = styled(Card)`
             transform: translateY(-2px);
             fill: #ffcc00;
          }
+
+         @media (max-width: 570px) {
+            width: 1rem;
+            height: 1rem;
+         }
       }
    }
 
@@ -171,6 +189,10 @@ const StyledCard = styled(Card)`
 
    .name-p {
       font-size: 18px;
+
+      @media (max-width: 570px) {
+         font-size: 13px;
+      }
    }
 `
 
@@ -178,10 +200,20 @@ const CardContent = styled.p`
    font-size: 14px;
    color: #555;
    margin: 10px 0 0;
+
+   @media (max-width: 570px) {
+      min-height: 40px;
+   }
 `
 
 const Image = styled.img`
    width: 100%;
    height: auto;
    border-radius: 10px 10px 0 0;
+   object-fit: cover;
+   object-position: top;
+
+   @media (max-width: 768px) {
+      max-height: 250px;
+   }
 `
