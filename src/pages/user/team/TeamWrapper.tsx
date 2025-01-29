@@ -29,9 +29,11 @@ const TeamWrapper: FC = () => (
 export default TeamWrapper
 
 const StyledContainer = styled.main`
+   margin: 0 auto;
    margin-top: 80px;
    margin-bottom: 80px;
    padding: 0 75px;
+   max-width: 1600px;
 
    @media (max-width: 1024px) {
       padding: 0 30px;

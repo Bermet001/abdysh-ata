@@ -90,7 +90,7 @@ const navigations = [
             id: 21,
          },
          {
-            path: '/',
+            path: '/guideline',
             title: 'Руководство',
             id: 22,
          },

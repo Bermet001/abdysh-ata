@@ -24,8 +24,8 @@ const Trophy = lazy(() => import('../pages/user/trophy/Trophy'))
 const Infrastructures = lazy(
    () => import('../pages/user/Infrastructure/Infrastructures')
 )
-
-import Suspense from './Suspense'
+const Suspense = lazy(() => import('./Suspense'))
+const Guideline = lazy(() => import('../pages/user/guideline/Guideline'))
 
 export const USER_ROUTES = [
    {
@@ -181,6 +181,14 @@ export const USER_ROUTES = [
       element: (
          <Suspense>
             <Photo />
+         </Suspense>
+      ),
+   },
+   {
+      path: 'guideline',
+      element: (
+         <Suspense>
+            <Guideline />
          </Suspense>
       ),
    },

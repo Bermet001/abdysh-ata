@@ -54,7 +54,7 @@ const StyledContainer = styled.main`
       }
 
       @media (max-width: 500px) {
-         gap: 22px !important;
+         gap: 15px !important;
       }
    }
 

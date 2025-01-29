@@ -72,9 +72,9 @@ const Trophy = () => {
 
                   <Flex align="start" gap={40} vertical className="texstovka">
                      <h2>{item.title}</h2>
-                     <p>{item.description}</p>
+                     <p className="text-info">{item.description}</p>
 
-                     <p>
+                     <p className="text-info">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Doloribus, rem! Vero.
                      </p>
@@ -100,6 +100,10 @@ const fadeInUp = keyframes`
 `
 
 const StyledContainer = styled(Flex)`
+   @media (max-width: 768px) {
+      flex-direction: column;
+   }
+
    .first-part {
       height: 100%;
       width: 100%;
@@ -110,38 +114,85 @@ const StyledContainer = styled(Flex)`
       .first {
          height: 100%;
       }
+
+      @media (max-width: 1024px) {
+         padding: 20px;
+      }
    }
 
    .image {
       width: 50%;
       height: 400px;
       object-fit: cover;
+
+      @media (max-width: 768px) {
+         height: auto;
+      }
    }
 
    .text {
       padding: 75px;
-      height: 100%;
+      height: auto;
       font-size: 20px;
       font-weight: 200;
-      line-height: 2;
+
+      @media (max-width: 1024px) {
+         padding: 20px;
+         line-height: 1.5;
+      }
+
+      @media (max-width: 768px) {
+         font-size: 16px;
+      }
    }
 
    .trophy-block-container {
       padding: 75px;
 
+      @media (max-width: 1024px) {
+         padding: 20px;
+      }
+
       .trophy-block {
+         flex-direction: column;
+
+         @media (max-width: 768px) {
+            padding: 0px;
+         }
+
          .texstovka {
             padding: 40px;
+
+            @media (max-width: 768px) {
+               gap: 20px !important;
+               padding: 25px;
+               .text-info {
+                  font-size: 14px;
+               }
+            }
+
+            @media (max-width: 610px) {
+               gap: 20px !important;
+               padding: 10px;
+
+               .text-info {
+                  gap: 10px !important;
+                  font-size: 10px;
+               }
+            }
 
             h2 {
                font-family: 'Inter', serif;
                font-size: 35px;
                font-weight: 600;
-            }
 
-            .link-btn {
-               font-size: 20px;
-               color: green;
+               @media (max-width: 768px) {
+                  font-size: 23px;
+               }
+
+               @media (max-width: 610px) {
+                  font-size: 20px;
+               }
             }
          }
       }
@@ -179,11 +230,45 @@ const StyledFirstPart = styled(Flex)`
          color: white;
          text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
          transition: color 0.3s ease;
+
+         @media (max-width: 768px) {
+            font-size: 16px;
+         }
       }
 
       &:hover .title,
       &:hover > p {
          color: #ffcc00;
+      }
+   }
+
+   @media (max-width: 1024px) {
+      height: 60vh;
+
+      .container {
+         .title {
+            font-size: 60px;
+         }
+
+         > p {
+            font-size: 17px;
+         }
+      }
+   }
+
+   @media (max-width: 768px) {
+      .container {
+         .title {
+            font-size: 40px;
+         }
+      }
+   }
+
+   @media (max-width: 610px) {
+      .container {
+         .title {
+            font-size: 25px;
+         }
       }
    }
 `

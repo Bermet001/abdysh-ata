@@ -97,6 +97,10 @@ const NewsContainer = styled.main`
    display: flex;
    flex-direction: column;
    justify-content: space-between;
+
+   @media (max-width: 1024px) {
+      padding: 80px 20px 50px;
+   }
 `
 
 const CardsContainer = styled.div`

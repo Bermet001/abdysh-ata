@@ -6,13 +6,12 @@ import { Link } from 'react-router-dom'
 interface CardBackgroundProps {
    image: string
 }
-
 const Team = () => {
    return (
       <Container>
          <h1 className="main-title"> Название команды</h1>
 
-         <Flex className="team-container" wrap gap={30}>
+         <TeamContainer className="team-container" wrap gap={30}>
             {team_page.map(({ image, id, full_name, position, number }) => (
                <Flex key={id}>
                   <Link to={`/player/${id}`}>
@@ -28,7 +27,7 @@ const Team = () => {
                   </Link>
                </Flex>
             ))}
-         </Flex>
+         </TeamContainer>
       </Container>
    )
 }
@@ -135,5 +134,19 @@ const PlayerPosition = styled.h3`
 
    ${StyledCard}:hover & {
       transform: translateY(5px);
+   }
+`
+
+const TeamContainer = styled(Flex)`
+   @media (max-width: 480px) {
+      flex-wrap: wrap;
+      justify-content: space-between;
+   }
+
+   @media (max-width: 480px) {
+      & > div {
+         flex: 0 0 48%;
+         margin-bottom: 20px;
+      }
    }
 `
