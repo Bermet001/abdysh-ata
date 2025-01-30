@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Flex } from 'antd'
 import styled from 'styled-components'
 import image2 from '../assets/images/image12.webp'
@@ -6,8 +7,22 @@ import image7 from '../assets/images/image9.jpg'
 import { EyeOutlined, RightOutlined } from '@ant-design/icons'
 import Button from './UI/Button'
 import { NavLink } from 'react-router-dom'
+import { Modal } from 'antd'
 
 const Gallery = () => {
+   const [isModalVisible, setIsModalVisible] = useState(false)
+   const [selectedImage, setSelectedImage] = useState('')
+
+   const handleImageClick = (src: string) => {
+      setSelectedImage(src)
+      setIsModalVisible(true)
+   }
+
+   const handleCloseModal = () => {
+      setIsModalVisible(false)
+      setSelectedImage('')
+   }
+
    return (
       <StyledContainer>
          <Flex vertical gap={40}>
@@ -25,9 +40,8 @@ const Gallery = () => {
 
             <Flex gap={20} className="image-gallery">
                <Flex className="gallery-image" vertical gap={20}>
-                  <ImageWrapper>
+                  <ImageWrapper onClick={() => handleImageClick(image7)}>
                      <img height="100%" width="100%" src={image7} alt="" />
-
                      <DarkOverlay />
                      <Overlay>
                         <Flex gap={15} align="center">
@@ -40,7 +54,6 @@ const Gallery = () => {
                                  Посмотреть
                               </p>
                            </Flex>
-
                            <Flex vertical gap={10} align="center">
                               <StyledRightSquareOutlined />
                               <p
@@ -54,10 +67,9 @@ const Gallery = () => {
                      </Overlay>
                   </ImageWrapper>
 
-                  <ImageWrapper>
+                  <ImageWrapper onClick={() => handleImageClick(image2)}>
                      <img height="100%" width="100%" src={image2} alt="" />
                      <DarkOverlay />
-
                      <Overlay>
                         <Flex gap={15} align="center">
                            <Flex vertical gap={10} align="center">
@@ -69,7 +81,6 @@ const Gallery = () => {
                                  Посмотреть
                               </p>
                            </Flex>
-
                            <Flex vertical gap={10} align="center">
                               <StyledRightSquareOutlined />
                               <p
@@ -85,10 +96,9 @@ const Gallery = () => {
                </Flex>
 
                <Flex gap={20}>
-                  <ImageWrapper>
+                  <ImageWrapper onClick={() => handleImageClick(image6)}>
                      <img height="100%" width="100%" src={image6} alt="" />
                      <DarkOverlay />
-
                      <Overlay>
                         <Flex gap={15} align="center">
                            <Flex vertical gap={10} align="center">
@@ -100,7 +110,6 @@ const Gallery = () => {
                                  Посмотреть
                               </p>
                            </Flex>
-
                            <Flex vertical gap={10} align="center">
                               <StyledRightSquareOutlined />
                               <p
@@ -116,6 +125,21 @@ const Gallery = () => {
                </Flex>
             </Flex>
          </Flex>
+
+         <Modal
+            visible={isModalVisible}
+            footer={null}
+            onCancel={handleCloseModal}
+            width={700}
+            className="modal-gallery"
+         >
+            <img
+               src={selectedImage}
+               alt="Detailed view"
+               className=""
+               style={{ width: '100%' }}
+            />
+         </Modal>
       </StyledContainer>
    )
 }
@@ -137,6 +161,10 @@ const StyledContainer = styled.section`
    > .ant-flex {
       margin: 0 auto;
       max-width: 1600px;
+   }
+
+   .ant-modal .ant-modal-content {
+      padding: 0;
    }
 
    .description {
@@ -168,6 +196,7 @@ const ImageWrapper = styled.div`
    position: relative;
    display: flex;
    justify-content: center;
+   cursor: pointer;
 
    img {
       transition: transform 0.3s ease;
@@ -185,6 +214,7 @@ const ImageWrapper = styled.div`
       }
    }
 `
+
 const Overlay = styled.div`
    position: absolute;
    top: 50%;

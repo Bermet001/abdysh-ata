@@ -243,6 +243,10 @@ const StyledContainer = styled(Flex)<StyledContainerProps>`
       }
    }
 
+   .mobile-menu {
+      display: none;
+   }
+
    @media (max-width: 1170px) {
       .main-nav {
          width: auto;
