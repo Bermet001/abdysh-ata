@@ -44,7 +44,7 @@ const ProductSlider = () => {
                   <StyledCard
                      cover={<img alt={product.name} src={product.img} />}
                   >
-                     <NavLink to={`shop/${product.id}`}>
+                     <NavLink to={`/shop/${product.id}`}>
                         <Card.Meta
                            title={product.name}
                            description={product.price}
