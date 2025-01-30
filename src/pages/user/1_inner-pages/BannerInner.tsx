@@ -65,7 +65,7 @@ const BannerSection = styled.main`
 
 const BannerImage = styled.img`
    width: 100%;
-   height: 500px;
+   height: 560px;
    object-fit: cover;
 `
 
@@ -74,14 +74,14 @@ const Overlay = styled.div`
    top: 0;
    left: 0;
    width: 100%;
-   height: 500px;
+   height: 560px;
    background-color: rgba(0, 0, 0, 0.303);
    z-index: 1;
 `
 
 const BannerContent = styled.div`
    position: absolute;
-   top: 25%;
+   top: 42%;
    left: 33%;
    transform: translate(-50%, -50%);
    max-width: 800px;

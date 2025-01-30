@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { Card, Button, Flex, Input, Select } from 'antd'
 import { products } from '../../../configs'
+import { NavLink } from 'react-router-dom'
 
 const { Search } = Input
 
@@ -28,7 +29,13 @@ const Shop = () => {
                   key={product.id}
                   cover={<img alt={product.name} src={product.img} />}
                >
-                  <Card.Meta title={product.name} description={product.price} />
+                  <NavLink to={`/shop/${product.id}`}>
+                     <Card.Meta
+                        className="product-info"
+                        title={product.name}
+                        description={product.price}
+                     />
+                  </NavLink>
                   <StyledButton type="primary">Оформить заказ</StyledButton>
                </StyledCard>
             ))}
@@ -54,6 +61,10 @@ const Container = styled.main`
    @media (max-width: 480px) {
       margin-bottom: 0px;
    }
+
+   .product-info {
+      cursor: pointer;
+   }
 `
 
 const ProductsContainer = styled.div`
@@ -78,7 +89,6 @@ const ProductsContainer = styled.div`
 const StyledCard = styled(Card)`
    border-radius: 10px;
    transition: transform 0.3s;
-   cursor: pointer;
 
    img {
       border-top-left-radius: 8px;

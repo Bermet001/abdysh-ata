@@ -11,6 +11,7 @@ const Player = () => {
             <Flex className="content" align="end">
                <Flex vertical className="main-info">
                   <PlayerImage src={image} alt="Player" />
+
                   <PlayerCard>
                      <PlayerDetails>
                         <PlayerPosition>Вратарь</PlayerPosition>
@@ -108,7 +109,7 @@ export default Player
 
 const StyledContainer = styled.main`
    background: linear-gradient(to bottom, #23a356, #18191b);
-   /* padding: 75px 35px; */
+   padding: 90px 35px;
    display: flex;
    align-items: center;
    justify-content: center;

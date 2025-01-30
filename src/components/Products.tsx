@@ -44,11 +44,15 @@ const ProductSlider = () => {
                   <StyledCard
                      cover={<img alt={product.name} src={product.img} />}
                   >
-                     <Card.Meta
-                        title={product.name}
-                        description={product.price}
-                     />
-                     <StyledButton type="primary">Оформить заказ</StyledButton>
+                     <NavLink to={`shop/${product.id}`}>
+                        <Card.Meta
+                           title={product.name}
+                           description={product.price}
+                        />
+                        <StyledButton type="primary">
+                           Оформить заказ
+                        </StyledButton>
+                     </NavLink>
                   </StyledCard>
                </SwiperSlide>
             ))}
