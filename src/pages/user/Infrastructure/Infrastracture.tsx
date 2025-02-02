@@ -7,10 +7,6 @@ const images = [
    'https://swiperjs.com/demos/images/nature-10.jpg',
    'https://swiperjs.com/demos/images/nature-3.jpg',
    'https://swiperjs.com/demos/images/nature-4.jpg',
-   'https://swiperjs.com/demos/images/nature-10.jpg',
-   'https://swiperjs.com/demos/images/nature-10.jpg',
-   'https://swiperjs.com/demos/images/nature-10.jpg',
-   'https://swiperjs.com/demos/images/nature-10.jpg',
 ]
 
 const Infrastructure = () => {
@@ -32,7 +28,6 @@ const Infrastructure = () => {
                      <p className="info">
                         <span>Область: </span>Chui
                      </p>
-
                      <p className="info">
                         <span>Адрес: </span> 1223 САОыкл5 Са
                      </p>
@@ -45,15 +40,10 @@ const Infrastructure = () => {
 
                <Flex className="short-info" gap={10} vertical>
                   <h2>Краткое описание</h2>
-
                   <p>
                      Join us for an unforgettable mountain tour! For several
                      days you will enjoy amazing views, clean mountain air and
-                     exciting adventures. The tour program includes hiking along
-                     picturesque trails, climbing peaks, evening bonfires and
-                     much more. This tour is ideal for those who are looking for
-                     new emotions and want to escape from the bustle of the
-                     city.
+                     exciting adventures...
                   </p>
                </Flex>
             </Flex>
@@ -61,8 +51,7 @@ const Infrastructure = () => {
 
          <Flex vertical className="media">
             <h2 className="main-title">Видео</h2>
-
-            <Flex gap={20}>
+            <Flex style={{ overflowX: 'scroll' }} gap={20}>
                {[...Array(3)].map((_, index) => (
                   <iframe
                      key={index}
@@ -92,9 +81,8 @@ const Infrastructure = () => {
 
          <Flex vertical className="map-block">
             <h2>Маршрут</h2>
-
             <iframe
-               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6887.935602500561!2d74.84216768171416!3d42.88937676368082!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x389eaee0c1efa677%3A0xcf6c142d63f73f90!2z0KbQtdC90YLRgNCw0LvRjNC90YvQuSDRgNGL0L3QvtC6INCz0L7RgNC-0LTQsCDQmtCw0L3Rgg!5e0!3m2!1sru!2skg!4v1736931000952!5m2!1sru!2skg"
+               src="https://www.google.com/maps/embed?pb=!1m18..."
                width="100%"
                height="300"
                loading="lazy"
@@ -110,13 +98,9 @@ export default Infrastructure
 const StyledContainer = styled.main`
    margin-top: 80px;
    padding: 20px 75px;
+   background-color: #f9f9f9;
 
    @media (max-width: 1300px) {
-      .first-block {
-         flex-direction: column !important;
-      }
-   }
-   @media (max-width: 1024px) {
       padding: 20px;
    }
 
@@ -129,19 +113,16 @@ const StyledContainer = styled.main`
          width: 650px;
          border-radius: 6px;
 
-         @media (max-width: 1300px) {
-            width: 100%;
-         }
-
          @media (max-width: 768px) {
+            height: 300px;
             width: 100%;
-            height: auto;
          }
       }
 
       .main-title {
          margin-bottom: 0px;
          font-size: 40px;
+         color: #333;
 
          @media (max-width: 768px) {
             font-size: 30px;
@@ -153,11 +134,25 @@ const StyledContainer = styled.main`
             color: grey;
          }
       }
+
+      @media (max-width: 1024px) {
+         flex-direction: column !important;
+         gap: 20px !important;
+      }
    }
 
    .gallery {
       padding: 0 100px;
       margin-top: 90px;
+
+      @media (max-width: 1300px) {
+         margin-top: 50px;
+         padding: 0 20px;
+      }
+
+      @media (max-width: 768px) {
+         padding: 0;
+      }
 
       img {
          width: calc(33.33% - 20px);
@@ -167,10 +162,10 @@ const StyledContainer = styled.main`
 
          @media (max-width: 768px) {
             width: calc(50% - 10px);
+            height: auto;
          }
-
          @media (max-width: 480px) {
-            width: 100%;
+            width: calc(50% - 10px);
          }
       }
    }
@@ -179,6 +174,7 @@ const StyledContainer = styled.main`
       .main-title {
          margin-bottom: 30px;
          font-size: 40px;
+         color: #333;
 
          @media (max-width: 768px) {
             font-size: 30px;
@@ -201,6 +197,7 @@ const StyledContainer = styled.main`
    .short-info {
       h2 {
          font-size: 25px;
+         color: #333;
 
          @media (max-width: 768px) {
             font-size: 20px;
@@ -223,6 +220,7 @@ const StyledContainer = styled.main`
       h2 {
          font-size: 40px;
          margin-bottom: 20px;
+         color: #333;
 
          @media (max-width: 768px) {
             font-size: 30px;
@@ -230,29 +228,5 @@ const StyledContainer = styled.main`
       }
 
       margin-bottom: 30px;
-   }
-
-   .description {
-      margin-top: 40px;
-
-      h1 {
-         font-size: 40px;
-
-         @media (max-width: 768px) {
-            font-size: 30px;
-         }
-      }
-
-      p {
-         margin-top: 10px;
-         width: 650px;
-         font-weight: 300;
-         font-size: 18px;
-
-         @media (max-width: 768px) {
-            width: 100%;
-            font-size: 16px;
-         }
-      }
    }
 `
