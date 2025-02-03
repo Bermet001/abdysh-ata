@@ -71,6 +71,9 @@ const Container = styled.div`
    @media (max-width: 1024px) {
       padding: 60px 20px 0;
    }
+   @media (max-width: 600px) {
+      padding: 30px 20px 0;
+   }
 `
 
 const StyledCard = styled(Card)`

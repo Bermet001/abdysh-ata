@@ -16,7 +16,7 @@ const Player = () => {
                      <PlayerDetails>
                         <PlayerPosition>Вратарь</PlayerPosition>
                         <PlayerName>
-                           <PlayerNumber> 1</PlayerNumber>
+                           <PlayerNumber>1</PlayerNumber>
                            <span className="name">Бекжан</span>
                            Сагынбаев
                         </PlayerName>
@@ -46,7 +46,10 @@ const Player = () => {
                   </PlayerBio>
                   <PlayerBio>insta: @asdfr </PlayerBio>
 
-                  <DetailsContainer justify="space-between">
+                  <DetailsContainer
+                     className="characteristics-container"
+                     justify="space-between"
+                  >
                      <Flex vertical gap={5}>
                         <DetailLabel>Дата рождения</DetailLabel>
                         <DetailValue>14/12/1996</DetailValue>
@@ -74,11 +77,25 @@ const Player = () => {
                <h1 className="main-title">Достижения</h1>
 
                <Swiper
-                  slidesPerView={5}
+                  slidesPerView={1}
                   centeredSlides={true}
                   spaceBetween={10}
                   grabCursor={true}
-                  pagination={{}}
+                  breakpoints={{
+                     200: {
+                        slidesPerView: 1.2,
+                     },
+                     500: {
+                        slidesPerView: 1,
+                     },
+
+                     768: {
+                        slidesPerView: 3,
+                     },
+                     1130: {
+                        slidesPerView: 5,
+                     },
+                  }}
                   className="mySwiper"
                >
                   {honours.map((item) => (
@@ -116,6 +133,10 @@ const StyledContainer = styled.main`
    min-height: 100vh;
    max-width: 1600px;
 
+   @media (max-width: 768px) {
+      padding: 60px 20px;
+   }
+
    .swiper {
       width: 100%;
       height: 100%;
@@ -125,7 +146,6 @@ const StyledContainer = styled.main`
       text-align: center;
       font-size: 18px;
       background: #fff;
-
       display: flex;
       justify-content: center;
       align-items: center;
@@ -140,7 +160,7 @@ const StyledContainer = styled.main`
 
    .main-box {
       background-color: white;
-      padding: 0 40px;
+      padding: 0 20px;
       padding-top: 20px;
       padding-bottom: 30px;
       border-radius: 3px;
@@ -151,6 +171,12 @@ const StyledContainer = styled.main`
       background-color: white;
       margin-bottom: 50px;
       position: relative;
+
+      @media (max-width: 1200px) {
+         flex-direction: column;
+         align-items: start;
+         gap: 20px;
+      }
 
       .main-info {
          position: relative;
@@ -187,6 +213,11 @@ const StyledContainer = styled.main`
 const PlayerImage = styled.img`
    width: 400px;
    border-radius: 10px;
+
+   @media (max-width: 768px) {
+      width: 100%;
+      max-width: 300px;
+   }
 `
 
 const slideInRight = keyframes`
@@ -198,7 +229,7 @@ const slideInRight = keyframes`
       opacity: 1;
       transform: translateX(0);
    }
-   `
+`
 
 const PlayerInfo = styled.div`
    margin-left: 40px;
@@ -212,10 +243,18 @@ const PlayerInfo = styled.div`
    animation: ${slideInRight} 0.7s ease-in;
    animation-delay: 0.2s;
 
+   @media (max-width: 1200px) {
+      margin-left: 0;
+   }
+
    .player-title {
       font-size: 35px;
       width: 80%;
       margin-bottom: 20px;
+
+      @media (max-width: 768px) {
+         font-size: 24px;
+      }
    }
 `
 
@@ -246,6 +285,11 @@ const PlayerCard = styled.div`
    opacity: 0;
    animation: ${slideInLeft} 0.6s ease-in-out forwards;
    animation-delay: 0.2s;
+
+   @media (max-width: 768px) {
+      width: 80%;
+      left: 10%;
+   }
 `
 
 const PlayerDetails = styled.div`
@@ -288,6 +332,10 @@ const PlayerBio = styled.p`
    margin: 10px 0;
    color: #333;
    line-height: 1.5;
+
+   @media (max-width: 768px) {
+      font-size: 14px;
+   }
 `
 const DetailsContainer = styled(Flex)`
    margin-bottom: 20px;
@@ -295,6 +343,11 @@ const DetailsContainer = styled(Flex)`
    border-top: 1px solid grey;
    border-bottom: 1px solid grey;
    margin-top: 40px;
+
+   @media (max-width: 500px) {
+      flex-direction: column;
+      gap: 20px;
+   }
 `
 
 const DetailLabel = styled.span`
@@ -306,4 +359,8 @@ const DetailLabel = styled.span`
 const DetailValue = styled.span`
    color: #3b3b3b;
    font-size: 25px;
+
+   @media (max-width: 768px) {
+      font-size: 20px;
+   }
 `

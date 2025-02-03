@@ -65,21 +65,21 @@ const NewsContainer = styled.div`
    }
 
    @media (max-width: 480px) {
-      padding: 40px 20px;
+      padding: 50px 20px;
    }
 
    h2 {
-      font-size: 40px;
-      margin-bottom: 40px;
+      /* font-size: 40px;
+      margin-bottom: 40px; */
 
-      @media (max-width: 768px) {
+      /* @media (max-width: 768px) {
          font-size: 28px;
          text-align: center;
       }
 
       @media (max-width: 480px) {
          font-size: 24px;
-      }
+      } */
    }
 `
 

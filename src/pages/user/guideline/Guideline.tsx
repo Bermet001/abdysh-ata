@@ -85,7 +85,7 @@ const Guideline: FC = () => {
 
          <Row gutter={[10, 10]}>
             {data.directors.map((director) => (
-               <Col xs={12} sm={12} md={8} lg={7} key={director.id}>
+               <Col xs={12} sm={12} md={8} lg={6} key={director.id}>
                   <StyledCard>
                      <InfoCircleOutlined
                         onClick={() => showModal(director)}
@@ -129,8 +129,6 @@ const StyledContainer = styled.main`
    }
 
    @media (max-width: 768px) {
-      padding: 50px 20px;
-
       .main-title {
          margin-bottom: 30px;
          font-size: 24px;
@@ -153,9 +151,12 @@ const StyledContainer = styled.main`
 `
 
 const StyledCard = styled(Card)`
-   margin: 10px;
+   /* margin: 10px; */
    border-radius: 15px;
    transition: transform 0.3s, box-shadow 0.3s;
+
+   @media (max-width: 570px) {
+   }
 
    @media (max-width: 570px) {
       border-radius: 8px;
@@ -189,9 +190,11 @@ const StyledCard = styled(Card)`
 
    .name-p {
       font-size: 18px;
+      height: 56px;
 
       @media (max-width: 570px) {
          font-size: 13px;
+         height: 100%;
       }
    }
 `
@@ -212,8 +215,14 @@ const Image = styled.img`
    border-radius: 10px 10px 0 0;
    object-fit: cover;
    object-position: top;
+   min-height: 370px;
+
+   @media (max-width: 1224px) {
+      min-height: 300px;
+   }
 
    @media (max-width: 768px) {
       max-height: 250px;
+      min-height: 100%;
    }
 `

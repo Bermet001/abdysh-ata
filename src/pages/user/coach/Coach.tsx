@@ -3,8 +3,10 @@ import { FC, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import styled, { keyframes } from 'styled-components'
 import { coaches } from '../../../configs'
+import Preloader from '../../../components/Preloader'
 
 const { Title } = Typography
+
 interface AchievementshProps {
    image?: string
    text: string
@@ -30,7 +32,7 @@ const Coach: FC = () => {
    }, [id])
 
    if (!selectedCoach) {
-      return <div>Загрузка...</div>
+      return <Preloader />
    }
 
    const {
@@ -40,7 +42,7 @@ const Coach: FC = () => {
       position,
       dateOfBirth,
       biography,
-      achievements,
+      // achievements,
    } = selectedCoach
 
    return (
@@ -48,11 +50,16 @@ const Coach: FC = () => {
          <StyledComponent>
             <Flex vertical>
                <Flex
-                  className="frist-part-coach"
+                  className="first-part-coach"
                   justify="space-between"
                   align="end"
                >
-                  <Flex gap={80} vertical justify="center">
+                  <Flex
+                     gap={80}
+                     className="main-info"
+                     vertical
+                     justify="center"
+                  >
                      <h1 className="coach-full-name">
                         <AnimatedName>{name}</AnimatedName>
                         <br />
@@ -80,31 +87,26 @@ const Coach: FC = () => {
                <Flex vertical className="biography-box">
                   <h2 className="main-title">Биография</h2>
                   <p className="bio">{biography}</p>
-
                   <br />
                   <br />
 
                   <h2 className="main-title">Достижения</h2>
-
-                  <Flex gap={50} justify="start" className="">
+                  {/* <AchievementsContainer>
                      {achievements?.map(({ image, text }) => (
-                        <StyledCard>
+                        <StyledCard key={text}>
                            <img
                               className="trophy-image"
-                              width="100%"
-                              height="220px"
                               src={image}
                               alt="trophy"
+                              height="220px"
                            />
-
                            <h2>{text}</h2>
                         </StyledCard>
                      ))}
-                  </Flex>
+                  </AchievementsContainer> */}
 
                   <br />
                   <br />
-
                   <h2 className="main-title">Ассистенты</h2>
                   <div></div>
                </Flex>
@@ -138,12 +140,28 @@ const slideInLeft = keyframes`
    }
 `
 
+// const AchievementsContainer = styled.div`
+//    display: flex;
+//    overflow-x: auto;
+//    gap: 30px;
+//    width: 100%;
+//    padding: 10px 0;
+
+//    &::-webkit-scrollbar {
+//       display: none;
+//    }
+// `
+
 const StyledComponent = styled(Flex)`
    margin: 0 auto;
 
-   .frist-part-coach {
+   .first-part-coach {
       padding: 150px 75px 0;
       max-width: 1600px;
+
+      @media (max-width: 1024px) {
+         padding: 90px 20px 0;
+      }
    }
 
    .coach-full-name {
@@ -158,6 +176,10 @@ const StyledComponent = styled(Flex)`
       margin-top: 50px;
       background-color: #f1f4f6;
 
+      @media (max-width: 1024px) {
+         padding: 35px 20px 55px;
+      }
+
       .main-title {
          margin-bottom: 20px;
       }
@@ -168,6 +190,18 @@ const StyledComponent = styled(Flex)`
             Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
             sans-serif;
          min-height: 80px;
+      }
+   }
+
+   @media (max-width: 770px) {
+      .first-part-coach {
+         flex-direction: column-reverse;
+         align-items: start;
+      }
+   }
+
+   .main-info {
+      @media (max-width: 1200px) {
       }
    }
 `
@@ -184,14 +218,26 @@ const StyledCard = styled(Card)`
 
    .trophy-image {
       object-fit: cover;
+      width: 100%;
    }
 `
 
 const AnimatedCard = styled(StyledCard)`
    opacity: 0;
+   max-width: 520px;
    width: 520px;
+   min-width: 325px;
+
    animation: ${slideInLeft} 0.9s ease-in-out forwards;
    animation-delay: 0.4s;
+
+   @media (max-width: 1200px) {
+      width: 100%;
+   }
+
+   @media (max-width: 600px) {
+      width: 100%;
+   }
 `
 
 const StyledTitle = styled(Title)`
@@ -211,9 +257,19 @@ const AnimatedImage = styled.img`
    animation: ${fadeIn} 0.4s ease-in-out forwards;
    animation-delay: 0.3s;
 
-   -webkit-box-shadow: inset 0px -186px 162px -200px rgba(0, 166, 79, 1);
-   -moz-box-shadow: inset 0px -186px 162px -200px rgba(0, 166, 79, 1);
    box-shadow: inset 0px -186px 162px -200px rgba(0, 166, 79, 1);
+
+   @media (max-width: 870px) {
+      width: 400px;
+   }
+
+   @media (max-width: 450px) {
+      width: 375px;
+   }
+
+   @media (max-width: 400px) {
+      width: 335px;
+   }
 `
 
 const AnimatedName = styled.span`

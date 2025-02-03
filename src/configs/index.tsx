@@ -672,6 +672,18 @@ const coaches = [
             image: Trophy,
             text: 'fhgsj SDJruk KCNDI',
          },
+         {
+            image: Trophy2,
+            text: 'fhgsj SDJruk KCNDI',
+         },
+         {
+            image: Trophy3,
+            text: 'fhgsj SDJruk KCNDI',
+         },
+         {
+            image: Trophy,
+            text: 'fhgsj SDJruk KCNDI',
+         },
       ],
    },
    {

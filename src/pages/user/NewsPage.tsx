@@ -40,48 +40,50 @@ const NewsPage: FC = () => {
 
    return (
       <NewsContainer>
-         <Flex gap={250}>
-            <StyledInput
-               placeholder="Поиск новостей"
-               allowClear
-               onSearch={onSearch}
-               style={{ width: '100%', borderRadius: '6px' }}
-               size="large"
-            />
+         <Flex gap={20} vertical align="stretch">
+            <Flex className="sort-box" gap={16}>
+               <StyledInput
+                  placeholder="Поиск новостей"
+                  allowClear
+                  onSearch={onSearch}
+                  style={{ flex: 1 }}
+                  size="large"
+               />
 
-            <RangePicker
-               showTime={{ format: 'HH:mm' }}
-               format="YYYY-MM-DD HH:mm"
-               onChange={(value, dateString) => {
-                  console.log('Selected Time: ', value)
-                  console.log('Formatted Selected Time: ', dateString)
-               }}
-               onOk={onOk}
+               <RangePicker
+                  showTime={{ format: 'HH:mm' }}
+                  format="YYYY-MM-DD HH:mm"
+                  onChange={(value, dateString) => {
+                     console.log('Selected Time: ', value)
+                     console.log('Formatted Selected Time: ', dateString)
+                  }}
+                  onOk={onOk}
+               />
+            </Flex>
+
+            <CardsContainer>
+               {currentItems.map((item) => (
+                  <NewsCard key={item.id}>
+                     <NavLink to={`/news/${item.id}`}>
+                        <NewsImage src={item.imageUrl} alt={item.title} />
+                        <NewsContent>
+                           <Category>{item.category}</Category>
+                           <Title>{item.title}</Title>
+                           <Date>{item.date}</Date>
+                        </NewsContent>
+                     </NavLink>
+                  </NewsCard>
+               ))}
+            </CardsContainer>
+
+            <StyledPagination
+               current={currentPage}
+               total={newsItems.length}
+               pageSize={itemsPerPage}
+               onChange={onPageChange}
+               showSizeChanger={false}
             />
          </Flex>
-
-         <CardsContainer>
-            {currentItems.map((item) => (
-               <NewsCard key={item.id}>
-                  <NavLink to={`/news/${item.id}`}>
-                     <NewsImage src={item.imageUrl} alt={item.title} />
-                     <NewsContent>
-                        <Category>{item.category}</Category>
-                        <Title>{item.title}</Title>
-                        <Date>{item.date}</Date>
-                     </NewsContent>
-                  </NavLink>
-               </NewsCard>
-            ))}
-         </CardsContainer>
-
-         <StyledPagination
-            current={currentPage}
-            total={newsItems.length}
-            pageSize={itemsPerPage}
-            onChange={onPageChange}
-            showSizeChanger={false}
-         />
       </NewsContainer>
    )
 }
@@ -89,7 +91,7 @@ const NewsPage: FC = () => {
 export default NewsPage
 
 const NewsContainer = styled.main`
-   padding: 120px 75px 0;
+   padding: 120px 5%;
    max-width: 1600px;
    margin: 0 auto;
    margin-bottom: 40px;
@@ -101,6 +103,21 @@ const NewsContainer = styled.main`
    @media (max-width: 1024px) {
       padding: 80px 20px 50px;
    }
+
+   @media (max-width: 800px) {
+      .sort-box {
+         flex-direction: column-reverse !important;
+      }
+
+      .ant-picker-outlined {
+         max-width: 400px;
+      }
+   }
+   @media (max-width: 400px) {
+      .ant-picker-outlined {
+         max-width: 100%;
+      }
+   }
 `
 
 const CardsContainer = styled.div`
@@ -108,6 +125,10 @@ const CardsContainer = styled.div`
    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
    gap: 16px;
    margin-top: 30px;
+
+   @media (max-width: 768px) {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+   }
 `
 
 const NewsCard = styled.div`
@@ -118,8 +139,8 @@ const NewsCard = styled.div`
    transition: transform 0.3s;
    cursor: pointer;
 
-   .ant-ribbon-wrapper {
-      width: calc(25% - 20px);
+   &:hover {
+      transform: translateY(-5px);
    }
 `
 
@@ -136,11 +157,6 @@ const NewsImage = styled.img`
 
 const NewsContent = styled.div`
    padding: 16px;
-   transition: transform 0.3s;
-
-   ${NewsCard}:hover & {
-      transform: translateY(-15px);
-   }
 `
 
 const Category = styled.p`
@@ -162,7 +178,6 @@ const Date = styled.p`
 const StyledPagination = styled(AntPagination)`
    display: flex;
    justify-content: center;
-   align-items: end;
    margin-top: 20px;
 
    .ant-pagination-item {
@@ -189,9 +204,10 @@ const StyledPagination = styled(AntPagination)`
 `
 
 const StyledInput = styled(Search)`
+   flex: 1;
+
    .ant-input-affix-wrapper {
-      border-start-start-radius: 6px;
-      border-end-start-radius: 6px;
+      border-radius: 6px;
    }
 
    & button:hover {

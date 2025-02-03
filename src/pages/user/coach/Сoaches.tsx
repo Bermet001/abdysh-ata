@@ -54,6 +54,10 @@ const StyledCard = styled.div`
    .card-coach {
       padding: 40px;
       transition: filter 0.3s ease;
+
+      @media (max-width: 1400px) {
+         padding: 0;
+      }
    }
 
    &:hover .card-coach {

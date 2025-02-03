@@ -40,12 +40,17 @@ const Gallery = () => {
 
             <Flex gap={20} className="image-gallery">
                <Flex className="gallery-image" vertical gap={20}>
-                  <ImageWrapper onClick={() => handleImageClick(image7)}>
+                  <ImageWrapper>
                      <img height="100%" width="100%" src={image7} alt="" />
                      <DarkOverlay />
                      <Overlay>
                         <Flex gap={15} align="center">
-                           <Flex vertical gap={10} align="center">
+                           <Flex
+                              onClick={() => handleImageClick(image7)}
+                              vertical
+                              gap={10}
+                              align="center"
+                           >
                               <StyledEyeOutlined />
                               <p
                                  className="explanation"
@@ -55,24 +60,31 @@ const Gallery = () => {
                               </p>
                            </Flex>
                            <Flex vertical gap={10} align="center">
-                              <StyledRightSquareOutlined />
-                              <p
-                                 className="explanation"
-                                 style={{ color: 'white' }}
-                              >
-                                 Подробнее
-                              </p>
+                              <NavLink to={'/gallery/:id'}>
+                                 <StyledRightSquareOutlined />
+                                 <p
+                                    className="explanation"
+                                    style={{ color: 'white' }}
+                                 >
+                                    Подробнее
+                                 </p>
+                              </NavLink>
                            </Flex>
                         </Flex>
                      </Overlay>
                   </ImageWrapper>
 
-                  <ImageWrapper onClick={() => handleImageClick(image2)}>
+                  <ImageWrapper>
                      <img height="100%" width="100%" src={image2} alt="" />
                      <DarkOverlay />
                      <Overlay>
                         <Flex gap={15} align="center">
-                           <Flex vertical gap={10} align="center">
+                           <Flex
+                              onClick={() => handleImageClick(image2)}
+                              vertical
+                              gap={10}
+                              align="center"
+                           >
                               <StyledEyeOutlined />
                               <p
                                  className="explanation"
@@ -82,13 +94,15 @@ const Gallery = () => {
                               </p>
                            </Flex>
                            <Flex vertical gap={10} align="center">
-                              <StyledRightSquareOutlined />
-                              <p
-                                 className="explanation"
-                                 style={{ color: 'white' }}
-                              >
-                                 Подробнее
-                              </p>
+                              <NavLink to={'/gallery/:id'}>
+                                 <StyledRightSquareOutlined />
+                                 <p
+                                    className="explanation"
+                                    style={{ color: 'white' }}
+                                 >
+                                    Подробнее
+                                 </p>
+                              </NavLink>
                            </Flex>
                         </Flex>
                      </Overlay>
@@ -96,12 +110,17 @@ const Gallery = () => {
                </Flex>
 
                <Flex gap={20}>
-                  <ImageWrapper onClick={() => handleImageClick(image6)}>
+                  <ImageWrapper>
                      <img height="100%" width="100%" src={image6} alt="" />
                      <DarkOverlay />
                      <Overlay>
                         <Flex gap={15} align="center">
-                           <Flex vertical gap={10} align="center">
+                           <Flex
+                              onClick={() => handleImageClick(image6)}
+                              vertical
+                              gap={10}
+                              align="center"
+                           >
                               <StyledEyeOutlined />
                               <p
                                  className="explanation"
@@ -111,13 +130,15 @@ const Gallery = () => {
                               </p>
                            </Flex>
                            <Flex vertical gap={10} align="center">
-                              <StyledRightSquareOutlined />
-                              <p
-                                 className="explanation"
-                                 style={{ color: 'white' }}
-                              >
-                                 Подробнее
-                              </p>
+                              <NavLink to={'/gallery/:id'}>
+                                 <StyledRightSquareOutlined />
+                                 <p
+                                    className="explanation"
+                                    style={{ color: 'white' }}
+                                 >
+                                    Подробнее
+                                 </p>
+                              </NavLink>
                            </Flex>
                         </Flex>
                      </Overlay>
@@ -176,7 +197,7 @@ const StyledContainer = styled.section`
    }
 
    @media (max-width: 768px) {
-      padding: 60px 30px;
+      padding: 10px 30px;
 
       .image-gallery {
          gap: 10px !important;
@@ -188,7 +209,7 @@ const StyledContainer = styled.section`
    }
 
    @media (max-width: 480px) {
-      padding: 30px 15px;
+      padding: 0 15px;
    }
 `
 

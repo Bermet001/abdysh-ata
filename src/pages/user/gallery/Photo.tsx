@@ -44,22 +44,12 @@ const Photo: FC = () => {
                         <Flex gap={10} align="center">
                            <Flex vertical gap={10} align="center">
                               <StyledEyeOutlined />
-                              <p
-                                 className="info-text"
-                                 style={{ color: 'white' }}
-                              >
-                                 Посмотреть
-                              </p>
+                              <p className="info-text">Посмотреть</p>
                            </Flex>
 
                            <Flex vertical gap={10} align="center">
                               <StyledRightSquareOutlined />
-                              <p
-                                 className="info-text"
-                                 style={{ color: 'white' }}
-                              >
-                                 Подробнее
-                              </p>
+                              <p className="info-text">Подробнее</p>
                            </Flex>
                         </Flex>
                      </Overlay>
@@ -74,23 +64,27 @@ const Photo: FC = () => {
 export default Photo
 
 const StyledContainer = styled.main`
-   padding: 80px 75px;
+   padding: 80px 5%;
    max-width: 1600px;
 
    .main-image {
       object-fit: cover;
       height: auto;
       max-height: 400px;
-      max-width: 100%;
-      min-width: 700px;
       width: 100%;
       border-radius: 8px;
       object-position: top;
    }
 
    .main-title {
-      margin: 60px 10px 10px;
-      font-size: 50px;
+      margin: 60px 0 10px;
+      font-size: 2.5rem;
+   }
+
+   @media (max-width: 768px) {
+      .main-title {
+         font-size: 2rem;
+      }
    }
 `
 
@@ -98,13 +92,14 @@ const ImageWrapper = styled.div`
    position: relative;
    display: flex;
    justify-content: center;
-   width: 300px;
-   height: 260px;
-   object-fit: cover;
+   width: calc(25% - 20px);
+   height: 230px;
    margin: 10px;
+   overflow: hidden;
 
    .info-text {
       font-size: 13px;
+      color: white;
    }
 
    img {
@@ -118,35 +113,40 @@ const ImageWrapper = styled.div`
       transform: scale(1.03);
    }
 
+   @media (max-width: 1024px) {
+      width: calc(33.33% - 20px);
+      height: 170px;
+   }
+
    @media (max-width: 768px) {
-      img {
-         height: auto;
-      }
+      width: calc(50% - 20px);
+      height: 150px;
+   }
+
+   @media (max-width: 480px) {
+      width: calc(50% - 20px);
+      height: 120px;
    }
 `
+
 const Overlay = styled.div`
    position: absolute;
    top: 50%;
-   left: 0%;
-   right: 0%;
+   left: 0;
+   right: 0;
    bottom: 50%;
    display: flex;
    align-items: center;
    justify-content: center;
    opacity: 0;
    flex-direction: column;
-   width: 100%;
-   height: auto;
    transition: opacity 0.8s ease, transform 0.5s ease;
-   border-radius: 5px;
-   padding: 5px;
    border-radius: 8px;
+   padding: 5px;
 
    ${ImageWrapper}:hover & {
       opacity: 1;
-      bottom: 0;
-      transform: translateX(-50%);
-      transform: translateY(-50%);
+      transform: translate(-0%, -50%);
    }
 `
 
@@ -159,13 +159,10 @@ const DarkOverlay = styled.div`
    background: rgba(0, 0, 0, 0.277);
    opacity: 0;
    transition: opacity 0.3s ease;
-   border-radius: 10px;
-   transition: transform 0.3s ease;
    border-radius: 8px;
 
    ${ImageWrapper}:hover & {
       opacity: 1;
-      transform: scale(1.03);
    }
 `
 

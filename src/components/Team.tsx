@@ -14,7 +14,7 @@ const Team = () => {
    return (
       <Container>
          <Flex justify="space-between" align="start">
-            <h1>ИГРОКИ</h1>
+            <h1 className="main-title">ИГРОКИ</h1>
             <Button type="primary">
                <NavLink to="/team">
                   Посмотреть всю команду <RightOutlined />
@@ -65,12 +65,12 @@ const Container = styled.div`
    max-width: 1600px;
 
    @media (max-width: 1024px) {
-      padding: 60px 20px 0;
+      padding: 40px 20px 0;
       overflow: hidden;
    }
 
    h1 {
-      margin-bottom: 50px;
+      /* margin-bottom: 50px;
       font-size: 40px;
 
       @media (max-width: 768px) {
@@ -79,7 +79,7 @@ const Container = styled.div`
 
       @media (max-width: 480px) {
          font-size: 28px;
-      }
+      } */
    }
 `
 
