@@ -76,11 +76,15 @@ const StyledContainer = styled.section`
    .swiper-slide img {
       display: block;
       padding: 10px;
-      width: 70px;
+      width: 100px;
       height: auto;
       object-fit: cover;
       cursor: pointer;
       transition: transform 0.3s ease;
+
+      @media (max-width: 480px) {
+         width: 70px;
+      }
    }
 
    .swiper-slide img:hover {

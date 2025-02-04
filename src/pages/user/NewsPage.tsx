@@ -2,9 +2,7 @@ import { FC, useState } from 'react'
 import styled from 'styled-components'
 import { newsItems } from '../../configs'
 import { NavLink } from 'react-router-dom'
-import { Pagination as AntPagination, Flex } from 'antd'
-import { DatePicker } from 'antd'
-import type { DatePickerProps, GetProps } from 'antd'
+import { Pagination as AntPagination, Flex, Select } from 'antd'
 import { Input } from 'antd'
 import { SearchProps } from 'antd/es/input'
 
@@ -15,13 +13,6 @@ interface NewsItem {
    category: string
    date: string
 }
-
-type RangePickerProps = GetProps<typeof DatePicker.RangePicker>
-
-const { RangePicker } = DatePicker
-
-const onOk = (value: DatePickerProps['value'] | RangePickerProps['value']) =>
-   console.log('onOk: ', value)
 
 const { Search } = Input
 
@@ -40,6 +31,8 @@ const NewsPage: FC = () => {
 
    const onPageChange = (page: number) => setCurrentPage(page)
 
+   const handleChange = (value: string) => console.log(`selected ${value}`)
+
    return (
       <NewsContainer>
          <Flex gap={20} vertical align="stretch">
@@ -52,14 +45,17 @@ const NewsPage: FC = () => {
                   size="large"
                />
 
-               <RangePicker
-                  showTime={{ format: 'HH:mm' }}
-                  format="YYYY-MM-DD HH:mm"
-                  onChange={(value, dateString) => {
-                     console.log('Selected Time: ', value)
-                     console.log('Formatted Selected Time: ', dateString)
-                  }}
-                  onOk={onOk}
+               <Select
+                  defaultValue="lucy"
+                  style={{ width: 120 }}
+                  onChange={handleChange}
+                  className="select"
+                  options={[
+                     { value: 'jack', label: 'Jack' },
+                     { value: 'lucy', label: 'Lucy' },
+                     { value: 'Yiminghe', label: 'yiminghe' },
+                     { value: 'disabled' },
+                  ]}
                />
             </Flex>
 
@@ -101,6 +97,23 @@ const NewsContainer = styled.main`
    display: flex;
    flex-direction: column;
    justify-content: space-between;
+
+   .ant-select {
+      width: 250px !important;
+      height: 40px !important;
+   }
+   .select {
+      > .ant-select-selector {
+         .ant-select-selection-item {
+            font-size: 17px;
+            color: white;
+         }
+      }
+
+      .ant-select-arrow .anticon > svg {
+         fill: white;
+      }
+   }
 
    @media (max-width: 1024px) {
       padding: 80px 20px 50px;

@@ -43,6 +43,10 @@ const StyledContainer = styled.main`
       padding: 0 30px;
    }
 
+   @media (max-width: 768px) {
+      margin-top: 50px;
+   }
+
    .ant-tabs-tab {
       width: 100%;
       border-radius: 3px 3px 0 0 !important;

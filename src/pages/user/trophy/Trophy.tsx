@@ -272,7 +272,7 @@ const StyledFirstPart = styled(Flex)`
    }
 
    @media (max-width: 768px) {
-      height: 40vh;
+      height: 300px;
 
       .container {
          .title {

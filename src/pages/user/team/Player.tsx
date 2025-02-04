@@ -39,6 +39,7 @@ const Player = () => {
                      on 30 April 1992, he quickly made a name as one of Europe’s
                      most promising goalkeepers.
                   </PlayerBio>
+
                   <PlayerBio>
                      A keeper with great reflexes and also excellent with the
                      ball at his feet. Бекжан Сагынбаев signed for FC Barcelona
@@ -46,6 +47,7 @@ const Player = () => {
                      on 30 April 1992, he quickly made a name as one of Europe’s
                      most promising goalkeepers.
                   </PlayerBio>
+
                   <PlayerBio>insta: @asdfr </PlayerBio>
 
                   <DetailsContainer

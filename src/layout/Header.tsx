@@ -167,17 +167,39 @@ const Header = () => {
          </Affix>
 
          <StyledDrawer
-            title="Навигация"
+            title=""
             placement="right"
             closable={true}
             onClose={handleDrawerToggle}
             open={drawerVisible}
          >
-            <Flex vertical align="start">
-               {navigations.map(({ path, title, id }) => (
-                  <NavLink key={id} to={path} onClick={handleDrawerToggle}>
-                     {title}
-                  </NavLink>
+            <Flex style={{ fontSize: '15px' }} gap={5} vertical align="start">
+               {navigations.map(({ path, title, id, sub_nav }) => (
+                  <Flex gap={7} vertical key={id}>
+                     <NavLink to={path} onClick={handleDrawerToggle}>
+                        {title}
+                     </NavLink>
+
+                     {sub_nav && (
+                        <Flex gap={7} vertical style={{ paddingLeft: '20px' }}>
+                           {sub_nav.map(
+                              ({
+                                 path: subPath,
+                                 title: subTitle,
+                                 id: subId,
+                              }) => (
+                                 <NavLink
+                                    key={subId}
+                                    to={subPath}
+                                    onClick={handleDrawerToggle}
+                                 >
+                                    {subTitle}
+                                 </NavLink>
+                              )
+                           )}
+                        </Flex>
+                     )}
+                  </Flex>
                ))}
             </Flex>
          </StyledDrawer>
@@ -330,5 +352,9 @@ const StyledInput = styled(Input)`
 const StyledDrawer = styled(Drawer)`
    .ant-drawer-header-title {
       flex-direction: row-reverse !important;
+   }
+
+   a {
+      color: #2d2d2d;
    }
 `

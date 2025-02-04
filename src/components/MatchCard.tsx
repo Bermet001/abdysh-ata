@@ -49,8 +49,9 @@ const MatchCardContainer = styled(Flex)`
    color: #000;
    padding: 20px;
    text-align: center;
-   width: 100%;
+   min-width: 270px;
    max-width: 310px;
+   width: 100%;
    border: 1px solid #e5e5e5;
    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
    border-radius: 10px;
@@ -80,20 +81,24 @@ const MatchCardContainer = styled(Flex)`
 
    @media (max-width: 1325px) {
       padding: 10px 0px;
+      min-width: 230px;
    }
 
    @media (max-width: 880px) {
       padding: 10px;
       max-width: 210px;
+      min-width: 200px;
    }
    @media (max-width: 470px) {
       max-width: 160px;
+      min-width: 150px;
    }
 `
 
 const Team = styled(Flex)`
    margin: 10px 0;
    flex-direction: column;
+   height: 50px;
 
    @media (max-width: 600px) {
       margin: 5px 0;

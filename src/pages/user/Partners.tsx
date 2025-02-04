@@ -151,5 +151,9 @@ const SponsorItem = styled.div`
    @media (max-width: 500px) {
       flex: 0 0 calc(20% - 10px);
       max-width: 100%;
+
+      img {
+         width: 70px;
+      }
    }
 `

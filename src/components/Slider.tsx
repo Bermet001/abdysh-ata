@@ -117,7 +117,7 @@ const StyledCarousel = styled(Carousel)`
    @media (max-width: 500px) {
       .content h2 {
          font-size: 28px;
-         margin-bottom: 20px;
+         margin-bottom: 10px;
          width: 70%;
       }
    }

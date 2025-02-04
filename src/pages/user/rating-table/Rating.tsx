@@ -38,6 +38,10 @@ const StyledContainer = styled.main`
       padding: 100px 20px;
    }
 
+   @media (max-width: 480px) {
+      padding: 100px 5px;
+   }
+
    .table-container {
       background-color: #fff;
       padding: 40px 20px;

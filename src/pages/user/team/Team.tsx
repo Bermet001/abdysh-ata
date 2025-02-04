@@ -74,8 +74,8 @@ const StyledCard = styled(Card)`
    cursor: pointer;
    height: 250px;
 
-   @media (min-width: 768px) {
-      height: 350px;
+   @media (max-width: 768px) {
+      height: 380px !important;
    }
 
    .ant-card-body {

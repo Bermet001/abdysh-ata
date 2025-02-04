@@ -15,7 +15,10 @@ const App = () => {
             components: {
                Select: {
                   colorBgContainer: '#00a64f ',
+                  borderRadius: 6,
+                  colorBorder: '#00a64f ',
                },
+
                Button: {
                   colorLink: '#909CB5',
                   borderRadius: 6,

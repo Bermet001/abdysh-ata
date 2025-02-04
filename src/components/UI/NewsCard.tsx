@@ -35,10 +35,14 @@ const StyledNewsCard = styled.div`
    transition: transform 0.3s;
    cursor: pointer;
    display: flex;
-   flex-direction: column; // Ensure vertical layout
+   flex-direction: column;
 
    &:hover {
-      transform: translateY(-5px); // Subtle hover effect
+      transform: translateY(-5px);
+   }
+
+   @media (max-width: 480px) {
+      border-radius: 5px;
    }
 `
 
@@ -49,7 +53,7 @@ const NewsImage = styled.img`
    transition: transform 0.3s;
 
    ${StyledNewsCard}:hover & {
-      transform: scale(1.05); // Slight zoom effect on hover
+      transform: scale(1.05);
    }
 
    @media (max-width: 768px) {
@@ -82,7 +86,7 @@ const Category = styled.p`
    }
 
    @media (max-width: 480px) {
-      font-size: 11px;
+      font-size: 9px;
    }
 `
 
@@ -96,7 +100,7 @@ const Title = styled.h3`
    }
 
    @media (max-width: 480px) {
-      font-size: 12px;
+      font-size: 10px;
    }
 `
 

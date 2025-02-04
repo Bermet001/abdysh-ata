@@ -19,9 +19,9 @@ const MatchInfo = () => {
 
    useEffect(() => {
       const handleResize = () => {
-         if (window.innerWidth <= 690) {
+         if (window.innerWidth <= 750) {
             setVisibleCount(2)
-         } else if (window.innerWidth <= 880) {
+         } else if (window.innerWidth <= 980) {
             setVisibleCount(3)
          } else {
             setVisibleCount(matches.length)
