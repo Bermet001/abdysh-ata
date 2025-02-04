@@ -6,10 +6,6 @@ import { RightOutlined } from '@ant-design/icons'
 import { Link, NavLink } from 'react-router-dom'
 import Button from './UI/Button'
 
-interface CardBackgroundProps {
-   image: string
-}
-
 const Team = () => {
    return (
       <Container>
@@ -41,7 +37,7 @@ const Team = () => {
                <SwiperSlide key={id}>
                   <Link to={`/player/${id}`}>
                      <StyledCard>
-                        <CardBackground image={image}>
+                        <CardBackground $image={image}>
                            <Overlay>
                               <PlayerNumber>{number}</PlayerNumber>
                               <PlayerName>{full_name}</PlayerName>
@@ -93,8 +89,8 @@ const StyledCard = styled(Card)`
    }
 `
 
-const CardBackground = styled.div<CardBackgroundProps>`
-   background-image: url(${(props) => props.image});
+const CardBackground = styled.div<{ $image: string }>`
+   background-image: url(${(props) => props.$image});
    background-size: cover;
    background-position: center;
    height: 100%;

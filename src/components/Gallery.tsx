@@ -147,7 +147,7 @@ const Gallery = () => {
          </Flex>
 
          <Modal
-            visible={isModalVisible}
+            open={isModalVisible}
             footer={null}
             onCancel={handleCloseModal}
             width={700}

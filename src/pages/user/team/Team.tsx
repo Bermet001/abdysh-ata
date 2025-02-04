@@ -147,6 +147,7 @@ const TeamContainer = styled(Flex)`
 
    @media (max-width: 768px) {
       flex-wrap: wrap;
+      width: 100%;
    }
 
    @media (max-width: 480px) {

@@ -1,4 +1,4 @@
-import { Affix, Button, Input, Flex, Drawer, Dropdown, Menu } from 'antd'
+import { Affix, Button, Input, Flex, Drawer, Dropdown } from 'antd'
 import { SearchOutlined, MenuOutlined, CloseOutlined } from '@ant-design/icons'
 import Logo from '../assets/images/main-logo.png'
 import styled from 'styled-components'
@@ -119,12 +119,10 @@ const Header = () => {
                                    )
                                  : []
 
-                              const menu = <Menu items={menuItems} />
-
                               return (
                                  <Dropdown
                                     key={id}
-                                    overlay={menu}
+                                    menu={{ items: menuItems }}
                                     trigger={['hover']}
                                  >
                                     <NavLink to={path}>{title}</NavLink>
