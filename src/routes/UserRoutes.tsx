@@ -1,5 +1,5 @@
 import { lazy } from 'react'
-import Product from '../pages/user/shop/Product'
+const Product = lazy(() => import('../pages/user/shop/Product'))
 const Landing = lazy(() => import('../pages/Landing'))
 const Photo = lazy(() => import('../pages/user/gallery/Photo'))
 const New = lazy(() => import('../pages/user/1_inner-pages/New'))

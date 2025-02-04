@@ -11,7 +11,7 @@ interface TrophyItem {
 
 const Trophy = () => {
    window.scrollTo(0, 0)
-
+   const isMobile = window.innerWidth <= 768
    const [isUserScrolling, setIsUserScrolling] = useState<boolean>(false)
    const trophyData: TrophyItem[] = Array(20).fill({
       title: 'Bemchik',
@@ -23,7 +23,7 @@ const Trophy = () => {
       const handleScroll = () => setIsUserScrolling(true)
 
       const scrollDown = () =>
-         !isUserScrolling
+         !isUserScrolling && !innerWidth
             ? window.scrollBy({
                  top: 50,
                  behavior: 'smooth',
@@ -38,7 +38,7 @@ const Trophy = () => {
          clearInterval(interval)
          window.removeEventListener('wheel', handleScroll)
       }
-   }, [isUserScrolling])
+   }, [isUserScrolling, isMobile])
 
    return (
       <StyledContainer vertical>
@@ -145,6 +145,10 @@ const StyledContainer = styled(Flex)`
 
       @media (max-width: 768px) {
          font-size: 16px;
+      }
+      @media (max-width: 480px) {
+         font-size: 12px;
+         padding-bottom: 0;
       }
    }
 
@@ -287,6 +291,10 @@ const StyledFirstPart = styled(Flex)`
       .container {
          .title {
             font-size: 25px;
+         }
+
+         > p {
+            font-size: 12px;
          }
       }
    }
