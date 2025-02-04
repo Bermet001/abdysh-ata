@@ -63,7 +63,7 @@ const ProductSlider = () => {
 
 export default ProductSlider
 
-const Container = styled.div`
+const Container = styled.section`
    margin: auto;
    padding: 120px 75px 0 75px;
    max-width: 1600px;

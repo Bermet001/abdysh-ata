@@ -72,7 +72,7 @@ const VictoryBlock = () => {
 
 export default VictoryBlock
 
-const Container = styled.div`
+const Container = styled.section`
    text-align: center;
    padding: 120px 0;
    color: black;

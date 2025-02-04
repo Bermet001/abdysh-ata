@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import { columns, dataSource } from '../../../configs'
 
 const Rating = () => {
+   window.scrollTo(0, 0)
+
    return (
       <StyledContainer>
          <Flex vertical className="table">

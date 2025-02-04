@@ -4,6 +4,8 @@ import { CheckboxGroupProps } from 'antd/es/checkbox'
 import { Radio } from 'antd'
 
 const ProductPage = () => {
+   window.scrollTo(0, 0)
+
    const options: CheckboxGroupProps<string>['options'] = [
       { label: 'XL', value: 'Apple' },
       { label: 'S', value: 'Pear' },

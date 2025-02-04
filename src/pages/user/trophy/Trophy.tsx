@@ -10,6 +10,8 @@ interface TrophyItem {
 }
 
 const Trophy = () => {
+   window.scrollTo(0, 0)
+
    const [isUserScrolling, setIsUserScrolling] = useState<boolean>(false)
    const trophyData: TrophyItem[] = Array(20).fill({
       title: 'Bemchik',
@@ -46,7 +48,7 @@ const Trophy = () => {
                   <DarkOverlay />
 
                   <Flex justify="end" vertical className="container">
-                     <h1 className="title">ТРОФЕЙНАЯ КОМНАТА</h1>
+                     <h2 className="title">ТРОФЕЙНАЯ КОМНАТА</h2>
                      <p>В этом разделе вы можете посмотреть наши достижения</p>
                   </Flex>
                </Flex>

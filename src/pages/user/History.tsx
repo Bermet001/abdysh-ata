@@ -6,6 +6,8 @@ import Map from '../../assets/images/heistory/map.svg'
 const { Paragraph } = Typography
 
 const History = () => {
+   window.scrollTo(0, 0)
+
    return (
       <StyledContainer>
          <BackgroundSection>

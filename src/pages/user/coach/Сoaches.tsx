@@ -4,9 +4,11 @@ import { Button, Flex } from 'antd'
 import { NavLink } from 'react-router-dom'
 
 const Сoaches = () => {
+   window.scrollTo(0, 0)
+
    return (
       <StyledContainer>
-         <h1 className="main-title ">Тренерский штаб</h1>
+         <h2 className="main-title ">Тренерский штаб</h2>
 
          <Flex justify="space-around" wrap>
             {coaches.map(({ name, surename, position, img, id }) => (

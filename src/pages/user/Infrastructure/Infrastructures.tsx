@@ -9,40 +9,44 @@ interface StyledCardProps {
    bgImage: string
 }
 
-const Infrastructures: FC = () => (
-   <main>
-      <CollageContainer wrap>
-         {infrastructure.map((item) => (
-            <NavLink to={`/infrastructure/${item.id}`} key={item.id}>
-               <StyledCard bgImage={item.image}>
-                  <div className="ant-card-body block">
-                     <h3>{item.name}</h3>
+const Infrastructures: FC = () => {
+   window.scrollTo(0, 0)
 
-                     <Flex
-                        gap={20}
-                        className="info-block"
-                        justify="space-between"
-                        align="end"
-                     >
-                        <Flex vertical>
-                           <p>
-                              <EnvironmentFilled /> {item.address}
-                           </p>
+   return (
+      <main>
+         <CollageContainer wrap>
+            {infrastructure.map((item) => (
+               <NavLink to={`/infrastructure/${item.id}`} key={item.id}>
+                  <StyledCard bgImage={item.image}>
+                     <div className="ant-card-body block">
+                        <h3>{item.name}</h3>
 
-                           <p>
-                              <ArrowsAltOutlined /> {item.address}
-                           </p>
+                        <Flex
+                           gap={20}
+                           className="info-block"
+                           justify="space-between"
+                           align="end"
+                        >
+                           <Flex vertical>
+                              <p>
+                                 <EnvironmentFilled /> {item.address}
+                              </p>
+
+                              <p>
+                                 <ArrowsAltOutlined /> {item.address}
+                              </p>
+                           </Flex>
+
+                           <StyledButton>Подробнее</StyledButton>
                         </Flex>
-
-                        <StyledButton>Подробнее</StyledButton>
-                     </Flex>
-                  </div>
-               </StyledCard>
-            </NavLink>
-         ))}
-      </CollageContainer>
-   </main>
-)
+                     </div>
+                  </StyledCard>
+               </NavLink>
+            ))}
+         </CollageContainer>
+      </main>
+   )
+}
 
 export default Infrastructures
 

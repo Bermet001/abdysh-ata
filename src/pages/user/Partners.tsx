@@ -4,6 +4,8 @@ import { Flex } from 'antd'
 import bgImage from '../../assets/images/partners-baner/partners-image.jpg'
 
 const Partners = () => {
+   window.scrollTo(0, 0)
+
    return (
       <StyledContainer>
          <BackgroundSection>

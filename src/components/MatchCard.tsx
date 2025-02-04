@@ -20,23 +20,25 @@ const MatchCard: FC<IProps> = ({
    dateTime,
 }) => {
    return (
-      <MatchCardContainer vertical align="center">
-         <Time>{dateTime}</Time>
+      <section>
+         <MatchCardContainer vertical align="center">
+            <Time>{dateTime}</Time>
 
-         <Flex className="main-info" align="center" justify="space-between">
-            <Team vertical align="center" justify="center">
-               <TeamLogo src={team1Logo} alt={team1Name} />
-            </Team>
+            <Flex className="main-info" align="center" justify="space-between">
+               <Team vertical align="center" justify="center">
+                  <TeamLogo src={team1Logo} alt={team1Name} />
+               </Team>
 
-            <Countdown vertical align="center" justify="center">
-               <p>0 : 4</p>
-            </Countdown>
+               <Countdown vertical align="center" justify="center">
+                  <p>0 : 4</p>
+               </Countdown>
 
-            <Team gap={10} vertical align="center" justify="center">
-               <TeamLogo src={team2Logo} alt={team2Name} />
-            </Team>
-         </Flex>
-      </MatchCardContainer>
+               <Team gap={10} vertical align="center" justify="center">
+                  <TeamLogo src={team2Logo} alt={team2Name} />
+               </Team>
+            </Flex>
+         </MatchCardContainer>
+      </section>
    )
 }
 

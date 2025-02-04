@@ -26,6 +26,8 @@ const onOk = (value: DatePickerProps['value'] | RangePickerProps['value']) =>
 const { Search } = Input
 
 const NewsPage: FC = () => {
+   window.scrollTo(0, 0)
+
    const [currentPage, setCurrentPage] = useState(1)
    const itemsPerPage = 10
 

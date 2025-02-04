@@ -6,7 +6,7 @@ import { sponsorsData } from '../configs'
 const Sponsors = () => {
    return (
       <StyledContainer>
-         <h1 className="main-title">Наши спонсоры</h1>
+         <h2 className="main-title">Наши спонсоры</h2>
 
          <Swiper
             loop={true}
@@ -76,7 +76,7 @@ const StyledContainer = styled.section`
    .swiper-slide img {
       display: block;
       padding: 10px;
-      width: 100px;
+      width: 70px;
       height: auto;
       object-fit: cover;
       cursor: pointer;

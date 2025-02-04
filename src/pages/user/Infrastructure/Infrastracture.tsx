@@ -10,6 +10,8 @@ const images = [
 ]
 
 const Infrastructure = () => {
+   window.scrollTo(0, 0)
+
    return (
       <StyledContainer>
          <Flex className="first-block" gap={40}>

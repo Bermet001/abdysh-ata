@@ -20,11 +20,15 @@ const items: TabsProps['items'] = [
    },
 ]
 
-const TeamWrapper: FC = () => (
-   <StyledContainer>
-      <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
-   </StyledContainer>
-)
+const TeamWrapper: FC = () => {
+   window.scrollTo(0, 0)
+
+   return (
+      <StyledContainer>
+         <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
+      </StyledContainer>
+   )
+}
 
 export default TeamWrapper
 

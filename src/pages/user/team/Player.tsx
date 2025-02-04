@@ -5,6 +5,8 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { honours } from '../../../configs'
 
 const Player = () => {
+   window.scrollTo(0, 0)
+
    return (
       <StyledContainer>
          <Flex vertical className="main-box">
@@ -74,7 +76,7 @@ const Player = () => {
             </Flex>
 
             <Flex vertical className="accomplishments">
-               <h1 className="main-title">Достижения</h1>
+               <h2 className="main-title">Достижения</h2>
 
                <Swiper
                   slidesPerView={1}

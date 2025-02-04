@@ -22,14 +22,13 @@ const Gallery = () => {
       setIsModalVisible(false)
       setSelectedImage('')
    }
-
    return (
       <StyledContainer>
          <Flex vertical gap={40}>
             <Flex align="center" gap={10} justify="space-between">
-               <h1 className="main-title" style={{ margin: 0 }}>
+               <h2 className="main-title" style={{ margin: 0 }}>
                   КАДРЫ И ВИДЕО С СОБЫТИЙ
-               </h1>
+               </h2>
 
                <Button type="primary">
                   <NavLink to="/gallery">

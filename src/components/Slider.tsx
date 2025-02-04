@@ -12,7 +12,7 @@ const Slider: FC = () => (
             <img src={item.imageUrl} alt={`Slide ${index + 1}`} />
 
             <Flex align="start" vertical className="content">
-               <h1>{item.title}</h1>
+               <h2>{item.title}</h2>
 
                <StyledButtonView type="primary">
                   <NavLink to={`/banner/${item.id}`}>Читать дальше</NavLink>
@@ -52,7 +52,7 @@ const StyledCarousel = styled(Carousel)`
       margin: 0 auto;
    }
 
-   .content h1 {
+   .content h2 {
       font-size: 60px;
       margin-bottom: 50px;
       color: white;
@@ -69,7 +69,7 @@ const StyledCarousel = styled(Carousel)`
          height: 500px;
       }
 
-      .content h1 {
+      .content h2 {
          font-size: 50px;
          width: 60%;
       }
@@ -88,7 +88,7 @@ const StyledCarousel = styled(Carousel)`
          top: 40px;
       }
 
-      .content h1 {
+      .content h2 {
          font-size: 40px;
          margin-bottom: 30px;
          width: 70%;
@@ -104,7 +104,7 @@ const StyledCarousel = styled(Carousel)`
          height: 300px;
       }
 
-      .content h1 {
+      .content h2 {
          font-size: 30px;
          margin-bottom: 20px;
       }
@@ -115,7 +115,7 @@ const StyledCarousel = styled(Carousel)`
    }
 
    @media (max-width: 500px) {
-      .content h1 {
+      .content h2 {
          font-size: 28px;
          margin-bottom: 20px;
          width: 70%;

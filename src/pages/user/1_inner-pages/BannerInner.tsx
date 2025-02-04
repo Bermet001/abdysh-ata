@@ -16,6 +16,7 @@ interface Banner {
 }
 
 const BannerInner: FC = () => {
+   window.scrollTo(0, 0)
    const { id } = useParams<{ id: string }>()
    const [bannerData, setBannerData] = useState<Banner | null>(null)
 
@@ -34,7 +35,8 @@ const BannerInner: FC = () => {
          <Overlay />
 
          <BannerContent>
-            <h1 className="banner-title">{bannerData.title}</h1>
+            <h2 className="banner-title">{bannerData.title}</h2>
+
             <p>{bannerData.description}</p>
             <AdditionalText>{bannerData.additionalText}</AdditionalText>
          </BannerContent>

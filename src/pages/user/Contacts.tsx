@@ -2,6 +2,8 @@ import { Button, Flex, Form, Input } from 'antd'
 import styled from 'styled-components'
 
 const Contacts = () => {
+   window.scrollTo(0, 0)
+
    const [form] = Form.useForm()
 
    const onFinish = (values: unknown) =>

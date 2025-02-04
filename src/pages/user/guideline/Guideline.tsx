@@ -79,9 +79,11 @@ const Guideline: FC = () => {
       setSelectedDirector(null)
    }
 
+   window.scrollTo(0, 0)
+
    return (
       <StyledContainer>
-         <h1 className="main-title">Руководство</h1>
+         <h2 className="main-title">Руководство</h2>
 
          <Row gutter={[10, 10]}>
             {data.directors.map((director) => (

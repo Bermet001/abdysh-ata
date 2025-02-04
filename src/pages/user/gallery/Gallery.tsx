@@ -20,6 +20,8 @@ const array = [
 ]
 
 const Gallery = () => {
+   window.scrollTo(0, 0)
+
    return (
       <StyledContainer>
          <Flex gap={20} wrap>

@@ -25,6 +25,8 @@ interface CoachProps {
 const Coach: FC = () => {
    const { id } = useParams()
 
+   window.scrollTo(0, 0)
+
    const [selectedCoach, setSelectedCoach] = useState<CoachProps | null>(null)
    useEffect(() => {
       const foundCoach = coaches.find((coach) => coach.id.toString() === id)
@@ -60,11 +62,11 @@ const Coach: FC = () => {
                      vertical
                      justify="center"
                   >
-                     <h1 className="coach-full-name">
+                     <h2 className="coach-full-name">
                         <AnimatedName>{name}</AnimatedName>
                         <br />
                         <AnimatedSurname>{surename}</AnimatedSurname>
-                     </h1>
+                     </h2>
 
                      <AnimatedCard>
                         <Flex vertical gap={15}>
@@ -87,8 +89,6 @@ const Coach: FC = () => {
                <Flex vertical className="biography-box">
                   <h2 className="main-title">Биография</h2>
                   <p className="bio">{biography}</p>
-                  <br />
-                  <br />
 
                   <h2 className="main-title">Достижения</h2>
                   {/* <AchievementsContainer>
@@ -146,6 +146,7 @@ const slideInLeft = keyframes`
 //    gap: 30px;
 //    width: 100%;
 //    padding: 10px 0;
+//    margin-bottom:20px
 
 //    &::-webkit-scrollbar {
 //       display: none;
@@ -190,6 +191,7 @@ const StyledComponent = styled(Flex)`
             Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
             sans-serif;
          min-height: 80px;
+         margin-bottom: 20px;
       }
    }
 
@@ -245,7 +247,7 @@ const StyledTitle = styled(Title)`
    font-size: 17px;
 `
 
-const StyledText = styled.h1`
+const StyledText = styled.h2`
    font-size: 30px;
    color: #00a64f;
 `

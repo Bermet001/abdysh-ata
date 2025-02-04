@@ -8,9 +8,11 @@ interface CardBackgroundProps {
 }
 
 const Team = () => {
+   window.scrollTo(0, 0)
+
    return (
       <Container>
-         <h1 className="main-title">Название команды</h1>
+         <h2 className="main-title">Название команды</h2>
 
          <TeamContainer className="team-container" wrap gap={30}>
             {team_page.map(({ image, id, full_name, position, number }) => (
@@ -39,25 +41,25 @@ const Container = styled.div`
    margin: auto;
    max-width: 1600px;
 
-   h1 {
+   h2 {
       margin-bottom: 40px;
       font-size: 40px;
    }
 
    @media (max-width: 1024px) {
-      h1 {
+      h2 {
          font-size: 36px;
       }
    }
 
    @media (max-width: 768px) {
-      h1 {
+      h2 {
          font-size: 32px;
       }
    }
 
    @media (max-width: 480px) {
-      h1 {
+      h2 {
          font-size: 28px;
          margin-bottom: 20px;
       }

@@ -27,6 +27,8 @@ const array = {
 }
 
 const Photo: FC = () => {
+   window.scrollTo(0, 0)
+
    return (
       <StyledContainer>
          <img className="main-image" src={array.image} alt="Background" />

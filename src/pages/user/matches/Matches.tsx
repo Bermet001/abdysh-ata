@@ -4,6 +4,8 @@ import ldsjd from '../../../assets/images/banner.avif'
 import { data } from '../../../configs'
 
 const SchedulMatches = () => {
+   window.scrollTo(0, 0)
+
    const columns = [
       {
          title: 'Дата',
@@ -67,7 +69,7 @@ const SchedulMatches = () => {
          </div>
 
          <StyledContainer>
-            <h1 className="main-title">Расписание матчей</h1>
+            <h2 className="main-title">Расписание матчей</h2>
 
             <Table
                columns={columns}
@@ -131,7 +133,7 @@ const StyledContainer = styled.div`
       }
    }
 
-   h1 {
+   h2 {
       margin-top: 20px;
       color: green;
       font-size: 24px;
@@ -167,7 +169,7 @@ const StyledContainer = styled.div`
    @media (max-width: 768px) {
       padding: 10px;
 
-      h1 {
+      h2 {
          font-size: 20px;
       }
 

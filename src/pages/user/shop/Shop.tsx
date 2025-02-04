@@ -6,6 +6,8 @@ import { NavLink } from 'react-router-dom'
 const { Search } = Input
 
 const Shop = () => {
+   window.scrollTo(0, 0)
+
    return (
       <Container>
          <Flex align="center" justify="space-between" gap={50}>
