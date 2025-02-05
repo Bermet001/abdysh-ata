@@ -5,9 +5,13 @@ import './index.css'
 import './App.css'
 import 'swiper/css'
 import 'swiper/swiper-bundle.css'
+import { Provider } from 'react-redux'
+import { store } from './store/store'
 
 createRoot(document.getElementById('root')!).render(
    <StrictMode>
-      <App />
+      <Provider store={store}>
+         <App />
+      </Provider>
    </StrictMode>
 )
