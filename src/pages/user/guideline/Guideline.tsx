@@ -88,11 +88,8 @@ const Guideline: FC = () => {
          <Row gutter={[10, 10]}>
             {data.directors.map((director) => (
                <Col xs={12} sm={12} md={8} lg={6} key={director.id}>
-                  <StyledCard>
-                     <InfoCircleOutlined
-                        onClick={() => showModal(director)}
-                        className="info-icon"
-                     />
+                  <StyledCard onClick={() => showModal(director)}>
+                     <InfoCircleOutlined className="info-icon" />
 
                      <Image src={photo} alt={director.name} />
                      <h3 className="name-p">{director.name}</h3>

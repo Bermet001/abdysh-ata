@@ -130,6 +130,11 @@ const StyledContainer = styled(Flex)`
       @media (max-width: 768px) {
          height: auto;
       }
+
+      @media (max-width: 480px) {
+         width: 100%;
+         height: 250px;
+      }
    }
 
    .text {
@@ -159,8 +164,14 @@ const StyledContainer = styled(Flex)`
          padding: 20px;
       }
 
+      @media (max-width: 480px) {
+         gap: 30px;
+      }
+
       .trophy-block {
-         flex-direction: column;
+         @media (max-width: 480px) {
+            flex-direction: column !important;
+         }
 
          @media (max-width: 768px) {
             padding: 0px;
@@ -187,12 +198,12 @@ const StyledContainer = styled(Flex)`
                }
             }
 
-            @media (max-width: 400px) {
+            @media (max-width: 480px) {
                gap: 10px !important;
 
                .text-info {
                   gap: 10px !important;
-                  font-size: 8px;
+                  font-size: 13px;
                }
             }
 
@@ -206,11 +217,11 @@ const StyledContainer = styled(Flex)`
                }
 
                @media (max-width: 610px) {
-                  font-size: 20px;
+                  font-size: 32px;
                }
 
                @media (max-width: 400px) {
-                  font-size: 18px;
+                  font-size: 32px;
                }
             }
          }

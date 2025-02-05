@@ -1,4 +1,5 @@
 import { lazy } from 'react'
+import MatchInfo from '../pages/user/matches/MatchInfo'
 const Product = lazy(() => import('../pages/user/shop/Product'))
 const Landing = lazy(() => import('../pages/Landing'))
 const Photo = lazy(() => import('../pages/user/gallery/Photo'))
@@ -43,6 +44,15 @@ export const USER_ROUTES = [
       element: (
          <Suspense>
             <SchedulMatche />
+         </Suspense>
+      ),
+   },
+
+   {
+      path: 'match/:id',
+      element: (
+         <Suspense>
+            <MatchInfo />
          </Suspense>
       ),
    },

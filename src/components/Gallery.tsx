@@ -22,6 +22,7 @@ const Gallery = () => {
       setIsModalVisible(false)
       setSelectedImage('')
    }
+
    return (
       <StyledContainer>
          <Flex vertical gap={40}>

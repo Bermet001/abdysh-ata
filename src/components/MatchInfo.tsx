@@ -2,7 +2,6 @@ import { Flex } from 'antd'
 import { matches } from '../configs'
 import MatchCard from './MatchCard'
 import styled from 'styled-components'
-import { useEffect, useState } from 'react'
 
 interface Match {
    team1Logo: string
@@ -15,35 +14,12 @@ interface Match {
 }
 
 const MatchInfo = () => {
-   const [visibleCount, setVisibleCount] = useState<number>(matches.length)
-
-   useEffect(() => {
-      const handleResize = () => {
-         if (window.innerWidth <= 750) {
-            setVisibleCount(2)
-         } else if (window.innerWidth <= 980) {
-            setVisibleCount(3)
-         } else {
-            setVisibleCount(matches.length)
-         }
-      }
-
-      handleResize()
-      window.addEventListener('resize', handleResize)
-
-      return () => {
-         window.removeEventListener('resize', handleResize)
-      }
-   }, [])
-
    return (
       <StyledContainer>
          <StyledFlexContainer>
-            {matches
-               .slice(0, visibleCount)
-               .map((match: Match, index: number) => (
-                  <MatchCard key={index} {...match} />
-               ))}
+            {matches.map((match: Match, index: number) => (
+               <MatchCard key={index} {...match} />
+            ))}
          </StyledFlexContainer>
       </StyledContainer>
    )
@@ -59,6 +35,14 @@ const StyledContainer = styled.section`
    width: 100%;
    padding: 0 75px;
    max-width: 1600px;
+   overflow-x: overlay;
+   height: 210px;
+
+   ::-webkit-scrollbar {
+      display: none;
+   }
+
+   scrollbar-width: none;
 
    @media (max-width: 1450px) {
       padding: 0 20px;
@@ -68,19 +52,35 @@ const StyledContainer = styled.section`
       padding: 0 20px;
       margin-top: -60px;
    }
+
+   @media (max-width: 480px) {
+      height: 150px;
+   }
 `
 
 const StyledFlexContainer = styled(Flex)`
    gap: 15px;
    justify-content: center;
    flex-wrap: nowrap;
+   height: 210px;
+   align-items: end;
+
+   @media (max-width: 1000px) {
+      width: 970px;
+   }
 
    @media (max-width: 880px) {
-      flex-wrap: wrap;
       gap: 10px;
+      width: 900px;
    }
 
    @media (max-width: 680px) {
-      flex-wrap: nowrap;
+      gap: 10px;
+      width: 800px;
+   }
+
+   @media (max-width: 480px) {
+      height: 150px;
+      width: 600px;
    }
 `
