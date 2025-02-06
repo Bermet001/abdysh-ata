@@ -11,8 +11,8 @@ RUN npm install --frozen-lockfile
 # Копируем весь проект
 COPY . .
 
-# Проверяем, создается ли билд перед копированием
-RUN npm run build && ls -la /app/build
+# Собираем приложение (Vite по умолчанию создает папку dist/)
+RUN npm run build && ls -la /app/dist
 
 # Используем легковесный Node.js-образ для раздачи фронта
 FROM node:18-alpine
@@ -24,13 +24,13 @@ RUN npm install -g serve
 WORKDIR /app
 
 # Проверяем, существует ли папка перед копированием
-RUN mkdir -p /app/build
+RUN mkdir -p /app/dist
 
-# Копируем собранное приложение
-COPY --from=builder /app/build /app/build
+# Копируем собранное приложение (dist, а не build)
+COPY --from=builder /app/dist /app/dist
 
 # Открываем 9001 порт внутри контейнера
 EXPOSE 9001
 
 # Запускаем сервер на 9001 порту
-CMD ["serve", "-s", "/app/build", "-l", "9001"]
+CMD ["serve", "-s", "/app/dist", "-l", "9001"]
