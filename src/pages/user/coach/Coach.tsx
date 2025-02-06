@@ -62,11 +62,11 @@ const Coach: FC = () => {
                      vertical
                      justify="center"
                   >
-                     <h2 className="coach-full-name">
+                     <h1 className="coach-full-name">
                         <AnimatedName>{name}</AnimatedName>
                         <br />
                         <AnimatedSurname>{surename}</AnimatedSurname>
-                     </h2>
+                     </h1>
 
                      <AnimatedCard>
                         <Flex vertical gap={15}>

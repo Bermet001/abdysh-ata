@@ -20,7 +20,7 @@ const Contacts = () => {
                align="center"
             >
                <Flex gap={30} vertical>
-                  <h3 className="fc-shop"> ФК Абдыш-Ата </h3>
+                  <h1 className="fc-shop"> ФК Абдыш-Ата </h1>
 
                   <Flex vertical gap={20}>
                      <Flex gap={5} className="contacts" vertical>

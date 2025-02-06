@@ -34,7 +34,7 @@ const Photo: FC = () => {
          <img className="main-image" src={array.image} alt="Background" />
 
          <Flex vertical gap={20}>
-            <h2 className="main-title">Картинки с этого события</h2>
+            <h1 className="main-title">Картинки с этого события</h1>
 
             <Flex wrap>
                {array.other.map((item) => (

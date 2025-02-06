@@ -145,7 +145,7 @@ const PlayerPosition = styled.h3`
 const TeamContainer = styled(Flex)`
    width: 100vw;
 
-   @media (max-width: 768px) {
+   @media (max-width: 1400px) {
       flex-wrap: wrap;
       width: 100%;
    }

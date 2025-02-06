@@ -9,7 +9,7 @@ const Rating = () => {
       <StyledContainer>
          <Flex vertical className="table">
             <div className="table-container">
-               <h2>Таблица рейтинга</h2>
+               <h1>Таблица рейтинга</h1>
 
                <br />
 
@@ -48,7 +48,7 @@ const StyledContainer = styled.main`
       border-radius: 10px;
 
       @media (max-width: 900px) {
-         h2 {
+         h1 {
             margin-left: 10px;
          }
 

@@ -35,7 +35,7 @@ const BannerInner: FC = () => {
          <Overlay />
 
          <BannerContent>
-            <h2 className="banner-title">{bannerData.title}</h2>
+            <h1 className="banner-title">{bannerData.title}</h1>
 
             <p>{bannerData.description}</p>
             <AdditionalText>{bannerData.additionalText}</AdditionalText>
