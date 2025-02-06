@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  frontend:
+    build: .
+    container_name: abdysh_front
+    restart: always
+    ports:
+      - "9001:80"
+    networks:
+      - abdysh_front_network
+
+networks:
+  abdysh_front_network:
+    driver: bridge
