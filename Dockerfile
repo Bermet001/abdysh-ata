@@ -33,4 +33,4 @@ COPY --from=builder /app/dist /app/dist
 EXPOSE 9001
 
 # Запускаем сервер на 9001 порту
-CMD ["serve", "-s", "/app/dist", "-l", "9001"]
+CMD ["serve", "-s", "/app/dist", "-l", "9001", "--host", "0.0.0.0"]
