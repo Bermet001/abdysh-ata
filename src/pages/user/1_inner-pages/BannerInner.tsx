@@ -10,9 +10,8 @@ interface Banner {
    id: number
    title: string
    subtitle: string
-   description: string
    additionalText: string
-   imageUrl: string
+   image: string
 }
 
 const BannerInner: FC = () => {
@@ -31,13 +30,13 @@ const BannerInner: FC = () => {
 
    return (
       <BannerSection>
-         <BannerImage src={bannerData.imageUrl} alt={bannerData.title} />
+         <BannerImage src={bannerData.image} alt={bannerData.title} />
          <Overlay />
 
          <BannerContent>
             <h2 className="banner-title">{bannerData.title}</h2>
 
-            <p>{bannerData.description}</p>
+            <p>{bannerData.subtitle}</p>
             <AdditionalText>{bannerData.additionalText}</AdditionalText>
          </BannerContent>
          <MatchInfo />

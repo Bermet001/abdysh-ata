@@ -57,7 +57,7 @@ export const USER_ROUTES = [
       ),
    },
    {
-      path: 'banner/:id',
+      path: 'banner/:slug',
       element: (
          <Suspense>
             <BannerInner />

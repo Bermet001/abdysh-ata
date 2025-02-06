@@ -5,7 +5,8 @@ interface Banner {
    id: number
    title: string
    image: string
-   description?: string
+   slug?: string
+   subtitle: string
 }
 
 interface BannerState {
@@ -28,8 +29,8 @@ const bannerSlice = createSlice({
       builder
          .addCase(
             BANNER_THUNK.getBanners.fulfilled,
-            (state, { payload }: PayloadAction<{ banners: Banner[] }>) => {
-               state.banners = payload.banners
+            (state, { payload }: PayloadAction<Banner[]>) => {
+               state.banners = payload
                state.isLoading = false
             }
          )
@@ -43,8 +44,8 @@ const bannerSlice = createSlice({
 
          .addCase(
             BANNER_THUNK.getBanner.fulfilled,
-            (state, { payload }: PayloadAction<{ banner: Banner }>) => {
-               state.banner = payload.banner
+            (state, { payload }: PayloadAction<Banner>) => {
+               state.banner = payload
                state.isLoading = false
             }
          )
@@ -57,6 +58,4 @@ const bannerSlice = createSlice({
    },
 })
 
-const BANNERS_ACTIONS = bannerSlice.actions
-
-export { bannerSlice, BANNERS_ACTIONS }
+export { bannerSlice }

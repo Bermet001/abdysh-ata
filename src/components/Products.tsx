@@ -5,8 +5,20 @@ import { products } from '../configs'
 import { RightOutlined } from '@ant-design/icons'
 import { NavLink } from 'react-router-dom'
 import Button from './UI/Button'
+// import { useEffect } from 'react'
+// import { useAppDispatch, useAppSelector } from '../store/store'
+// import { PRODUCT_THUNK } from '../store/slice/shop/shopThunk'
 
 const ProductSlider = () => {
+   // const { products } = useAppSelector((state) => state.shop)
+   // console.log(products, 'sfcsdfvsdfvdfvdfghbtnprivet')
+
+   // const dispatch = useAppDispatch()
+
+   // useEffect(() => {
+   //    dispatch(PRODUCT_THUNK.getProducts())
+   // }, [])
+
    return (
       <Container>
          <Flex gap={10} justify="space-between" align="start">
@@ -39,7 +51,7 @@ const ProductSlider = () => {
                },
             }}
          >
-            {products.map((product) => (
+            {products?.map((product) => (
                <SwiperSlide key={product.id}>
                   <StyledCard
                      cover={<img alt={product.name} src={product.img} />}

@@ -29,7 +29,6 @@ const Trophy = () => {
                  behavior: 'smooth',
               })
             : null
-
       window.addEventListener('wheel', handleScroll, { passive: false })
 
       const interval = setInterval(scrollDown, 70)
