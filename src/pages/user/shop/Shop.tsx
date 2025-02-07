@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
 import { PRODUCT_THUNK } from '../../../store/slice/shop/shopThunk'
 import { useEffect } from 'react'
-// import { products } from '../../../configs'
 
 const { Search } = Input
 
@@ -17,7 +16,7 @@ const Shop = () => {
 
    useEffect(() => {
       dispatch(PRODUCT_THUNK.getProducts())
-   }, [])
+   }, [dispatch])
 
    return (
       <Container>

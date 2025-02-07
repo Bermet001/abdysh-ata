@@ -26,7 +26,7 @@ const Contacts = () => {
 
    useEffect(() => {
       dispatch(CONTACTS_THUNK.getContacts())
-   }, [])
+   }, [dispatch])
 
    const contact = contacts.length > 0 ? contacts[0] : null
 
