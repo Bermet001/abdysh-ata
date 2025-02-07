@@ -1,43 +1,31 @@
 import { useParams } from 'react-router-dom'
-import { FC, useEffect, useState } from 'react'
+import { FC, useEffect } from 'react'
 import styled from 'styled-components'
 import Sponsors from '../../../components/Sponsors'
 import ProductSlider from '../../../components/Products'
 import MatchInfo from '../../../components/MatchInfo'
-import { banners } from '../../../configs'
-
-interface Banner {
-   id: number
-   title: string
-   subtitle: string
-   additionalText: string
-   image: string
-}
+import { useAppDispatch, useAppSelector } from '../../../store/store'
+import { BANNER_THUNK } from '../../../store/slice/banner/bannerThunk'
 
 const BannerInner: FC = () => {
    window.scrollTo(0, 0)
-   const { id } = useParams<{ id: string }>()
-   const [bannerData, setBannerData] = useState<Banner | null>(null)
+   const { slug } = useParams<{ slug: string }>()
+   const { banner } = useAppSelector((state) => state.banner)
+   const dispatch = useAppDispatch()
 
    useEffect(() => {
-      const data = banners.find((banner) => banner.id.toString() === id)
-      setBannerData(data || null)
-   }, [id])
-
-   if (!bannerData) {
-      return <LoadingMessage>Loading...</LoadingMessage>
-   }
+      dispatch(BANNER_THUNK.getBanner(slug))
+   }, [])
 
    return (
       <BannerSection>
-         <BannerImage src={bannerData.image} alt={bannerData.title} />
+         <BannerImage src={banner.image} alt={banner.title} />
          <Overlay />
 
          <BannerContent>
-            <h2 className="banner-title">{bannerData.title}</h2>
+            <h2 className="banner-title">{banner.title}</h2>
 
-            <p>{bannerData.subtitle}</p>
-            <AdditionalText>{bannerData.additionalText}</AdditionalText>
+            <p>{banner.subtitle}</p>
          </BannerContent>
          <MatchInfo />
 
@@ -87,16 +75,4 @@ const BannerContent = styled.div`
    transform: translate(-50%, -50%);
    max-width: 800px;
    z-index: 2;
-`
-
-const LoadingMessage = styled.div`
-   text-align: center;
-   font-size: 24px;
-   margin-top: 50px;
-`
-
-const AdditionalText = styled.p`
-   margin-top: 10px;
-   font-size: 18px;
-   line-height: 1.5;
 `

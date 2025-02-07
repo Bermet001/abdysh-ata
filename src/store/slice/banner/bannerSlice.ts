@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { BANNER_THUNK } from './bannerThunk'
 
 interface Banner {
-   id: number
+   id: number | null
    title: string
    image: string
    slug?: string
@@ -11,13 +11,19 @@ interface Banner {
 
 interface BannerState {
    banners: Banner[]
-   banner: Banner | null
+   banner: Banner
    isLoading: boolean
 }
 
 const initialState: BannerState = {
    banners: [],
-   banner: null,
+   banner: {
+      id: null,
+      title: '',
+      image: '',
+      slug: '',
+      subtitle: '',
+   },
    isLoading: false,
 }
 
@@ -47,6 +53,8 @@ const bannerSlice = createSlice({
             (state, { payload }: PayloadAction<Banner>) => {
                state.banner = payload
                state.isLoading = false
+               console.log(payload)
+               console.log(state.banner)
             }
          )
          .addCase(BANNER_THUNK.getBanner.pending, (state) => {

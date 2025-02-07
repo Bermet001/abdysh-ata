@@ -1,23 +1,23 @@
+import { useEffect } from 'react'
 import styled from 'styled-components'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Card, Flex, Button as AntdButton } from 'antd'
-import { products } from '../configs'
+// import { products } from '../configs'
 import { RightOutlined } from '@ant-design/icons'
 import { NavLink } from 'react-router-dom'
 import Button from './UI/Button'
-// import { useEffect } from 'react'
-// import { useAppDispatch, useAppSelector } from '../store/store'
-// import { PRODUCT_THUNK } from '../store/slice/shop/shopThunk'
+import { useAppDispatch, useAppSelector } from '../store/store'
+import { PRODUCT_THUNK } from '../store/slice/shop/shopThunk'
 
 const ProductSlider = () => {
-   // const { products } = useAppSelector((state) => state.shop)
-   // console.log(products, 'sfcsdfvsdfvdfvdfghbtnprivet')
+   const { products } = useAppSelector((state) => state.shop)
+   console.log(products, '')
 
-   // const dispatch = useAppDispatch()
+   const dispatch = useAppDispatch()
 
-   // useEffect(() => {
-   //    dispatch(PRODUCT_THUNK.getProducts())
-   // }, [])
+   useEffect(() => {
+      dispatch(PRODUCT_THUNK.getProducts())
+   }, [])
 
    return (
       <Container>

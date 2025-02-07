@@ -21,7 +21,7 @@ const getBanners = createAsyncThunk(
 
 const getBanner = createAsyncThunk(
    'banner/getBanner',
-   async (slug: string, { rejectWithValue }) => {
+   async (slug: string | undefined, { rejectWithValue }) => {
       try {
          const response = await axiosInstance(`cms/slider/${slug}`)
 
