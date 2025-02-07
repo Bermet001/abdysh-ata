@@ -1,13 +1,34 @@
 import { Button, Flex, Form, Input } from 'antd'
+import { useEffect } from 'react'
 import styled from 'styled-components'
+import { useAppDispatch, useAppSelector } from '../../store/store'
+import { CONTACTS_THUNK } from '../../store/slice/contacts/contactsThunk'
+
+export interface ContactData {
+   name: string
+   last_name: string
+   email: string
+   phone: string
+   message: string
+}
 
 const Contacts = () => {
    window.scrollTo(0, 0)
-
+   const { contacts } = useAppSelector((state) => state.contacts)
    const [form] = Form.useForm()
+   console.log(contacts, 'bermet')
 
-   const onFinish = (values: unknown) =>
-      console.log('Submitted values: ', values)
+   const dispatch = useAppDispatch()
+
+   const onFinish = (values: ContactData) => {
+      dispatch(CONTACTS_THUNK.sendMessage(values))
+   }
+
+   useEffect(() => {
+      dispatch(CONTACTS_THUNK.getContacts())
+   }, [])
+
+   const contact = contacts.length > 0 ? contacts[0] : null
 
    return (
       <StyledContainer>
@@ -20,25 +41,27 @@ const Contacts = () => {
                align="center"
             >
                <Flex gap={30} vertical>
-                  <h3 className="fc-shop"> ФК Абдыш-Ата </h3>
+                  <h3 className="fc-shop">{contact?.title} </h3>
 
                   <Flex vertical gap={20}>
                      <Flex gap={5} className="contacts" vertical>
                         <h4>Адрес:</h4>
 
                         <a href="https://2gis.kg/bishkek/geo/70030076256335684?m=74.575073%2C42.882296%2F18.28">
-                           Кыргызстан, г.Кант, Московская 7
+                           {contact?.address}
                         </a>
                      </Flex>
 
                      <Flex gap={5} className="contacts" vertical>
                         <h4> Телефон:</h4>
-                        <a href="tel:996990007088">+996 (990) 00-70-88</a>
+                        <a href="tel:996990007088">{contact?.phone}</a>
                      </Flex>
 
                      <Flex gap={5} className="contacts" vertical>
                         <h4> Почта:</h4>
-                        <a href="mailto:luxort@gmail.com">qwerty@gmail.com</a>
+                        <a href={`mailto:${contact?.email}`}>
+                           {contact?.email || 'Нет почты'}
+                        </a>
                      </Flex>
 
                      <Flex gap={5} className="contacts" vertical>
@@ -59,7 +82,7 @@ const Contacts = () => {
                   <Flex className="inputs-container" wrap gap={30}>
                      <Form.Item
                         label="Имя"
-                        name="firstName"
+                        name="name"
                         rules={[
                            {
                               required: true,
@@ -72,7 +95,7 @@ const Contacts = () => {
 
                      <Form.Item
                         label="Фамилия"
-                        name="lastName"
+                        name="last_name"
                         rules={[
                            {
                               required: true,
@@ -110,9 +133,16 @@ const Contacts = () => {
                               required: true,
                               message: 'Пожалуйста напишите ваш номер',
                            },
+                           {
+                              pattern: /^[+()\d\s-]+$/,
+                              message: 'Номер должен начинаться с + ',
+                           },
                         ]}
                      >
-                        <StyledInput placeholder="+996 (___) ___ __ __" />
+                        <StyledInput
+                           type="number"
+                           placeholder="Введите номер для связи"
+                        />
                      </Form.Item>
                   </Flex>
 

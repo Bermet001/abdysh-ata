@@ -2,7 +2,6 @@ import { useEffect } from 'react'
 import styled from 'styled-components'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Card, Flex, Button as AntdButton } from 'antd'
-// import { products } from '../configs'
 import { RightOutlined } from '@ant-design/icons'
 import { NavLink } from 'react-router-dom'
 import Button from './UI/Button'
@@ -11,7 +10,6 @@ import { PRODUCT_THUNK } from '../store/slice/shop/shopThunk'
 
 const ProductSlider = () => {
    const { products } = useAppSelector((state) => state.shop)
-   console.log(products, '')
 
    const dispatch = useAppDispatch()
 
@@ -54,11 +52,11 @@ const ProductSlider = () => {
             {products?.map((product) => (
                <SwiperSlide key={product.id}>
                   <StyledCard
-                     cover={<img alt={product.name} src={product.img} />}
+                     cover={<img alt={product.title} src={product.image} />}
                   >
-                     <NavLink to={`/shop/${product.id}`}>
+                     <NavLink to={`/shop/${product.slug}`}>
                         <Card.Meta
-                           title={product.name}
+                           title={product.title}
                            description={product.price}
                         />
                         <StyledButton type="primary">
@@ -95,9 +93,10 @@ const StyledCard = styled(Card)`
    cursor: pointer;
 
    img {
+      width: 99.9% !important;
       border-top-left-radius: 8px;
       border-top-right-radius: 8px;
-      object-fit: cover;
+      object-fit: contain;
       height: 250px;
 
       @media (max-width: 768px) {

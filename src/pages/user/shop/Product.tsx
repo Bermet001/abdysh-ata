@@ -1,62 +1,76 @@
 import styled from 'styled-components'
-import photo from '../../../assets/images/products/clothe1.png'
-import { CheckboxGroupProps } from 'antd/es/checkbox'
-import { Radio } from 'antd'
+import { Radio, RadioChangeEvent } from 'antd'
+import { useAppDispatch, useAppSelector } from '../../../store/store'
+import { useEffect, useState } from 'react'
+import { PRODUCT_THUNK } from '../../../store/slice/shop/shopThunk'
+import { useParams } from 'react-router-dom'
 
 const ProductPage = () => {
    window.scrollTo(0, 0)
+   const { slug } = useParams<{ slug: string }>()
 
-   const options: CheckboxGroupProps<string>['options'] = [
-      { label: 'XL', value: 'Apple' },
-      { label: 'S', value: 'Pear' },
-      { label: 'M', value: 'Orange' },
-      { label: 'XS', value: 'Orange' },
-   ]
+   const { product } = useAppSelector((state) => state.shop)
+   const dispatch = useAppDispatch()
 
-   const options2: CheckboxGroupProps<string>['options'] = [
-      { label: 'красный', value: 'Apple' },
-      { label: 'белый', value: 'Pear' },
-      { label: 'черный', value: 'Orange' },
-   ]
+   const [selectedColor, setSelectedColor] = useState(
+      product?.product_color[0]?.image
+   )
+
+   useEffect(() => {
+      dispatch(PRODUCT_THUNK.getProduct(slug))
+   }, [dispatch, slug])
+
+   useEffect(() => {
+      if (product?.product_color.length)
+         setSelectedColor(product.product_color[0].image)
+   }, [product])
+
+   const handleColorChange = (e: RadioChangeEvent) =>
+      setSelectedColor(e.target.value)
 
    return (
       <Container>
          <ImageContainer>
-            <PlaceholderImage src={photo} />
+            <PlaceholderImage src={selectedColor} />
          </ImageContainer>
 
          <Details>
-            <Title>Классическая футболка</Title>
+            <Title>{product?.title}</Title>
             <Price>
-               99,99 сом <OldPrice>109,00 сом</OldPrice>
+               {product?.price} сом
+               <OldPrice>{product?.old_price} сом</OldPrice>
             </Price>
             <SelectContainer>
                <Radio.Group
                   className="detail-info"
                   block
-                  options={options2}
-                  defaultValue="Pear"
+                  options={product?.product_color.map(({ color, image }) => ({
+                     label: color,
+                     value: image,
+                  }))}
+                  defaultValue={product?.product_color[0]?.image}
+                  onChange={handleColorChange}
                   optionType="button"
                />
                <Radio.Group
                   block
                   className="detail-info"
-                  options={options}
-                  defaultValue="Pear"
+                  options={product?.product_size.map(({ size }) => ({
+                     label: size,
+                     value: size,
+                  }))}
+                  defaultValue={product?.product_size[0]?.size}
                   optionType="button"
                />
             </SelectContainer>
             <Section>
                <SectionTitle>Характеристики</SectionTitle>
                <FeatureList>
-                  <li>100% Хлопок</li>
-                  <li>
-                     Стирка в холодной воде, сушить в барабане при низкой
-                     температуре
-                  </li>
-                  <li>Вырез: Круглый вырез</li>
-                  <li>Узор: Принт</li>
-                  <li>Фасон: Прямой</li>
+                  {product?.product_attribute.map((item) => (
+                     <li key={item.id}>
+                        {item.key} - {item.value}
+                     </li>
+                  ))}
                </FeatureList>
             </Section>
 
@@ -64,14 +78,7 @@ const ProductPage = () => {
 
             <Section>
                <SectionTitle>Описание</SectionTitle>
-               <Description>
-                  Эта классическая белая футболка изготовлена из 100% хлопка,
-                  что обеспечивает комфортную и дышащую посадку. Свободный фасон
-                  позволяет легко сочетать с другими предметами одежды или
-                  носить отдельно. Эта футболка — необходимый элемент в любом
-                  гардеробе. Доступна в различных размерах, чтобы обеспечить
-                  идеальную посадку.
-               </Description>
+               <Description>{product?.description}</Description>
             </Section>
          </Details>
       </Container>
@@ -107,6 +114,11 @@ const ImageContainer = styled.div`
 
    @media (min-width: 768px) {
       height: 450px;
+   }
+
+   @media (min-width: 400px) {
+      max-height: 350px;
+      min-height: 350px;
    }
 `
 
@@ -147,17 +159,17 @@ const Button = styled.button`
    font-size: 16px;
 
    &:hover {
-      background-color: #e64a19;
+      background-color: #018541;
    }
 `
 
 const Price = styled.h2`
-   font-size: 22px; /* Уменьшен для меньших экранов */
+   font-size: 22px;
    color: #00a64f;
    margin: 10px 0;
 
    @media (min-width: 768px) {
-      font-size: 24px; /* Увеличен для больших экранов */
+      font-size: 24px;
    }
 `
 
@@ -169,12 +181,12 @@ const OldPrice = styled.span`
 
 const SelectContainer = styled.div`
    display: flex;
-   flex-direction: column; /* Изменено для лучшего отображения на маленьких экранах */
+   flex-direction: column;
    gap: 10px;
    margin: 20px 0;
 
    @media (min-width: 768px) {
-      flex-direction: row; /* Вернуться к строке на больших экранах */
+      flex-direction: row;
    }
 `
 

@@ -27,7 +27,7 @@ const initialState: BannerState = {
    isLoading: false,
 }
 
-const bannerSlice = createSlice({
+export const bannerSlice = createSlice({
    name: 'banner',
    initialState,
    reducers: {},
@@ -65,5 +65,3 @@ const bannerSlice = createSlice({
          })
    },
 })
-
-export { bannerSlice }

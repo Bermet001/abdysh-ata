@@ -1,9 +1,17 @@
 import styled from 'styled-components'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Pagination, Autoplay } from 'swiper/modules'
-import { sponsorsData } from '../configs'
+import { useAppDispatch, useAppSelector } from '../store/store'
+import { useEffect } from 'react'
+import { getPartners } from '../store/slice/partners/partnersThunk'
 
 const Sponsors = () => {
+   const { partners } = useAppSelector((state) => state.partner)
+   const dispatch = useAppDispatch()
+
+   useEffect(() => {
+      dispatch(getPartners())
+   }, [dispatch])
    return (
       <StyledContainer>
          <h2 className="main-title">Наши спонсоры</h2>
@@ -22,23 +30,27 @@ const Sponsors = () => {
                   slidesPerView: 3,
                },
                768: {
-                  slidesPerView: 4,
+                  slidesPerView: 3,
                },
                1024: {
-                  slidesPerView: 4,
+                  slidesPerView: 3,
                },
                1440: {
-                  slidesPerView: 5,
+                  slidesPerView: 4,
                },
                1600: {
-                  slidesPerView: 6,
+                  slidesPerView: 4,
                },
             }}
          >
-            {sponsorsData.map((sponsor) => (
+            {partners.map((sponsor) => (
                <SwiperSlide key={sponsor.id}>
                   <a href={sponsor.link}>
-                     <img height="auto" src={sponsor.img} alt={sponsor.alt} />
+                     <img
+                        height="auto"
+                        src={sponsor.image}
+                        alt={sponsor.title}
+                     />
                   </a>
                </SwiperSlide>
             ))}
@@ -76,14 +88,18 @@ const StyledContainer = styled.section`
    .swiper-slide img {
       display: block;
       padding: 10px;
-      width: 100px;
+      width: 200px;
       height: auto;
       object-fit: cover;
       cursor: pointer;
       transition: transform 0.3s ease;
 
-      @media (max-width: 480px) {
-         width: 70px;
+      @media (max-width: 680px) {
+         width: 130px;
+      }
+
+      @media (max-width: 400px) {
+         width: 100px;
       }
    }
 

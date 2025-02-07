@@ -179,7 +179,7 @@ export const USER_ROUTES = [
    },
 
    {
-      path: 'shop/:id',
+      path: 'shop/:slug',
       element: (
          <Suspense>
             <Product />

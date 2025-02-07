@@ -1,27 +1,23 @@
+import { ColumnType } from 'antd/es/table'
+import { Key } from 'react'
+import { Flex } from 'antd'
+
 import Trophy from '../assets/images/victory/1.webp'
 import Trophy2 from '../assets/images/victory/Sab31a1b941684013a365e5c8c386f0c1m.jpg_480x480.avif'
 import Trophy3 from '../assets/images/victory/km2488.jpg'
 import Trophy4 from '../assets/images/victory/km2802.jpg'
-import Nitro from '../assets/images/nitro-logo.png'
-import Partner from '../assets/images/logo45.png'
-import stadion2 from '../assets/images/background.jpg'
+// import Nitro from '../assets/images/nitro-logo.png'
+// import Partner from '../assets/images/logo45.png'
 import stadion3 from '../assets/images/background2.jpg'
 import Logo from '../assets/images/main-logo.png'
 import Barselona from '../assets/images/barselona.png'
 import Match from '../assets/images/match.jpg'
-import nashe from '../assets/images/nashe-logo.jpg'
-import logoABdysh from '../assets/images/abdysh-logo.png'
-// store
-import Product1 from '../assets/images/products/clothe1.png'
-import Product2 from '../assets/images/products/clothe2.png'
-import Product3 from '../assets/images/products/clothe5.png'
-import Product4 from '../assets/images/products/clothe9.png'
-import Product5 from '../assets/images/products/clothe4.png'
+// import nashe from '../assets/images/nashe-logo.jpg'
+// import logoABdysh from '../assets/images/abdysh-logo.png'
 // new
 import news from '../assets/images/image.jpeg'
 import news2 from '../assets/images/image12.webp'
 import news5 from '../assets/images/images3.jpeg'
-import banner from '../assets/images/banner.avif'
 import news6 from '../assets/images/new.jpg'
 // players
 import player from '../assets/images/players/player_1.jpg'
@@ -40,9 +36,7 @@ import image3 from '../assets/images/insrastracture/infrastracture22.jpeg'
 import image4 from '../assets/images/insrastracture/infrastracture1234.jpg'
 import image5 from '../assets/images/insrastracture/infrastracture3342.jpg'
 // match
-import { ColumnType } from 'antd/es/table'
-import { Key } from 'react'
-import { Flex } from 'antd'
+
 // rating
 import barcelonaLogo from '../assets/images/barselona.png'
 import benficaLogo from '../assets/images/barselona.png'
@@ -190,133 +184,6 @@ const leagues = [
    { id: 2, name: 'Champions Leaguee', date: 'Season 2022', trophy: Trophy2 },
    { id: 3, name: 'International Cup', date: 'Season 2022', trophy: Trophy3 },
    { id: 4, name: 'Euro Victory Shield', date: 'Season 2023', trophy: Trophy4 },
-]
-
-const products = [
-   {
-      id: 1,
-      name: 'Catch Gloves',
-      price: '$25.00',
-      img: Product5,
-   },
-   {
-      id: 2,
-      name: 'Shin Pads',
-      price: '$17.00',
-      img: Product2,
-   },
-   {
-      id: 3,
-      name: 'Unisex Cleats',
-      price: '$85.00',
-      img: Product3,
-   },
-   {
-      id: 4,
-      name: 'Yellow T-Shirts',
-      price: '$45.00',
-      img: Product4,
-   },
-   {
-      id: 5,
-      name: 'Yellow T-Shirts',
-      price: '$45.00',
-      img: Product1,
-   },
-   {
-      id: 43,
-      name: 'Yellow T-Shirts',
-      price: '$45.00',
-      img: Product3,
-   },
-   {
-      id: 42,
-      name: 'Yellow T-Shirts',
-      price: '$45.00',
-      img: Product2,
-   },
-   {
-      id: 41,
-      name: 'Yellow T-Shirts',
-      price: '$45.00',
-      img: Product4,
-   },
-]
-
-const sponsorsData = [
-   {
-      id: 1,
-      img: logoABdysh,
-      alt: 'Nitro Logo',
-      link: 'https://abdysh-ata.kg/',
-   },
-   {
-      id: 2,
-      img: Partner,
-      alt: 'Sponsor 2',
-      link: 'https://www.the-afc.com/en/national/afc_asian_cup/home.html',
-   },
-   { id: 4, img: nashe, alt: 'Nitro Logo', link: 'https://www.nashe.ru/' },
-   { id: 5, img: Nitro, alt: 'Sponsor 2', link: 'https://hydra.kg/' },
-   {
-      id: 50343,
-      img: logoABdysh,
-      alt: 'Sponsor 2',
-      link: 'https://abdysh-ata.kg/',
-   },
-   { id: 57, img: nashe, alt: 'Sponsor 2', link: 'https://www.nashe.ru/' },
-   { id: 53, img: Nitro, alt: 'Sponsor 2', link: 'https://hydra.kg/' },
-   { id: 52, img: nashe, alt: 'Sponsor 2', link: 'https://www.nashe.ru/' },
-   {
-      id: 50,
-      img: logoABdysh,
-      alt: 'Sponsor 2',
-      link: 'https://abdysh-ata.kg/',
-   },
-]
-
-const banners = [
-   {
-      slug: 'xaxaxaxaxxa',
-      id: 1,
-      title: 'Итоги сезона 2023: Путь к победе',
-      subtitle: 'Команда А на вершине!',
-      description:
-         'Команда А продемонстрировала выдающиеся результаты в этом сезоне, завоевав множество титулов и сердца болельщиков.',
-      additionalText: 'Следите за нашими достижениями!',
-      image: stadion3,
-   },
-   {
-      id: 2,
-      title: 'Финал Кубка: Встреча лучших команд',
-      subtitle: 'Команда Б против Команды В',
-      slug: 'xaxaxaxaxxa',
-      description:
-         'В этом финале встретятся две сильнейшие команды. Ожидайте захватывающую игру!',
-      additionalText: 'Не пропустите матч на стадионе!',
-      image: stadion2,
-   },
-   {
-      id: 5,
-      slug: 'xaxaxaxaxxa',
-      title: 'Результаты первого квалификационного раунда',
-      subtitle: 'История, полная достижений',
-      description:
-         'Описание второго баннера. Здесь можно добавить больше информации.',
-      additionalText: 'Дополнительная информация о втором баннере.',
-      image: stadion3,
-   },
-   {
-      id: 3,
-      title: 'Команда В: Будущее Футбола',
-      slug: 'xaxaxaxaxxa',
-      subtitle: 'Молодые звезды под нашим крылом',
-      description:
-         'Команда В — это молодая и перспективная команда, которая активно развивает молодые таланты. Они стремятся к успеху и готовы покорить вершины.',
-      additionalText:
-         'Следите за нашими играми и поддерживайте молодых игроков!',
-      image: banner,
-   },
 ]
 
 const newsItems = [
@@ -1050,16 +917,11 @@ export {
    teams,
    team,
    leagues,
-   products,
-   sponsorsData,
-   banners,
    coaches,
    newsItems,
    team_page,
    infrastructure,
-   // table
    columns,
    dataSource,
-   // rating
    data,
 }
