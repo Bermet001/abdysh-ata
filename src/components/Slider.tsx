@@ -13,7 +13,7 @@ const Slider: FC = () => {
 
    useEffect(() => {
       dispatch(BANNER_THUNK.getBanners())
-   }, [])
+   }, [dispatch])
 
    return (
       <StyledCarousel

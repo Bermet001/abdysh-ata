@@ -15,7 +15,7 @@ const Contacts = lazy(() => import('../pages/user/Contacts'))
 const Partners = lazy(() => import('../pages/user/Partners'))
 const TeamWrapper = lazy(() => import('../pages/user/team/TeamWrapper'))
 const Coach = lazy(() => import('../pages/user/coach/Coach'))
-const Coaches = lazy(() => import('../pages/user/coach/Сoaches'))
+const Coaches = lazy(() => import('../pages/user/coach/Coaches'))
 const NewsPage = lazy(() => import('../pages/user/NewsPage'))
 const Player = lazy(() => import('../pages/user/team/Player'))
 const SchedulMatche = lazy(() => import('../pages/user/matches/Matches'))
@@ -105,7 +105,7 @@ export const USER_ROUTES = [
       ),
    },
    {
-      path: 'coaches/:id',
+      path: 'coaches/:slug',
       element: (
          <Suspense>
             <Coach />

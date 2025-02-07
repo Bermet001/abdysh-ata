@@ -1,31 +1,35 @@
 import styled from 'styled-components'
-import { coaches } from '../../../configs'
 import { Button, Flex } from 'antd'
 import { NavLink } from 'react-router-dom'
+import { useEffect } from 'react'
+import { getCoaches } from '../../../store/slice/coach/coachThunk'
+import { useAppDispatch, useAppSelector } from '../../../store/store'
 
-const Сoaches = () => {
+const Coaches = () => {
    window.scrollTo(0, 0)
+   const { coaches } = useAppSelector((state) => state.coach)
+
+   const dispatch = useAppDispatch()
+
+   useEffect(() => {
+      dispatch(getCoaches())
+   }, [dispatch])
 
    return (
       <StyledContainer>
-         <h1 className="main-title ">Тренерский штаб</h1>
+         <h1 className="main-title">Тренерский штаб</h1>
 
          <Flex justify="space-around" wrap>
-            {coaches.map(({ name, surename, position, img, id }) => (
+            {coaches.map(({ name, position, id, image, slug }) => (
                <StyledCard key={id}>
                   <div className="card-coach">
-                     <img
-                        className="coach-photo"
-                        src={img}
-                        alt={`${name} ${surename}`}
-                     />
+                     <img className="coach-photo" src={image} alt={name} />
 
                      <h2 className="coach-name">{name}</h2>
-                     <h2 className="coach-surname">{surename}</h2>
                      <p className="coach-position">{position}</p>
 
                      <Button type="primary" className="more-info-btn">
-                        <NavLink to={`/coaches/${id}`}>
+                        <NavLink to={`/coaches/${slug}`}>
                            Смотреть профиль
                         </NavLink>
                      </Button>
@@ -37,7 +41,7 @@ const Сoaches = () => {
    )
 }
 
-export default Сoaches
+export default Coaches
 
 const StyledContainer = styled.section`
    max-width: 1600px;

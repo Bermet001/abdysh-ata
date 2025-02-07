@@ -1,67 +1,69 @@
-// import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-// import { BANNER_THUNK } from './coachThunk'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { getCoach, getCoaches } from './coachThunk'
 
-// interface Banner {
-//    id: number | null
-//    title: string
-//    image: string
-//    slug?: string
-//    subtitle: string
-// }
+interface Coach {
+   id: number | null
+   name: string
+   image: string
+   slug?: string
+   position: string
+   bio: string
+   birth_date: string | null
+}
 
-// interface BannerState {
-//    banners: Banner[]
-//    banner: Banner
-//    isLoading: boolean
-// }
+interface CoachState {
+   coaches: Coach[]
+   coach: Coach
+   isLoading: boolean
+}
 
-// const initialState: BannerState = {
-//    banners: [],
-//    banner: {
-//       id: null,
-//       title: '',
-//       image: '',
-//       slug: '',
-//       subtitle: '',
-//    },
-//    isLoading: false,
-// }
+const initialState: CoachState = {
+   coaches: [],
+   coach: {
+      id: null,
+      name: '',
+      image: '',
+      slug: '',
+      bio: '',
+      position: '',
+      birth_date: '',
+   },
+   isLoading: false,
+}
 
-// export const bannerSlice = createSlice({
-//    name: 'banner',
-//    initialState,
-//    reducers: {},
-//    extraReducers: (builder) => {
-//       builder
-//          .addCase(
-//             BANNER_THUNK.getBanners.fulfilled,
-//             (state, { payload }: PayloadAction<Banner[]>) => {
-//                state.banners = payload
-//                state.isLoading = false
-//             }
-//          )
-//          .addCase(BANNER_THUNK.getBanners.pending, (state) => {
-//             state.isLoading = true
-//          })
-
-//          .addCase(BANNER_THUNK.getBanners.rejected, (state) => {
-//             state.isLoading = false
-//          })
-
-//          .addCase(
-//             BANNER_THUNK.getBanner.fulfilled,
-//             (state, { payload }: PayloadAction<Banner>) => {
-//                state.banner = payload
-//                state.isLoading = false
-//                console.log(payload)
-//                console.log(state.banner)
-//             }
-//          )
-//          .addCase(BANNER_THUNK.getBanner.pending, (state) => {
-//             state.isLoading = true
-//          })
-//          .addCase(BANNER_THUNK.getBanner.rejected, (state) => {
-//             state.isLoading = false
-//          })
-//    },
-// })
+export const coachSlice = createSlice({
+   name: 'coach',
+   initialState,
+   reducers: {},
+   extraReducers: (builder) => {
+      builder
+         .addCase(
+            getCoaches.fulfilled,
+            (state, { payload }: PayloadAction<Coach[]>) => {
+               state.coaches = payload
+               state.isLoading = false
+            }
+         )
+         .addCase(getCoaches.pending, (state) => {
+            state.isLoading = true
+         })
+         .addCase(getCoaches.rejected, (state) => {
+            state.isLoading = false
+         })
+         .addCase(
+            getCoach.fulfilled,
+            (state, { payload }: PayloadAction<Coach>) => {
+               state.coach = payload
+               state.isLoading = false
+               console.log(payload)
+               console.log(state.coach)
+            }
+         )
+         .addCase(getCoach.pending, (state) => {
+            state.isLoading = true
+         })
+         .addCase(getCoach.rejected, (state) => {
+            state.isLoading = false
+         })
+   },
+})

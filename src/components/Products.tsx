@@ -15,7 +15,7 @@ const ProductSlider = () => {
 
    useEffect(() => {
       dispatch(PRODUCT_THUNK.getProducts())
-   }, [])
+   }, [dispatch])
 
    return (
       <Container>
@@ -96,7 +96,7 @@ const StyledCard = styled(Card)`
       width: 99.9% !important;
       border-top-left-radius: 8px;
       border-top-right-radius: 8px;
-      object-fit: contain;
+      object-fit: scale-down;
       height: 250px;
 
       @media (max-width: 768px) {

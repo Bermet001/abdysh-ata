@@ -1,20 +1,32 @@
 import styled, { keyframes } from 'styled-components'
 import Team from '../../assets/images/heistory/team.webp'
 import { Flex, Typography } from 'antd'
-import Map from '../../assets/images/heistory/map.svg'
+import { useAppDispatch, useAppSelector } from '../../store/store'
+import { useEffect } from 'react'
+import { getHistory } from '../../store/slice/history/historyThunk'
 
 const { Paragraph } = Typography
 
 const History = () => {
    window.scrollTo(0, 0)
+   const { history } = useAppSelector((state) => state.history)
+   const dispatch = useAppDispatch()
+
+   useEffect(() => {
+      dispatch(getHistory())
+   }, [dispatch])
+
+   const history_text = history.length > 0 ? history[0] : null
+   console.log(history_text, 'history')
 
    return (
       <StyledContainer>
          <BackgroundSection>
             <Overlay />
+
             <div className="first-part">
                <Content>
-                  <h1 className="main-title">Фк Абдыш ата</h1>
+                  <h1 className="main-title">{history_text?.title}</h1>
 
                   <p>
                      FC Абдыш ата is the most loved multi-sports club in the
@@ -26,72 +38,31 @@ const History = () => {
          </BackgroundSection>
 
          <Flex vertical className="main-part">
-            <h1 className="main-title">История Абдыш ата</h1>
+            <h1 className="main-title">{history_text?.title}</h1>
 
             <StyledParagraph>
-               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione
-               aliquid numquam assumenda et fugit obcaecati, ut eius. Numquam
-               quos excepturi, iure distinctio, laboriosam id sunt obcaecati
-               adipisci exercitationem in ducimus? Lorem ipsum dolor sit amet,
-               consectetur adipisicing elit. Ratione aliquid numquam assumenda
-               et fugit obcaecati, ut eius. Numquam quos excepturi, iure
-               distinctio, laboriosam id sunt obcaecati adipisci exercitationem
-               in ducimus? Lorem ipsum dolor sit amet, consectetur adipisicing
-               elit. Ratione aliquid numquam assumenda et fugit obcaecati, ut
-               eius. Numquam quos excepturi, iure distinctio, laboriosam id sunt
-               obcaecati adipisci exercitationem in ducimus? in ducimus? Lorem
-               ipsum dolor sit amet, consectetur adipisicing elit. Ratione
-               aliquid numquam assumenda et fugit obcaecati, ut eius. Numquam
-               quos excepturi, iure distinctio, laboriosam id sunt obcaecati
-               adipisci exercitationem in ducimus? in ducimus? Lorem ipsum dolor
-               sit amet, consectetur adipisicing elit. Ratione aliquid numquam
-               assumenda et fugit obcaecati, ut eius. Numquam quos excepturi,
-               iure distinctio, laboriosam id sunt obcaecati adipisci
-               exercitationem in ducimus?
+               <div
+                  dangerouslySetInnerHTML={{
+                     __html: history_text?.content || '',
+                  }}
+               />
             </StyledParagraph>
-            <StyledParagraph>
-               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque
-               quo autem porro impedit ullam libero sit quia mollitia molestias!
-               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque
-               quo autem porro impedit ullam libero sit quia mollitia molestias!
-               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque
-               quo autem porro impedit ullam libero sit quia mollitia molestias!
-            </StyledParagraph>
+
             <br />
             <br />
             <br />
             <br />
             <Flex vertical>
-               <h3 className="main-title">Мы сегодня это</h3>
+               <h3 className="main-title">{history_text?.subtitle}</h3>
                <StyledParagraph>
                   <Flex className="second-block">
-                     <p className="last">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ratione aliquid numquam assumenda et fugit
-                        obcaecati, ut eius. Numquam quos excepturi, iure
-                        distinctio, laboriosam id sunt obcaecati adipisci Lorem
-                        ipsum dolor sit amet, consectetur adipisicing elit.
-                        Ratione aliquid numquam assumenda et fugit obcaecati, ut
-                        eius. Numquam quos excepturi, iure distinctio,
-                        laboriosam id sunt obcaecati adipisci exercitationem in
-                        ipsum dolor sit amet, consectetur adipisicing elit.
-                        exercitationem in ducimus?
-                        <br />
-                        <br />
-                        in ducimus? Lorem ipsum dolor sit amet, consectetur
-                        adipisicing elit. Ratione aliquid numquam assumenda et
-                        fugit obcaecati, ut eius. Numquam quos excepturi, iure
-                        distinctio, laboriosam id sunt obcaecati adipisci
-                        exercitationem in ducimus?Ratione aliquid numquam
-                        assumenda et fugit obcaecati, ut eius. Numquam quos
-                        excepturi, iure distinctio, laboriosam id sunt obcaecati
-                        adipisci exercitationem in ipsum dolor sit amet,
-                        consectetur adipisicing elit. Ratione aliquid numquam
-                        assumenda et fugit obcaecati, ut eius. Numquam quos
-                        excepturi, iure distinctio, laboriosam id sunt obcaecati
-                        adipisci
-                     </p>
-                     <Map />
+                     <div
+                        dangerouslySetInnerHTML={{
+                           __html: history_text?.content_end || '',
+                        }}
+                     />
+
+                     <img src={history_text?.image} alt="" />
                   </Flex>
                </StyledParagraph>
             </Flex>

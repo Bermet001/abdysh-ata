@@ -15,7 +15,7 @@ const BannerInner: FC = () => {
 
    useEffect(() => {
       dispatch(BANNER_THUNK.getBanner(slug))
-   }, [])
+   }, [slug, dispatch])
 
    return (
       <BannerSection>
