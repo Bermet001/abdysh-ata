@@ -69,7 +69,7 @@ const SchedulMatches = () => {
          </div>
 
          <StyledContainer>
-            <h2 className="main-title">Расписание матчей</h2>
+            <h1 className="main-title">Расписание матчей</h1>
 
             <Table
                columns={columns}
@@ -133,7 +133,7 @@ const StyledContainer = styled.div`
       }
    }
 
-   h2 {
+   h1 {
       margin-top: 20px;
       color: green;
       font-size: 24px;
@@ -169,7 +169,7 @@ const StyledContainer = styled.div`
    @media (max-width: 768px) {
       padding: 10px;
 
-      h2 {
+      h1 {
          font-size: 20px;
       }
 

@@ -19,7 +19,7 @@ const Infrastructures: FC = () => {
                <NavLink to={`/infrastructure/${item.id}`} key={item.id}>
                   <StyledCard bgImage={item.image}>
                      <div className="ant-card-body block">
-                        <h3>{item.name}</h3>
+                        <h1>{item.name}</h1>
 
                         <Flex
                            gap={20}
@@ -115,7 +115,7 @@ const StyledCard = styled(Card)<StyledCardProps>`
       .block {
          padding: 20px 32px;
 
-         h3 {
+         h1 {
             color: white;
             margin: 0;
             font-size: 2.2rem;
@@ -142,7 +142,7 @@ const StyledCard = styled(Card)<StyledCardProps>`
       .block {
          padding: 10px;
 
-         h3 {
+         h1 {
             font-size: 1.5rem;
          }
 

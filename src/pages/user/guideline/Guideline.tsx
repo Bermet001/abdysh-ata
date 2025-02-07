@@ -83,7 +83,7 @@ const Guideline: FC = () => {
 
    return (
       <StyledContainer>
-         <h2 className="main-title">Руководство</h2>
+         <h1 className="main-title">Руководство</h1>
 
          <Row gutter={[10, 10]}>
             {data.directors.map((director) => (

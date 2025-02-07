@@ -23,7 +23,7 @@ const Infrastructure = () => {
             </Flex>
 
             <Flex justify="start" gap={30} vertical>
-               <h2 className="main-title">Краткое название</h2>
+               <h1 className="main-title">Краткое название</h1>
 
                <Flex vertical gap={20}>
                   <Flex gap={20}>

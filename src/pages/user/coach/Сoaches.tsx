@@ -8,7 +8,7 @@ const Сoaches = () => {
 
    return (
       <StyledContainer>
-         <h2 className="main-title ">Тренерский штаб</h2>
+         <h1 className="main-title ">Тренерский штаб</h1>
 
          <Flex justify="space-around" wrap>
             {coaches.map(({ name, surename, position, img, id }) => (
