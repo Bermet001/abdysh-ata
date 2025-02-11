@@ -19,7 +19,17 @@ interface AchievementsState {
 
 const initialState: AchievementsState = {
    isLoading: false,
-   achievements: [],
+   achievements: [
+      {
+         id: 0,
+         title: '',
+         season: '',
+         slug: '',
+         descriptions: '',
+         image: '',
+         date: '',
+      },
+   ],
    currentAchievement: {
       id: null,
       title: '',
@@ -40,8 +50,8 @@ export const achievementsSlice = createSlice({
       builder
          .addCase(
             getAchievements.fulfilled,
-            (state, { payload }: PayloadAction<{ results: Achievement[] }>) => {
-               state.achievements = payload.results
+            (state, { payload }: PayloadAction<Achievement[]>) => {
+               state.achievements = payload
                state.isLoading = false
             }
          )

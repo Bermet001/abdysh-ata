@@ -4,10 +4,18 @@ import { Card, Flex, Button } from 'antd'
 import Image from '../assets/images/image7.jpg'
 import { RightOutlined } from '@ant-design/icons'
 import { NavLink } from 'react-router-dom'
-import { useAppSelector } from '../store/store'
+import { useAppDispatch, useAppSelector } from '../store/store'
+import { useEffect } from 'react'
+import { getAchievements } from '../store/slice/ahievements/ahievementsThunk'
 
 const VictoryBlock = () => {
    const { achievements } = useAppSelector((state) => state.achievements)
+
+   const dispatch = useAppDispatch()
+
+   useEffect(() => {
+      dispatch(getAchievements())
+   }, [dispatch])
 
    return (
       <Container>
@@ -51,7 +59,7 @@ const VictoryBlock = () => {
                   },
                }}
             >
-               {achievements.map(({ id, title, date, image }) => (
+               {achievements.map(({ id, title, season, image }) => (
                   <SwiperSlide key={id}>
                      <StyledCard>
                         <Flex vertical>
@@ -62,7 +70,7 @@ const VictoryBlock = () => {
                            />
 
                            <div className="contents-trophy">
-                              <p>{date}</p>
+                              <p>{season}</p>
                               <h2>{title}</h2>
                            </div>
                         </Flex>
@@ -187,7 +195,6 @@ const StyledCard = styled(Card)`
 
    h2 {
       font-size: 0.9rem;
-      height: 75px;
       margin-top: 10px;
 
       @media (max-width: 830px) {

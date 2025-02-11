@@ -3,10 +3,10 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import { AxiosError } from 'axios'
 
 const getAchievements = createAsyncThunk(
-   'news/getNews',
+   'achievement/getAchievements',
    async (_, { rejectWithValue }) => {
       try {
-         const { data } = await axiosInstance(`achievements/ahievements/
+         const { data } = await axiosInstance(`teams/teams-stats/
 `)
 
          return data
@@ -21,7 +21,7 @@ const getAchievements = createAsyncThunk(
 )
 
 const getAchievement = createAsyncThunk(
-   'news/getNew',
+   'achievement/getAchievement',
    async (slug: string | undefined, { rejectWithValue }) => {
       try {
          const { data } = await axiosInstance(

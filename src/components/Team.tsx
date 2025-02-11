@@ -10,7 +10,7 @@ import { getTeam } from '../store/slice/team/teamThunk'
 
 const Team = () => {
    const { players, allTeams } = useAppSelector((state) => state.team)
-   const first_team = allTeams.length > 0 ? allTeams[0] : null
+   const first_team = allTeams?.length > 0 ? allTeams[0] : null
 
    const dispatch = useAppDispatch()
 

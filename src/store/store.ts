@@ -12,6 +12,7 @@ import { teamSlice } from './slice/team/teamSlice'
 import { achievementsSlice } from './slice/ahievements/ahievementsSlice'
 import { MatchesSlice } from './slice/matches/mathesSlice'
 import { infrastractureSlice } from './slice/infrastracture/infrastractureSlice'
+import { ratingSlice } from './slice/rating/ratingSlice'
 
 export const store = configureStore({
    reducer: {
@@ -27,6 +28,7 @@ export const store = configureStore({
       [achievementsSlice.name]: achievementsSlice.reducer,
       [MatchesSlice.name]: MatchesSlice.reducer,
       [infrastractureSlice.name]: infrastractureSlice.reducer,
+      [ratingSlice.name]: ratingSlice.reducer,
    },
 })
 

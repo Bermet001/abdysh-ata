@@ -10,7 +10,7 @@ import { NEWS_THUNK } from '../store/slice/news/newsThunk'
 
 const News = () => {
    const { news } = useAppSelector((state) => state.news)
-   const [visibleCount, setVisibleCount] = useState<number>(news.length)
+   const [visibleCount, setVisibleCount] = useState<number>(news?.length)
 
    const dispatch = useAppDispatch()
 

@@ -1,19 +1,10 @@
-import { ColumnType } from 'antd/es/table'
+// import { ColumnType } from 'antd/es/table'
 import { Key } from 'react'
 import { Flex } from 'antd'
 
-import Trophy from '../assets/images/victory/1.webp'
-import Trophy2 from '../assets/images/victory/Sab31a1b941684013a365e5c8c386f0c1m.jpg_480x480.avif'
-import Trophy3 from '../assets/images/victory/km2488.jpg'
 import Logo from '../assets/images/main-logo.png'
 import Barselona from '../assets/images/barselona.png'
 import Match from '../assets/images/match.jpg'
-// coaches
-import coach from '../assets/images/coaches/image.png'
-import coach2 from '../assets/images/coaches/image2.png'
-import coach3 from '../assets/images/coaches/image5.png'
-import coach4 from '../assets/images/coaches/image3.png'
-// infras
 
 // rating
 import barcelonaLogo from '../assets/images/barselona.png'
@@ -22,98 +13,20 @@ import sportingLogo from '../assets/images/match.jpg'
 
 interface TeamData {
    key: string
-   team: string
-   logo: string
+   team_title: string
+   team_logo: string
    won: number
    drawn: number
    lost: number
-   for: number
-   against: number
-   goalDifference: number
+   goals_for: number
+   goals_against: number
+   goal_difference: number
    points: number
-   form: string[]
+   form_list: string[]
    played: number
 }
 
-const teams = [
-   { slug: '/team', title: 'ФК Абдыш-Ата', id: 1 },
-   { slug: '/', title: 'ФК Абдыш-Ата 2', id: 2 },
-   { slug: '/', title: 'ФК Абдыш-Ата U-19', id: 3 },
-   { slug: '/', title: 'Футбольная Академия', id: 4 },
-   { slug: '/', title: 'ФК Наше', id: 5 },
-]
-
-const navigations = [
-   { path: '/', title: 'Главная', id: 1 },
-   {
-      path: '/',
-      title: 'Команды',
-      id: 2,
-      sub_nav: teams,
-   },
-
-   {
-      path: '/',
-      title: 'О клубе',
-      sub_nav: [
-         {
-            slug: '/history',
-            title: 'История ',
-            id: 21,
-         },
-         {
-            slug: '/guideline',
-            title: 'Руководство',
-            id: 22,
-         },
-         {
-            slug: '/contacts',
-            title: 'Контакты',
-            id: 23,
-         },
-      ],
-      id: 3,
-   },
-
-   { path: '/match', title: 'Матчи', id: 4 },
-
-   {
-      path: '/infrastracture',
-      title: 'Инфраструктура',
-
-      sub_nav: [
-         {
-            slug: '/',
-            title: 'СК Нитро-Арена ',
-            id: 21,
-         },
-         {
-            slug: '/',
-            title: 'СК Спорт-Сити',
-            id: 22,
-         },
-         {
-            slug: '/',
-            title: 'Стадион Центральный',
-            id: 23,
-         },
-         {
-            slug: '/',
-            title: 'Тренажерный зал',
-            id: 24,
-         },
-         {
-            slug: '/',
-            title: 'Батутный зал',
-            id: 25,
-         },
-      ],
-      id: 8,
-   },
-   { path: '/rating', title: 'Таблица рейтинга', id: 5 },
-   { path: '/partners', title: 'Партнеры', id: 6 },
-   { path: '/trophy', title: 'Наши достижения', id: 7 },
-]
+// /
 
 const matches = [
    {
@@ -157,194 +70,30 @@ const matches = [
    },
 ]
 
-const coaches = [
-   {
-      id: 1,
-      img: coach,
-      name: 'Иван',
-      surename: 'Иванов',
-      position: 'Главный тренер',
-      dateOfBirth: '5 vahn 2004',
-      biography:
-         'Родился в подмосковном Егорьевске. Воспитанник спартаковской школы. За дубль красно-белых провел 49 матчей, забил 7 мячей. В дальнейшем выступал за «Металлург» (Липецк), «Химки», «Краснознаменск» (Москва), «Орёл», «СКА-Энергия», «Нафтан» (Новополоцк, Белоруссия). В детско-юношеском футболе с 2015 года. С августа 2020 по июнь 2021 года занимал пост главного тренера Академии «Спартак» им. Ф. Черенкова. В качестве старшего тренера работал с командами 2009, 2000, 2001, 2003, 2004 годов рождения. В качестве тренера (помощника старшего тренера) — с командами 2006, 2001, 2000, 2008, 2010, 2009 г. р. Неоднократный победитель зимнего и летнего первенств Москвы. Серебряный призер Кубка РФС U-17 (2017), серебряный призер международного турнира Cesaraugusta U-16 (2019), бронзовый призер первенства России U-16 (2016), серебряный призер Юношеской футбольной лиги — 1 (2022). 1 июня 2022 года возглавил молодежный состав «Спартака». За время работы в юношеских и молодежной команде «Спартака» под руководством Романова играли Никита Бозов, Павел Мелёшин, Антон Рощин, Даниил Зорин, Владислав Шитов, Виталий Шитов и Максим Лайкин, которые впоследствии дебютировали за основную команду.Летом 2024 года вошел в тренерский штаб Деяна Станковича.',
-      achievements: [
-         {
-            image: Trophy2,
-            text: 'fhgsj SDJruk KCNDI',
-         },
-         {
-            image: Trophy3,
-            text: 'fhgsj SDJruk KCNDI',
-         },
-         {
-            image: Trophy,
-            text: 'fhgsj SDJruk KCNDI',
-         },
-         {
-            image: Trophy2,
-            text: 'fhgsj SDJruk KCNDI',
-         },
-         {
-            image: Trophy3,
-            text: 'fhgsj SDJruk KCNDI',
-         },
-         {
-            image: Trophy,
-            text: 'fhgsj SDJruk KCNDI',
-         },
-      ],
-   },
-   {
-      id: 2,
-      img: coach2,
-      name: 'Петр',
-      surename: 'Петров',
-      position: 'Ассистент тренера',
-      dateOfBirth: '24 сентябрь 2000',
-      biography:
-         'Петр Петров начинал свою карьеру как игрок, но рано завершил её из-за травмы. Он решил сосредоточиться на тренерской деятельности и быстро поднялся по карьерной лестнице. Петр имеет опыт работы с молодежными командами и выиграл Кубок мира среди молодежных команд в 2018 году.',
-   },
-   {
-      id: 3,
-      img: coach3,
-      name: 'Алексей',
-      surename: 'Смирнов',
-      position: 'Тренер по физподготовке',
-      dateOfBirth: '24 сентябрь 2000',
-      biography:
-         'Алексей Смирнов известен своим инновационным подходом к физической подготовке игроков. Он работал с различными командами и добился значительных результатов. В 2015 году его команда выиграла Лигу чемпионов.',
-   },
-   {
-      id: 4,
-      img: coach4,
-      name: 'Сергей',
-      surename: 'Смирнов',
-      position: 'Тренер вратарей',
-      dateOfBirth: '24 сентябрь 2000',
-      biography:
-         'Сергей Сергеев - опытный тренер вратарей с более чем 15-летним стажем. Он начинал как вратарь в профессиональных лигах и затем посвятил свою жизнь обучению молодых вратарей. Под его руководством многие из них стали основными игроками своих команд.',
-   },
-   {
-      id: 5,
-      img: coach,
-      dateOfBirth: '24 сентябрь 2000',
-      name: 'Олег',
-      surename: 'Петров',
-      position: 'Тактический аналитик',
-      biography:
-         'Олег Олегов известен своим глубоким пониманием футбольной тактики. Он работал с несколькими командами в разных лигах и помог им улучшить свои результаты за счет анализа соперников и разработки стратегий.',
-   },
-   {
-      id: 6,
-      img: coach2,
-      name: 'Дмитрий',
-      surename: 'Дмитриев',
-      position: 'Тренер по молодежным командам',
-      dateOfBirth: '24 сентябрь 2000',
-      biography:
-         'Дмитрий Дмитриев начал свою карьеру в молодежных командах и быстро зарекомендовал себя как талантливый тренер. Он уделяет большое внимание развитию молодых игроков и помогает им достигать высоких результатов.',
-   },
-   {
-      id: 7,
-      img: coach3,
-      name: 'Дмитрий',
-      surename: 'Николаев',
-      position: 'Тренер по тактике',
-      dateOfBirth: '24 сентябрь 2000',
-      biography:
-         'Николай Николаев имеет опыт работы с несколькими профессиональными командами. Он известен своим аналитическим подходом к тренировкам и способности адаптировать тактику в зависимости от соперника.',
-   },
-   {
-      id: 8,
-      img: coach4,
-      name: 'Сергей',
-      surename: 'Андреев',
-      position: 'Тренер по физической подготовке',
-      dateOfBirth: '5 май 1996',
-      biography:
-         'Андрей Андреев специализируется на физической подготовке игроков. Он разработал уникальные методы тренировок, которые помогают игрокам улучшать свою физическую форму и выносливость.',
-   },
-   {
-      id: 9,
-      img: coach,
-      name: 'Владимир',
-      surename: 'Владимир',
-      position: 'Специалист по восстановлению',
-      dateOfBirth: '28 февраль 1986',
-      biography:
-         'Владимир Владимиров работает в области спортивной медицины и восстановления. Он помогает игрокам восстанавливаться после травм и поддерживать оптимальную физическую форму на протяжении всего сезона.',
-   },
-   {
-      id: 10,
-      img: coach3,
-      name: 'Антон',
-      surename: 'Антонов',
-      position: 'Тренер по ментальной подготовке',
-      dateOfBirth: '28 марта 1986',
-      biography:
-         'Антон Антонов - специалист по ментальной подготовке, который помогает игрокам справляться с психологическими压力 и улучшать свою концентрацию во время игр. Его методы помогают командам достигать лучших результатов.',
-   },
-]
-
-const honours = [
-   {
-      id: 1,
-      text: 'Выиграл титул чемпиона с Манчестер Сити.',
-      liga: 'Премьер-лига',
-      year: '2022/23',
-   },
-   {
-      id: 2,
-      text: 'Забил 25 голов в сезоне.',
-      liga: 'Премьер-лига',
-      year: '2022/23',
-   },
-   {
-      id: 3,
-      text: 'Победитель Кубка Англии.',
-      liga: 'Кубок Англии',
-      year: '2022/23',
-   },
-   {
-      id: 4,
-      text: 'Выиграл Суперкубок Англии.',
-      liga: 'Суперкубок',
-      year: '2023',
-   },
-   {
-      id: 5,
-      text: 'Победитель Лиги чемпионов UEFA.',
-      liga: 'Лига чемпионов',
-      year: '2022/23',
-   },
-   {
-      id: 6,
-      text: 'Признан игроком месяца в апреле 2023 года.',
-      liga: 'Премьер-лига',
-      year: '2023',
-   },
-]
-
-const columns: ColumnType<TeamData>[] = [
+const columns = [
    {
       title: 'Команда',
-      dataIndex: 'team',
-      key: 'team',
+      dataIndex: 'team_logo',
+      key: 'team_logo',
 
-      render: (text: string, record: TeamData) => (
-         <Flex
-            className="first-block-box"
-            style={{ width: '250px' }}
-            align="center"
-         >
-            <img
-               src={record.logo}
-               alt={`${record.team} logo`}
-               style={{ width: '30px', height: '30px', marginRight: '10px' }}
-            />
-            {text}
-         </Flex>
-      ),
+      render: (text: string, record: TeamData) => {
+         console.log(record, 'fjsadhfjak')
+
+         return (
+            <Flex
+               className="first-block-box"
+               style={{ width: '250px' }}
+               align="center"
+            >
+               <img
+                  src={record.team_logo}
+                  alt={`${record.team_title} logo`}
+                  style={{ width: '30px', height: '30px', marginRight: '10px' }}
+               />
+               {text}
+            </Flex>
+         )
+      },
    },
    {
       title: 'Игры',
@@ -372,20 +121,20 @@ const columns: ColumnType<TeamData>[] = [
    },
    {
       title: 'Забито',
-      dataIndex: 'for',
-      key: 'for',
+      dataIndex: 'goals_for',
+      key: 'goals_for',
       align: 'center',
    },
    {
       title: 'Пропущено',
-      dataIndex: 'against',
-      key: 'against',
+      dataIndex: 'goals_against',
+      key: 'goals_against',
       align: 'center',
    },
    {
       title: 'Разница',
-      dataIndex: 'goalDifference',
-      key: 'goalDifference',
+      dataIndex: 'goal_difference',
+      key: 'goal_difference',
       align: 'center',
    },
    {
@@ -396,8 +145,8 @@ const columns: ColumnType<TeamData>[] = [
    },
    {
       title: 'Форма',
-      dataIndex: 'form',
-      key: 'form',
+      dataIndex: 'form_list',
+      key: 'form_list',
       align: 'start',
       render: (form: string[]) => (
          <Flex>
@@ -416,37 +165,6 @@ const columns: ColumnType<TeamData>[] = [
             ))}
          </Flex>
       ),
-   },
-]
-
-const dataSource: TeamData[] = [
-   {
-      key: '1',
-      team: 'Liverpool',
-      logo: 'https://upload.wikimedia.org/wikipedia/en/0/0c/Liverpool_FC.svg',
-      played: 6,
-      won: 6,
-      drawn: 0,
-      lost: 0,
-      for: 13,
-      against: 1,
-      goalDifference: 12,
-      points: 18,
-      form: ['red', 'grey', 'red', 'green'],
-   },
-   {
-      key: '2',
-      team: 'Barcelona',
-      logo: 'https://upload.wikimedia.org/wikipedia/en/4/47/FC_Barcelona.svg',
-      played: 6,
-      won: 5,
-      drawn: 1,
-      lost: 0,
-      for: 21,
-      against: 7,
-      goalDifference: 14,
-      points: 15,
-      form: ['green', 'grey', 'red', 'green'],
    },
 ]
 
@@ -493,13 +211,4 @@ const data = [
    },
 ]
 
-export {
-   navigations,
-   matches,
-   honours,
-   teams,
-   coaches,
-   columns,
-   dataSource,
-   data,
-}
+export { matches, columns, data }

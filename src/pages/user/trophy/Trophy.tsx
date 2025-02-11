@@ -2,22 +2,15 @@ import { useEffect, useState } from 'react'
 import { Flex } from 'antd'
 import styled, { keyframes } from 'styled-components'
 import TrophyRoom from '../../../assets/images/Trophy/TrophyRoom.webp'
-import Team from '../../../assets/images/heistory/team.webp'
-
-interface TrophyItem {
-   title: string
-   description: string
-}
+import { useAppDispatch, useAppSelector } from '../../../store/store'
+import { getAchievements } from '../../../store/slice/ahievements/ahievementsThunk'
 
 const Trophy = () => {
    window.scrollTo(0, 0)
+   const { achievements } = useAppSelector((state) => state.achievements)
+
    const isMobile = window.innerWidth <= 768
    const [isUserScrolling, setIsUserScrolling] = useState<boolean>(false)
-   const trophyData: TrophyItem[] = Array(20).fill({
-      title: 'Bemchik',
-      description:
-         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim at eveniet corrupti mollitia repellat excepturi voluptatibus deserunt pariatur, odio sed laudantium iste dicta distinctio ad quisquam commodi dignissimos libero sequi?',
-   })
 
    useEffect(() => {
       const handleScroll = () => setIsUserScrolling(true)
@@ -38,6 +31,12 @@ const Trophy = () => {
          window.removeEventListener('wheel', handleScroll)
       }
    }, [isUserScrolling, isMobile])
+
+   const dispatch = useAppDispatch()
+
+   useEffect(() => {
+      dispatch(getAchievements())
+   }, [dispatch])
 
    return (
       <StyledContainer vertical>
@@ -61,7 +60,7 @@ const Trophy = () => {
          </p>
 
          <Flex vertical className="trophy-block-container">
-            {trophyData.map((item, index) => (
+            {achievements.map((item, index) => (
                <Flex
                   key={index}
                   className="trophy-block"
@@ -69,11 +68,11 @@ const Trophy = () => {
                      flexDirection: index % 2 === 1 ? 'row-reverse' : 'row',
                   }}
                >
-                  <img className="image" src={Team} alt={item.title} />
+                  <img className="image" src={item.image} alt={item.title} />
 
                   <Flex align="start" gap={40} vertical className="texstovka">
                      <h2>{item.title}</h2>
-                     <p className="text-info">{item.description}</p>
+                     <p className="text-info">{item.descriptions}</p>
 
                      <p className="text-info">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
