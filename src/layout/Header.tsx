@@ -226,6 +226,7 @@ const Header = () => {
                               src={Partner1}
                               alt=""
                            />
+
                            {isscrolled ? <Partner2copy /> : <Partner2 />}
 
                            <img src={Nashe} width="50" alt="logo" />

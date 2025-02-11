@@ -10,6 +10,8 @@ import { NewsSlice } from './slice/news/newsSlice'
 import { gallerySlice } from './slice/gallery/gallerySlice'
 import { teamSlice } from './slice/team/teamSlice'
 import { achievementsSlice } from './slice/ahievements/ahievementsSlice'
+import { MatchesSlice } from './slice/matches/mathesSlice'
+import { infrastractureSlice } from './slice/infrastracture/infrastractureSlice'
 
 export const store = configureStore({
    reducer: {
@@ -23,6 +25,8 @@ export const store = configureStore({
       [gallerySlice.name]: gallerySlice.reducer,
       [teamSlice.name]: teamSlice.reducer,
       [achievementsSlice.name]: achievementsSlice.reducer,
+      [MatchesSlice.name]: MatchesSlice.reducer,
+      [infrastractureSlice.name]: infrastractureSlice.reducer,
    },
 })
 

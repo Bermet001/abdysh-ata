@@ -9,10 +9,24 @@ export interface Photo {
    date?: string
 }
 
+interface TrainingCamp {
+   id: number | null
+   title: string
+   slug: string
+   image_main: string
+   images: Image[]
+}
+
 interface GalleryState {
    isLoading: boolean
    gallery: Photo[]
    currentPhoto: Photo | null
+   photo: TrainingCamp
+}
+
+interface Image {
+   id: number
+   images: string
 }
 
 const initialState: GalleryState = {
@@ -23,6 +37,13 @@ const initialState: GalleryState = {
       title: '',
       slug: '',
       image_main: '',
+   },
+   photo: {
+      id: null,
+      title: '',
+      slug: '',
+      image_main: '',
+      images: [],
    },
 }
 
@@ -48,8 +69,8 @@ export const gallerySlice = createSlice({
          })
          .addCase(
             GALLERY_THUNK.getPhoto.fulfilled,
-            (state, { payload }: PayloadAction<Photo>) => {
-               state.currentPhoto = payload
+            (state, { payload }: PayloadAction<TrainingCamp>) => {
+               state.photo = payload
                state.isLoading = false
             }
          )

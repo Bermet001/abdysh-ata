@@ -19,6 +19,7 @@ const MatchCard: FC<IProps> = ({
    team2Name,
    dateTime,
 }) => {
+   
    return (
       <section>
          <MatchCardContainer vertical align="center">

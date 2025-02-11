@@ -65,7 +65,7 @@ export const USER_ROUTES = [
       ),
    },
    {
-      path: 'player/:id',
+      path: 'player/:slug',
       element: (
          <Suspense>
             <Player />
@@ -145,7 +145,7 @@ export const USER_ROUTES = [
       ),
    },
    {
-      path: 'infrastructure/:id',
+      path: 'infrastructure/:slug',
       element: (
          <Suspense>
             <Infrastracture />
@@ -197,7 +197,7 @@ export const USER_ROUTES = [
    },
 
    {
-      path: 'gallery/:id',
+      path: 'gallery/:slug',
       element: (
          <Suspense>
             <Photo />

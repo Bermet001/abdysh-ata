@@ -1,52 +1,50 @@
 import styled from 'styled-components'
 import { Flex, Image } from 'antd'
-
-const images = [
-   'https://swiperjs.com/demos/images/nature-1.jpg',
-   'https://swiperjs.com/demos/images/nature-2.jpg',
-   'https://swiperjs.com/demos/images/nature-10.jpg',
-   'https://swiperjs.com/demos/images/nature-3.jpg',
-   'https://swiperjs.com/demos/images/nature-4.jpg',
-]
+import { useAppDispatch, useAppSelector } from '../../../store/store'
+import { useParams } from 'react-router-dom'
+import { useEffect } from 'react'
+import { getInfrastracture } from '../../../store/slice/infrastracture/infrastractureThunk'
 
 const Infrastructure = () => {
    window.scrollTo(0, 0)
+   const { slug } = useParams<{ slug: string }>()
+   const { infrastracture } = useAppSelector((state) => state.infrastracture)
+
+   const dispatch = useAppDispatch()
+
+   useEffect(() => {
+      dispatch(getInfrastracture(slug))
+   }, [dispatch, slug])
 
    return (
       <StyledContainer>
          <Flex className="first-block" gap={40}>
             <Flex vertical>
-               <Image
-                  className="main-image"
-                  src="https://swiperjs.com/demos/images/nature-10.jpg"
-               />
+               <Image className="main-image" src={infrastracture?.image} />
             </Flex>
 
             <Flex justify="start" gap={30} vertical>
-               <h1 className="main-title">Краткое название</h1>
+               <h1 className="main-title">{infrastracture?.title}</h1>
 
                <Flex vertical gap={20}>
                   <Flex gap={20}>
                      <p className="info">
-                        <span>Область: </span>Chui
+                        <span>Область: </span>
+                        {infrastracture?.region}
                      </p>
                      <p className="info">
-                        <span>Адрес: </span> 1223 САОыкл5 Са
+                        <span>Адрес: </span> {infrastracture?.address}
                      </p>
                   </Flex>
 
                   <p className="info">
-                     <span>Размеры: </span>500fs
+                     <span>Размеры: </span> {infrastracture?.weave}
                   </p>
                </Flex>
 
                <Flex className="short-info" gap={10} vertical>
                   <h2>Краткое описание</h2>
-                  <p>
-                     Join us for an unforgettable mountain tour! For several
-                     days you will enjoy amazing views, clean mountain air and
-                     exciting adventures...
-                  </p>
+                  <p>{infrastracture?.description}</p>
                </Flex>
             </Flex>
          </Flex>
@@ -69,12 +67,13 @@ const Infrastructure = () => {
          </Flex>
 
          <Flex vertical gap={20} wrap className="gallery">
+            <h2 className="main-title">Картинки</h2>
             <Flex gap={20} wrap>
-               {images.map((item, index) => (
+               {infrastracture?.images.map((item) => (
                   <img
-                     key={index}
+                     key={item.id}
                      className="gallery-image"
-                     src={item}
+                     src={item.image}
                      alt="image"
                   />
                ))}
@@ -83,6 +82,7 @@ const Infrastructure = () => {
 
          <Flex vertical className="map-block">
             <h2>Маршрут</h2>
+
             <iframe
                src="https://www.google.com/maps/embed?pb=!1m18..."
                width="100%"

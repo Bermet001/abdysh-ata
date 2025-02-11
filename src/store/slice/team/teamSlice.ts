@@ -1,11 +1,34 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { getTeam, getPlayer, getAllTeams } from './teamThunk'
-import { AllTeamsData, Coach, TeamData, TeamState } from './types'
+import { AllTeamsData, IPlayer, TeamData, TeamState } from './types'
 
 const initialState: TeamState = {
    team: null,
    coaches: [],
    players: [],
+   player: {
+      id: 0,
+      name: '',
+      slug: '',
+      image: '',
+      bio_title: '',
+      bio: '',
+      instagram: '',
+      birth_date: '',
+      weight: '0',
+      height: '0',
+      debut: '',
+      position: '',
+      number: 0,
+      team: {
+         id: 0,
+         title: '',
+         slug: '',
+         is_our_team: false,
+         logo: '',
+      },
+      achievements: [],
+   },
    allTeams: [],
    isLoading: false,
 }
@@ -44,10 +67,11 @@ export const teamSlice = createSlice({
          .addCase(getAllTeams.rejected, (state) => {
             state.isLoading = false
          })
+
          .addCase(
             getPlayer.fulfilled,
-            (state, { payload }: PayloadAction<Coach[]>) => {
-               state.coaches = payload
+            (state, { payload }: PayloadAction<IPlayer>) => {
+               state.player = payload
                state.isLoading = false
             }
          )

@@ -1,38 +1,31 @@
 import { Flex, Image } from 'antd'
-import image from '../../../assets/images/image.jpeg'
-import image1 from '../../../assets/images/image12.webp'
-import image2 from '../../../assets/images/image2.jpeg'
-import image3 from '../../../assets/images/image6.avif'
-import image4 from '../../../assets/images/image7.jpg'
-import image53 from '../../../assets/images/image8.jpg'
-import image5 from '../../../assets/images/images3.jpeg'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
-
-const array = [
-   { image, id: 1 },
-   { image: image1, id: 2 },
-   { image: image2, id: 3 },
-   { image: image3, id: 4 },
-   { image: image4, id: 5 },
-   { image: image53, id: 6 },
-   { image: image5, id: 7 },
-]
+import { useAppDispatch, useAppSelector } from '../../../store/store'
+import { useEffect } from 'react'
+import { GALLERY_THUNK } from '../../../store/slice/gallery/galleryThunk'
 
 const Gallery = () => {
    window.scrollTo(0, 0)
+   const { gallery } = useAppSelector((state) => state.gallery)
+
+   const dispatch = useAppDispatch()
+
+   useEffect(() => {
+      dispatch(GALLERY_THUNK.getPhotos())
+   })
 
    return (
       <StyledContainer>
          <Flex gap={20} wrap>
-            {array.map((item) => (
-               <NavLink to={`/gallery/${item.id}`}>
+            {gallery.map((item) => (
+               <NavLink key={item.id} to={`/gallery/${item.slug}`}>
                   <StyledImage
                      width={400}
                      height={300}
                      style={{ objectFit: 'cover', borderRadius: '10px' }}
                      key={item.id}
-                     src={item.image}
+                     src={item.image_main}
                   />
                </NavLink>
             ))}

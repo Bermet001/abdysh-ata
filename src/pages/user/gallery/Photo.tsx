@@ -1,45 +1,39 @@
-import { FC } from 'react'
-import image from '../../../assets/images/background2.jpg'
+import { FC, useEffect } from 'react'
 import styled from 'styled-components'
 import { Flex } from 'antd'
 import { EyeOutlined, RightOutlined } from '@ant-design/icons'
-
-interface PhotoItem {
-   image: string
-   id: number
-}
-
-const array = {
-   image,
-   id: 0,
-   other: [
-      { image: image, id: 1 },
-      { image: image, id: 2 },
-      { image: image, id: 3 },
-      { image, id: 4 },
-      { image, id: 5 },
-      { image, id: 6 },
-      { image, id: 7 },
-      { image, id: 8 },
-      { image, id: 9 },
-      { image, id: 10 },
-   ] as PhotoItem[],
-}
+import { useParams } from 'react-router-dom'
+import { useAppDispatch, useAppSelector } from '../../../store/store'
+import { GALLERY_THUNK } from '../../../store/slice/gallery/galleryThunk'
 
 const Photo: FC = () => {
+   const { slug } = useParams<{ slug: string }>()
    window.scrollTo(0, 0)
+
+   const { photo } = useAppSelector((state) => state.gallery)
+   const dispatch = useAppDispatch()
+
+   useEffect(() => {
+      dispatch(GALLERY_THUNK.getPhoto(slug))
+   }, [dispatch, slug])
 
    return (
       <StyledContainer>
-         <img className="main-image" src={array.image} alt="Background" />
-
+         <img className="main-image" src={photo.image_main} alt="Background" />
+         <br />
+         <h3>{photo.title}</h3>
          <Flex vertical gap={20}>
             <h1 className="main-title">Картинки с этого события</h1>
 
             <Flex wrap>
-               {array.other.map((item) => (
+               {photo.images.map((item) => (
                   <ImageWrapper key={item.id}>
-                     <img height="100%" width="100%" src={item.image} alt="" />
+                     <img
+                        height="100%"
+                        width="100%"
+                        src={item.images}
+                        alt="картинка с этого события"
+                     />
                      <DarkOverlay />
 
                      <Overlay>
@@ -75,7 +69,7 @@ const StyledContainer = styled.main`
       max-height: 400px;
       width: 100%;
       border-radius: 8px;
-      object-position: top;
+      object-position: center;
    }
 
    .main-title {

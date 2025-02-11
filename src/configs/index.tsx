@@ -14,12 +14,6 @@ import coach2 from '../assets/images/coaches/image2.png'
 import coach3 from '../assets/images/coaches/image5.png'
 import coach4 from '../assets/images/coaches/image3.png'
 // infras
-import image from '../assets/images/insrastracture/infrastracture.jpg'
-import image2 from '../assets/images/insrastracture/infrastracture11.jpg'
-import image3 from '../assets/images/insrastracture/infrastracture22.jpeg'
-import image4 from '../assets/images/insrastracture/infrastracture1234.jpg'
-import image5 from '../assets/images/insrastracture/infrastracture3342.jpg'
-// match
 
 // rating
 import barcelonaLogo from '../assets/images/barselona.png'
@@ -331,60 +325,6 @@ const honours = [
    },
 ]
 
-const infrastructure = [
-   {
-      id: 4,
-      image: image3,
-      name: 'Батутный зал',
-      address: 'г. Бишкек, ул. Батутная, 20',
-   },
-   {
-      id: 1,
-      image: image,
-      name: 'СК Спорт-Сити',
-      address: 'Спортивная, 10',
-   },
-
-   {
-      id: 2,
-      image: image5,
-      name: 'Стадион Центральный',
-      address: 'г. Бишкек, ул. Центральная, 5',
-   },
-   {
-      id: 5,
-      image: image4,
-      name: 'СК Абдыш-Ата',
-      address: 'г. Бишкек, ул. Абдыш-Ата, 8',
-   },
-
-   {
-      id: 3341,
-      image: image5,
-      name: 'Стадион Центральный',
-      address: 'г. Бишкек, ул. Центральная, 5',
-   },
-   {
-      id: 11234123,
-      image: image,
-      name: 'СК Спорт-Сити',
-      address: 'Спортивная, 10',
-   },
-   {
-      id: 414,
-      image: image3,
-      name: 'Батутный зал',
-      address: 'г. Бишкек, ул. Батутная, 20',
-   },
-
-   {
-      id: 3,
-      image: image2,
-      name: 'Стадион Нитро-Арена',
-      address: 'г. Бишкек, ул. Нитро, 15',
-   },
-]
-
 const columns: ColumnType<TeamData>[] = [
    {
       title: 'Команда',
@@ -559,7 +499,6 @@ export {
    honours,
    teams,
    coaches,
-   infrastructure,
    columns,
    dataSource,
    data,

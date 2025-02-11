@@ -1,9 +1,11 @@
 import { FC } from 'react'
 import { Button, Card, Flex } from 'antd'
 import styled from 'styled-components'
-import { infrastructure } from '../../../configs'
 import { NavLink } from 'react-router-dom'
 import { ArrowsAltOutlined, EnvironmentFilled } from '@ant-design/icons'
+import { useAppDispatch, useAppSelector } from '../../../store/store'
+import { useEffect } from 'react'
+import { getInfrastractures } from '../../../store/slice/infrastracture/infrastractureThunk'
 
 interface StyledCardProps {
    bgImage: string
@@ -11,15 +13,22 @@ interface StyledCardProps {
 
 const Infrastructures: FC = () => {
    window.scrollTo(0, 0)
+   const { infrastractures } = useAppSelector((state) => state.infrastracture)
+
+   const dispatch = useAppDispatch()
+
+   useEffect(() => {
+      dispatch(getInfrastractures())
+   }, [dispatch])
 
    return (
       <main>
          <CollageContainer wrap>
-            {infrastructure.map((item) => (
-               <NavLink to={`/infrastructure/${item.id}`} key={item.id}>
+            {infrastractures?.map((item) => (
+               <NavLink to={`/infrastructure/${item.slug}`} key={item.id}>
                   <StyledCard bgImage={item.image}>
                      <div className="ant-card-body block">
-                        <h1>{item.name}</h1>
+                        <h1>{item.title}</h1>
 
                         <Flex
                            gap={20}
@@ -33,7 +42,7 @@ const Infrastructures: FC = () => {
                               </p>
 
                               <p>
-                                 <ArrowsAltOutlined /> {item.address}
+                                 <ArrowsAltOutlined /> {item.weave} м
                               </p>
                            </Flex>
 

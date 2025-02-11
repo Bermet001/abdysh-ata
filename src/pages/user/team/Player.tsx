@@ -1,54 +1,57 @@
 import { Flex } from 'antd'
 import styled, { keyframes } from 'styled-components'
-import image from '../../../assets/images/players/image.png'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { honours } from '../../../configs'
+import { useParams } from 'react-router-dom'
+import { useAppDispatch, useAppSelector } from '../../../store/store'
+import { useEffect } from 'react'
+import { getPlayer } from '../../../store/slice/team/teamThunk'
 
 const Player = () => {
+   const { slug } = useParams<{ slug: string }>()
+   const { player } = useAppSelector((state) => state.team)
+
    window.scrollTo(0, 0)
+
+   const dispatch = useAppDispatch()
+
+   useEffect(() => {
+      dispatch(getPlayer(slug))
+   }, [dispatch, slug])
 
    return (
       <StyledContainer>
          <Flex vertical className="main-box">
             <Flex className="content" align="end">
                <Flex vertical className="main-info">
-                  <PlayerImage src={image} alt="Player" />
+                  <PlayerImage src={player.image} alt="Player" />
 
                   <PlayerCard>
                      <PlayerDetails>
-                        <PlayerPosition>Вратарь</PlayerPosition>
+                        <PlayerPosition>{player.position}</PlayerPosition>
                         <PlayerName>
-                           <PlayerNumber>1</PlayerNumber>
-                           <span className="name">Бекжан</span>
-                           Сагынбаев
+                           <PlayerNumber>{player.number}</PlayerNumber>
+                           <span className="name">{player.name}</span>
                         </PlayerName>
                      </PlayerDetails>
                   </PlayerCard>
                </Flex>
 
                <PlayerInfo>
-                  <h3 className="player-title">
-                     He brings together various talents which allow him to
-                     operate anywhere up front
-                  </h3>
+                  <h3 className="player-title">{player.bio_title}</h3>
 
-                  <PlayerBio>
-                     A keeper with great reflexes and also excellent with the
-                     ball at his feet. Бекжан Сагынбаев signed for FC Barcelona
-                     in the summer of 2014 from Borussia Mönchengladbach. Born
-                     on 30 April 1992, he quickly made a name as one of Europe’s
-                     most promising goalkeepers.
+                  <PlayerBio>{player.bio}</PlayerBio>
+
+                  <h3 className="player-title">Команда</h3>
+                  <PlayerBio style={{ display: 'flex', alignItems: 'center' }}>
+                     <img
+                        width={30}
+                        src={player.team.logo}
+                        alt="логотим команды"
+                     />
+                     {'  '}
+                     <p>{player.team.title}</p>
                   </PlayerBio>
-
-                  <PlayerBio>
-                     A keeper with great reflexes and also excellent with the
-                     ball at his feet. Бекжан Сагынбаев signed for FC Barcelona
-                     in the summer of 2014 from Borussia Mönchengladbach. Born
-                     on 30 April 1992, he quickly made a name as one of Europe’s
-                     most promising goalkeepers.
-                  </PlayerBio>
-
-                  <PlayerBio>insta: @asdfr </PlayerBio>
+                  <PlayerBio>insta: {player.instagram} </PlayerBio>
 
                   <DetailsContainer
                      className="characteristics-container"
@@ -56,22 +59,22 @@ const Player = () => {
                   >
                      <Flex vertical gap={5}>
                         <DetailLabel>Дата рождения</DetailLabel>
-                        <DetailValue>14/12/1996</DetailValue>
+                        <DetailValue>{player.birth_date}</DetailValue>
                      </Flex>
 
                      <Flex vertical gap={5}>
                         <DetailLabel>Вес</DetailLabel>
-                        <DetailValue>68 кг</DetailValue>
+                        <DetailValue>{player.weight} кг</DetailValue>
                      </Flex>
 
                      <Flex vertical gap={5}>
                         <DetailLabel>Рост</DetailLabel>
-                        <DetailValue>176 см</DetailValue>
+                        <DetailValue>{player.height} см</DetailValue>
                      </Flex>
 
                      <Flex vertical gap={5}>
                         <DetailLabel>Дебют в клубе</DetailLabel>
-                        <DetailValue>14/12/2020</DetailValue>
+                        <DetailValue>{player.debut}</DetailValue>
                      </Flex>
                   </DetailsContainer>
                </PlayerInfo>
@@ -102,7 +105,7 @@ const Player = () => {
                   }}
                   className="mySwiper"
                >
-                  {honours.map((item) => (
+                  {player.achievements.map((item) => (
                      <SwiperSlide key={item.id}>
                         <Flex
                            vertical
@@ -111,11 +114,11 @@ const Player = () => {
                            align="start"
                         >
                            <Flex vertical align="start">
-                              <h5 className="liga-honour">{item.liga}</h5>
-                              <h4 className="text-honour">{item.text}</h4>
+                              <h5 className="liga-honour">{item.liga.title}</h5>
+                              <h4 className="text-honour">{item.title}</h4>
                            </Flex>
 
-                           <p className="year-honour">{item.year}</p>
+                           <p className="year-honour">{item.date}</p>
                         </Flex>
                      </SwiperSlide>
                   ))}
@@ -135,7 +138,7 @@ const StyledContainer = styled.main`
    align-items: center;
    justify-content: center;
    min-height: 100vh;
-   max-width: 1600px;
+   /* max-width: 1600px; */
 
    @media (max-width: 768px) {
       padding: 60px 20px;
@@ -169,6 +172,8 @@ const StyledContainer = styled.main`
       padding-bottom: 30px;
       border-radius: 3px;
       width: 100%;
+      margin: 0 auto;
+      max-width: 1600px;
    }
 
    .content {

@@ -38,7 +38,7 @@ const getAllTeams = createAsyncThunk(
 
 const getPlayer = createAsyncThunk(
    'team/getCoaches',
-   async (slug: string, { rejectWithValue }) => {
+   async (slug: string | undefined, { rejectWithValue }) => {
       try {
          const { data } = await axiosInstance(`teams/player/${slug}`)
 
