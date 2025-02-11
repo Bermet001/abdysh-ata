@@ -55,8 +55,6 @@ export const coachSlice = createSlice({
             (state, { payload }: PayloadAction<Coach>) => {
                state.coach = payload
                state.isLoading = false
-               console.log(payload)
-               console.log(state.coach)
             }
          )
          .addCase(getCoach.pending, (state) => {

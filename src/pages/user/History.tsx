@@ -17,7 +17,6 @@ const History = () => {
    }, [dispatch])
 
    const history_text = history.length > 0 ? history[0] : null
-   console.log(history_text, 'history')
 
    return (
       <StyledContainer>

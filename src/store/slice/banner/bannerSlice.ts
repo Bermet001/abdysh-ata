@@ -53,8 +53,6 @@ export const bannerSlice = createSlice({
             (state, { payload }: PayloadAction<Banner>) => {
                state.banner = payload
                state.isLoading = false
-               console.log(payload)
-               console.log(state.banner)
             }
          )
          .addCase(BANNER_THUNK.getBanner.pending, (state) => {

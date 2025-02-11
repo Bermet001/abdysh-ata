@@ -1,33 +1,41 @@
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { newsItems } from '../../configs'
 import { NavLink } from 'react-router-dom'
 import { Pagination as AntPagination, Flex, Select } from 'antd'
 import { Input } from 'antd'
 import { SearchProps } from 'antd/es/input'
-
-interface NewsItem {
-   id: number
-   imageUrl: string
-   title: string
-   category: string
-   date: string
-}
+import { useAppDispatch, useAppSelector } from '../../store/store'
+import { NEWS_THUNK } from '../../store/slice/news/newsThunk'
 
 const { Search } = Input
 
 const NewsPage: FC = () => {
    window.scrollTo(0, 0)
-
+   const { allNews } = useAppSelector((state) => state.news)
    const [currentPage, setCurrentPage] = useState(1)
    const itemsPerPage = 10
+   const [screenWidth, setScreenWidth] = useState(window.innerWidth)
+   
+   const dispatch = useAppDispatch()
 
-   const onSearch: SearchProps['onSearch'] = (value, _e, info) =>
-      console.log(info?.source, value)
+   useEffect(() => {
+      dispatch(NEWS_THUNK.getNewsPageItem({ screenWidth, page: currentPage }))
+   }, [currentPage, screenWidth, dispatch])
 
-   const startIndex = (currentPage - 1) * itemsPerPage
-   const endIndex = startIndex + itemsPerPage
-   const currentItems = newsItems.slice(startIndex, endIndex) as NewsItem[]
+   useEffect(() => {
+      const handleResize = () => {
+         setScreenWidth(window.innerWidth)
+      }
+
+      window.addEventListener('resize', handleResize)
+      return () => {
+         window.removeEventListener('resize', handleResize)
+      }
+   }, [])
+
+   const onSearch: SearchProps['onSearch'] = (value) => {
+      console.log(value)
+   }
 
    const onPageChange = (page: number) => setCurrentPage(page)
 
@@ -60,12 +68,12 @@ const NewsPage: FC = () => {
             </Flex>
 
             <CardsContainer>
-               {currentItems.map((item) => (
+               {allNews.map((item) => (
                   <NewsCard key={item.id}>
-                     <NavLink to={`/news/${item.id}`}>
-                        <NewsImage src={item.imageUrl} alt={item.title} />
+                     <NavLink to={`/news/${item.slug}`}>
+                        <NewsImage src={item.image} alt={item.title} />
                         <NewsContent>
-                           <Category>{item.category}</Category>
+                           <Category>{item.category.title}</Category>
                            <Title>{item.title}</Title>
                            <Date>{item.date}</Date>
                         </NewsContent>
@@ -76,7 +84,7 @@ const NewsPage: FC = () => {
 
             <StyledPagination
                current={currentPage}
-               total={newsItems.length}
+               total={currentPage}
                pageSize={itemsPerPage}
                onChange={onPageChange}
                showSizeChanger={false}

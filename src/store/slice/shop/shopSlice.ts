@@ -78,8 +78,6 @@ export const ShopSlice = createSlice({
             (state, { payload }: PayloadAction<{ results: Product[] }>) => {
                state.products = payload.results
                state.isLoading = false
-               console.log(payload, 'payload')
-               console.log(state.products, 'state')
             }
          )
          .addCase(PRODUCT_THUNK.getProducts.pending, (state) => {

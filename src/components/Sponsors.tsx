@@ -12,6 +12,7 @@ const Sponsors = () => {
    useEffect(() => {
       dispatch(getPartners())
    }, [dispatch])
+
    return (
       <StyledContainer>
          <h2 className="main-title">Наши спонсоры</h2>

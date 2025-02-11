@@ -3,20 +3,25 @@ import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
 interface IProps {
-   id: number
-   imageUrl: string
+   id: number | null
+   image: string
    title: string
-   category: string
+   category: {
+      id: number | null
+      title: string
+      slug: string
+   }
    date: string
+   slug: string
 }
 
-const NewsCard: FC<IProps> = ({ id, imageUrl, title, category, date }) => {
+const NewsCard: FC<IProps> = ({ slug, id, image, title, category, date }) => {
    return (
       <StyledNewsCard key={id}>
-         <NavLink to={`news/${id}`}>
-            <NewsImage src={imageUrl} alt={title} />
+         <NavLink to={`news/${slug}`}>
+            <NewsImage src={image} alt={title} />
             <NewsContent>
-               <Category>{category}</Category>
+               <Category>{category.title}</Category>
                <Title>{title}</Title>
                <Date>{date}</Date>
             </NewsContent>

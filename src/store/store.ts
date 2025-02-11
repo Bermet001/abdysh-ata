@@ -6,6 +6,10 @@ import { contactSlice } from './slice/contacts/contactsSlice'
 import { partnerSlice } from './slice/partners/partnersSlice'
 import { coachSlice } from './slice/coach/coachSlice'
 import { historySlice } from './slice/history/historySlice'
+import { NewsSlice } from './slice/news/newsSlice'
+import { gallerySlice } from './slice/gallery/gallerySlice'
+import { teamSlice } from './slice/team/teamSlice'
+import { achievementsSlice } from './slice/ahievements/ahievementsSlice'
 
 export const store = configureStore({
    reducer: {
@@ -15,6 +19,10 @@ export const store = configureStore({
       [partnerSlice.name]: partnerSlice.reducer,
       [coachSlice.name]: coachSlice.reducer,
       [historySlice.name]: historySlice.reducer,
+      [NewsSlice.name]: NewsSlice.reducer,
+      [gallerySlice.name]: gallerySlice.reducer,
+      [teamSlice.name]: teamSlice.reducer,
+      [achievementsSlice.name]: achievementsSlice.reducer,
    },
 })
 

@@ -1,17 +1,23 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Flex } from 'antd'
 import styled from 'styled-components'
-import image2 from '../assets/images/image12.webp'
-import image6 from '../assets/images/image8.jpg'
-import image7 from '../assets/images/image9.jpg'
 import { EyeOutlined, RightOutlined } from '@ant-design/icons'
 import Button from './UI/Button'
 import { NavLink } from 'react-router-dom'
 import { Modal } from 'antd'
+import { useAppDispatch, useAppSelector } from '../store/store'
+import { GALLERY_THUNK } from '../store/slice/gallery/galleryThunk'
 
 const Gallery = () => {
    const [isModalVisible, setIsModalVisible] = useState(false)
    const [selectedImage, setSelectedImage] = useState('')
+
+   const { gallery } = useAppSelector((state) => state.gallery)
+   const dispatch = useAppDispatch()
+
+   useEffect(() => {
+      dispatch(GALLERY_THUNK.getPhotos())
+   }, [dispatch])
 
    const handleImageClick = (src: string) => {
       setSelectedImage(src)
@@ -22,6 +28,10 @@ const Gallery = () => {
       setIsModalVisible(false)
       setSelectedImage('')
    }
+
+   const image1 = gallery[0] || ''
+   const image2 = gallery[1] || ''
+   const image3 = gallery[2] || ''
 
    return (
       <StyledContainer>
@@ -41,12 +51,19 @@ const Gallery = () => {
             <Flex gap={20} className="image-gallery">
                <Flex className="gallery-image" vertical gap={20}>
                   <ImageWrapper>
-                     <img height="100%" width="100%" src={image7} alt="" />
+                     <img
+                        height="100%"
+                        width="100%"
+                        src={image1.image_main}
+                        alt="Event 1"
+                     />
                      <DarkOverlay />
                      <Overlay>
                         <Flex gap={15} align="center">
                            <Flex
-                              onClick={() => handleImageClick(image7)}
+                              onClick={() =>
+                                 handleImageClick(image1.image_main)
+                              }
                               vertical
                               gap={10}
                               align="center"
@@ -60,7 +77,7 @@ const Gallery = () => {
                               </p>
                            </Flex>
                            <Flex vertical gap={10} align="center">
-                              <NavLink to={'/gallery/:id'}>
+                              <NavLink to={`/gallery${image1.slug}`}>
                                  <StyledRightSquareOutlined />
                                  <p
                                     className="explanation"
@@ -75,12 +92,20 @@ const Gallery = () => {
                   </ImageWrapper>
 
                   <ImageWrapper>
-                     <img height="100%" width="100%" src={image2} alt="" />
+                     <img
+                        height="100%"
+                        width="100%"
+                        src={image2.image_main}
+                        alt="Event 2"
+                     />
                      <DarkOverlay />
+
                      <Overlay>
                         <Flex gap={15} align="center">
                            <Flex
-                              onClick={() => handleImageClick(image2)}
+                              onClick={() =>
+                                 handleImageClick(image2.image_main)
+                              }
                               vertical
                               gap={10}
                               align="center"
@@ -94,7 +119,7 @@ const Gallery = () => {
                               </p>
                            </Flex>
                            <Flex vertical gap={10} align="center">
-                              <NavLink to={'/gallery/:id'}>
+                              <NavLink to={`/gallery/${image2.slug}`}>
                                  <StyledRightSquareOutlined />
                                  <p
                                     className="explanation"
@@ -108,15 +133,21 @@ const Gallery = () => {
                      </Overlay>
                   </ImageWrapper>
                </Flex>
-
-               <Flex gap={20}>
+               <Flex>
                   <ImageWrapper>
-                     <img height="100%" width="100%" src={image6} alt="" />
+                     <img
+                        height="100%"
+                        width="100%"
+                        src={image3.image_main}
+                        alt="Event 3"
+                     />
                      <DarkOverlay />
                      <Overlay>
                         <Flex gap={15} align="center">
                            <Flex
-                              onClick={() => handleImageClick(image6)}
+                              onClick={() =>
+                                 handleImageClick(image3.image_main)
+                              }
                               vertical
                               gap={10}
                               align="center"
@@ -130,7 +161,7 @@ const Gallery = () => {
                               </p>
                            </Flex>
                            <Flex vertical gap={10} align="center">
-                              <NavLink to={'/gallery/:id'}>
+                              <NavLink to={`/gallery/${image3.slug}`}>
                                  <StyledRightSquareOutlined />
                                  <p
                                     className="explanation"
@@ -157,7 +188,6 @@ const Gallery = () => {
             <img
                src={selectedImage}
                alt="Detailed view"
-               className=""
                style={{ width: '100%' }}
             />
          </Modal>
@@ -188,10 +218,6 @@ const StyledContainer = styled.section`
       padding: 0;
    }
 
-   .description {
-      color: grey;
-   }
-
    @media (max-width: 1024px) {
       padding: 40px 20px 0 20px;
    }
@@ -201,10 +227,6 @@ const StyledContainer = styled.section`
 
       .image-gallery {
          gap: 10px !important;
-
-         .gallery-image {
-            gap: 10px !important;
-         }
       }
    }
 
@@ -227,20 +249,13 @@ const ImageWrapper = styled.div`
    &:hover img {
       transform: scale(1.03);
    }
-
-   @media (max-width: 768px) {
-      img {
-         height: auto;
-         border-radius: 6px;
-      }
-   }
 `
 
 const Overlay = styled.div`
    position: absolute;
    top: 50%;
-   left: 0%;
-   right: 0%;
+   left: 0;
+   right: 0;
    bottom: 50%;
    display: flex;
    align-items: center;
@@ -256,30 +271,9 @@ const Overlay = styled.div`
    ${ImageWrapper}:hover & {
       opacity: 1;
       bottom: 0;
+      transform: scale(1.03);
       transform: translateX(-50%);
       transform: translateY(-50%);
-   }
-
-   @media (max-width: 768px) {
-      padding: 3px;
-
-      .explanation {
-         font-size: 12px;
-      }
-
-      .image-gallery {
-         gap: 10px !important;
-
-         .gallery-image {
-            gap: 10px !important;
-         }
-      }
-   }
-
-   @media (max-width: 480px) {
-      .explanation {
-         font-size: 10px;
-      }
    }
 `
 
@@ -293,15 +287,10 @@ const DarkOverlay = styled.div`
    opacity: 0;
    transition: opacity 0.3s ease;
    border-radius: 10px;
-   transition: transform 0.3s ease;
 
    ${ImageWrapper}:hover & {
       opacity: 1;
       transform: scale(1.03);
-   }
-
-   @media (max-width: 768px) {
-      border-radius: 6px;
    }
 `
 

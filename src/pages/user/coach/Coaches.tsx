@@ -1,19 +1,12 @@
 import styled from 'styled-components'
 import { Button, Flex } from 'antd'
 import { NavLink } from 'react-router-dom'
-import { useEffect } from 'react'
-import { getCoaches } from '../../../store/slice/coach/coachThunk'
-import { useAppDispatch, useAppSelector } from '../../../store/store'
+import { useAppSelector } from '../../../store/store'
 
 const Coaches = () => {
    window.scrollTo(0, 0)
-   const { coaches } = useAppSelector((state) => state.coach)
 
-   const dispatch = useAppDispatch()
-
-   useEffect(() => {
-      dispatch(getCoaches())
-   }, [dispatch])
+   const { coaches } = useAppSelector((state) => state.team)
 
    return (
       <StyledContainer>

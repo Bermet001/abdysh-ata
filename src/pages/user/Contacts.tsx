@@ -16,7 +16,6 @@ const Contacts = () => {
    window.scrollTo(0, 0)
    const { contacts } = useAppSelector((state) => state.contacts)
    const [form] = Form.useForm()
-   console.log(contacts, 'bermet')
 
    const dispatch = useAppDispatch()
 

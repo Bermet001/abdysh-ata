@@ -97,7 +97,7 @@ export const USER_ROUTES = [
       ),
    },
    {
-      path: 'team',
+      path: 'team/:slug',
       element: (
          <Suspense>
             <TeamWrapper />
