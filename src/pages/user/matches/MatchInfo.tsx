@@ -131,14 +131,13 @@ export default MatchInfo
 
 const MatchCard = styled(Card)`
    position: relative;
-   padding-top: 60px;
+   padding: 0 !important;
+   padding-top: 40px !important;
    overflow: hidden;
+   border: none !important;
    text-align: center;
-   background: linear-gradient(
-      180deg,
-      rgba(0, 26, 46, 0) 46%,
-      #001a2e7a 97.12%
-   );
+   border-radius: 0 !important;
+   margin-top: 50px;
 
    @media (max-width: 768px) {
       padding: 50px 20px;
@@ -151,7 +150,7 @@ const BackgroundImage = styled.div`
    background-position: center;
    position: absolute;
    width: 100%;
-   height: 70vh;
+   height: 75vh;
 
    top: 0;
    left: 0;
@@ -166,7 +165,7 @@ const DarkOverlay = styled.div`
    bottom: 0;
    background: rgba(0, 0, 0, 0.5);
    z-index: 1;
-   height: 70vh;
+   height: 75vh;
 `
 
 const Content = styled.div`
@@ -203,7 +202,6 @@ const Countdown = styled.div`
 `
 
 const TeamCard = styled.div`
-   border-radius: 8px;
    text-align: center;
    transition: transform 0.3s;
 

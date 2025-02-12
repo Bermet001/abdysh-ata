@@ -1,16 +1,19 @@
 import { ChangeEvent, FC, useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { NavLink } from 'react-router-dom'
+// import { NavLink } from 'react-router-dom'
 import { Pagination as AntPagination, Flex, Select } from 'antd'
 import { Input } from 'antd'
 import { useAppDispatch, useAppSelector } from '../../store/store'
 import { NEWS_THUNK } from '../../store/slice/news/newsThunk'
+import NewsCard from '../../components/UI/NewsCard'
 
 const { Search } = Input
 
 const NewsPage: FC = () => {
    window.scrollTo(0, 0)
-   const { allNews, categories } = useAppSelector((state) => state.news)
+   const { allNews, categories, total_page } = useAppSelector(
+      (state) => state.news
+   )
    const [currentPage, setCurrentPage] = useState<number>(1)
    const itemsPerPage = 10
    const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth)
@@ -71,22 +74,13 @@ const NewsPage: FC = () => {
 
             <CardsContainer>
                {allNews.map((item) => (
-                  <NewsCard key={item.id}>
-                     <NavLink to={`/news/${item.slug}`}>
-                        <NewsImage src={item.image} alt={item.title} />
-                        <NewsContent>
-                           <Category>{item.category.title}</Category>
-                           <Title>{item.title}</Title>
-                           <Date>{item.date}</Date>
-                        </NewsContent>
-                     </NavLink>
-                  </NewsCard>
+                  <NewsCard key={item.id} {...item} />
                ))}
             </CardsContainer>
 
             <StyledPagination
                current={currentPage}
-               total={currentPage}
+               total={total_page}
                pageSize={itemsPerPage}
                onChange={onPageChange}
                showSizeChanger={false}
@@ -154,50 +148,6 @@ const CardsContainer = styled.div`
    @media (max-width: 768px) {
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
    }
-`
-
-const NewsCard = styled.div`
-   background: #fff;
-   border-radius: 8px;
-   overflow: hidden;
-   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-   transition: transform 0.3s;
-   cursor: pointer;
-
-   &:hover {
-      transform: translateY(-5px);
-   }
-`
-
-const NewsImage = styled.img`
-   width: 100%;
-   height: 150px;
-   object-fit: cover;
-   transition: transform 0.3s;
-
-   ${NewsCard}:hover & {
-      transform: translateY(-20px);
-   }
-`
-
-const NewsContent = styled.div`
-   padding: 16px;
-`
-
-const Category = styled.p`
-   font-size: 14px;
-   color: #888;
-`
-
-const Title = styled.h3`
-   font-size: 16px;
-   margin: 8px 0;
-   color: #333;
-`
-
-const Date = styled.p`
-   font-size: 12px;
-   color: #aaa;
 `
 
 const StyledPagination = styled(AntPagination)`

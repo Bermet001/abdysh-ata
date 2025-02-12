@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { Flex } from 'antd'
 import { FC } from 'react'
+import { NavLink } from 'react-router-dom'
 
 interface Team {
    id: number
@@ -30,32 +31,38 @@ interface IProps {
 }
 
 const MatchCard: FC<IProps> = ({ match }) => {
-   const { home_team, away_team, date, home_score, away_score } = match
+   const { home_team, away_team, date, home_score, away_score, slug } = match
 
    return (
-      <section>
-         <MatchCardContainer vertical align="center">
-            <Time>{new Date(date).toLocaleString()}</Time>
+      <div>
+         <NavLink to={`match/${slug}`}>
+            <MatchCardContainer vertical align="center">
+               <Time>{new Date(date).toLocaleString()}</Time>
 
-            <Flex className="main-info" align="center" justify="space-between">
-               <Team vertical align="center" justify="center">
-                  <TeamLogo src={home_team.logo} alt={home_team.title} />
-                  {/* <p className="team-name">{home_team.title}</p> */}
-               </Team>
+               <Flex
+                  className="main-info"
+                  align="center"
+                  justify="space-between"
+               >
+                  <Team vertical align="center" justify="center">
+                     <TeamLogo src={home_team.logo} alt={home_team.title} />
+                     {/* <p className="team-name">{home_team.title}</p> */}
+                  </Team>
 
-               <Countdown vertical align="center" justify="center">
-                  <p>
-                     {home_score} : {away_score}
-                  </p>
-               </Countdown>
+                  <Countdown vertical align="center" justify="center">
+                     <p>
+                        {home_score} : {away_score}
+                     </p>
+                  </Countdown>
 
-               <Team vertical align="center" justify="center">
-                  <TeamLogo src={away_team.logo} alt={away_team.title} />
-                  {/* <p className="team-name">{away_team.title}</p> */}
-               </Team>
-            </Flex>
-         </MatchCardContainer>
-      </section>
+                  <Team vertical align="center" justify="center">
+                     <TeamLogo src={away_team.logo} alt={away_team.title} />
+                     {/* <p className="team-name">{away_team.title}</p> */}
+                  </Team>
+               </Flex>
+            </MatchCardContainer>
+         </NavLink>
+      </div>
    )
 }
 

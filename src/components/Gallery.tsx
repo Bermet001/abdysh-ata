@@ -77,7 +77,7 @@ const Gallery = () => {
                               </p>
                            </Flex>
                            <Flex vertical gap={10} align="center">
-                              <NavLink to={`/gallery${image1.slug}`}>
+                              <NavLink to={`/gallery/${image1.slug}`}>
                                  <StyledRightSquareOutlined />
                                  <p
                                     className="explanation"

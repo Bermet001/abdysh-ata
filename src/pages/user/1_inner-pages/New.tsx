@@ -55,6 +55,8 @@ const New: FC = () => {
          </ContentCard>
 
          <News />
+         <br />
+         <br />
       </StyledContainer>
    )
 }
@@ -71,7 +73,6 @@ const BackgroundContainer = styled.div<{ image: string }>`
    background-size: cover;
    background-repeat: no-repeat;
    background-attachment: fixed;
-   /* background-position: start; */
    min-height: 70vh;
 `
 

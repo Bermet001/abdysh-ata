@@ -1,4 +1,13 @@
-import { Affix, Button, Input, Flex, Drawer, Dropdown, MenuProps } from 'antd'
+import {
+   Affix,
+   Button,
+   Input,
+   Flex,
+   Drawer,
+   Dropdown,
+   MenuProps,
+   Menu,
+} from 'antd'
 import { SearchOutlined, MenuOutlined, CloseOutlined } from '@ant-design/icons'
 import Logo from '../assets/images/main-logo.png'
 import styled from 'styled-components'
@@ -18,6 +27,8 @@ interface StyledContainerProps {
 
 const Header = () => {
    const { allTeams } = useAppSelector((state) => state.team)
+   const { data } = useAppSelector((state) => state.global_search)
+
    const [isscrolled, setIsScrolled] = useState(false)
    const [searchVisible, setSearchVisible] = useState(false)
    const [drawerVisible, setDrawerVisible] = useState(false)
@@ -131,6 +142,25 @@ const Header = () => {
 
    const isOnDifferentPage = location.pathname !== '/'
 
+   const searchResults = data
+      ? [
+           ...data.teams.map((team) => ({
+              key: `team-${team.id}`,
+              label: <NavLink to={`/team/${team.slug}`}>{team.title}</NavLink>,
+           })),
+           ...data.products.map((product) => ({
+              key: `product-${product.id}`,
+              label: (
+                 <NavLink to={`/shop/${product.slug}`}>{product.title}</NavLink>
+              ),
+           })),
+           ...data.news.map((news) => ({
+              key: `news-${news.id}`,
+              label: <NavLink to={`/news/${news.slug}`}>{news.title}</NavLink>,
+           })),
+        ]
+      : []
+
    return (
       <header
          style={{
@@ -173,13 +203,21 @@ const Header = () => {
                >
                   {searchVisible ? (
                      <>
-                        <StyledInput
-                           value={searchQuery}
-                           onChange={handleSearchChange}
-                           placeholder="Поиск..."
-                           autoFocus
-                           style={{ border: 'none' }}
-                        />
+                        <StyledDropdown
+                           overlay={<Menu items={searchResults} />}
+                           trigger={['click']}
+                           visible={
+                              searchQuery.length > 0 && searchResults.length > 0
+                           }
+                        >
+                           <StyledInput
+                              value={searchQuery}
+                              onChange={handleSearchChange}
+                              placeholder="Поиск..."
+                              autoFocus
+                              style={{ border: 'none' }}
+                           />
+                        </StyledDropdown>
                         <CloseOutlined onClick={handleSearchClick} />
 
                         <Button type="primary">Поиск</Button>
@@ -443,5 +481,27 @@ const StyledDrawer = styled(Drawer)`
 
    a {
       color: #2d2d2d;
+   }
+`
+
+const StyledDropdown = styled(Dropdown)`
+   width: 100% !important;
+   border-radius: 6px !important;
+
+   .ant-dropdown .ant-dropdown-menu {
+      border-radius: 6px !important;
+   }
+
+   .ant-dropdown-menu-item {
+      padding: 10px 16px;
+      border-bottom: 1px solid #f0f0f0 !important;
+   }
+
+   .ant-dropdown-menu-item:last-child {
+      /* border-bottom: none;  */
+   }
+
+   .ant-dropdown-menu-item:hover {
+      background-color: rgba(0, 0, 0, 0.05);
    }
 `

@@ -23,6 +23,7 @@ export interface News {
 
 interface ShopState {
    isLoading: boolean
+   total_page: number
    news: News[]
    allNews: News[]
    categories: Categories[]
@@ -32,6 +33,7 @@ interface ShopState {
 const initialState: ShopState = {
    isLoading: false,
    news: [],
+   total_page: 0,
    allNews: [],
    categories: [],
    currentNews: {
@@ -58,8 +60,14 @@ export const NewsSlice = createSlice({
       builder
          .addCase(
             NEWS_THUNK.getNews.fulfilled,
-            (state, { payload }: PayloadAction<{ results: News[] }>) => {
+            (
+               state,
+               {
+                  payload,
+               }: PayloadAction<{ results: News[]; total_page: number }>
+            ) => {
                state.news = payload.results
+               state.total_page = payload.total_page
                state.isLoading = false
             }
          )

@@ -57,7 +57,7 @@ const ProductSlider = () => {
                      <NavLink to={`/shop/${product.slug}`}>
                         <Card.Meta
                            title={product.title}
-                           description={product.price}
+                           description={`${product.price} сом`}
                         />
                         <StyledButton type="primary">
                            Оформить заказ
