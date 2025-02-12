@@ -11,12 +11,17 @@ const Shop = () => {
    window.scrollTo(0, 0)
    const [search, setSearch] = useState<string>('')
 
-   const { products } = useAppSelector((state) => state.shop)
-
    const dispatch = useAppDispatch()
+
+   const handleChange = (value: string | unknown) => {
+      dispatch(PRODUCT_THUNK.getCategorizedProduct(value))
+   }
+
+   const { products, categories } = useAppSelector((state) => state.shop)
 
    useEffect(() => {
       dispatch(PRODUCT_THUNK.getProducts())
+      dispatch(PRODUCT_THUNK.allCategories())
    }, [dispatch])
 
    const searchHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -28,14 +33,13 @@ const Shop = () => {
       <Container>
          <Flex align="center" justify="space-between" gap={50}>
             <StyledSelect
-               defaultValue="lucy"
+               defaultValue="Категории"
                style={{ width: 120 }}
-               options={[
-                  { value: 'jack', label: 'Jack' },
-                  { value: 'lucy', label: 'Lucy' },
-                  { value: 'Yiminghe', label: 'yiminghe' },
-                  { value: 'disabled', label: 'Disabled', disabled: true },
-               ]}
+               onChange={handleChange}
+               options={categories.map((category) => ({
+                  value: category.title,
+                  label: category.title,
+               }))}
             />
 
             <StyledSearch

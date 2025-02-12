@@ -6,7 +6,11 @@ interface Category {
    title: string
    slug: string
 }
-
+interface Categories {
+   id: number | null
+   title: string
+   slug: string
+}
 export interface News {
    id: number | null
    title: string
@@ -21,6 +25,7 @@ interface ShopState {
    isLoading: boolean
    news: News[]
    allNews: News[]
+   categories: Categories[]
    currentNews: News | null
 }
 
@@ -28,6 +33,7 @@ const initialState: ShopState = {
    isLoading: false,
    news: [],
    allNews: [],
+   categories: [],
    currentNews: {
       id: null,
       title: '',
@@ -103,6 +109,34 @@ export const NewsSlice = createSlice({
             state.isLoading = true
          })
          .addCase(NEWS_THUNK.searchNew.rejected, (state) => {
+            state.isLoading = false
+         })
+
+         .addCase(
+            NEWS_THUNK.allCategories.fulfilled,
+            (state, { payload }: PayloadAction<Categories[]>) => {
+               state.categories = payload
+               state.isLoading = false
+            }
+         )
+         .addCase(NEWS_THUNK.allCategories.pending, (state) => {
+            state.isLoading = true
+         })
+         .addCase(NEWS_THUNK.allCategories.rejected, (state) => {
+            state.isLoading = false
+         })
+
+         .addCase(
+            NEWS_THUNK.getCategorizedNew.fulfilled,
+            (state, { payload }: PayloadAction<{ results: News[] }>) => {
+               state.allNews = payload.results
+               state.isLoading = false
+            }
+         )
+         .addCase(NEWS_THUNK.getCategorizedNew.pending, (state) => {
+            state.isLoading = true
+         })
+         .addCase(NEWS_THUNK.getCategorizedNew.rejected, (state) => {
             state.isLoading = false
          })
    },

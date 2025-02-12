@@ -81,4 +81,43 @@ const searchNew = createAsyncThunk(
    }
 )
 
-export const NEWS_THUNK = { getNew, getNews, getNewsPageItem, searchNew }
+const allCategories = createAsyncThunk(
+   'shop/categories',
+   async (_, { rejectWithValue }) => {
+      try {
+         const { data } = await axiosInstance(`categories/categories/news/`)
+
+         return data
+      } catch (error) {
+         const err = error as AxiosError
+         return rejectWithValue({
+            message: err.message,
+         })
+      }
+   }
+)
+
+const getCategorizedNew = createAsyncThunk(
+   'shop/getCategoriesProducts',
+   async (slug: string | unknown, { rejectWithValue }) => {
+      try {
+         const { data } = await axiosInstance(`cms/news/?category=${slug}`)
+
+         return data
+      } catch (error) {
+         const err = error as AxiosError
+         return rejectWithValue({
+            message: err.message,
+         })
+      }
+   }
+)
+
+export const NEWS_THUNK = {
+   getNew,
+   getNews,
+   getNewsPageItem,
+   searchNew,
+   allCategories,
+   getCategorizedNew,
+}

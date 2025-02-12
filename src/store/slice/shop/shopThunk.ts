@@ -53,4 +53,44 @@ const searchProduct = createAsyncThunk(
    }
 )
 
-export const PRODUCT_THUNK = { getProducts, getProduct, searchProduct }
+const allCategories = createAsyncThunk(
+   'shop/categories',
+   async (_, { rejectWithValue }) => {
+      try {
+         const { data } = await axiosInstance(`categories/categories/product/`)
+
+         return data
+      } catch (error) {
+         const err = error as AxiosError
+         return rejectWithValue({
+            message: err.message,
+         })
+      }
+   }
+)
+
+const getCategorizedProduct = createAsyncThunk(
+   'shop/getCategoriesProducts',
+   async (slug: string | unknown, { rejectWithValue }) => {
+      try {
+         const { data } = await axiosInstance(
+            `products/products/?category=${slug}`
+         )
+
+         return data
+      } catch (error) {
+         const err = error as AxiosError
+         return rejectWithValue({
+            message: err.message,
+         })
+      }
+   }
+)
+
+export const PRODUCT_THUNK = {
+   getProducts,
+   getProduct,
+   searchProduct,
+   allCategories,
+   getCategorizedProduct,
+}

@@ -10,7 +10,7 @@ const { Search } = Input
 
 const NewsPage: FC = () => {
    window.scrollTo(0, 0)
-   const { allNews } = useAppSelector((state) => state.news)
+   const { allNews, categories } = useAppSelector((state) => state.news)
    const [currentPage, setCurrentPage] = useState<number>(1)
    const itemsPerPage = 10
    const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth)
@@ -19,6 +19,7 @@ const NewsPage: FC = () => {
 
    useEffect(() => {
       dispatch(NEWS_THUNK.getNewsPageItem({ screenWidth, page: currentPage }))
+      dispatch(NEWS_THUNK.allCategories())
    }, [currentPage, screenWidth, dispatch])
 
    useEffect(() => {
@@ -39,7 +40,9 @@ const NewsPage: FC = () => {
 
    const onPageChange = (page: number) => setCurrentPage(page)
 
-   const handleChange = (value: string) => console.log(`selected ${value}`)
+   const handleChange = (value: string | unknown) => {
+      dispatch(NEWS_THUNK.getCategorizedNew(value))
+   }
 
    return (
       <NewsContainer>
@@ -55,16 +58,14 @@ const NewsPage: FC = () => {
                />
 
                <Select
-                  defaultValue="lucy"
+                  defaultValue="Категории"
                   style={{ width: 120 }}
                   onChange={handleChange}
                   className="select"
-                  options={[
-                     { value: 'jack', label: 'Jack' },
-                     { value: 'lucy', label: 'Lucy' },
-                     { value: 'Yiminghe', label: 'yiminghe' },
-                     { value: 'disabled' },
-                  ]}
+                  options={categories.map((category) => ({
+                     value: category.title,
+                     label: category.title,
+                  }))}
                />
             </Flex>
 

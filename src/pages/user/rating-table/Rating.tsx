@@ -122,10 +122,10 @@ const Rating = () => {
                            display: 'flex',
                            alignItems: 'center',
                            justifyContent: 'center',
-                           width: '20px',
+                           width: '18px',
                            height: '20px',
                            backgroundColor: color,
-                           borderRadius: '50%',
+                           borderRadius: '5px',
                            marginRight: '5px',
                            textAlign: 'center',
                            color: 'white',
@@ -141,6 +141,8 @@ const Rating = () => {
          ),
       },
    ]
+
+   window.scrollTo(0, 0)
 
    const { teams } = useAppSelector((state) => state.rating)
    const dispatch = useAppDispatch()

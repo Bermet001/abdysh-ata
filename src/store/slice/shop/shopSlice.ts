@@ -37,16 +37,23 @@ export interface Product {
    product_size: ProductSize[]
    product_attribute: ProductAttribute[]
 }
+interface Categories {
+   id: number | null
+   title: string
+   slug: string
+}
 
 interface ShopState {
    isLoading: boolean
    products: Product[]
+   categories: Categories[]
    product: Product | null
 }
 
 const initialState: ShopState = {
    isLoading: false,
    products: [],
+   categories: [],
    product: {
       id: null,
       title: '',
@@ -112,6 +119,33 @@ export const ShopSlice = createSlice({
             state.isLoading = true
          })
          .addCase(PRODUCT_THUNK.searchProduct.rejected, (state) => {
+            state.isLoading = false
+         })
+
+         .addCase(
+            PRODUCT_THUNK.allCategories.fulfilled,
+            (state, { payload }: PayloadAction<Categories[]>) => {
+               state.categories = payload
+               state.isLoading = false
+            }
+         )
+         .addCase(PRODUCT_THUNK.allCategories.pending, (state) => {
+            state.isLoading = true
+         })
+         .addCase(PRODUCT_THUNK.allCategories.rejected, (state) => {
+            state.isLoading = false
+         })
+         .addCase(
+            PRODUCT_THUNK.getCategorizedProduct.fulfilled,
+            (state, { payload }: PayloadAction<{ results: Product[] }>) => {
+               state.products = payload.results
+               state.isLoading = false
+            }
+         )
+         .addCase(PRODUCT_THUNK.getCategorizedProduct.pending, (state) => {
+            state.isLoading = true
+         })
+         .addCase(PRODUCT_THUNK.getCategorizedProduct.rejected, (state) => {
             state.isLoading = false
          })
    },
