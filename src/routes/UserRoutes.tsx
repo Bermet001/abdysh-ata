@@ -49,7 +49,7 @@ export const USER_ROUTES = [
    },
 
    {
-      path: 'match/:id',
+      path: 'match/:slug',
       element: (
          <Suspense>
             <MatchInfo />

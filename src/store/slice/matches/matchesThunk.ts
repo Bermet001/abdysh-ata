@@ -23,7 +23,6 @@ const getMatch = createAsyncThunk(
    'matches/getMatch',
    async (slug: string | undefined, { rejectWithValue }) => {
       try {
-         const slug = 'abdysh-ata-vs-kara-balta-2024-09-11'
          const { data } = await axiosInstance(`/matches/matches/${slug}`)
 
          return data
