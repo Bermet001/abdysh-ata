@@ -4,7 +4,7 @@ import { AxiosError } from 'axios'
 import { ContactData } from '../../../pages/user/Contacts'
 
 const getContacts = createAsyncThunk(
-   'banner/getBanners',
+   'contacts/getContacts',
    async (_, { rejectWithValue }) => {
       try {
          const { data } = await axiosInstance(`settings/settings/`)
@@ -21,7 +21,7 @@ const getContacts = createAsyncThunk(
 )
 
 const sendMessage = createAsyncThunk(
-   'banner/sendContactData',
+   'contacts/sendContactData',
    async (contactData: ContactData, { rejectWithValue }) => {
       try {
          const { data } = await axiosInstance.post(

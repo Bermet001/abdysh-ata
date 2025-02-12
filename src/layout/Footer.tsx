@@ -107,7 +107,7 @@ const Footer = () => {
                justify="space-between"
                align="center"
             >
-               <Flex className="logo" align="center">
+               <Flex gap={15} className="logo" align="center">
                   <img width={100} src={contact?.logo} alt="logo" />
                   <h1>Abdysh-ata</h1>
                </Flex>

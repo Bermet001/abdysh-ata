@@ -46,62 +46,26 @@ const Header = () => {
             id,
          })),
       },
-
       {
          path: '/',
          title: 'О клубе',
          sub_nav: [
-            {
-               slug: '/history',
-               title: 'История ',
-               id: 21,
-            },
-            {
-               slug: '/guideline',
-               title: 'Руководство',
-               id: 22,
-            },
-            {
-               slug: '/contacts',
-               title: 'Контакты',
-               id: 23,
-            },
+            { slug: '/history', title: 'История ', id: 21 },
+            { slug: '/guideline', title: 'Руководство', id: 22 },
+            { slug: '/contacts', title: 'Контакты', id: 23 },
          ],
          id: 3,
       },
-
       { path: '/match', title: 'Матчи', id: 4 },
-
       {
          path: '/infrastracture',
          title: 'Инфраструктура',
-
          sub_nav: [
-            {
-               slug: '/',
-               title: 'СК Нитро-Арена ',
-               id: 21,
-            },
-            {
-               slug: '/',
-               title: 'СК Спорт-Сити',
-               id: 22,
-            },
-            {
-               slug: '/',
-               title: 'Стадион Центральный',
-               id: 23,
-            },
-            {
-               slug: '/',
-               title: 'Тренажерный зал',
-               id: 24,
-            },
-            {
-               slug: '/',
-               title: 'Батутный зал',
-               id: 25,
-            },
+            { slug: '/', title: 'СК Нитро-Арена ', id: 21 },
+            { slug: '/', title: 'СК Спорт-Сити', id: 22 },
+            { slug: '/', title: 'Стадион Центральный', id: 23 },
+            { slug: '/', title: 'Тренажерный зал', id: 24 },
+            { slug: '/', title: 'Батутный зал', id: 25 },
          ],
          id: 8,
       },
@@ -136,9 +100,16 @@ const Header = () => {
    const handleDrawerToggle = () => setDrawerVisible(!drawerVisible)
 
    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setSearchQuery(e.target.value)
-      dispatch(searchGlobal(e.target.value))
+      const value = e.target.value
+      setSearchQuery(value)
+      if (value) {
+         dispatch(searchGlobal(value))
+      } else {
+         setSearchVisible(false)
+      }
    }
+
+   const handleMenuClick = () => setSearchVisible(false)
 
    const isOnDifferentPage = location.pathname !== '/'
 
@@ -146,17 +117,30 @@ const Header = () => {
       ? [
            ...data.teams.map((team) => ({
               key: `team-${team.id}`,
-              label: <NavLink to={`/team/${team.slug}`}>{team.title}</NavLink>,
+              label: (
+                 <NavLink to={`/team/${team.slug}`} onClick={handleMenuClick}>
+                    {team.title}
+                 </NavLink>
+              ),
            })),
            ...data.products.map((product) => ({
               key: `product-${product.id}`,
               label: (
-                 <NavLink to={`/shop/${product.slug}`}>{product.title}</NavLink>
+                 <NavLink
+                    to={`/shop/${product.slug}`}
+                    onClick={handleMenuClick}
+                 >
+                    {product.title}
+                 </NavLink>
               ),
            })),
            ...data.news.map((news) => ({
               key: `news-${news.id}`,
-              label: <NavLink to={`/news/${news.slug}`}>{news.title}</NavLink>,
+              label: (
+                 <NavLink to={`/news/${news.slug}`} onClick={handleMenuClick}>
+                    {news.title}
+                 </NavLink>
+              ),
            })),
         ]
       : []
@@ -235,7 +219,10 @@ const Header = () => {
                                       }) => ({
                                          key: subId,
                                          label: (
-                                            <NavLink to={subPath}>
+                                            <NavLink
+                                               to={subPath}
+                                               onClick={handleMenuClick}
+                                            >
                                                {subTitle}
                                             </NavLink>
                                          ),
@@ -251,7 +238,12 @@ const Header = () => {
                                     }}
                                     trigger={['hover']}
                                  >
-                                    <NavLink to={path}>{title}</NavLink>
+                                    <NavLink
+                                       to={path}
+                                       onClick={handleMenuClick}
+                                    >
+                                       {title}
+                                    </NavLink>
                                  </Dropdown>
                               )
                            })}
