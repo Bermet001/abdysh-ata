@@ -2,11 +2,11 @@ import { axiosInstance } from '../../../configs/axiosInstance'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { AxiosError } from 'axios'
 
-const getTeamsRating = createAsyncThunk(
-   'rating/getTeams',
-   async (_, { rejectWithValue }) => {
+const getManagmets = createAsyncThunk(
+   'managment/getManagment',
+   async (__, { rejectWithValue }) => {
       try {
-         const { data } = await axiosInstance('teams/teams-stats/')
+         const { data } = await axiosInstance(`/about/managements/`)
 
          return data
       } catch (error) {
@@ -19,4 +19,4 @@ const getTeamsRating = createAsyncThunk(
    }
 )
 
-export { getTeamsRating }
+export { getManagmets }

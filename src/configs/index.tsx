@@ -1,8 +1,5 @@
 import { Key } from 'react'
 import { Flex } from 'antd'
-import barcelonaLogo from '../assets/images/barselona.png'
-import benficaLogo from '../assets/images/barselona.png'
-import sportingLogo from '../assets/images/match.jpg'
 
 interface TeamData {
    key: string
@@ -25,24 +22,20 @@ const columns = [
       dataIndex: 'team_logo',
       key: 'team_logo',
 
-      render: (text: string, record: TeamData) => {
-         console.log(record, 'fjsadhfjak')
-
-         return (
-            <Flex
-               className="first-block-box"
-               style={{ width: '250px' }}
-               align="center"
-            >
-               <img
-                  src={record.team_logo}
-                  alt={`${record.team_title} logo`}
-                  style={{ width: '30px', height: '30px', marginRight: '10px' }}
-               />
-               {text}
-            </Flex>
-         )
-      },
+      render: (text: string, record: TeamData) => (
+         <Flex
+            className="first-block-box"
+            style={{ width: '250px' }}
+            align="center"
+         >
+            <img
+               src={record.team_logo}
+               alt={`${record.team_title} logo`}
+               style={{ width: '30px', height: '30px', marginRight: '10px' }}
+            />
+            {text}
+         </Flex>
+      ),
    },
    {
       title: 'Игры',
@@ -117,47 +110,4 @@ const columns = [
    },
 ]
 
-const data = [
-   {
-      key: '1',
-      date: '05 Января 2025',
-      time: '20:00',
-      team: 'Aбдыш-ата',
-      opponent: 'команда',
-      league: 'La Liga',
-      logo: barcelonaLogo,
-      opponentLogo: sportingLogo,
-   },
-   {
-      key: '2',
-      date: '06 Января 2025',
-      time: '21:00',
-      team: 'Спортивный клуб',
-      opponent: 'ФК Барселона',
-      league: 'La Liga',
-      logo: sportingLogo,
-      opponentLogo: benficaLogo,
-   },
-   {
-      key: '3',
-      date: '07 Января 2025',
-      time: '19:00',
-      team: 'Жетафе',
-      opponent: 'Aбдыш-ата',
-      league: 'La Liga',
-      logo: barcelonaLogo,
-      opponentLogo: sportingLogo,
-   },
-   {
-      key: '4',
-      date: '08 Января 2025',
-      time: '18:00',
-      team: 'Бенфика',
-      opponent: 'ФК Барселона',
-      league: 'La Liga',
-      opponentLogo: sportingLogo,
-      logo: sportingLogo,
-   },
-]
-
-export { columns, data }
+export { columns }

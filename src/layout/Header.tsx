@@ -10,6 +10,7 @@ import Partner2copy from '../assets/images/partner2.svg'
 import { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../store/store'
 import { getAllTeams } from '../store/slice/team/teamThunk'
+import { searchGlobal } from '../store/slice/globalSearch/globalSearchThunk'
 
 interface StyledContainerProps {
    isscrolled: string
@@ -123,8 +124,10 @@ const Header = () => {
 
    const handleDrawerToggle = () => setDrawerVisible(!drawerVisible)
 
-   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       setSearchQuery(e.target.value)
+      dispatch(searchGlobal(e.target.value))
+   }
 
    const isOnDifferentPage = location.pathname !== '/'
 

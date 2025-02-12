@@ -100,5 +100,19 @@ export const ShopSlice = createSlice({
          .addCase(PRODUCT_THUNK.getProduct.rejected, (state) => {
             state.isLoading = false
          })
+
+         .addCase(
+            PRODUCT_THUNK.searchProduct.fulfilled,
+            (state, { payload }: PayloadAction<{ results: Product[] }>) => {
+               state.products = payload.results
+               state.isLoading = false
+            }
+         )
+         .addCase(PRODUCT_THUNK.searchProduct.pending, (state) => {
+            state.isLoading = true
+         })
+         .addCase(PRODUCT_THUNK.searchProduct.rejected, (state) => {
+            state.isLoading = false
+         })
    },
 })

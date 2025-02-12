@@ -24,7 +24,6 @@ const getCoach = createAsyncThunk(
    async (slug: string | undefined, { rejectWithValue }) => {
       try {
          const { data } = await axiosInstance(`teams/coach/${slug}`)
-         console.log(data)
 
          return data
       } catch (error) {

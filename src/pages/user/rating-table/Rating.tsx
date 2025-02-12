@@ -149,8 +149,6 @@ const Rating = () => {
       dispatch(getTeamsRating())
    }, [dispatch])
 
-   console.log(teams)
-
    const dataSource = teams.map((team) => ({
       ...team,
       key: team.id || team.team_title,

@@ -13,6 +13,8 @@ import { achievementsSlice } from './slice/ahievements/ahievementsSlice'
 import { MatchesSlice } from './slice/matches/mathesSlice'
 import { infrastractureSlice } from './slice/infrastracture/infrastractureSlice'
 import { ratingSlice } from './slice/rating/ratingSlice'
+import { globalSearch } from './slice/globalSearch/globalSearchSlice'
+import { guidelineSlice } from './slice/guideline/guidelineSlice'
 
 export const store = configureStore({
    reducer: {
@@ -29,6 +31,8 @@ export const store = configureStore({
       [MatchesSlice.name]: MatchesSlice.reducer,
       [infrastractureSlice.name]: infrastractureSlice.reducer,
       [ratingSlice.name]: ratingSlice.reducer,
+      [globalSearch.name]: globalSearch.reducer,
+      [guidelineSlice.name]: guidelineSlice.reducer,
    },
 })
 

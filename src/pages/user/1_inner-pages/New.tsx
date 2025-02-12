@@ -1,22 +1,34 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { Typography, Card, Flex } from 'antd'
 import styled from 'styled-components'
-import image from '../../../assets/images/background2.jpg'
 import News from '../../../components/News'
+import image from '../../../assets/images/banner.avif'
+import { useAppDispatch, useAppSelector } from '../../../store/store'
+import { NEWS_THUNK } from '../../../store/slice/news/newsThunk'
+import { useParams } from 'react-router-dom'
 
 const { Title, Paragraph } = Typography
 
 const New: FC = () => {
    window.scrollTo(0, 0)
+   const { slug } = useParams<{ slug: string }>()
+
+   const { currentNews } = useAppSelector((state) => state.news)
+   console.log(slug)
+
+   const dispatch = useAppDispatch()
+
+   useEffect(() => {
+      dispatch(NEWS_THUNK.getNew(slug))
+   }, [dispatch, slug])
 
    return (
       <StyledContainer>
-         <BackgroundContainer />
-
+         <BackgroundContainer image={currentNews?.image || image} />
          <ContentCard>
             <Flex gap={20} vertical align="center">
                <Flex vertical>
-                  <StyledTitle level={1}>Raul Neto leaves Barça</StyledTitle>
+                  <StyledTitle level={1}>{currentNews?.title}</StyledTitle>
 
                   <Flex justify="space-between" className="date-info">
                      <Paragraph>
@@ -26,39 +38,18 @@ const New: FC = () => {
 
                         <br />
 
-                        <span style={{}}>04:59 PM THURSDAY 02 JAN</span>
+                        <span style={{}}>{currentNews?.date}</span>
                      </Paragraph>
-                     <Paragraph className="sport-type">football</Paragraph>
+                     <Paragraph className="sport-type">
+                        {currentNews?.category.title}
+                     </Paragraph>
                   </Flex>
 
-                  <StyledParagraph>
-                     Рауль Нето покинет «Абдыш-ата» после того, как клуб и игрок
-                     достигли соглашения о расторжении контракта с игроком.
-                     после недавней травмы бразильца. 27 декабря в игре в матче
-                     против Нето получил травму левого подколенного сухожилия,
-                     из-за которой он выбыл из строя. левого подколенного
-                     сухожилия, из-за чего он выбыл из строя примерно на три
-                     месяцев.
-                  </StyledParagraph>
-
-                  <StyledParagraph>
-                     ФК «Абдыш-ата» хотел бы отметить профессионализм Рауля Нето
-                     профессионализм Рауля Нето и его способность всегда всегда
-                     поддерживать команду наилучшим образом. Медицинский
-                     персонал клуба Медицинский персонал клуба также предложил
-                     свою помощь игроку во время его восстановления.
-                  </StyledParagraph>
-
-                  <StyledTitle level={3}>Две досадные травмы</StyledTitle>
-
-                  <StyledParagraph>
-                     Бразилец присоединился к клубу 24 ноября. 24 ноября, чтобы
-                     закрыть свою травму вместе с партнером по команде Нико
-                     Лапровиттола. Он провел короткий матч против «Реала
-                     Мадрид», а спустя несколько дней сыграл в Евролиге против
-                     «Црвены Звезды», но получил вторую травму после предыдущей.
-                     предыдущей.
-                  </StyledParagraph>
+                  <StyledParagraph
+                     dangerouslySetInnerHTML={{
+                        __html: currentNews?.content || '',
+                     }}
+                  />
                </Flex>
             </Flex>
          </ContentCard>
@@ -72,14 +63,16 @@ export default New
 
 const StyledContainer = styled.main`
    margin-bottom: 40px;
+   margin: 0 auto;
 `
 
-const BackgroundContainer = styled.div`
-   background-image: url(${image});
+const BackgroundContainer = styled.div<{ image: string }>`
+   background-image: url(${(props) => props.image});
    background-size: cover;
+   background-repeat: no-repeat;
    background-attachment: fixed;
-   background-position: center;
-   min-height: 50vh;
+   /* background-position: start; */
+   min-height: 70vh;
 `
 
 const ContentCard = styled(Card)`
@@ -112,9 +105,10 @@ const ContentCard = styled(Card)`
 
 const StyledTitle = styled(Title)`
    text-align: start;
+   color: red;
 `
 
-const StyledParagraph = styled(Paragraph)`
+const StyledParagraph = styled.p`
    font-size: 1rem;
    color: #8e8e8e;
    font-weight: 300;

@@ -73,7 +73,7 @@ export const USER_ROUTES = [
       ),
    },
    {
-      path: 'news/:id',
+      path: 'news/:slug',
       element: (
          <Suspense>
             <New />

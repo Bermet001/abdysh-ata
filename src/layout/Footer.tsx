@@ -99,8 +99,6 @@ const Footer = () => {
 
    const contact = contacts.length > 0 ? contacts[0] : null
 
-   // console.log(contact)
-
    return (
       <StyledFooter>
          <Flex className="inner" vertical gap={15}>

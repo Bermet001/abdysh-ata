@@ -3,12 +3,13 @@ import { Card, Button, Flex, Input, Select } from 'antd'
 import { NavLink } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
 import { PRODUCT_THUNK } from '../../../store/slice/shop/shopThunk'
-import { useEffect } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 
 const { Search } = Input
 
 const Shop = () => {
    window.scrollTo(0, 0)
+   const [search, setSearch] = useState<string>('')
 
    const { products } = useAppSelector((state) => state.shop)
 
@@ -17,6 +18,11 @@ const Shop = () => {
    useEffect(() => {
       dispatch(PRODUCT_THUNK.getProducts())
    }, [dispatch])
+
+   const searchHandler = (e: ChangeEvent<HTMLInputElement>) => {
+      setSearch(e.target.value)
+      dispatch(PRODUCT_THUNK.searchProduct(e.target.value))
+   }
 
    return (
       <Container>
@@ -32,7 +38,11 @@ const Shop = () => {
                ]}
             />
 
-            <StyledSearch placeholder="Поиск..." />
+            <StyledSearch
+               onChange={searchHandler}
+               value={search}
+               placeholder="Поиск..."
+            />
          </Flex>
 
          <ProductsContainer>

@@ -13,6 +13,7 @@ export interface News {
    slug: string
    category: Category
    image: string
+   content: string
    date: string
 }
 
@@ -31,6 +32,7 @@ const initialState: ShopState = {
       id: null,
       title: '',
       slug: '',
+      content: '',
       category: {
          id: null,
          title: '',
@@ -87,6 +89,20 @@ export const NewsSlice = createSlice({
             state.isLoading = true
          })
          .addCase(NEWS_THUNK.getNew.rejected, (state) => {
+            state.isLoading = false
+         })
+
+         .addCase(
+            NEWS_THUNK.searchNew.fulfilled,
+            (state, { payload }: PayloadAction<{ results: News[] }>) => {
+               state.allNews = payload.results
+               state.isLoading = false
+            }
+         )
+         .addCase(NEWS_THUNK.searchNew.pending, (state) => {
+            state.isLoading = true
+         })
+         .addCase(NEWS_THUNK.searchNew.rejected, (state) => {
             state.isLoading = false
          })
    },

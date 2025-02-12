@@ -41,7 +41,6 @@ export const ratingSlice = createSlice({
             (state, { payload }: PayloadAction<Team[]>) => {
                state.teams = payload
                state.isLoading = false
-               console.log(payload)
             }
          )
          .addCase(getTeamsRating.pending, (state) => {

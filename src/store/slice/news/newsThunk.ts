@@ -65,4 +65,20 @@ const getNew = createAsyncThunk(
    }
 )
 
-export const NEWS_THUNK = { getNew, getNews, getNewsPageItem }
+const searchNew = createAsyncThunk(
+   'news/search_new',
+   async (text: string | undefined, { rejectWithValue }) => {
+      try {
+         const { data } = await axiosInstance(`cms/news/?search=${text}`)
+
+         return data
+      } catch (error) {
+         const err = error as AxiosError
+         return rejectWithValue({
+            message: err.message,
+         })
+      }
+   }
+)
+
+export const NEWS_THUNK = { getNew, getNews, getNewsPageItem, searchNew }

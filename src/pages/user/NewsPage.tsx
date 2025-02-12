@@ -1,9 +1,8 @@
-import { FC, useEffect, useState } from 'react'
+import { ChangeEvent, FC, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import { Pagination as AntPagination, Flex, Select } from 'antd'
 import { Input } from 'antd'
-import { SearchProps } from 'antd/es/input'
 import { useAppDispatch, useAppSelector } from '../../store/store'
 import { NEWS_THUNK } from '../../store/slice/news/newsThunk'
 
@@ -12,10 +11,10 @@ const { Search } = Input
 const NewsPage: FC = () => {
    window.scrollTo(0, 0)
    const { allNews } = useAppSelector((state) => state.news)
-   const [currentPage, setCurrentPage] = useState(1)
+   const [currentPage, setCurrentPage] = useState<number>(1)
    const itemsPerPage = 10
-   const [screenWidth, setScreenWidth] = useState(window.innerWidth)
-   
+   const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth)
+   const [search, setSearch] = useState<string>('')
    const dispatch = useAppDispatch()
 
    useEffect(() => {
@@ -33,8 +32,9 @@ const NewsPage: FC = () => {
       }
    }, [])
 
-   const onSearch: SearchProps['onSearch'] = (value) => {
-      console.log(value)
+   const onSearch = (e: ChangeEvent<HTMLInputElement>) => {
+      dispatch(NEWS_THUNK.searchNew(e.target.value))
+      setSearch(e.target.value)
    }
 
    const onPageChange = (page: number) => setCurrentPage(page)
@@ -48,7 +48,8 @@ const NewsPage: FC = () => {
                <StyledInput
                   placeholder="Поиск новостей"
                   allowClear
-                  onSearch={onSearch}
+                  value={search}
+                  onChange={onSearch}
                   style={{ flex: 1 }}
                   size="large"
                />
