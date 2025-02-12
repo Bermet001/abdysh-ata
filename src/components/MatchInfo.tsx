@@ -1,35 +1,24 @@
 import { Flex } from 'antd'
-import { matches } from '../configs'
 import MatchCard from './MatchCard'
 import styled from 'styled-components'
-// import { useAppDispatch, useAppSelector } from '../store/store'
-// import { useEffect } from 'react'
-// import { getMatches } from '../store/slice/matches/matchesThunk'
-
-// interface Match {
-//    team1Logo: string
-//    team1Name: string
-//    team2Logo: string
-//    team2Name: string
-//    dateTime: string
-//    countdown: string
-//    arena: string
-// }
+import { useAppDispatch, useAppSelector } from '../store/store'
+import { useEffect } from 'react'
+import { getMatches } from '../store/slice/matches/matchesThunk'
 
 const MatchInfo = () => {
-   // const { matches } = useAppSelector((state) => state.matches)
+   const { matches } = useAppSelector((state) => state.matches)
 
-   // const dispatch = useAppDispatch()
+   const dispatch = useAppDispatch()
 
-   // useEffect(() => {
-   //    dispatch(getMatches())
-   // })
+   useEffect(() => {
+      dispatch(getMatches())
+   }, [dispatch])
 
    return (
       <StyledContainer>
          <StyledFlexContainer>
             {matches.map((match, index: number) => (
-               <MatchCard key={index} {...match} />
+               <MatchCard key={index} match={match} />
             ))}
          </StyledFlexContainer>
       </StyledContainer>

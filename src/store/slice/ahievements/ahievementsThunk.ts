@@ -6,7 +6,7 @@ const getAchievements = createAsyncThunk(
    'achievement/getAchievements',
    async (_, { rejectWithValue }) => {
       try {
-         const { data } = await axiosInstance(`teams/teams-stats/
+         const { data } = await axiosInstance(`achievements/ahievements/
 `)
 
          return data

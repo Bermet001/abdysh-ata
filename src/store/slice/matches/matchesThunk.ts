@@ -19,41 +19,12 @@ const getMatches = createAsyncThunk(
    }
 )
 
-const getNewsPageItem = createAsyncThunk(
-   'matches/getMatches',
-   async (
-      info: {
-         page?: number
-         screenWidth?: number
-         search?: string
-         category?: string
-      },
-      { rejectWithValue }
-   ) => {
-      try {
-         const { page, screenWidth, search, category } = info
-
-         const url =
-            (category ? `&category=${category}` : '') +
-            `cms/news/?page=${page}&page_size=${screenWidth}` +
-            (search ? `&search=${search}` : '')
-
-         const { data } = await axiosInstance(url)
-         return data
-      } catch (error) {
-         const err = error as AxiosError
-         return rejectWithValue({
-            message: err.message,
-         })
-      }
-   }
-)
-
-const getNew = createAsyncThunk(
-   'news/getNew',
+const getMatch = createAsyncThunk(
+   'matches/getMatch',
    async (slug: string | undefined, { rejectWithValue }) => {
       try {
-         const { data } = await axiosInstance(`cms/news/${slug}`)
+         const slug = 'abdysh-ata-vs-kara-balta-2024-09-11'
+         const { data } = await axiosInstance(`/matches/matches/${slug}`)
 
          return data
       } catch (error) {
@@ -65,4 +36,4 @@ const getNew = createAsyncThunk(
    }
 )
 
-export { getNew, getMatches, getNewsPageItem }
+export { getMatches, getMatch }

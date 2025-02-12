@@ -6,9 +6,9 @@ const getCoaches = createAsyncThunk(
    'coach/getCoaches',
    async (_, { rejectWithValue }) => {
       try {
-         const response = await axiosInstance('teams/coach/')
+         const { data } = await axiosInstance('teams/coach/')
 
-         return response.data
+         return data
       } catch (error) {
          const err = error as AxiosError
 
@@ -23,9 +23,10 @@ const getCoach = createAsyncThunk(
    'coach/getCoach',
    async (slug: string | undefined, { rejectWithValue }) => {
       try {
-         const response = await axiosInstance(`teams/coach/${slug}`)
+         const { data } = await axiosInstance(`teams/coach/${slug}`)
+         console.log(data)
 
-         return response.data
+         return data
       } catch (error) {
          const err = error as AxiosError
          return rejectWithValue({

@@ -1,51 +1,24 @@
 import { Card, Flex, Typography } from 'antd'
-import { FC, useEffect, useState } from 'react'
+import { FC, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import styled, { keyframes } from 'styled-components'
-import { coaches } from '../../../configs'
-import Preloader from '../../../components/Preloader'
+import { useAppDispatch, useAppSelector } from '../../../store/store'
+import { getCoach } from '../../../store/slice/coach/coachThunk'
 
 const { Title } = Typography
 
-interface AchievementshProps {
-   image?: string
-   text: string
-}
-
-interface CoachProps {
-   img?: string
-   name?: string
-   surename?: string
-   position?: string
-   dateOfBirth?: string
-   biography?: string
-   achievements?: AchievementshProps[]
-}
-
 const Coach: FC = () => {
-   const { id } = useParams()
+   const { slug } = useParams()
 
    window.scrollTo(0, 0)
+   const { coach } = useAppSelector((state) => state.coach)
 
-   const [selectedCoach, setSelectedCoach] = useState<CoachProps | null>(null)
+   const dispatch = useAppDispatch()
    useEffect(() => {
-      const foundCoach = coaches.find((coach) => coach.id.toString() === id)
-      setSelectedCoach(foundCoach || null)
-   }, [id])
+      dispatch(getCoach(slug))
+   }, [dispatch, slug])
 
-   if (!selectedCoach) {
-      return <Preloader />
-   }
-
-   const {
-      img,
-      name,
-      surename,
-      position,
-      dateOfBirth,
-      biography,
-      // achievements,
-   } = selectedCoach
+   const { image, name, position, birth_date, bio } = coach
 
    return (
       <main>
@@ -63,9 +36,9 @@ const Coach: FC = () => {
                      justify="center"
                   >
                      <h1 className="coach-full-name">
-                        <AnimatedName>{name}</AnimatedName>
-                        <br />
-                        <AnimatedSurname>{surename}</AnimatedSurname>
+                        {/* <AnimatedName> fasdfas{name}</AnimatedName> */}
+                        {/* <br /> */}
+                        <AnimatedSurname>{name}</AnimatedSurname>
                      </h1>
 
                      <AnimatedCard>
@@ -77,18 +50,18 @@ const Coach: FC = () => {
 
                            <Flex vertical>
                               <StyledTitle level={5}>Дата рождения</StyledTitle>
-                              <StyledText>{dateOfBirth}</StyledText>
+                              <StyledText>{birth_date}</StyledText>
                            </Flex>
                         </Flex>
                      </AnimatedCard>
                   </Flex>
 
-                  <AnimatedImage src={img} alt="" />
+                  <AnimatedImage src={image} alt="" />
                </Flex>
 
                <Flex vertical className="biography-box">
                   <h2 className="main-title">Биография</h2>
-                  <p className="bio">{biography}</p>
+                  <p className="bio">{bio}</p>
 
                   <h2 className="main-title">Достижения</h2>
                   {/* <AchievementsContainer>
@@ -159,6 +132,7 @@ const StyledComponent = styled(Flex)`
    .first-part-coach {
       padding: 150px 75px 0;
       max-width: 1600px;
+      width: 100vw;
 
       @media (max-width: 1024px) {
          padding: 90px 20px 0;
@@ -169,6 +143,7 @@ const StyledComponent = styled(Flex)`
       line-height: 0.6;
       font-size: 55px;
       font-family: 'Inter', serif;
+      width: 100%;
    }
 
    .biography-box {
@@ -274,16 +249,18 @@ const AnimatedImage = styled.img`
    }
 `
 
-const AnimatedName = styled.span`
-   opacity: 0;
-   animation: ${fadeIn} 0.9s ease-in-out forwards;
-   font-size: 30px;
-   line-height: 2;
-   animation-delay: 0.3s;
-`
+// const AnimatedName = styled.span`
+//    opacity: 0;
+//    animation: ${fadeIn} 0.9s ease-in-out forwards;
+//    font-size: 30px;
+//    line-height: 2;
+//    animation-delay: 0.3s;
+// `
 
-const AnimatedSurname = styled.span`
+const AnimatedSurname = styled.p`
    opacity: 0;
    animation: ${fadeIn} 0.6s ease-in-out forwards;
    animation-delay: 0.5s;
+   width: 100%;
+   /* font-size: 40px; */
 `
