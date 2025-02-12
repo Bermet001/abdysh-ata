@@ -1,12 +1,23 @@
 import styled from 'styled-components'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Card, Flex } from 'antd'
-import { team } from '../configs'
 import { RightOutlined } from '@ant-design/icons'
 import { Link, NavLink } from 'react-router-dom'
 import Button from './UI/Button'
+import { useAppDispatch, useAppSelector } from '../store/store'
+import { useEffect } from 'react'
+import { getTeam } from '../store/slice/team/teamThunk'
 
 const Team = () => {
+   const { players, allTeams } = useAppSelector((state) => state.team)
+   const first_team = allTeams?.length > 0 ? allTeams[0] : null
+
+   const dispatch = useAppDispatch()
+
+   useEffect(() => {
+      dispatch(getTeam(first_team?.slug))
+   }, [dispatch, first_team])
+
    return (
       <Container>
          <Flex justify="space-between" align="start">
@@ -33,14 +44,14 @@ const Team = () => {
                },
             }}
          >
-            {team.map(({ image, id, full_name, position, number }) => (
+            {players.map(({ image, id, name, position, number, slug }) => (
                <SwiperSlide key={id}>
-                  <Link to={`/player/${id}`}>
+                  <Link to={`/player/${slug}`}>
                      <StyledCard>
                         <CardBackground $image={image}>
                            <Overlay>
                               <PlayerNumber>{number}</PlayerNumber>
-                              <PlayerName>{full_name}</PlayerName>
+                              <PlayerName>{name}</PlayerName>
                               <PlayerPosition>{position}</PlayerPosition>
                            </Overlay>
                         </CardBackground>

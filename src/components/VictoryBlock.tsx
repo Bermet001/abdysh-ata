@@ -3,10 +3,20 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Card, Flex, Button } from 'antd'
 import Image from '../assets/images/image7.jpg'
 import { RightOutlined } from '@ant-design/icons'
-import { leagues } from '../configs'
 import { NavLink } from 'react-router-dom'
+import { useAppDispatch, useAppSelector } from '../store/store'
+import { useEffect } from 'react'
+import { getAchievements } from '../store/slice/ahievements/ahievementsThunk'
 
 const VictoryBlock = () => {
+   const { achievements } = useAppSelector((state) => state.achievements)
+
+   const dispatch = useAppDispatch()
+
+   useEffect(() => {
+      dispatch(getAchievements())
+   }, [dispatch])
+
    return (
       <Container>
          <VictoryDes className="victory-des">
@@ -49,17 +59,20 @@ const VictoryBlock = () => {
                   },
                }}
             >
-               {leagues.map(({ id, name, date, trophy }) => (
+               {achievements.map(({ id, title, season, image }) => (
                   <SwiperSlide key={id}>
                      <StyledCard>
                         <Flex vertical>
                            <img
                               className="trophy-image"
-                              src={trophy}
+                              src={image}
                               alt="trophy"
                            />
-                           <p>{date}</p>
-                           <h2>{name}</h2>
+
+                           <div className="contents-trophy">
+                              <p>{season}</p>
+                              <h2>{title}</h2>
+                           </div>
                         </Flex>
                      </StyledCard>
                   </SwiperSlide>
@@ -138,10 +151,18 @@ const StyledCard = styled(Card)`
    border-radius: 10px;
    margin: 10px;
 
+   .contents-trophy {
+      padding: 15px !important;
+   }
+
+   .ant-card-body {
+      padding: 0px !important;
+   }
+
    @media (max-width: 830px) {
       margin: 0px;
 
-      .ant-card-body {
+      .contents-trophy {
          padding: 10px !important;
       }
    }
@@ -153,6 +174,7 @@ const StyledCard = styled(Card)`
       object-fit: cover;
       width: 100%;
       margin: 0 auto;
+      border-radius: 10px 10px 0 0;
 
       @media (max-width: 910px) {
          width: 100%;
@@ -172,7 +194,7 @@ const StyledCard = styled(Card)`
    }
 
    h2 {
-      font-size: 1.2rem;
+      font-size: 0.9rem;
       margin-top: 10px;
 
       @media (max-width: 830px) {

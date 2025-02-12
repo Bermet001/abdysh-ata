@@ -1,14 +1,22 @@
 import styled from 'styled-components'
-import { newsItems } from '../configs'
 import { Flex } from 'antd'
 import { RightOutlined } from '@ant-design/icons'
 import { NavLink } from 'react-router-dom'
 import NewsCard from './UI/NewsCard'
 import Button from './UI/Button'
 import { useEffect, useState } from 'react'
+import { useAppDispatch, useAppSelector } from '../store/store'
+import { NEWS_THUNK } from '../store/slice/news/newsThunk'
 
 const News = () => {
-   const [visibleCount, setVisibleCount] = useState<number>(newsItems.length)
+   const { news } = useAppSelector((state) => state.news)
+   const [visibleCount, setVisibleCount] = useState<number>(news?.length)
+
+   const dispatch = useAppDispatch()
+
+   useEffect(() => {
+      dispatch(NEWS_THUNK.getNews())
+   }, [dispatch])
 
    useEffect(() => {
       const handleResize = () => {
@@ -22,7 +30,7 @@ const News = () => {
       }
 
       handleResize()
-      window.addEventListener('resize', handleResize)
+      window.addEventListener('resize', handleResize, { passive: true })
 
       return () => {
          window.removeEventListener('resize', handleResize)
@@ -41,7 +49,7 @@ const News = () => {
          </Flex>
 
          <CardsContainer>
-            {newsItems.slice(0, visibleCount).map((item) => (
+            {news.slice(0, visibleCount).map((item) => (
                <NewsCard key={item.id} {...item} />
             ))}
          </CardsContainer>

@@ -15,7 +15,7 @@ const Contacts = lazy(() => import('../pages/user/Contacts'))
 const Partners = lazy(() => import('../pages/user/Partners'))
 const TeamWrapper = lazy(() => import('../pages/user/team/TeamWrapper'))
 const Coach = lazy(() => import('../pages/user/coach/Coach'))
-const Coaches = lazy(() => import('../pages/user/coach/Сoaches'))
+const Coaches = lazy(() => import('../pages/user/coach/Coaches'))
 const NewsPage = lazy(() => import('../pages/user/NewsPage'))
 const Player = lazy(() => import('../pages/user/team/Player'))
 const SchedulMatche = lazy(() => import('../pages/user/matches/Matches'))
@@ -57,7 +57,7 @@ export const USER_ROUTES = [
       ),
    },
    {
-      path: 'banner/:id',
+      path: 'banner/:slug',
       element: (
          <Suspense>
             <BannerInner />
@@ -65,7 +65,7 @@ export const USER_ROUTES = [
       ),
    },
    {
-      path: 'player/:id',
+      path: 'player/:slug',
       element: (
          <Suspense>
             <Player />
@@ -73,7 +73,7 @@ export const USER_ROUTES = [
       ),
    },
    {
-      path: 'news/:id',
+      path: 'news/:slug',
       element: (
          <Suspense>
             <New />
@@ -97,7 +97,7 @@ export const USER_ROUTES = [
       ),
    },
    {
-      path: 'team',
+      path: 'team/:slug',
       element: (
          <Suspense>
             <TeamWrapper />
@@ -105,7 +105,7 @@ export const USER_ROUTES = [
       ),
    },
    {
-      path: 'coaches/:id',
+      path: 'coaches/:slug',
       element: (
          <Suspense>
             <Coach />
@@ -145,7 +145,7 @@ export const USER_ROUTES = [
       ),
    },
    {
-      path: 'infrastructure/:id',
+      path: 'infrastructure/:slug',
       element: (
          <Suspense>
             <Infrastracture />
@@ -179,7 +179,7 @@ export const USER_ROUTES = [
    },
 
    {
-      path: 'shop/:id',
+      path: 'shop/:slug',
       element: (
          <Suspense>
             <Product />
@@ -197,7 +197,7 @@ export const USER_ROUTES = [
    },
 
    {
-      path: 'gallery/:id',
+      path: 'gallery/:slug',
       element: (
          <Suspense>
             <Photo />

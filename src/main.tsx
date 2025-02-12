@@ -5,13 +5,13 @@ import './index.css'
 import './App.css'
 import 'swiper/css'
 import 'swiper/swiper-bundle.css'
-// import { Provider } from 'react-redux'
-// import { store } from './store/store'
+import { Provider } from 'react-redux'
+import { store } from './store/store'
 
 createRoot(document.getElementById('root')!).render(
    <StrictMode>
-      {/* <Provider store={store}> */}
+      <Provider store={store}>
          <App />
-      {/* </Provider> */}
+      </Provider>
    </StrictMode>
 )

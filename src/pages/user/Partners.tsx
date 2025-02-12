@@ -1,10 +1,19 @@
 import styled from 'styled-components'
-import { sponsorsData } from '../../configs'
 import { Flex } from 'antd'
 import bgImage from '../../assets/images/partners-baner/partners-image.jpg'
+import { useAppDispatch, useAppSelector } from '../../store/store'
+import { getPartners } from '../../store/slice/partners/partnersThunk'
+import { useEffect } from 'react'
 
 const Partners = () => {
    window.scrollTo(0, 0)
+
+   const { partners } = useAppSelector((state) => state.partner)
+   const dispatch = useAppDispatch()
+
+   useEffect(() => {
+      dispatch(getPartners())
+   }, [dispatch])
 
    return (
       <StyledContainer>
@@ -24,14 +33,14 @@ const Partners = () => {
          </BackgroundSection>
 
          <Flex gap={40} justify="center" wrap className="partners-container">
-            {sponsorsData.map((sponsor) => (
+            {partners.map((sponsor) => (
                <SponsorItem key={sponsor.id}>
                   <a href={sponsor.link}>
                      <img
                         height="auto"
                         width={300}
-                        src={sponsor.img}
-                        alt={sponsor.alt}
+                        src={sponsor.image}
+                        alt={sponsor.title}
                      />
                   </a>
                </SponsorItem>
@@ -137,7 +146,7 @@ const SponsorItem = styled.div`
    img {
       display: block;
       padding: 10px;
-      width: 100px;
+      width: 160px;
       height: auto;
       object-fit: cover;
       cursor: pointer;
@@ -153,7 +162,7 @@ const SponsorItem = styled.div`
       max-width: 100%;
 
       img {
-         width: 70px;
+         width: 110px;
       }
    }
 `

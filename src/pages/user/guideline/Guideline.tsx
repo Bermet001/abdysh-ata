@@ -1,75 +1,35 @@
 import styled from 'styled-components'
 import { Card, Col, Modal, Row } from 'antd'
-import { FC, useState } from 'react'
-import photo from '../../../assets/images/players/image.png'
+import { FC, useEffect, useState } from 'react'
 import { InfoCircleOutlined } from '@ant-design/icons'
+import { useAppDispatch, useAppSelector } from '../../../store/store'
+import { getManagmets } from '../../../store/slice/guideline/guidelineThunk'
+import Preloader from '../../../components/Preloader'
 
-interface Director {
+interface IManagment {
+   id: number
    name: string
    position: string
    image: string
-   text: string
-   id: number
-}
-
-interface Data {
-   directors: Director[]
-}
-
-const data: Data = {
-   directors: [
-      {
-         name: 'Туменбаев Бактыбек Асаналиевич',
-         position: 'Председатель Совета',
-         image: 'link_to_image1.jpg',
-         text: 'Информация о Туменбаеве Бактыбеке Асаналиевиче.',
-         id: 1,
-      },
-      {
-         name: 'Кыргызаева Асель Жешенбековна',
-         position: 'Член Совета Директоров',
-         image: 'link_to_image2.jpg',
-         text: 'Информация о Кыргызаевой Асель Жешенбековне.',
-         id: 2,
-      },
-      {
-         name: 'Масрабажев Жанибек Сагадиевич',
-         position: 'Член Совета Директоров',
-         image: 'link_to_image3.jpg',
-         text: 'Информация о Масрабажеве Жанибеке Сагадиевиче.',
-         id: 3,
-      },
-      {
-         name: 'Асылбек Эмильбек Манабекович',
-         position: 'Член Шараитского совета',
-         image: 'link_to_image4.jpg',
-         text: 'Информация о Асылбеке Эмильбек Манабековиче.',
-         id: 4,
-      },
-      {
-         name: 'Эшнунков Токтин Мусурманович',
-         position: 'Член Шараитского совета',
-         image: 'link_to_image5.jpg',
-         text: 'Информация о Эшнункове Токтине Мусурмановиче.',
-         id: 5,
-      },
-      {
-         name: 'Алимбеков Олжобай Садикович',
-         position: 'Член Шараитского совета',
-         id: 6,
-         image: 'link_to_image6.jpg',
-         text: 'Информация о Алимбекове Олжобае Садиковиче.',
-      },
-   ],
+   content: string
 }
 
 const Guideline: FC = () => {
+   window.scrollTo(0, 0)
+
    const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
-   const [selectedDirector, setSelectedDirector] = useState<Director | null>(
+   const [selectedDirector, setSelectedDirector] = useState<IManagment | null>(
       null
    )
 
-   const showModal = (director: Director) => {
+   const dispatch = useAppDispatch()
+   const { persons, isLoading } = useAppSelector((state) => state.management)
+
+   useEffect(() => {
+      dispatch(getManagmets())
+   }, [dispatch])
+
+   const showModal = (director: IManagment) => {
       setSelectedDirector(director)
       setIsModalOpen(true)
    }
@@ -79,19 +39,19 @@ const Guideline: FC = () => {
       setSelectedDirector(null)
    }
 
-   window.scrollTo(0, 0)
+   if (isLoading) {
+      return <Preloader />
+   }
 
    return (
       <StyledContainer>
          <h1 className="main-title">Руководство</h1>
-
          <Row gutter={[10, 10]}>
-            {data.directors.map((director) => (
+            {persons.map((director) => (
                <Col xs={12} sm={12} md={8} lg={6} key={director.id}>
                   <StyledCard onClick={() => showModal(director)}>
                      <InfoCircleOutlined className="info-icon" />
-
-                     <Image src={photo} alt={director.name} />
+                     <Image src={director.image} alt={director.name} />
                      <h3 className="name-p">{director.name}</h3>
                      <CardContent>{director.position}</CardContent>
                   </StyledCard>
@@ -106,7 +66,9 @@ const Guideline: FC = () => {
                onCancel={handleCancel}
                footer={null}
             >
-               <p>{selectedDirector.text}</p>
+               <p
+                  dangerouslySetInnerHTML={{ __html: selectedDirector.content }}
+               />
             </Modal>
          )}
       </StyledContainer>
@@ -141,24 +103,15 @@ const StyledContainer = styled.main`
          padding: 13px;
       }
    }
-
-   @media (max-width: 570px) {
-      .ant-card {
-         margin: 0;
-      }
-   }
 `
 
 const StyledCard = styled(Card)`
-   /* margin: 10px; */
    border-radius: 15px;
    transition: transform 0.3s, box-shadow 0.3s;
 
-   @media (max-width: 570px) {
-   }
-
-   @media (max-width: 570px) {
-      border-radius: 8px;
+   &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
    }
 
    .info-icon {
@@ -174,17 +127,7 @@ const StyledCard = styled(Card)`
             transform: translateY(-2px);
             fill: #ffcc00;
          }
-
-         @media (max-width: 570px) {
-            width: 1rem;
-            height: 1rem;
-         }
       }
-   }
-
-   &:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
    }
 
    .name-p {
@@ -193,7 +136,7 @@ const StyledCard = styled(Card)`
 
       @media (max-width: 570px) {
          font-size: 13px;
-         height: 100%;
+         height: auto;
       }
    }
 `

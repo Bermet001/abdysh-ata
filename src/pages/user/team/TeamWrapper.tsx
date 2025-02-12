@@ -1,9 +1,12 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { Tabs } from 'antd'
 import type { TabsProps } from 'antd'
 import Team from './Team'
-import Сoaches from '../coach/Сoaches'
+import Сoaches from '../coach/Coaches'
 import styled from 'styled-components'
+import { getTeam } from '../../../store/slice/team/teamThunk'
+import { useAppDispatch } from '../../../store/store'
+import { useParams } from 'react-router-dom'
 
 const onChange = (key: string) => console.log(key)
 
@@ -22,6 +25,13 @@ const items: TabsProps['items'] = [
 
 const TeamWrapper: FC = () => {
    window.scrollTo(0, 0)
+   const { slug } = useParams<{ slug: string }>()
+
+   const dispatch = useAppDispatch()
+
+   useEffect(() => {
+      dispatch(getTeam(slug))
+   }, [dispatch, slug])
 
    return (
       <StyledContainer>

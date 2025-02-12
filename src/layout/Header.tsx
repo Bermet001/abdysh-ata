@@ -1,35 +1,94 @@
-import { Affix, Button, Input, Flex, Drawer, Dropdown } from 'antd'
+import {
+   Affix,
+   Button,
+   Input,
+   Flex,
+   Drawer,
+   Dropdown,
+   MenuProps,
+   Menu,
+} from 'antd'
 import { SearchOutlined, MenuOutlined, CloseOutlined } from '@ant-design/icons'
 import Logo from '../assets/images/main-logo.png'
 import styled from 'styled-components'
-import { navigations } from '../configs'
 import { NavLink, useLocation } from 'react-router-dom'
 import Partner1 from '../assets/images/nitro-logo.png'
 import Partner2 from '../assets/images/partner2 copy.svg'
 import Nashe from '../assets/images/nashe-logo.jpg'
 import Partner2copy from '../assets/images/partner2.svg'
 import { useEffect, useState } from 'react'
+import { useAppDispatch, useAppSelector } from '../store/store'
+import { getAllTeams } from '../store/slice/team/teamThunk'
+import { searchGlobal } from '../store/slice/globalSearch/globalSearchThunk'
 
 interface StyledContainerProps {
    isscrolled: string
 }
 
 const Header = () => {
+   const { allTeams } = useAppSelector((state) => state.team)
+   const { data } = useAppSelector((state) => state.global_search)
+
    const [isscrolled, setIsScrolled] = useState(false)
    const [searchVisible, setSearchVisible] = useState(false)
    const [drawerVisible, setDrawerVisible] = useState(false)
    const [searchQuery, setSearchQuery] = useState('')
 
+   const navigations = [
+      { path: '/', title: 'Главная', id: 1 },
+      {
+         path: '#',
+         title: 'Команды',
+         id: 2,
+         sub_nav: allTeams.map(({ slug, title, id }) => ({
+            slug: `/team/${slug}`,
+            title,
+            id,
+         })),
+      },
+      {
+         path: '/',
+         title: 'О клубе',
+         sub_nav: [
+            { slug: '/history', title: 'История ', id: 21 },
+            { slug: '/guideline', title: 'Руководство', id: 22 },
+            { slug: '/contacts', title: 'Контакты', id: 23 },
+         ],
+         id: 3,
+      },
+      { path: '/match', title: 'Матчи', id: 4 },
+      {
+         path: '/infrastracture',
+         title: 'Инфраструктура',
+         sub_nav: [
+            { slug: '/', title: 'СК Нитро-Арена ', id: 21 },
+            { slug: '/', title: 'СК Спорт-Сити', id: 22 },
+            { slug: '/', title: 'Стадион Центральный', id: 23 },
+            { slug: '/', title: 'Тренажерный зал', id: 24 },
+            { slug: '/', title: 'Батутный зал', id: 25 },
+         ],
+         id: 8,
+      },
+      { path: '/rating', title: 'Таблица рейтинга', id: 5 },
+      { path: '/partners', title: 'Партнеры', id: 6 },
+      { path: '/trophy', title: 'Наши достижения', id: 7 },
+   ]
+
    const location = useLocation()
+   const dispatch = useAppDispatch()
 
    const handleScroll = () => setIsScrolled(window.scrollY > 50)
 
    useEffect(() => {
-      window.addEventListener('scroll', handleScroll)
+      window.addEventListener('scroll', handleScroll, { passive: true })
       return () => {
          window.removeEventListener('scroll', handleScroll)
       }
    }, [])
+
+   useEffect(() => {
+      dispatch(getAllTeams())
+   }, [dispatch])
 
    const handleSearchClick = () => {
       setSearchVisible(!searchVisible)
@@ -40,10 +99,51 @@ const Header = () => {
 
    const handleDrawerToggle = () => setDrawerVisible(!drawerVisible)
 
-   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-      setSearchQuery(e.target.value)
+   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value
+      setSearchQuery(value)
+      if (value) {
+         dispatch(searchGlobal(value))
+      } else {
+         setSearchVisible(false)
+      }
+   }
+
+   const handleMenuClick = () => setSearchVisible(false)
 
    const isOnDifferentPage = location.pathname !== '/'
+
+   const searchResults = data
+      ? [
+           ...data.teams.map((team) => ({
+              key: `team-${team.id}`,
+              label: (
+                 <NavLink to={`/team/${team.slug}`} onClick={handleMenuClick}>
+                    {team.title}
+                 </NavLink>
+              ),
+           })),
+           ...data.products.map((product) => ({
+              key: `product-${product.id}`,
+              label: (
+                 <NavLink
+                    to={`/shop/${product.slug}`}
+                    onClick={handleMenuClick}
+                 >
+                    {product.title}
+                 </NavLink>
+              ),
+           })),
+           ...data.news.map((news) => ({
+              key: `news-${news.id}`,
+              label: (
+                 <NavLink to={`/news/${news.slug}`} onClick={handleMenuClick}>
+                    {news.title}
+                 </NavLink>
+              ),
+           })),
+        ]
+      : []
 
    return (
       <header
@@ -87,13 +187,21 @@ const Header = () => {
                >
                   {searchVisible ? (
                      <>
-                        <StyledInput
-                           value={searchQuery}
-                           onChange={handleSearchChange}
-                           placeholder="Поиск..."
-                           autoFocus
-                           style={{ border: 'none' }}
-                        />
+                        <StyledDropdown
+                           overlay={<Menu items={searchResults} />}
+                           trigger={['click']}
+                           visible={
+                              searchQuery.length > 0 && searchResults.length > 0
+                           }
+                        >
+                           <StyledInput
+                              value={searchQuery}
+                              onChange={handleSearchChange}
+                              placeholder="Поиск..."
+                              autoFocus
+                              style={{ border: 'none' }}
+                           />
+                        </StyledDropdown>
                         <CloseOutlined onClick={handleSearchClick} />
 
                         <Button type="primary">Поиск</Button>
@@ -105,13 +213,16 @@ const Header = () => {
                               const menuItems = sub_nav
                                  ? sub_nav.map(
                                       ({
-                                         path: subPath,
+                                         slug: subPath,
                                          title: subTitle,
                                          id: subId,
                                       }) => ({
                                          key: subId,
                                          label: (
-                                            <NavLink to={subPath}>
+                                            <NavLink
+                                               to={subPath}
+                                               onClick={handleMenuClick}
+                                            >
                                                {subTitle}
                                             </NavLink>
                                          ),
@@ -122,10 +233,17 @@ const Header = () => {
                               return (
                                  <Dropdown
                                     key={id}
-                                    menu={{ items: menuItems }}
+                                    menu={{
+                                       items: menuItems as MenuProps['items'],
+                                    }}
                                     trigger={['hover']}
                                  >
-                                    <NavLink to={path}>{title}</NavLink>
+                                    <NavLink
+                                       to={path}
+                                       onClick={handleMenuClick}
+                                    >
+                                       {title}
+                                    </NavLink>
                                  </Dropdown>
                               )
                            })}
@@ -141,6 +259,7 @@ const Header = () => {
                               src={Partner1}
                               alt=""
                            />
+
                            {isscrolled ? <Partner2copy /> : <Partner2 />}
 
                            <img src={Nashe} width="50" alt="logo" />
@@ -182,7 +301,7 @@ const Header = () => {
                         <Flex gap={7} vertical style={{ paddingLeft: '20px' }}>
                            {sub_nav.map(
                               ({
-                                 path: subPath,
+                                 slug: subPath,
                                  title: subTitle,
                                  id: subId,
                               }) => (
@@ -354,5 +473,27 @@ const StyledDrawer = styled(Drawer)`
 
    a {
       color: #2d2d2d;
+   }
+`
+
+const StyledDropdown = styled(Dropdown)`
+   width: 100% !important;
+   border-radius: 6px !important;
+
+   .ant-dropdown .ant-dropdown-menu {
+      border-radius: 6px !important;
+   }
+
+   .ant-dropdown-menu-item {
+      padding: 10px 16px;
+      border-bottom: 1px solid #f0f0f0 !important;
+   }
+
+   .ant-dropdown-menu-item:last-child {
+      /* border-bottom: none;  */
+   }
+
+   .ant-dropdown-menu-item:hover {
+      background-color: rgba(0, 0, 0, 0.05);
    }
 `

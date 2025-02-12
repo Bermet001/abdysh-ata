@@ -1,17 +1,166 @@
 import { Flex, Table } from 'antd'
 import styled from 'styled-components'
-import { columns, dataSource } from '../../../configs'
+import { useAppDispatch, useAppSelector } from '../../../store/store'
+import { useEffect } from 'react'
+import type { ColumnsType } from 'antd/es/table'
+import { getTeamsRating } from '../../../store/slice/rating/ratingThunk'
+
+interface TeamData {
+   key: string | number
+   team_title: string
+   team_logo: string
+   won: number
+   drawn: number
+   lost: number
+   goals_for: number
+   goals_against: number
+   goal_difference: number
+   points: number
+   form_list: string[]
+   played: number
+}
 
 const Rating = () => {
+   const columns: ColumnsType<TeamData> = [
+      {
+         title: 'Команда',
+         dataIndex: 'team_title',
+         key: 'team_title',
+         render: (text: string, record: TeamData) => (
+            <Flex
+               className="first-block-box"
+               style={{ width: '250px' }}
+               align="center"
+            >
+               <img
+                  src={record.team_logo}
+                  alt={`${record.team_title} logo`}
+                  style={{
+                     width: '30px',
+                     height: '30px',
+                     marginRight: '10px',
+                  }}
+               />
+               {text}
+            </Flex>
+         ),
+      },
+      {
+         title: 'Игры',
+         dataIndex: 'played',
+         key: 'played',
+         align: 'center',
+      },
+      {
+         title: 'Победы',
+         dataIndex: 'won',
+         key: 'won',
+         align: 'center',
+      },
+      {
+         title: 'Ничьи',
+         dataIndex: 'drawn',
+         key: 'drawn',
+         align: 'center',
+      },
+      {
+         title: 'Поражения',
+         dataIndex: 'lost',
+         key: 'lost',
+         align: 'center',
+      },
+      {
+         title: 'Забито',
+         dataIndex: 'goals_for',
+         key: 'goals_for',
+         align: 'center',
+      },
+      {
+         title: 'Пропущено',
+         dataIndex: 'goals_against',
+         key: 'goals_against',
+         align: 'center',
+      },
+      {
+         title: 'Разница',
+         dataIndex: 'goal_difference',
+         key: 'goal_difference',
+         align: 'center',
+      },
+      {
+         title: 'Очки',
+         dataIndex: 'points',
+         key: 'points',
+         align: 'center',
+      },
+      {
+         title: 'Форма',
+         dataIndex: 'form_list',
+         key: 'form_list',
+         align: 'center',
+         render: (form: string[]) => (
+            <Flex>
+               {form.map((result: string, index: number) => {
+                  let color = ''
+                  switch (result) {
+                     case 'W':
+                        color = '#00a54a'
+                        break
+                     case 'L':
+                        color = '#cd122c'
+                        break
+                     case 'D':
+                        color = '#727272'
+                        break
+                     default:
+                        color = '#727272'
+                  }
+                  return (
+                     <span
+                        key={index}
+                        style={{
+                           display: 'flex',
+                           alignItems: 'center',
+                           justifyContent: 'center',
+                           width: '18px',
+                           height: '20px',
+                           backgroundColor: color,
+                           borderRadius: '5px',
+                           marginRight: '5px',
+                           textAlign: 'center',
+                           color: 'white',
+                           fontWeight: 'bold',
+                           fontSize: '8px',
+                        }}
+                     >
+                        {result}
+                     </span>
+                  )
+               })}
+            </Flex>
+         ),
+      },
+   ]
+
    window.scrollTo(0, 0)
+
+   const { teams } = useAppSelector((state) => state.rating)
+   const dispatch = useAppDispatch()
+
+   useEffect(() => {
+      dispatch(getTeamsRating())
+   }, [dispatch])
+
+   const dataSource = teams.map((team) => ({
+      ...team,
+      key: team.id || team.team_title,
+   }))
 
    return (
       <StyledContainer>
          <Flex vertical className="table">
             <div className="table-container">
                <h1>Таблица рейтинга</h1>
-
-               <br />
 
                <Table
                   dataSource={dataSource}
@@ -51,13 +200,6 @@ const StyledContainer = styled.main`
          h1 {
             margin-left: 10px;
          }
-
-         .first-block-box {
-            width: 100% !important;
-         }
-      }
-      @media (max-width: 768px) {
-         padding: 25px 5px;
       }
 
       .table {

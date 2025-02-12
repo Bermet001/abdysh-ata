@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { Card, Col, Flex } from 'antd'
-import { team_page } from '../../../configs'
 import { Link } from 'react-router-dom'
+import { useAppSelector } from '../../../store/store'
 
 interface CardBackgroundProps {
    image: string
@@ -10,20 +10,22 @@ interface CardBackgroundProps {
 const Team = () => {
    window.scrollTo(0, 0)
 
+   const { players } = useAppSelector((state) => state.team)
+
    return (
       <Container>
          <h2 className="main-title">Название команды</h2>
 
          <TeamContainer className="team-container" wrap gap={22}>
-            {team_page.map(({ image, id, full_name, position, number }) => (
+            {players.map(({ image, id, name, position, number, slug }) => (
                <Col key={id} xs={11} sm={11} md={7} lg={5} xl={4}>
                   <StyledCard>
-                     <Link to={`/player/${id}`}>
+                     <Link to={`/player/${slug}`}>
                         <CardBackground image={image}>
                            <Overlay>
                               <PlayerNumber>{number}</PlayerNumber>
                               <div style={{ marginBottom: '15px' }}>
-                                 <PlayerName>{full_name}</PlayerName>
+                                 <PlayerName>{name}</PlayerName>
                                  <PlayerPosition>{position}</PlayerPosition>
                               </div>
                            </Overlay>

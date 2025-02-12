@@ -1,37 +1,51 @@
-import { FC, useState } from 'react'
+import { ChangeEvent, FC, useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { newsItems } from '../../configs'
-import { NavLink } from 'react-router-dom'
+// import { NavLink } from 'react-router-dom'
 import { Pagination as AntPagination, Flex, Select } from 'antd'
 import { Input } from 'antd'
-import { SearchProps } from 'antd/es/input'
-
-interface NewsItem {
-   id: number
-   imageUrl: string
-   title: string
-   category: string
-   date: string
-}
+import { useAppDispatch, useAppSelector } from '../../store/store'
+import { NEWS_THUNK } from '../../store/slice/news/newsThunk'
+import NewsCard from '../../components/UI/NewsCard'
 
 const { Search } = Input
 
 const NewsPage: FC = () => {
    window.scrollTo(0, 0)
-
-   const [currentPage, setCurrentPage] = useState(1)
+   const { allNews, categories, total_page } = useAppSelector(
+      (state) => state.news
+   )
+   const [currentPage, setCurrentPage] = useState<number>(1)
    const itemsPerPage = 10
+   const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth)
+   const [search, setSearch] = useState<string>('')
+   const dispatch = useAppDispatch()
 
-   const onSearch: SearchProps['onSearch'] = (value, _e, info) =>
-      console.log(info?.source, value)
+   useEffect(() => {
+      dispatch(NEWS_THUNK.getNewsPageItem({ screenWidth, page: currentPage }))
+      dispatch(NEWS_THUNK.allCategories())
+   }, [currentPage, screenWidth, dispatch])
 
-   const startIndex = (currentPage - 1) * itemsPerPage
-   const endIndex = startIndex + itemsPerPage
-   const currentItems = newsItems.slice(startIndex, endIndex) as NewsItem[]
+   useEffect(() => {
+      const handleResize = () => {
+         setScreenWidth(window.innerWidth)
+      }
+
+      window.addEventListener('resize', handleResize)
+      return () => {
+         window.removeEventListener('resize', handleResize)
+      }
+   }, [])
+
+   const onSearch = (e: ChangeEvent<HTMLInputElement>) => {
+      dispatch(NEWS_THUNK.searchNew(e.target.value))
+      setSearch(e.target.value)
+   }
 
    const onPageChange = (page: number) => setCurrentPage(page)
 
-   const handleChange = (value: string) => console.log(`selected ${value}`)
+   const handleChange = (value: string | unknown) => {
+      dispatch(NEWS_THUNK.getCategorizedNew(value))
+   }
 
    return (
       <NewsContainer>
@@ -40,43 +54,33 @@ const NewsPage: FC = () => {
                <StyledInput
                   placeholder="Поиск новостей"
                   allowClear
-                  onSearch={onSearch}
+                  value={search}
+                  onChange={onSearch}
                   style={{ flex: 1 }}
                   size="large"
                />
 
                <Select
-                  defaultValue="lucy"
+                  defaultValue="Категории"
                   style={{ width: 120 }}
                   onChange={handleChange}
                   className="select"
-                  options={[
-                     { value: 'jack', label: 'Jack' },
-                     { value: 'lucy', label: 'Lucy' },
-                     { value: 'Yiminghe', label: 'yiminghe' },
-                     { value: 'disabled' },
-                  ]}
+                  options={categories.map((category) => ({
+                     value: category.title,
+                     label: category.title,
+                  }))}
                />
             </Flex>
 
             <CardsContainer>
-               {currentItems.map((item) => (
-                  <NewsCard key={item.id}>
-                     <NavLink to={`/news/${item.id}`}>
-                        <NewsImage src={item.imageUrl} alt={item.title} />
-                        <NewsContent>
-                           <Category>{item.category}</Category>
-                           <Title>{item.title}</Title>
-                           <Date>{item.date}</Date>
-                        </NewsContent>
-                     </NavLink>
-                  </NewsCard>
+               {allNews.map((item) => (
+                  <NewsCard key={item.id} {...item} />
                ))}
             </CardsContainer>
 
             <StyledPagination
                current={currentPage}
-               total={newsItems.length}
+               total={total_page}
                pageSize={itemsPerPage}
                onChange={onPageChange}
                showSizeChanger={false}
@@ -144,50 +148,6 @@ const CardsContainer = styled.div`
    @media (max-width: 768px) {
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
    }
-`
-
-const NewsCard = styled.div`
-   background: #fff;
-   border-radius: 8px;
-   overflow: hidden;
-   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-   transition: transform 0.3s;
-   cursor: pointer;
-
-   &:hover {
-      transform: translateY(-5px);
-   }
-`
-
-const NewsImage = styled.img`
-   width: 100%;
-   height: 150px;
-   object-fit: cover;
-   transition: transform 0.3s;
-
-   ${NewsCard}:hover & {
-      transform: translateY(-20px);
-   }
-`
-
-const NewsContent = styled.div`
-   padding: 16px;
-`
-
-const Category = styled.p`
-   font-size: 14px;
-   color: #888;
-`
-
-const Title = styled.h3`
-   font-size: 16px;
-   margin: 8px 0;
-   color: #333;
-`
-
-const Date = styled.p`
-   font-size: 12px;
-   color: #aaa;
 `
 
 const StyledPagination = styled(AntPagination)`

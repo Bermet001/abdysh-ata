@@ -1,23 +1,35 @@
+import { Popover } from 'antd'
 import { FC } from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
 interface IProps {
-   id: number
-   imageUrl: string
+   id: number | null
+   image: string
    title: string
-   category: string
+   category: {
+      id: number | null
+      title: string
+      slug: string
+   }
    date: string
+   slug: string
 }
 
-const NewsCard: FC<IProps> = ({ id, imageUrl, title, category, date }) => {
+const NewsCard: FC<IProps> = ({ slug, id, image, title, category, date }) => {
    return (
       <StyledNewsCard key={id}>
-         <NavLink to={`news/${id}`}>
-            <NewsImage src={imageUrl} alt={title} />
+         <NavLink to={`/news/${slug}`}>
+            <NewsImage src={image} alt={title} />
             <NewsContent>
-               <Category>{category}</Category>
-               <Title>{title}</Title>
+               <Category>{category.title}</Category>
+               <Popover
+                  placement="bottom"
+                  content={<PopoverContent>{title}</PopoverContent>}
+                  trigger="hover"
+               >
+                  <Title>{title}</Title>
+               </Popover>
                <Date>{date}</Date>
             </NewsContent>
          </NavLink>
@@ -94,6 +106,10 @@ const Title = styled.h3`
    font-size: 16px;
    margin: 8px 0;
    color: #333;
+   overflow: hidden;
+   white-space: nowrap;
+   text-overflow: ellipsis;
+   max-height: 20px;
 
    @media (max-width: 768px) {
       font-size: 14px;
@@ -115,4 +131,9 @@ const Date = styled.p`
    @media (max-width: 480px) {
       font-size: 9px;
    }
+`
+
+const PopoverContent = styled.div`
+   max-width: 200px;
+   text-transform: lowercase;
 `

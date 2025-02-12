@@ -1,27 +1,47 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { Carousel, Button, Flex } from 'antd'
 import styled from 'styled-components'
-import { banners } from '../configs'
+// import { banners } from '../configs'
 import { NavLink } from 'react-router-dom'
+import { useAppDispatch, useAppSelector } from '../store/store'
+import { BANNER_THUNK } from '../store/slice/banner/bannerThunk'
 
-const Slider: FC = () => (
-   <StyledCarousel dots={false} arrows autoplay autoplaySpeed={6000} infinite>
-      {banners.map((item, index) => (
-         <div className="main-container" key={index}>
-            <Overlay />
-            <img src={item.imageUrl} alt={`Slide ${index + 1}`} />
+const Slider: FC = () => {
+   const banners = useAppSelector((state) => state.banner.banners)
 
-            <Flex align="start" vertical className="content">
-               <h2>{item.title}</h2>
+   const dispatch = useAppDispatch()
 
-               <StyledButtonView type="primary">
-                  <NavLink to={`/banner/${item.id}`}>Читать дальше</NavLink>
-               </StyledButtonView>
-            </Flex>
-         </div>
-      ))}
-   </StyledCarousel>
-)
+   useEffect(() => {
+      dispatch(BANNER_THUNK.getBanners())
+   }, [dispatch])
+
+   return (
+      <StyledCarousel
+         dots={false}
+         arrows
+         autoplay
+         autoplaySpeed={6000}
+         infinite
+      >
+         {banners?.map((item, index) => (
+            <div className="main-container" key={index}>
+               <Overlay />
+               <img src={item.image} alt={`Slide ${index + 1}`} />
+
+               <Flex align="start" vertical className="content">
+                  <h2>{item.title}</h2>
+
+                  <StyledButtonView type="primary">
+                     <NavLink to={`/banner/${item.slug}`}>
+                        Читать дальше
+                     </NavLink>
+                  </StyledButtonView>
+               </Flex>
+            </div>
+         ))}
+      </StyledCarousel>
+   )
+}
 
 export default Slider
 
@@ -56,7 +76,7 @@ const StyledCarousel = styled(Carousel)`
       font-size: 60px;
       margin-bottom: 50px;
       color: white;
-      width: 550px;
+      width: 580px;
       line-height: 1;
    }
 

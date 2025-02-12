@@ -1,40 +1,64 @@
 import styled from 'styled-components'
 import { Card, Button, Flex, Input, Select } from 'antd'
-import { products } from '../../../configs'
 import { NavLink } from 'react-router-dom'
+import { useAppDispatch, useAppSelector } from '../../../store/store'
+import { PRODUCT_THUNK } from '../../../store/slice/shop/shopThunk'
+import { ChangeEvent, useEffect, useState } from 'react'
 
 const { Search } = Input
 
 const Shop = () => {
    window.scrollTo(0, 0)
+   const [search, setSearch] = useState<string>('')
+
+   const dispatch = useAppDispatch()
+
+   const handleChange = (value: string | unknown) => {
+      dispatch(PRODUCT_THUNK.getCategorizedProduct(value))
+   }
+
+   const { products, categories } = useAppSelector((state) => state.shop)
+
+   useEffect(() => {
+      dispatch(PRODUCT_THUNK.getProducts())
+      dispatch(PRODUCT_THUNK.allCategories())
+   }, [dispatch])
+
+   const searchHandler = (e: ChangeEvent<HTMLInputElement>) => {
+      setSearch(e.target.value)
+      dispatch(PRODUCT_THUNK.searchProduct(e.target.value))
+   }
 
    return (
       <Container>
          <Flex align="center" justify="space-between" gap={50}>
             <StyledSelect
-               defaultValue="lucy"
+               defaultValue="Категории"
                style={{ width: 120 }}
-               options={[
-                  { value: 'jack', label: 'Jack' },
-                  { value: 'lucy', label: 'Lucy' },
-                  { value: 'Yiminghe', label: 'yiminghe' },
-                  { value: 'disabled', label: 'Disabled', disabled: true },
-               ]}
+               onChange={handleChange}
+               options={categories.map((category) => ({
+                  value: category.title,
+                  label: category.title,
+               }))}
             />
 
-            <StyledSearch placeholder="Поиск..." />
+            <StyledSearch
+               onChange={searchHandler}
+               value={search}
+               placeholder="Поиск..."
+            />
          </Flex>
 
          <ProductsContainer>
             {products.map((product) => (
                <StyledCard
                   key={product.id}
-                  cover={<img alt={product.name} src={product.img} />}
+                  cover={<img alt={product.title} src={product.image} />}
                >
-                  <NavLink to={`/shop/${product.id}`}>
+                  <NavLink to={`/shop/${product.slug}`}>
                      <Card.Meta
                         className="product-info"
-                        title={product.name}
+                        title={product.title}
                         description={product.price}
                      />
                   </NavLink>
@@ -95,8 +119,9 @@ const StyledCard = styled(Card)`
    img {
       border-top-left-radius: 8px;
       border-top-right-radius: 8px;
-      object-fit: cover;
+      object-fit: contain;
       height: 250px;
+      width: 100% !important;
 
       @media (max-width: 480px) {
          height: 130px;

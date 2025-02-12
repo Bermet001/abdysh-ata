@@ -1,49 +1,96 @@
 import styled from 'styled-components'
 import { Table, Button } from 'antd'
 import ldsjd from '../../../assets/images/banner.avif'
-import { data } from '../../../configs'
+import { useAppDispatch, useAppSelector } from '../../../store/store'
+import { useEffect } from 'react'
+import { getMatches } from '../../../store/slice/matches/matchesThunk'
+import { NavLink } from 'react-router-dom'
+
+interface Team {
+   id: number
+   title: string
+   slug: string
+   is_our_team: boolean
+   logo: string
+}
+
+interface League {
+   id: number
+   title: string
+   image: string
+}
+
+interface Match {
+   id: number
+   title: string
+   slug: string
+   home_team: Team
+   away_team: Team
+   home_score: number
+   away_score: number
+   date: string
+   location: string
+   status: string
+   status_display: string
+   stream_link: string | null
+   liga: League
+}
 
 const SchedulMatches = () => {
    window.scrollTo(0, 0)
+   const { matches } = useAppSelector((state) => state.matches)
+   const dispatch = useAppDispatch()
+
+   useEffect(() => {
+      dispatch(getMatches())
+   }, [dispatch])
 
    const columns = [
       {
          title: 'Дата',
          dataIndex: 'date',
          key: 'date',
-         render: (_text: string, record: { time: string; date: string }) => (
+         render: (_text: string, record: Match) => (
             <DateTimeWrapper>
-               <Date>{record.date}</Date>
-               <Time>{record.time}</Time>
+               <StyledDate>
+                  {new Date(record.date).toLocaleDateString()}
+               </StyledDate>
+               <StyledTime>
+                  {new Date(record.date).toLocaleTimeString([], {
+                     hour: '2-digit',
+                     minute: '2-digit',
+                  })}
+               </StyledTime>
             </DateTimeWrapper>
          ),
       },
       {
          title: 'Лига',
-         dataIndex: 'league',
+         dataIndex: 'liga',
          key: 'league',
-         render: (text: string) => <League>{text}</League>,
+         render: (liga: League) => <League>{liga.title}</League>,
       },
       {
          title: 'Команды',
          key: 'teams',
-         render: (record: {
-            team: string
-            opponent: string
-            logo: string
-            opponentLogo: string
-         }) => (
+         render: (record: Match) => (
             <TeamsWrapper>
                <TeamWrapper className="team-box">
-                  <span className="team-name">{record.team}</span>
-                  <img src={record.logo} alt={record.team} />
+                  <span className="team-name">{record.home_team.title}</span>
+                  <img
+                     src={record.home_team.logo}
+                     alt={record.home_team.title}
+                  />
                </TeamWrapper>
 
                <Vs>vs</Vs>
 
                <TeamWrapper className="team-box">
-                  <img src={record.opponentLogo} alt={record.opponent} />
-                  <span className="team-name">{record.opponent}</span>
+                  <img
+                     src={record.away_team.logo}
+                     alt={record.away_team.title}
+                  />
+                  <span className="team-name">{record.away_team.title}</span>
                </TeamWrapper>
             </TeamsWrapper>
          ),
@@ -51,7 +98,11 @@ const SchedulMatches = () => {
       {
          title: 'Действие',
          key: 'action',
-         render: () => <Button type="primary">Смотреть</Button>,
+         render: (record: Match) => (
+            <Button type="primary">
+               <NavLink to={`${record.slug}`}>Смотреть</NavLink>
+            </Button>
+         ),
       },
    ]
 
@@ -73,7 +124,10 @@ const SchedulMatches = () => {
 
             <Table
                columns={columns}
-               dataSource={data}
+               dataSource={matches.map((match) => ({
+                  ...match,
+                  key: match.id,
+               }))}
                pagination={false}
                scroll={{ x: 'max-content' }}
                rowClassName="table-row"
@@ -220,30 +274,6 @@ const Vs = styled.span`
    }
 `
 
-const DateTimeWrapper = styled.div`
-   display: flex;
-   flex-direction: column;
-   align-items: flex-start;
-`
-
-const Date = styled.span`
-   font-weight: bold;
-   font-size: 16px;
-   color: #333;
-
-   @media (max-width: 768px) {
-      font-size: 14px;
-   }
-`
-
-const Time = styled.span`
-   color: #888;
-
-   @media (max-width: 768px) {
-      font-size: 12px;
-   }
-`
-
 const League = styled.span`
    font-weight: bold;
    color: green;
@@ -261,4 +291,28 @@ const Overlay = styled.div`
    height: 99%;
    background-color: rgba(0, 0, 0, 0.4);
    z-index: 1;
+`
+
+const DateTimeWrapper = styled.div`
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+`
+
+const StyledDate = styled.span`
+   font-weight: bold;
+   font-size: 16px;
+   color: #333;
+
+   @media (max-width: 768px) {
+      font-size: 14px;
+   }
+`
+
+const StyledTime = styled.span`
+   color: #888;
+
+   @media (max-width: 768px) {
+      font-size: 12px;
+   }
 `

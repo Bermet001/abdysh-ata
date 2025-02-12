@@ -1,12 +1,22 @@
+import { useEffect } from 'react'
 import styled from 'styled-components'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Card, Flex, Button as AntdButton } from 'antd'
-import { products } from '../configs'
 import { RightOutlined } from '@ant-design/icons'
 import { NavLink } from 'react-router-dom'
 import Button from './UI/Button'
+import { useAppDispatch, useAppSelector } from '../store/store'
+import { PRODUCT_THUNK } from '../store/slice/shop/shopThunk'
 
 const ProductSlider = () => {
+   const { products } = useAppSelector((state) => state.shop)
+
+   const dispatch = useAppDispatch()
+
+   useEffect(() => {
+      dispatch(PRODUCT_THUNK.getProducts())
+   }, [dispatch])
+
    return (
       <Container>
          <Flex gap={10} justify="space-between" align="start">
@@ -39,15 +49,15 @@ const ProductSlider = () => {
                },
             }}
          >
-            {products.map((product) => (
+            {products?.map((product) => (
                <SwiperSlide key={product.id}>
                   <StyledCard
-                     cover={<img alt={product.name} src={product.img} />}
+                     cover={<img alt={product.title} src={product.image} />}
                   >
-                     <NavLink to={`/shop/${product.id}`}>
+                     <NavLink to={`/shop/${product.slug}`}>
                         <Card.Meta
-                           title={product.name}
-                           description={product.price}
+                           title={product.title}
+                           description={`${product.price} сом`}
                         />
                         <StyledButton type="primary">
                            Оформить заказ
@@ -83,9 +93,10 @@ const StyledCard = styled(Card)`
    cursor: pointer;
 
    img {
+      width: 99.9% !important;
       border-top-left-radius: 8px;
       border-top-right-radius: 8px;
-      object-fit: cover;
+      object-fit: scale-down;
       height: 250px;
 
       @media (max-width: 768px) {
