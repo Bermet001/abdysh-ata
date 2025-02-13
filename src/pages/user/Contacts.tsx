@@ -19,9 +19,8 @@ const Contacts = () => {
 
    const dispatch = useAppDispatch()
 
-   const onFinish = (values: ContactData) => {
+   const onFinish = (values: ContactData) =>
       dispatch(CONTACTS_THUNK.sendMessage(values))
-   }
 
    useEffect(() => {
       dispatch(CONTACTS_THUNK.getContacts())

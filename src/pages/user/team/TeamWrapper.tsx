@@ -1,14 +1,12 @@
 import { FC, useEffect } from 'react'
 import { Tabs } from 'antd'
-import type { TabsProps } from 'antd'
 import Team from './Team'
 import Сoaches from '../coach/Coaches'
 import styled from 'styled-components'
 import { getTeam } from '../../../store/slice/team/teamThunk'
 import { useAppDispatch } from '../../../store/store'
 import { useParams } from 'react-router-dom'
-
-const onChange = (key: string) => console.log(key)
+import type { TabsProps } from 'antd'
 
 const items: TabsProps['items'] = [
    {
@@ -35,7 +33,7 @@ const TeamWrapper: FC = () => {
 
    return (
       <StyledContainer>
-         <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
+         <Tabs defaultActiveKey="1" items={items} />
       </StyledContainer>
    )
 }

@@ -15,7 +15,7 @@ const Team = () => {
    const dispatch = useAppDispatch()
 
    useEffect(() => {
-      dispatch(getTeam(first_team?.slug))
+      if (first_team?.slug) dispatch(getTeam(first_team?.slug))
    }, [dispatch, first_team])
 
    return (

@@ -7,18 +7,28 @@ import ProductSlider from '../components/Products'
 import News from '../components/News'
 import { FC } from 'react'
 import Team from '../components/Team'
+import { Helmet } from 'react-helmet'
 
 const Landing: FC = () => (
-   <main>
-      <Slider />
-      <MatchInfo />
-      <ProductSlider />
-      <News />
-      <Gallery />
-      <Team />
-      <VictoryBlock />
-      <Sponsors />
-   </main>
+   <>
+      <Helmet>
+         <title>Главная страница приложения</title>
+         <meta
+            name="description"
+            content="Узнайте последние новости и информацию о наших спонсорах."
+         />
+      </Helmet>
+      <main>
+         <Slider />
+         <MatchInfo />
+         <ProductSlider />
+         <News />
+         <Gallery />
+         <Team />
+         <VictoryBlock />
+         <Sponsors />
+      </main>
+   </>
 )
 
 export default Landing

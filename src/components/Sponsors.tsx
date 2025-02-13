@@ -18,7 +18,7 @@ const Sponsors = () => {
          <h2 className="main-title">Наши спонсоры</h2>
 
          <Swiper
-            loop={true}
+            loop={partners.length > 4}
             spaceBetween={30}
             autoplay={{
                delay: 2500,
@@ -69,7 +69,11 @@ const StyledContainer = styled.section`
    margin: 0 auto;
 
    @media (max-width: 1024px) {
-      padding: 60px 20px 0;
+      padding: 60px 20px 40px;
+   }
+
+   @media (max-width: 480px) {
+      padding: 40px 20px 25px;
    }
 
    .swiper {

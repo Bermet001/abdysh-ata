@@ -88,7 +88,6 @@ export const teamSlice = createSlice({
             (state, { payload }: PayloadAction<NavTeam[]>) => {
                state.headerTeam = payload
                state.isLoading = false
-               console.log(payload, 'fadshj;fk')
             }
          )
          .addCase(getOurTeam.pending, (state) => {
