@@ -7,17 +7,9 @@ import ProductSlider from '../components/Products'
 import News from '../components/News'
 import { FC } from 'react'
 import Team from '../components/Team'
-import { Helmet } from 'react-helmet'
 
 const Landing: FC = () => (
    <>
-      <Helmet>
-         <title>Главная страница приложения</title>
-         <meta
-            name="description"
-            content="Узнайте последние новости и информацию о наших спонсорах."
-         />
-      </Helmet>
       <main>
          <Slider />
          <MatchInfo />
