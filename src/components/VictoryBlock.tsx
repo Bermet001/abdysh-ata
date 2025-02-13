@@ -31,11 +31,11 @@ const VictoryBlock = () => {
                   </Description>
                </Flex>
 
-               <StyledButton type="primary">
-                  <NavLink to={'/trophy'}>
+               <NavLink to={'/trophy'}>
+                  <StyledButton type="primary">
                      Все трофеи <RightOutlined />
-                  </NavLink>
-               </StyledButton>
+                  </StyledButton>
+               </NavLink>
             </Flex>
          </VictoryDes>
 

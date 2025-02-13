@@ -34,7 +34,7 @@ const Partners = () => {
          <Flex gap={40} justify="center" wrap className="partners-container">
             {partners.map((sponsor) => (
                <SponsorItem key={sponsor.id}>
-                  <a href={sponsor.link}>
+                  <a aria-label="партнер" href={sponsor.link}>
                      <img
                         height="auto"
                         width={300}

@@ -24,21 +24,22 @@ const getNewsPageItem = createAsyncThunk(
    async (
       info: {
          page?: number
-         screenWidth?: number
+         itemsPerPage?: number
          search?: string
          category?: string
       },
       { rejectWithValue }
    ) => {
       try {
-         const { page, screenWidth, search, category } = info
+         const { page, itemsPerPage, search, category } = info
 
          const url =
             (category ? `&category=${category}` : '') +
-            `cms/news/?page=${page}&page_size=${screenWidth}` +
+            `cms/news/?page=${page}&page_size=${itemsPerPage}` +
             (search ? `&search=${search}` : '')
 
          const { data } = await axiosInstance(url)
+
          return data
       } catch (error) {
          const err = error as AxiosError

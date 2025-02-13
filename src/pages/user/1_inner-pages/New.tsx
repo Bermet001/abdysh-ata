@@ -14,13 +14,14 @@ const New: FC = () => {
 
    const { slug } = useParams<{ slug: string }>()
    const { currentNews } = useAppSelector((state) => state.news)
-   console.log(slug)
-
+   const { contacts } = useAppSelector((state) => state.contacts)
    const dispatch = useAppDispatch()
 
    useEffect(() => {
       dispatch(NEWS_THUNK.getNew(slug))
    }, [dispatch, slug])
+
+   const contact = contacts.length > 0 ? contacts[0] : null
 
    return (
       <StyledContainer>
@@ -32,12 +33,17 @@ const New: FC = () => {
 
                   <Flex justify="space-between" className="date-info">
                      <Paragraph>
-                        <a style={{ color: '#888', fontSize: '0.9em' }} href="">
-                           fcabdyshata.com
+                        <a
+                           aria-label="электронная почта"
+                           style={{ color: '#888', fontSize: '0.9em' }}
+                           href=""
+                        >
+                           {contact?.email} fcabdyshata.com
                         </a>
 
-                        <span style={{}}>{currentNews?.date}</span>
+                        <span>{currentNews?.date}</span>
                      </Paragraph>
+
                      <Paragraph className="sport-type">
                         {currentNews?.category.title}
                      </Paragraph>

@@ -15,26 +15,26 @@ const NewsPage: FC = () => {
       (state) => state.news
    )
    const [currentPage, setCurrentPage] = useState<number>(1)
-   const itemsPerPage = 10
-   const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth)
+   // const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth)
    const [search, setSearch] = useState<string>('')
    const dispatch = useAppDispatch()
+   const itemsPerPage = 10
 
    useEffect(() => {
-      dispatch(NEWS_THUNK.getNewsPageItem({ screenWidth, page: currentPage }))
+      dispatch(NEWS_THUNK.getNewsPageItem({ itemsPerPage, page: currentPage }))
       dispatch(NEWS_THUNK.allCategories())
-   }, [currentPage, screenWidth, dispatch])
+   }, [currentPage, itemsPerPage, dispatch])
 
-   useEffect(() => {
-      const handleResize = () => {
-         setScreenWidth(window.innerWidth)
-      }
+   // useEffect(() => {
+   //    const handleResize = () => {
+   //       setScreenWidth(window.innerWidth)
+   //    }
 
-      window.addEventListener('resize', handleResize)
-      return () => {
-         window.removeEventListener('resize', handleResize)
-      }
-   }, [])
+   //    window.addEventListener('resize', handleResize)
+   //    return () => {
+   //       window.removeEventListener('resize', handleResize)
+   //    }
+   // }, [])
 
    const onSearch = (e: ChangeEvent<HTMLInputElement>) => {
       dispatch(NEWS_THUNK.searchNew(e.target.value))
@@ -43,9 +43,8 @@ const NewsPage: FC = () => {
 
    const onPageChange = (page: number) => setCurrentPage(page)
 
-   const handleChange = (value: string | unknown) => {
+   const handleChange = (value: string | unknown) =>
       dispatch(NEWS_THUNK.getCategorizedNew(value))
-   }
 
    return (
       <NewsContainer>

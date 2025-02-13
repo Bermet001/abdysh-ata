@@ -30,11 +30,11 @@ const Slider: FC = () => {
                <Flex align="start" vertical className="content">
                   <h2>{item.title}</h2>
 
-                  <StyledButtonView type="primary">
-                     <NavLink to={`/banner/${item.slug}`}>
+                  <NavLink to={`/banner/${item.slug}`}>
+                     <StyledButtonView type="primary">
                         Читать дальше
-                     </NavLink>
-                  </StyledButtonView>
+                     </StyledButtonView>
+                  </NavLink>
                </Flex>
             </div>
          ))}

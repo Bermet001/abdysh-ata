@@ -41,11 +41,11 @@ const Gallery = () => {
                   КАДРЫ И ВИДЕО С СОБЫТИЙ
                </h2>
 
-               <Button type="primary">
-                  <NavLink to="/gallery">
+               <NavLink to="/gallery">
+                  <Button type="primary">
                      Посмотреть все <RightOutlined />
-                  </NavLink>
-               </Button>
+                  </Button>
+               </NavLink>
             </Flex>
 
             <Flex gap={20} className="image-gallery">

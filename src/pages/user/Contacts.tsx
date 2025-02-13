@@ -46,26 +46,33 @@ const Contacts = () => {
                      <Flex gap={5} className="contacts" vertical>
                         <h4>Адрес:</h4>
 
-                        <a href="https://2gis.kg/bishkek/geo/70030076256335684?m=74.575073%2C42.882296%2F18.28">
+                        <a
+                           aria-label="aдрес"
+                           href="https://2gis.kg/bishkek/geo/70030076256335684?m=74.575073%2C42.882296%2F18.28"
+                        >
                            {contact?.address}
                         </a>
                      </Flex>
 
                      <Flex gap={5} className="contacts" vertical>
                         <h4> Телефон:</h4>
-                        <a href="tel:996990007088">{contact?.phone}</a>
+                        <a aria-label="нормер" href="tel:996990007088">
+                           {contact?.phone}
+                        </a>
                      </Flex>
 
                      <Flex gap={5} className="contacts" vertical>
                         <h4> Почта:</h4>
-                        <a href={`mailto:${contact?.email}`}>
+                        <a aria-label="email" href={`mailto:${contact?.email}`}>
                            {contact?.email || 'Нет почты'}
                         </a>
                      </Flex>
 
                      <Flex gap={5} className="contacts" vertical>
                         <h4> Режим работы</h4>
-                        <a href="">10:00 до 19:00</a>
+                        <a aria-label="режим работы" href="">
+                           10:00 до 19:00
+                        </a>
                      </Flex>
                   </Flex>
                </Flex>
@@ -164,6 +171,7 @@ const Contacts = () => {
          <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23385.367276005894!2d74.820501063743!3d42.89034070347272!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x389eaf1e78d922e1%3A0x567e4f8253a368ce!2z0JDQsdC00YvRiC3QkNGC0LA!5e0!3m2!1sru!2skg!4v1736753176654!5m2!1sru!2skg"
             className="map"
+            title="локация"
          />
       </StyledContainer>
    )

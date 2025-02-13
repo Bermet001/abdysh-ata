@@ -254,7 +254,11 @@ const Header = () => {
                            gap={20}
                         >
                            {partners.slice(0, 3).map((item) => (
-                              <a key={item.link} href={item.link}>
+                              <a
+                                 aria-label="партнеры"
+                                 key={item.link}
+                                 href={item.link}
+                              >
                                  <img src={item.image} width="60" alt="" />
                               </a>
                            ))}

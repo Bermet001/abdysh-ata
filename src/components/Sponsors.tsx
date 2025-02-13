@@ -46,7 +46,7 @@ const Sponsors = () => {
          >
             {partners?.map((sponsor) => (
                <SwiperSlide key={sponsor.id}>
-                  <a href={sponsor.link}>
+                  <a aria-label="ссылка на сайтс спонсора" href={sponsor.link}>
                      <img
                         height="auto"
                         src={sponsor.image}

@@ -22,11 +22,11 @@ const Team = () => {
       <Container>
          <Flex justify="space-between" align="start">
             <h2 className="main-title">ИГРОКИ</h2>
-            <Button type="primary">
-               <NavLink to="/team">
+            <NavLink to="/team">
+               <Button type="primary">
                   Посмотреть всю команду <RightOutlined />
-               </NavLink>
-            </Button>
+               </Button>
+            </NavLink>
          </Flex>
 
          <Swiper

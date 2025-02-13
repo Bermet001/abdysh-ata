@@ -56,9 +56,9 @@ const Infrastructure = () => {
                   <iframe
                      key={index}
                      width="100%"
+                     title="видео обзор стадиона"
                      height="240"
                      src="https://www.youtube.com/embed/xx-fB-Ml_Yg?si=6ADORznAJs9OdMD6"
-                     title="YouTube video player"
                      className="video"
                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   />
@@ -87,6 +87,7 @@ const Infrastructure = () => {
                src="https://www.google.com/maps/embed?pb=!1m18..."
                width="100%"
                height="300"
+               title="место положение стадиона"
                loading="lazy"
                style={{ borderRadius: '6px', border: 'none' }}
             />

@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import Telegram from '..//assets/icons/telegram.svg'
 import Instagram from '..//assets/icons/instagramm.svg'
 import Whatsapp from '..//assets/icons/whatsapp.svg'
-// import { teams } from '../configs'
 import { NavLink } from 'react-router-dom'
 import {
    EnvironmentOutlined,
@@ -113,15 +112,24 @@ const Footer = () => {
                </Flex>
 
                <Flex className="socials" align="center" gap={30}>
-                  <a href={contact?.telegram}>
+                  <a
+                     aria-label="Перейти в телеграм чат"
+                     href={contact?.telegram}
+                  >
                      <Telegram />
                   </a>
 
-                  <a href={contact?.instagram}>
+                  <a
+                     aria-label="Перейти в инстаграм директ"
+                     href={contact?.instagram}
+                  >
                      <Instagram />
                   </a>
 
-                  <a href={contact?.whatsapp}>
+                  <a
+                     aria-label="Перейти в whatsapp чат"
+                     href={contact?.whatsapp}
+                  >
                      <Whatsapp />
                   </a>
                </Flex>
@@ -148,17 +156,17 @@ const Footer = () => {
                   <p className="title">Контакты</p>
 
                   <Flex gap={10} vertical>
-                     <a href="">
+                     <a aria-label="номер телефона" href="">
                         <PhoneOutlined />
                         <p>{contact?.phone}</p>
                      </a>
 
-                     <a href="mailto:abdyshata@gmail.com">
+                     <a aria-label="email" href="mailto:abdyshata@gmail.com">
                         <MailOutlined />
                         <p>{contact?.email}</p>
                      </a>
 
-                     <a href="">
+                     <a aria-label="адрес" href="">
                         <EnvironmentOutlined />
                         <p>Адрес: Лермонтова 2</p>
                      </a>
@@ -186,6 +194,7 @@ const Footer = () => {
                      height="100%"
                      loading="lazy"
                      className="footer-map"
+                     title="локация"
                   />
                </Flex>
             </Flex>

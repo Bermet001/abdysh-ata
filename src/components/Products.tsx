@@ -22,11 +22,11 @@ const ProductSlider = () => {
          <Flex gap={10} justify="space-between" align="start">
             <h2 className="main-title">НАШ ОНЛАЙН МАГАЗИН</h2>
 
-            <Button type="primary">
-               <NavLink to="/shop">
+            <NavLink to="/shop">
+               <Button type="primary">
                   Посмотреть все товары <RightOutlined />
-               </NavLink>
-            </Button>
+               </Button>
+            </NavLink>
          </Flex>
 
          <Swiper
@@ -59,10 +59,9 @@ const ProductSlider = () => {
                            title={product.title}
                            description={`${product.price} сом`}
                         />
-                        <StyledButton type="primary">
-                           Оформить заказ
-                        </StyledButton>
                      </NavLink>
+
+                     <StyledButton type="primary">Оформить заказ</StyledButton>
                   </StyledCard>
                </SwiperSlide>
             ))}

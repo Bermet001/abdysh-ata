@@ -1,7 +1,7 @@
-import styled from 'styled-components'
-import { Flex } from 'antd'
 import { FC } from 'react'
 import { NavLink } from 'react-router-dom'
+import styled from 'styled-components'
+import { Flex } from 'antd'
 
 interface Team {
    id: number
@@ -26,15 +26,16 @@ interface Match {
    stream_link: string | null
 }
 
-interface IProps {
-   match: Match
-}
-
-const MatchCard: FC<IProps> = ({ match }) => {
-   const { home_team, away_team, date, home_score, away_score, slug } = match
-
+const MatchCard: FC<Match> = ({
+   home_team,
+   away_team,
+   date,
+   home_score,
+   away_score,
+   slug,
+}) => {
    return (
-      <div>
+      <>
          <NavLink to={`match/${slug}`}>
             <MatchCardContainer vertical align="center">
                <Time>{new Date(date).toLocaleString()}</Time>
@@ -62,7 +63,7 @@ const MatchCard: FC<IProps> = ({ match }) => {
                </Flex>
             </MatchCardContainer>
          </NavLink>
-      </div>
+      </>
    )
 }
 

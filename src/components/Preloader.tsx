@@ -1,38 +1,36 @@
 import { FC } from 'react'
 import styled, { keyframes } from 'styled-components'
 
-const Preloader: FC = () => {
-   return (
-      <PreloaderContainer>
-         <AnimationPreloader>
-            <Spinner />
+const Preloader: FC = () => (
+   <PreloaderContainer>
+      <AnimationPreloader>
+         <Spinner />
 
-            <TxtLoading>
-               <Letter data-text-preloader="A"> A </Letter>
-               <Letter data-text-preloader="B"> B </Letter>
-               <Letter data-text-preloader="D"> D </Letter>
-               <Letter data-text-preloader="Y"> Y </Letter>
-               <Letter data-text-preloader="S"> S </Letter>
-               <Letter data-text-preloader="H"> H </Letter>
-               <Letter data-text-preloader="-"> - </Letter>
-               <Letter data-text-preloader="A"> A </Letter>
-               <Letter data-text-preloader="T"> T </Letter>
-               <Letter data-text-preloader="A"> A </Letter>
-            </TxtLoading>
-         </AnimationPreloader>
+         <TxtLoading>
+            <Letter data-text-preloader="A"> A </Letter>
+            <Letter data-text-preloader="B"> B </Letter>
+            <Letter data-text-preloader="D"> D </Letter>
+            <Letter data-text-preloader="Y"> Y </Letter>
+            <Letter data-text-preloader="S"> S </Letter>
+            <Letter data-text-preloader="H"> H </Letter>
+            <Letter data-text-preloader="-"> - </Letter>
+            <Letter data-text-preloader="A"> A </Letter>
+            <Letter data-text-preloader="T"> T </Letter>
+            <Letter data-text-preloader="A"> A </Letter>
+         </TxtLoading>
+      </AnimationPreloader>
 
-         <Loader>
-            <LoaderRow>
-               {Array.from({ length: 10 }).map((_, index) => (
-                  <LoaderSection key={index}>
-                     <Bg />
-                  </LoaderSection>
-               ))}
-            </LoaderRow>
-         </Loader>
-      </PreloaderContainer>
-   )
-}
+      <Loader>
+         <LoaderRow>
+            {Array.from({ length: 10 }).map((_, index) => (
+               <LoaderSection key={index}>
+                  <Bg />
+               </LoaderSection>
+            ))}
+         </LoaderRow>
+      </Loader>
+   </PreloaderContainer>
+)
 
 const fadeIn = keyframes`
    0% { opacity: 1; }

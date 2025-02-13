@@ -42,11 +42,11 @@ const News = () => {
          <Flex justify="space-between">
             <h2 className="main-title">ПОСЛЕДНИЕ НОВОСТИ</h2>
 
-            <Button type="primary">
-               <NavLink to="/news">
+            <NavLink to="/news">
+               <Button type="primary">
                   Посмотреть все новости <RightOutlined />
-               </NavLink>
-            </Button>
+               </Button>
+            </NavLink>
          </Flex>
 
          <CardsContainer>
@@ -75,20 +75,6 @@ const NewsContainer = styled.section`
 
    @media (max-width: 480px) {
       padding: 50px 20px;
-   }
-
-   h2 {
-      /* font-size: 40px;
-      margin-bottom: 40px; */
-
-      /* @media (max-width: 768px) {
-         font-size: 28px;
-         text-align: center;
-      }
-
-      @media (max-width: 480px) {
-         font-size: 24px;
-      } */
    }
 `
 
