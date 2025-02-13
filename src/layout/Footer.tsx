@@ -15,8 +15,9 @@ import { useEffect } from 'react'
 import { CONTACTS_THUNK } from '../store/slice/contacts/contactsThunk'
 
 const Footer = () => {
+   const { headerTeam } = useAppSelector((state) => state.team)
+
    const { contacts } = useAppSelector((state) => state.contacts)
-   const { allTeams } = useAppSelector((state) => state.team)
 
    const dispatch = useAppDispatch()
 
@@ -30,7 +31,7 @@ const Footer = () => {
          path: '/',
          title: 'Команды',
          id: 2,
-         sub_nav: allTeams,
+         sub_nav: headerTeam,
       },
 
       {
@@ -178,7 +179,7 @@ const Footer = () => {
 
                   <nav>
                      <Flex vertical gap={12}>
-                        {allTeams?.map(({ slug, title, id }) => (
+                        {headerTeam?.map(({ slug, title, id }) => (
                            <NavLink key={id} to={`team/${slug}`}>
                               {title}
                            </NavLink>
