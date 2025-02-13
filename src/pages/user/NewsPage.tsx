@@ -73,7 +73,7 @@ const NewsPage: FC = () => {
             </Flex>
 
             <CardsContainer>
-               {allNews.map((item) => (
+               {allNews?.map((item) => (
                   <NewsCard key={item.id} {...item} />
                ))}
             </CardsContainer>

@@ -1,13 +1,12 @@
 import { FC, useEffect } from 'react'
 import { Carousel, Button, Flex } from 'antd'
 import styled from 'styled-components'
-// import { banners } from '../configs'
 import { NavLink } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../store/store'
 import { BANNER_THUNK } from '../store/slice/banner/bannerThunk'
 
 const Slider: FC = () => {
-   const banners = useAppSelector((state) => state.banner.banners)
+   const { banners } = useAppSelector((state) => state.banner)
 
    const dispatch = useAppDispatch()
 

@@ -41,6 +41,7 @@ const News = () => {
       <NewsContainer>
          <Flex justify="space-between">
             <h2 className="main-title">ПОСЛЕДНИЕ НОВОСТИ</h2>
+
             <Button type="primary">
                <NavLink to="/news">
                   Посмотреть все новости <RightOutlined />
@@ -49,7 +50,7 @@ const News = () => {
          </Flex>
 
          <CardsContainer>
-            {news.slice(0, visibleCount).map((item) => (
+            {news?.slice(0, visibleCount).map((item) => (
                <NewsCard key={item.id} {...item} />
             ))}
          </CardsContainer>

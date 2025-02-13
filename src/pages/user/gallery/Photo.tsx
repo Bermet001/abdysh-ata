@@ -26,7 +26,7 @@ const Photo: FC = () => {
             <h1 className="main-title">Картинки с этого события</h1>
 
             <Flex wrap>
-               {photo.images.map((item) => (
+               {photo.images?.map((item) => (
                   <ImageWrapper key={item.id}>
                      <img
                         height="100%"

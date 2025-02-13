@@ -92,7 +92,7 @@ const columns = [
       align: 'start',
       render: (form: string[]) => (
          <Flex>
-            {form.map((color: string, index: Key) => (
+            {form?.map((color: string, index: Key) => (
                <span
                   key={index}
                   style={{

@@ -12,10 +12,6 @@ import { SearchOutlined, MenuOutlined, CloseOutlined } from '@ant-design/icons'
 import Logo from '../assets/images/main-logo.png'
 import styled from 'styled-components'
 import { NavLink, useLocation } from 'react-router-dom'
-import Partner1 from '../assets/images/nitro-logo.png'
-import Partner2 from '../assets/images/partner2 copy.svg'
-import Nashe from '../assets/images/nashe-logo.jpg'
-import Partner2copy from '../assets/images/partner2.svg'
 import { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../store/store'
 import { getAllTeams, getOurTeam } from '../store/slice/team/teamThunk'
@@ -28,7 +24,7 @@ interface StyledContainerProps {
 const Header = () => {
    const { headerTeam } = useAppSelector((state) => state.team)
    const { data } = useAppSelector((state) => state.global_search)
-   console.log(headerTeam, 'header')
+   const { partners } = useAppSelector((state) => state.partner)
 
    const [isscrolled, setIsScrolled] = useState(false)
    const [searchVisible, setSearchVisible] = useState(false)
@@ -82,6 +78,7 @@ const Header = () => {
 
    useEffect(() => {
       window.addEventListener('scroll', handleScroll, { passive: true })
+
       return () => {
          window.removeEventListener('scroll', handleScroll)
       }
@@ -256,15 +253,11 @@ const Header = () => {
                            align="center"
                            gap={20}
                         >
-                           <img
-                              className="partners-img"
-                              src={Partner1}
-                              alt=""
-                           />
-
-                           {isscrolled ? <Partner2copy /> : <Partner2 />}
-
-                           <img src={Nashe} width="50" alt="logo" />
+                           {partners.slice(0, 3).map((item) => (
+                              <a key={item.link} href={item.link}>
+                                 <img src={item.image} width="60" alt="" />
+                              </a>
+                           ))}
                         </Flex>
 
                         <Button

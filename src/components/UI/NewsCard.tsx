@@ -16,26 +16,24 @@ interface IProps {
    slug: string
 }
 
-const NewsCard: FC<IProps> = ({ slug, id, image, title, category, date }) => {
-   return (
-      <StyledNewsCard key={id}>
-         <NavLink to={`/news/${slug}`}>
-            <NewsImage src={image} alt={title} />
-            <NewsContent>
-               <Category>{category.title}</Category>
-               <Popover
-                  placement="bottom"
-                  content={<PopoverContent>{title}</PopoverContent>}
-                  trigger="hover"
-               >
-                  <Title>{title}</Title>
-               </Popover>
-               <Date>{date}</Date>
-            </NewsContent>
-         </NavLink>
-      </StyledNewsCard>
-   )
-}
+const NewsCard: FC<IProps> = ({ slug, id, image, title, category, date }) => (
+   <StyledNewsCard key={id}>
+      <NavLink to={`/news/${slug}`}>
+         <NewsImage src={image} alt={title} />
+         <NewsContent>
+            <Category>{category.title}</Category>
+            <Popover
+               placement="bottom"
+               content={<PopoverContent>{title}</PopoverContent>}
+               trigger="hover"
+            >
+               <Title>{title}</Title>
+            </Popover>
+            <Date>{date}</Date>
+         </NewsContent>
+      </NavLink>
+   </StyledNewsCard>
+)
 
 export default NewsCard
 

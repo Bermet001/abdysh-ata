@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom'
 
 const ProductPage = () => {
    window.scrollTo(0, 0)
+
    const { slug } = useParams<{ slug: string }>()
 
    const { product } = useAppSelector((state) => state.shop)

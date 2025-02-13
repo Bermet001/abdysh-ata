@@ -24,7 +24,6 @@ const BannerInner: FC = () => {
 
          <BannerContent>
             <h2 className="banner-title">{banner.title}</h2>
-            d
             <p
                dangerouslySetInnerHTML={{
                   __html: banner?.subtitle || '',

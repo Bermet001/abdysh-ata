@@ -47,7 +47,7 @@ const Guideline: FC = () => {
       <StyledContainer>
          <h1 className="main-title">Руководство</h1>
          <Row gutter={[10, 10]}>
-            {persons.map((director) => (
+            {persons?.map((director) => (
                <Col xs={12} sm={12} md={8} lg={6} key={director.id}>
                   <StyledCard onClick={() => showModal(director)}>
                      <InfoCircleOutlined className="info-icon" />

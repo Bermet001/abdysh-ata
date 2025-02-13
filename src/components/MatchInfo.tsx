@@ -17,7 +17,7 @@ const MatchInfo = () => {
    return (
       <StyledContainer>
          <StyledFlexContainer>
-            {matches.map((match, index: number) => (
+            {matches?.map((match, index: number) => (
                <MatchCard key={index} match={match} />
             ))}
          </StyledFlexContainer>

@@ -13,12 +13,12 @@ const Gallery = () => {
 
    useEffect(() => {
       dispatch(GALLERY_THUNK.getPhotos())
-   })
+   }, [dispatch])
 
    return (
       <StyledContainer>
          <Flex gap={20} wrap>
-            {gallery.map((item) => (
+            {gallery?.map((item) => (
                <NavLink key={item.id} to={`/gallery/${item.slug}`}>
                   <StyledImage
                      width={400}

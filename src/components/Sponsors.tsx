@@ -44,7 +44,7 @@ const Sponsors = () => {
                },
             }}
          >
-            {partners.map((sponsor) => (
+            {partners?.map((sponsor) => (
                <SwiperSlide key={sponsor.id}>
                   <a href={sponsor.link}>
                      <img

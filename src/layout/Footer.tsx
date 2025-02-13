@@ -135,7 +135,7 @@ const Footer = () => {
 
                   <nav>
                      <Flex className="footer-nav" vertical gap={12}>
-                        {navigations.map(({ path, title, id }) => (
+                        {navigations?.map(({ path, title, id }) => (
                            <NavLink key={id} to={path}>
                               {title}
                            </NavLink>
@@ -170,7 +170,7 @@ const Footer = () => {
 
                   <nav>
                      <Flex vertical gap={12}>
-                        {allTeams.map(({ slug, title, id }) => (
+                        {allTeams?.map(({ slug, title, id }) => (
                            <NavLink key={id} to={`team/${slug}`}>
                               {title}
                            </NavLink>

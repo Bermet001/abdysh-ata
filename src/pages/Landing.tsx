@@ -7,13 +7,11 @@ import ProductSlider from '../components/Products'
 import News from '../components/News'
 import { FC } from 'react'
 import Team from '../components/Team'
-import Stories from '../components/Stories'
 
 const Landing: FC = () => (
    <main>
       <Slider />
       <MatchInfo />
-      <Stories />
       <ProductSlider />
       <News />
       <Gallery />

@@ -22,11 +22,10 @@ const Partners = () => {
                <Content>
                   <h1 className="main-title">Спонсоры Абдыш ата</h1>
                   <p>
-                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                     Architecto, expedita aperiam. Enim quod iusto perspiciatis
-                     voluptates fuga ad placeat ea amet ipsam obcaecati
-                     cupiditate quidem, quisquam voluptatum adipisci, repellat
-                     odit?
+                     Спонсоры Абдыш ата являются ключевыми партнерами клуба,
+                     обеспечивая необходимую поддержку для развития команд и
+                     организации различных мероприятий. Их вклад способствует
+                     росту и популяризации спорта в нашем регионе.
                   </p>
                </Content>
             </div>

@@ -59,7 +59,7 @@ const VictoryBlock = () => {
                   },
                }}
             >
-               {achievements.map(({ id, title, season, image }) => (
+               {achievements?.map(({ id, title, season, image }) => (
                   <SwiperSlide key={id}>
                      <StyledCard>
                         <Flex vertical>

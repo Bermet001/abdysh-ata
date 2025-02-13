@@ -1,13 +1,9 @@
 import { FC } from 'react'
 import styled, { keyframes } from 'styled-components'
 
-interface PreloaderProps {
-   className?: string
-}
-
-const Preloader: FC<PreloaderProps> = ({ className }) => {
+const Preloader: FC = () => {
    return (
-      <PreloaderContainer className={className}>
+      <PreloaderContainer>
          <AnimationPreloader>
             <Spinner />
 

@@ -6,20 +6,20 @@ import { useAppDispatch, useAppSelector } from '../../../store/store'
 import { useEffect, useState } from 'react'
 import { getMatch } from '../../../store/slice/matches/matchesThunk'
 import Button from '../../../components/UI/Button'
-import Preloader from '../../../components/Preloader'
 
 const { Title, Text } = Typography
 
 const MatchInfo = () => {
+   const [countdown, setCountdown] = useState('')
+
    const { slug } = useParams<{ slug: string }>()
    const { match } = useAppSelector((state) => state.matches)
+
    const dispatch = useAppDispatch()
 
    useEffect(() => {
       dispatch(getMatch(slug))
    }, [dispatch, slug])
-
-   const [countdown, setCountdown] = useState('')
 
    useEffect(() => {
       if (match) {
@@ -47,18 +47,18 @@ const MatchInfo = () => {
       }
    }, [match])
 
-   if (!match) return <Preloader />
-
    return (
       <MatchCard>
          <DarkOverlay />
          <BackgroundImage />
 
          <Content>
-            <LeagueLogo src={match.liga.image} alt={match.liga.title} />
+            <LeagueLogo src={match?.liga.image} alt={match?.liga.title} />
             <h4 className="time">
                <Countdown>
-                  {new Date(match.date).toLocaleDateString()}
+                  {match?.date
+                     ? new Date(match.date).toLocaleDateString()
+                     : 'Дата не доступна'}
                </Countdown>
             </h4>
 
@@ -76,33 +76,33 @@ const MatchInfo = () => {
                   <TeamCard>
                      <Team>
                         <img
-                           src={match.home_team.logo}
-                           alt={match.home_team.title}
+                           src={match?.home_team.logo}
+                           alt={match?.home_team.title}
                            style={{ width: '80px' }}
                         />
                         <Title className="team-name" level={4}>
-                           {match.home_team.title}
+                           {match?.home_team.title}
                         </Title>
                      </Team>
                   </TeamCard>
                </Col>
 
                <Flex gap={10} align="center">
-                  <Score>{match.home_score}</Score>
+                  <Score>{match?.home_score}</Score>
                   <Score>:</Score>
-                  <Score>{match.away_score}</Score>
+                  <Score>{match?.away_score}</Score>
                </Flex>
 
                <Col>
                   <TeamCard>
                      <Team>
                         <img
-                           src={match.away_team.logo}
-                           alt={match.away_team.title}
+                           src={match?.away_team.logo}
+                           alt={match?.away_team.title}
                            style={{ width: '80px' }}
                         />
                         <Title className="team-name" level={4}>
-                           {match.away_team.title}
+                           {match?.away_team.title}
                         </Title>
                      </Team>
                   </TeamCard>
@@ -110,16 +110,16 @@ const MatchInfo = () => {
             </Flex>
 
             <Flex vertical align="center" gap={10}>
-               {match.stream_link ? (
+               {match?.stream_link ? (
                   <Button>
-                     <a href={match.stream_link}>Смотреть</a>
+                     <a href={match?.stream_link}>Смотреть</a>
                   </Button>
                ) : null}
 
-               <Text style={{ color: 'white' }}>{match.location}</Text>
+               <Text style={{ color: 'white' }}>{match?.location}</Text>
 
                <Text style={{ color: 'white' }}>
-                  Статус матча: {match.status_display}
+                  Статус матча: {match?.status_display}
                </Text>
             </Flex>
          </Content>

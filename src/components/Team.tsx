@@ -44,7 +44,7 @@ const Team = () => {
                },
             }}
          >
-            {players.map(({ image, id, name, position, number, slug }) => (
+            {players?.map(({ image, id, name, position, number, slug }) => (
                <SwiperSlide key={id}>
                   <Link to={`/player/${slug}`}>
                      <StyledCard>

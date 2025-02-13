@@ -36,8 +36,6 @@ const New: FC = () => {
                            fcabdyshata.com
                         </a>
 
-                        <br />
-
                         <span style={{}}>{currentNews?.date}</span>
                      </Paragraph>
                      <Paragraph className="sport-type">
