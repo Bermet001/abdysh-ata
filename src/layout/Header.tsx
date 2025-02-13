@@ -18,7 +18,7 @@ import Nashe from '../assets/images/nashe-logo.jpg'
 import Partner2copy from '../assets/images/partner2.svg'
 import { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../store/store'
-import { getAllTeams } from '../store/slice/team/teamThunk'
+import { getAllTeams, getOurTeam } from '../store/slice/team/teamThunk'
 import { searchGlobal } from '../store/slice/globalSearch/globalSearchThunk'
 
 interface StyledContainerProps {
@@ -26,8 +26,9 @@ interface StyledContainerProps {
 }
 
 const Header = () => {
-   const { allTeams } = useAppSelector((state) => state.team)
+   const { headerTeam } = useAppSelector((state) => state.team)
    const { data } = useAppSelector((state) => state.global_search)
+   console.log(headerTeam, 'header')
 
    const [isscrolled, setIsScrolled] = useState(false)
    const [searchVisible, setSearchVisible] = useState(false)
@@ -40,7 +41,7 @@ const Header = () => {
          path: '#',
          title: 'Команды',
          id: 2,
-         sub_nav: allTeams.map(({ slug, title, id }) => ({
+         sub_nav: headerTeam?.map(({ slug, title, id }) => ({
             slug: `/team/${slug}`,
             title,
             id,
@@ -88,6 +89,7 @@ const Header = () => {
 
    useEffect(() => {
       dispatch(getAllTeams())
+      dispatch(getOurTeam())
    }, [dispatch])
 
    const handleSearchClick = () => {

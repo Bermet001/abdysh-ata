@@ -56,6 +56,8 @@ const Player = () => {
                   <DetailsContainer
                      className="characteristics-container"
                      justify="space-between"
+                     wrap
+                     gap={15}
                   >
                      <Flex vertical gap={5}>
                         <DetailLabel>Дата рождения</DetailLabel>

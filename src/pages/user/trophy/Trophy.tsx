@@ -73,11 +73,6 @@ const Trophy = () => {
                   <Flex align="start" gap={40} vertical className="texstovka">
                      <h2>{item.title}</h2>
                      <p className="text-info">{item.descriptions}</p>
-
-                     <p className="text-info">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Doloribus, rem! Vero.
-                     </p>
                   </Flex>
                </Flex>
             ))}

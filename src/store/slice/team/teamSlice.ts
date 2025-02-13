@@ -1,9 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { getTeam, getPlayer, getAllTeams } from './teamThunk'
-import { AllTeamsData, IPlayer, TeamData, TeamState } from './types'
+import { getTeam, getPlayer, getAllTeams, getOurTeam } from './teamThunk'
+import { AllTeamsData, IPlayer, NavTeam, TeamData, TeamState } from './types'
 
 const initialState: TeamState = {
    team: null,
+   headerTeam: [],
    coaches: [],
    players: [],
    player: {
@@ -79,6 +80,21 @@ export const teamSlice = createSlice({
             state.isLoading = true
          })
          .addCase(getPlayer.rejected, (state) => {
+            state.isLoading = false
+         })
+
+         .addCase(
+            getOurTeam.fulfilled,
+            (state, { payload }: PayloadAction<NavTeam[]>) => {
+               state.headerTeam = payload
+               state.isLoading = false
+               console.log(payload, 'fadshj;fk')
+            }
+         )
+         .addCase(getOurTeam.pending, (state) => {
+            state.isLoading = true
+         })
+         .addCase(getOurTeam.rejected, (state) => {
             state.isLoading = false
          })
    },

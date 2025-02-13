@@ -70,6 +70,13 @@ interface AllTeamsData {
    slug: string
    is_our_team: boolean
 }
+interface NavTeam {
+   id: number | null
+   title: string
+   slug: string
+   is_our_team: boolean
+   logo: string
+}
 
 interface TeamState {
    team: Team | null
@@ -78,6 +85,7 @@ interface TeamState {
    player: IPlayer
    allTeams: AllTeamsData[]
    isLoading: boolean
+   headerTeam: NavTeam[] | []
 }
 
-export type { TeamState, AllTeamsData, TeamData, Coach, IPlayer }
+export type { TeamState, AllTeamsData, TeamData, Coach, IPlayer, NavTeam }

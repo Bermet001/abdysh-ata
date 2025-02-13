@@ -238,6 +238,14 @@ const StyledFooter = styled.footer`
       color: #00a64f;
    }
 
+   .first-block {
+      .logo {
+         img {
+            width: 100px;
+         }
+      }
+   }
+
    @media (max-width: 1220px) {
       padding: 80px 30px;
       .inner {

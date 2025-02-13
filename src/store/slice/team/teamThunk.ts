@@ -53,4 +53,21 @@ const getPlayer = createAsyncThunk(
    }
 )
 
-export { getTeam, getPlayer, getAllTeams }
+const getOurTeam = createAsyncThunk(
+   'team/getOurTeam',
+   async (_, { rejectWithValue }) => {
+      try {
+         const { data } = await axiosInstance(`teams/our-teams/`)
+
+         return data
+      } catch (error) {
+         const err = error as AxiosError
+
+         return rejectWithValue({
+            message: err.message,
+         })
+      }
+   }
+)
+
+export { getTeam, getPlayer, getAllTeams, getOurTeam }

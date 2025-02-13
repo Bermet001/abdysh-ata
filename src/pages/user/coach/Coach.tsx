@@ -36,8 +36,6 @@ const Coach: FC = () => {
                      justify="center"
                   >
                      <h1 className="coach-full-name">
-                        {/* <AnimatedName> fasdfas{name}</AnimatedName> */}
-                        {/* <br /> */}
                         <AnimatedSurname>{name}</AnimatedSurname>
                      </h1>
 

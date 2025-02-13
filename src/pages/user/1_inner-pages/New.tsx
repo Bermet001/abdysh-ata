@@ -11,8 +11,8 @@ const { Title, Paragraph } = Typography
 
 const New: FC = () => {
    window.scrollTo(0, 0)
-   const { slug } = useParams<{ slug: string }>()
 
+   const { slug } = useParams<{ slug: string }>()
    const { currentNews } = useAppSelector((state) => state.news)
    console.log(slug)
 
