@@ -141,6 +141,8 @@ export default SchedulMatches
 
 const StyledMainContainer = styled.main`
    margin-bottom: 50px;
+   max-width: 1600px;
+   margin: 0 auto;
 
    .main-container {
       position: relative;
@@ -152,7 +154,7 @@ const StyledMainContainer = styled.main`
 
    .team-box {
       display: flex;
-      width: 200px;
+      width: 190px;
    }
 
    .team-box:first-child {
@@ -247,7 +249,7 @@ const TeamWrapper = styled.div`
    font-weight: 700;
 
    img {
-      width: 50px;
+      width: 45px;
       height: 50px;
       margin-right: 10px;
    }
@@ -258,7 +260,7 @@ const TeamWrapper = styled.div`
 
    @media (max-width: 768px) {
       img {
-         width: 30px;
+         width: 27px;
          height: 30px;
       }
    }

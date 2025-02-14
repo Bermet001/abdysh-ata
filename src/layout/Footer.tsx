@@ -62,34 +62,6 @@ const Footer = () => {
       {
          path: '/infrastracture',
          title: 'Инфраструктура',
-
-         sub_nav: [
-            {
-               slug: '/',
-               title: 'СК Нитро-Арена ',
-               id: 21,
-            },
-            {
-               slug: '/',
-               title: 'СК Спорт-Сити',
-               id: 22,
-            },
-            {
-               slug: '/',
-               title: 'Стадион Центральный',
-               id: 23,
-            },
-            {
-               slug: '/',
-               title: 'Тренажерный зал',
-               id: 24,
-            },
-            {
-               slug: '/',
-               title: 'Батутный зал',
-               id: 25,
-            },
-         ],
          id: 8,
       },
       { path: '/rating', title: 'Таблица рейтинга', id: 5 },

@@ -181,6 +181,7 @@ export default Rating
 
 const StyledContainer = styled.main`
    padding: 100px 75px;
+
    background-color: #f0f3f7;
 
    @media (max-width: 1024px) {
@@ -194,6 +195,8 @@ const StyledContainer = styled.main`
    .table-container {
       background-color: #fff;
       padding: 40px 20px;
+      max-width: 1600px;
+      margin: 0 auto;
       border-radius: 10px;
 
       @media (max-width: 900px) {

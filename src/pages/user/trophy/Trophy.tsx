@@ -52,31 +52,37 @@ const Trophy = () => {
                </Flex>
             </div>
          </StyledFirstPart>
+         <div className="second-part-trophy">
+            <p className="text">
+               Когда речь заходит о главных национальных и европейских наградах,
+               наша мужская команда выигрывает все, а женская и Академическая
+               команды в последнее время регулярно завоевывают кубки.
+            </p>
 
-         <p className="text">
-            Когда речь заходит о главных национальных и европейских наградах,
-            наша мужская команда выигрывает все, а женская и Академическая
-            команды в последнее время регулярно завоевывают кубки.
-         </p>
+            <Flex vertical className="trophy-block-container">
+               {achievements.map((item, index) => (
+                  <Flex
+                     key={index}
+                     className="trophy-block"
+                     style={{
+                        flexDirection: index % 2 === 1 ? 'row-reverse' : 'row',
+                     }}
+                  >
+                     <img className="image" src={item.image} alt={item.title} />
 
-         <Flex vertical className="trophy-block-container">
-            {achievements.map((item, index) => (
-               <Flex
-                  key={index}
-                  className="trophy-block"
-                  style={{
-                     flexDirection: index % 2 === 1 ? 'row-reverse' : 'row',
-                  }}
-               >
-                  <img className="image" src={item.image} alt={item.title} />
-
-                  <Flex align="start" gap={40} vertical className="texstovka">
-                     <h2>{item.title}</h2>
-                     <p className="text-info">{item.descriptions}</p>
+                     <Flex
+                        align="start"
+                        gap={40}
+                        vertical
+                        className="texstovka"
+                     >
+                        <h2>{item.title}</h2>
+                        <p className="text-info">{item.descriptions}</p>
+                     </Flex>
                   </Flex>
-               </Flex>
-            ))}
-         </Flex>
+               ))}
+            </Flex>
+         </div>
       </StyledContainer>
    )
 }
@@ -99,6 +105,11 @@ const StyledContainer = styled(Flex)`
       flex-direction: column;
    }
 
+   .second-part-trophy {
+      max-width: 1600px;
+      margin: 0 auto;
+   }
+
    .first-part {
       height: 100%;
       width: 100%;
@@ -107,6 +118,8 @@ const StyledContainer = styled(Flex)`
       padding: 75px;
 
       .first {
+         max-width: 1600px;
+         margin: 0 auto;
          height: 100%;
       }
 

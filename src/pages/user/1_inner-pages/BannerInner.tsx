@@ -33,6 +33,7 @@ const BannerInner: FC = () => {
          <MatchInfo />
 
          <ProductSlider />
+
          <div className="space" />
          <Sponsors />
       </BannerSection>

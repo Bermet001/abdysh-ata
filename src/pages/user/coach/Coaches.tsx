@@ -5,7 +5,6 @@ import { useAppSelector } from '../../../store/store'
 
 const Coaches = () => {
    window.scrollTo(0, 0)
-
    const { coaches } = useAppSelector((state) => state.team)
 
    return (

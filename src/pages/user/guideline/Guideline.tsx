@@ -4,7 +4,6 @@ import { FC, useEffect, useState } from 'react'
 import { InfoCircleOutlined } from '@ant-design/icons'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
 import { getManagmets } from '../../../store/slice/guideline/guidelineThunk'
-import Preloader from '../../../components/Preloader'
 
 interface IManagment {
    id: number
@@ -16,6 +15,7 @@ interface IManagment {
 
 const Guideline: FC = () => {
    window.scrollTo(0, 0)
+   const { persons } = useAppSelector((state) => state.management)
 
    const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
    const [selectedDirector, setSelectedDirector] = useState<IManagment | null>(
@@ -23,7 +23,6 @@ const Guideline: FC = () => {
    )
 
    const dispatch = useAppDispatch()
-   const { persons, isLoading } = useAppSelector((state) => state.management)
 
    useEffect(() => {
       dispatch(getManagmets())
@@ -39,38 +38,38 @@ const Guideline: FC = () => {
       setSelectedDirector(null)
    }
 
-   if (isLoading) {
-      return <Preloader />
-   }
-
    return (
       <StyledContainer>
-         <h1 className="main-title">Руководство</h1>
-         <Row gutter={[10, 10]}>
-            {persons?.map((director) => (
-               <Col xs={12} sm={12} md={8} lg={6} key={director.id}>
-                  <StyledCard onClick={() => showModal(director)}>
-                     <InfoCircleOutlined className="info-icon" />
-                     <Image src={director.image} alt={director.name} />
-                     <h3 className="name-p">{director.name}</h3>
-                     <CardContent>{director.position}</CardContent>
-                  </StyledCard>
-               </Col>
-            ))}
-         </Row>
+         <div>
+            <h1 className="main-title">Руководство</h1>
+            <Row gutter={[10, 10]}>
+               {persons?.map((director) => (
+                  <Col xs={12} sm={12} md={8} lg={6} key={director.id}>
+                     <StyledCard onClick={() => showModal(director)}>
+                        <InfoCircleOutlined className="info-icon" />
+                        <Image src={director.image} alt={director.name} />
+                        <h3 className="name-p">{director.name}</h3>
+                        <CardContent>{director.position}</CardContent>
+                     </StyledCard>
+                  </Col>
+               ))}
+            </Row>
 
-         {selectedDirector && (
-            <Modal
-               title={selectedDirector.name}
-               open={isModalOpen}
-               onCancel={handleCancel}
-               footer={null}
-            >
-               <p
-                  dangerouslySetInnerHTML={{ __html: selectedDirector.content }}
-               />
-            </Modal>
-         )}
+            {selectedDirector && (
+               <Modal
+                  title={selectedDirector.name}
+                  open={isModalOpen}
+                  onCancel={handleCancel}
+                  footer={null}
+               >
+                  <p
+                     dangerouslySetInnerHTML={{
+                        __html: selectedDirector.content,
+                     }}
+                  />
+               </Modal>
+            )}
+         </div>
       </StyledContainer>
    )
 }
@@ -78,12 +77,15 @@ const Guideline: FC = () => {
 export default Guideline
 
 const StyledContainer = styled.main`
-   max-width: 1600px;
-   margin: 0 auto;
    background-color: #f7f9fc;
    border-radius: 10px;
    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
    padding: 100px 75px;
+
+   > div {
+      margin: 0 auto;
+      max-width: 1600px;
+   }
 
    @media (max-width: 1024px) {
       padding: 100px 20px;

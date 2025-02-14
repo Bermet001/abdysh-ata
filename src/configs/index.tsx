@@ -90,6 +90,7 @@ const columns = [
       dataIndex: 'form_list',
       key: 'form_list',
       align: 'start',
+
       render: (form: string[]) => (
          <Flex>
             {form?.map((color: string, index: Key) => (

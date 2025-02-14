@@ -3,10 +3,7 @@ import { Button, Card, Flex } from 'antd'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import { ArrowsAltOutlined, EnvironmentFilled } from '@ant-design/icons'
-import { useAppDispatch, useAppSelector } from '../../../store/store'
-import { useEffect } from 'react'
-import { getInfrastractures } from '../../../store/slice/infrastracture/infrastractureThunk'
-
+import { useAppSelector } from '../../../store/store'
 interface StyledCardProps {
    bgimage: string
 }
@@ -14,12 +11,6 @@ interface StyledCardProps {
 const Infrastructures: FC = () => {
    window.scrollTo(0, 0)
    const { infrastractures } = useAppSelector((state) => state.infrastracture)
-
-   const dispatch = useAppDispatch()
-
-   useEffect(() => {
-      dispatch(getInfrastractures())
-   }, [dispatch])
 
    return (
       <main>

@@ -5,8 +5,8 @@ interface IProps {
    children: ReactNode
 }
 
-const Suspense: FC<IProps> = ({ children }) => {
-   return <ReactSuspense fallback={<Preloader />}>{children}</ReactSuspense>
-}
+const Suspense: FC<IProps> = ({ children }) => (
+   <ReactSuspense fallback={<Preloader />}>{children}</ReactSuspense>
+)
 
 export default Suspense

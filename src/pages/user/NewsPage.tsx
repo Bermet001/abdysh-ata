@@ -1,6 +1,5 @@
 import { ChangeEvent, FC, useEffect, useState } from 'react'
 import styled from 'styled-components'
-// import { NavLink } from 'react-router-dom'
 import { Pagination as AntPagination, Flex, Select } from 'antd'
 import { Input } from 'antd'
 import { useAppDispatch, useAppSelector } from '../../store/store'
@@ -15,7 +14,6 @@ const NewsPage: FC = () => {
       (state) => state.news
    )
    const [currentPage, setCurrentPage] = useState<number>(1)
-   // const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth)
    const [search, setSearch] = useState<string>('')
    const dispatch = useAppDispatch()
    const itemsPerPage = 10
@@ -24,17 +22,6 @@ const NewsPage: FC = () => {
       dispatch(NEWS_THUNK.getNewsPageItem({ itemsPerPage, page: currentPage }))
       dispatch(NEWS_THUNK.allCategories())
    }, [currentPage, itemsPerPage, dispatch])
-
-   // useEffect(() => {
-   //    const handleResize = () => {
-   //       setScreenWidth(window.innerWidth)
-   //    }
-
-   //    window.addEventListener('resize', handleResize)
-   //    return () => {
-   //       window.removeEventListener('resize', handleResize)
-   //    }
-   // }, [])
 
    const onSearch = (e: ChangeEvent<HTMLInputElement>) => {
       dispatch(NEWS_THUNK.searchNew(e.target.value))

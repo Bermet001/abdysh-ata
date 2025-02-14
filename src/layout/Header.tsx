@@ -16,6 +16,7 @@ import { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../store/store'
 import { getAllTeams, getOurTeam } from '../store/slice/team/teamThunk'
 import { searchGlobal } from '../store/slice/globalSearch/globalSearchThunk'
+import { getInfrastractures } from '../store/slice/infrastracture/infrastractureThunk'
 
 type MenuItem = Required<MenuProps>['items'][number]
 
@@ -132,6 +133,7 @@ const Header = () => {
    useEffect(() => {
       dispatch(getAllTeams())
       dispatch(getOurTeam())
+      dispatch(getInfrastractures())
    }, [dispatch])
 
    const handleSearchClick = () => {
@@ -146,11 +148,8 @@ const Header = () => {
    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value
       setSearchQuery(value)
-      if (value) {
-         dispatch(searchGlobal(value))
-      } else {
-         setSearchVisible(false)
-      }
+      if (value) dispatch(searchGlobal(value))
+      else setSearchVisible(false)
    }
 
    const handleMenuClick = () => {
@@ -216,10 +215,10 @@ const Header = () => {
       },
       { path: '/match', title: 'Матчи', id: 4 },
       {
-         path: '#',
+         path: '/infrastracture',
          title: 'Инфраструктура',
          sub_nav: infrastractures?.map(({ slug, title, id }) => ({
-            slug: `/infrastracture/${slug}`,
+            slug: `/infrastructure/${slug}`,
             title,
             id,
          })),
