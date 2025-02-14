@@ -34,7 +34,7 @@ const Team = () => {
             slidesPerView={1}
             breakpoints={{
                200: {
-                  slidesPerView: 1.1,
+                  slidesPerView: 2,
                },
                768: {
                   slidesPerView: 3,
