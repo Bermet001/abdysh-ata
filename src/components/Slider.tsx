@@ -21,11 +21,17 @@ const Slider: FC = () => {
          autoplay
          autoplaySpeed={6000}
          infinite
+         aria-hidden="false"
       >
          {banners?.map((item, index) => (
             <div className="main-container" key={index}>
                <Overlay />
-               <img src={item.image} alt={`Slide ${index + 1}`} />
+
+               <img
+                  src={item.image}
+                  alt={`Slide ${index + 1}`}
+                  loading="lazy"
+               />
 
                <Flex align="start" vertical className="content">
                   <h2>{item.title}</h2>
