@@ -7,10 +7,15 @@ import { useParams } from 'react-router-dom'
 
 const ProductPage = () => {
    window.scrollTo(0, 0)
-
    const { slug } = useParams<{ slug: string }>()
 
    const { product } = useAppSelector((state) => state.shop)
+   const { contacts } = useAppSelector((state) => state.contacts)
+
+   const contact = contacts.length > 0 ? contacts[0] : null
+   const message = `Хотела бы узнать подробнее о ${product?.title}.`
+   const encodedMessage = encodeURIComponent(message)
+
    const dispatch = useAppDispatch()
 
    const [selectedColor, setSelectedColor] = useState(
@@ -74,8 +79,14 @@ const ProductPage = () => {
                   ))}
                </FeatureList>
             </Section>
-
-            <Button>Оформить заказ</Button>
+            <a
+               href={`https://wa.me/${contact?.whatsapp}?text=${encodedMessage}`}
+               aria-label="перейти в чат"
+               target="_blank"
+               rel="noopener noreferrer"
+            >
+               <Button>Оформить заказ</Button>
+            </a>
 
             <Section>
                <SectionTitle>Описание</SectionTitle>

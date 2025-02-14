@@ -10,6 +10,8 @@ import { PRODUCT_THUNK } from '../store/slice/shop/shopThunk'
 
 const ProductSlider = () => {
    const { products } = useAppSelector((state) => state.shop)
+   const { contacts } = useAppSelector((state) => state.contacts)
+   const contact = contacts.length > 0 ? contacts[0] : null
 
    const dispatch = useAppDispatch()
 
@@ -49,22 +51,36 @@ const ProductSlider = () => {
                },
             }}
          >
-            {products?.map((product) => (
-               <SwiperSlide key={product.id}>
-                  <StyledCard
-                     cover={<img alt={product.title} src={product.image} />}
-                  >
-                     <NavLink to={`/shop/${product.slug}`}>
-                        <Card.Meta
-                           title={product.title}
-                           description={`${product.price} сом`}
-                        />
-                     </NavLink>
+            {products?.map((product) => {
+               const message = `Хотела бы узнать подробнее о ${product.title}.`
+               const encodedMessage = encodeURIComponent(message)
 
-                     <StyledButton type="primary">Оформить заказ</StyledButton>
-                  </StyledCard>
-               </SwiperSlide>
-            ))}
+               return (
+                  <SwiperSlide key={product.id}>
+                     <StyledCard
+                        cover={<img alt={product.title} src={product.image} />}
+                     >
+                        <NavLink to={`/shop/${product.slug}`}>
+                           <Card.Meta
+                              title={product.title}
+                              description={`${product.price} сом`}
+                           />
+                        </NavLink>
+
+                        <a
+                           href={`https://wa.me/${contact?.whatsapp}?text=${encodedMessage}`}
+                           aria-label="перейти в чат"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                        >
+                           <StyledButton type="primary">
+                              Оформить заказ
+                           </StyledButton>
+                        </a>
+                     </StyledCard>
+                  </SwiperSlide>
+               )
+            })}
          </Swiper>
       </Container>
    )

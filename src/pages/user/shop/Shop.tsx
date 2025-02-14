@@ -9,15 +9,17 @@ const { Search } = Input
 
 const Shop = () => {
    window.scrollTo(0, 0)
+   const { products, categories } = useAppSelector((state) => state.shop)
+   const { contacts } = useAppSelector((state) => state.contacts)
    const [search, setSearch] = useState<string>('')
+
+   const contact = contacts.length > 0 ? contacts[0] : null
 
    const dispatch = useAppDispatch()
 
    const handleChange = (value: string | unknown) => {
       dispatch(PRODUCT_THUNK.getCategorizedProduct(value))
    }
-
-   const { products, categories } = useAppSelector((state) => state.shop)
 
    useEffect(() => {
       dispatch(PRODUCT_THUNK.getProducts())
@@ -50,21 +52,36 @@ const Shop = () => {
          </Flex>
 
          <ProductsContainer>
-            {products.map((product) => (
-               <StyledCard
-                  key={product.id}
-                  cover={<img alt={product.title} src={product.image} />}
-               >
-                  <NavLink to={`/shop/${product.slug}`}>
-                     <Card.Meta
-                        className="product-info"
-                        title={product.title}
-                        description={product.price}
-                     />
-                  </NavLink>
-                  <StyledButton type="primary">Оформить заказ</StyledButton>
-               </StyledCard>
-            ))}
+            {products.map((product) => {
+               const message = `Хотела бы узнать подробнее о ${product?.title}.`
+               const encodedMessage = encodeURIComponent(message)
+
+               return (
+                  <StyledCard
+                     key={product.id}
+                     cover={<img alt={product.title} src={product.image} />}
+                  >
+                     <NavLink to={`/shop/${product.slug}`}>
+                        <Card.Meta
+                           className="product-info"
+                           title={product.title}
+                           description={product.price}
+                        />
+                     </NavLink>
+
+                     <a
+                        href={`https://wa.me/${contact?.whatsapp}?text=${encodedMessage}`}
+                        aria-label="перейти в чат"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                     >
+                        <StyledButton type="primary">
+                           Оформить заказ
+                        </StyledButton>
+                     </a>
+                  </StyledCard>
+               )
+            })}
          </ProductsContainer>
       </Container>
    )
