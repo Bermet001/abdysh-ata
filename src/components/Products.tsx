@@ -108,18 +108,23 @@ const StyledCard = styled(Card)`
    width: 100%;
    cursor: pointer;
 
-   img {
-      width: 99.9% !important;
-      border-top-left-radius: 8px;
-      border-top-right-radius: 8px;
-      object-fit: scale-down;
-      height: 250px;
+   .ant-card-cover {
+      max-width: 200px;
+      width: 100%;
+      margin: 0 auto;
 
-      @media (max-width: 768px) {
-         height: 200px;
+      img {
+         width: 99.9% !important;
+         border-top-left-radius: 8px;
+         border-top-right-radius: 8px;
+         object-fit: scale-down;
+         height: 250px;
+
+         @media (max-width: 768px) {
+            height: 200px;
+         }
       }
    }
-
    .ant-card-body {
       padding: 15px;
 

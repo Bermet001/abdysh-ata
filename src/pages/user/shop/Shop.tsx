@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
 import { PRODUCT_THUNK } from '../../../store/slice/shop/shopThunk'
 import { ChangeEvent, useEffect, useState } from 'react'
+// import { Helmet } from 'react-helmet'
 
 const { Search } = Input
 
@@ -17,9 +18,8 @@ const Shop = () => {
 
    const dispatch = useAppDispatch()
 
-   const handleChange = (value: string | unknown) => {
+   const handleChange = (value: string | unknown) =>
       dispatch(PRODUCT_THUNK.getCategorizedProduct(value))
-   }
 
    useEffect(() => {
       dispatch(PRODUCT_THUNK.getProducts())
@@ -33,6 +33,17 @@ const Shop = () => {
 
    return (
       <Container>
+         {/* <Helmet>
+            <title>Название вашей страницы</title>
+            <meta
+               name="description"
+               content="Краткое описание вашей страницы для SEO."
+            />
+            <meta name="keywords" content="Футбольная команда бишкек" />
+            <meta name="author" content="Ваше имя или название компании" />
+            <link rel="canonical" href="https://www.example.com/" />
+         </Helmet> */}
+
          <Flex align="center" justify="space-between" gap={50}>
             <StyledSelect
                defaultValue="Категории"
@@ -115,7 +126,7 @@ const ProductsContainer = styled.div`
    grid-template-columns: repeat(5, 1fr);
    gap: 20px;
 
-   @media (max-width: 1024px) {
+   @media (max-width: 1200px) {
       grid-template-columns: repeat(4, 1fr);
    }
 
@@ -132,16 +143,35 @@ const ProductsContainer = styled.div`
 const StyledCard = styled(Card)`
    border-radius: 10px;
    transition: transform 0.3s;
+   max-width: 280px;
 
-   img {
-      border-top-left-radius: 8px;
-      border-top-right-radius: 8px;
-      object-fit: contain;
-      height: 250px;
-      width: 100% !important;
+   @media (max-width: 1200px) {
+      max-width: 230px;
+   }
 
-      @media (max-width: 480px) {
-         height: 130px;
+   @media (max-width: 480px) {
+      max-width: 180px;
+   }
+
+   .ant-card {
+   }
+
+   .ant-card-cover {
+      max-width: 200px;
+      width: 100%;
+      margin: 0 auto;
+
+      img {
+         border-top-left-radius: 8px;
+         border-top-right-radius: 8px;
+         object-fit: contain;
+         height: 250px;
+         max-width: 200px;
+         width: 100% !important;
+
+         @media (max-width: 480px) {
+            height: 130px;
+         }
       }
    }
 

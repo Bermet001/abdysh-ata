@@ -5,8 +5,8 @@ import {
    Flex,
    Drawer,
    Dropdown,
-   MenuProps,
    Menu,
+   MenuProps,
 } from 'antd'
 import { SearchOutlined, MenuOutlined, CloseOutlined } from '@ant-design/icons'
 import Logo from '../assets/images/main-logo.png'
@@ -16,6 +16,8 @@ import { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../store/store'
 import { getAllTeams, getOurTeam } from '../store/slice/team/teamThunk'
 import { searchGlobal } from '../store/slice/globalSearch/globalSearchThunk'
+
+type MenuItem = Required<MenuProps>['items'][number]
 
 interface StyledContainerProps {
    isscrolled: string
@@ -30,6 +32,194 @@ const Header = () => {
    const [searchVisible, setSearchVisible] = useState(false)
    const [drawerVisible, setDrawerVisible] = useState(false)
    const [searchQuery, setSearchQuery] = useState('')
+
+   const items: MenuItem[] = [
+      {
+         key: '1',
+         label: <NavLink to="/">Главная</NavLink>,
+      },
+      {
+         key: '2',
+         label: 'Команды',
+         children:
+            headerTeam?.map(({ slug, title }) => ({
+               key: slug,
+               label: (
+                  <NavLink className="mobile_navigations" to={`/team/${slug}`}>
+                     {title}
+                  </NavLink>
+               ),
+            })) || [],
+      },
+      {
+         key: '3',
+         label: 'О клубе',
+         children: [
+            {
+               key: '21',
+               label: (
+                  <NavLink className="mobile_navigations" to="/history">
+                     История
+                  </NavLink>
+               ),
+            },
+            {
+               key: '22',
+               label: (
+                  <NavLink className="mobile_navigations" to="/guideline">
+                     Руководство
+                  </NavLink>
+               ),
+            },
+            {
+               key: '23',
+               label: (
+                  <NavLink className="mobile_navigations" to="/contacts">
+                     Контакты
+                  </NavLink>
+               ),
+            },
+         ],
+      },
+      {
+         key: '4',
+         label: <NavLink to="/match">Матчи</NavLink>,
+      },
+      {
+         key: '8',
+         label: 'Инфраструктура',
+         children: [
+            {
+               key: '24',
+               label: (
+                  <NavLink className="mobile_navigations" to="/">
+                     СК Нитро-Арена
+                  </NavLink>
+               ),
+            },
+            {
+               key: '25',
+               label: (
+                  <NavLink className="mobile_navigations" to="/">
+                     СК Спорт-Сити
+                  </NavLink>
+               ),
+            },
+            {
+               key: '26',
+               label: (
+                  <NavLink className="mobile_navigations" to="/">
+                     Стадион Центральный
+                  </NavLink>
+               ),
+            },
+            {
+               key: '27',
+               label: (
+                  <NavLink className="mobile_navigations" to="/">
+                     Тренажерный зал
+                  </NavLink>
+               ),
+            },
+            {
+               key: '28',
+               label: (
+                  <NavLink className="mobile_navigations" to="/">
+                     Батутный зал
+                  </NavLink>
+               ),
+            },
+         ],
+      },
+      {
+         key: '5',
+         label: <NavLink to="/rating">Таблица рейтинга</NavLink>,
+      },
+      {
+         key: '6',
+         label: <NavLink to="/partners">Партнеры</NavLink>,
+      },
+      {
+         key: '7',
+         label: <NavLink to="/trophy">Наши достижения</NavLink>,
+      },
+   ]
+
+   const location = useLocation()
+   const dispatch = useAppDispatch()
+
+   const handleScroll = () => setIsScrolled(window.scrollY > 50)
+
+   useEffect(() => {
+      window.addEventListener('scroll', handleScroll, { passive: true })
+
+      return () => {
+         window.removeEventListener('scroll', handleScroll)
+      }
+   }, [])
+
+   useEffect(() => {
+      dispatch(getAllTeams())
+      dispatch(getOurTeam())
+   }, [dispatch])
+
+   const handleSearchClick = () => {
+      setSearchVisible(!searchVisible)
+      if (!searchVisible) {
+         setSearchQuery('')
+      }
+   }
+
+   const openDrawer = () => setDrawerVisible(true)
+
+   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value
+      setSearchQuery(value)
+      if (value) {
+         dispatch(searchGlobal(value))
+      } else {
+         setSearchVisible(false)
+      }
+   }
+
+   const handleMenuClick = () => {
+      setSearchVisible(false)
+      setDrawerVisible(false)
+   }
+
+   const isOnDifferentPage = location.pathname !== '/'
+
+   const searchResults = data
+      ? [
+           ...data.teams.map((team) => ({
+              key: `team-${team.id}`,
+              label: (
+                 <NavLink to={`/team/${team.slug}`} onClick={handleMenuClick}>
+                    {team.title}
+                 </NavLink>
+              ),
+           })),
+           ...data.products.map((product) => ({
+              key: `product-${product.id}`,
+              label: (
+                 <NavLink
+                    to={`/shop/${product.slug}`}
+                    onClick={handleMenuClick}
+                 >
+                    {product.title}
+                 </NavLink>
+              ),
+           })),
+           ...data.news.map((news) => ({
+              key: `news-${news.id}`,
+              label: (
+                 <NavLink to={`/news/${news.slug}`} onClick={handleMenuClick}>
+                    {news.title}
+                 </NavLink>
+              ),
+           })),
+        ]
+      : []
 
    const navigations = [
       { path: '/', title: 'Главная', id: 1 },
@@ -71,78 +261,7 @@ const Header = () => {
       { path: '/trophy', title: 'Наши достижения', id: 7 },
    ]
 
-   const location = useLocation()
-   const dispatch = useAppDispatch()
-
-   const handleScroll = () => setIsScrolled(window.scrollY > 50)
-
-   useEffect(() => {
-      window.addEventListener('scroll', handleScroll, { passive: true })
-
-      return () => {
-         window.removeEventListener('scroll', handleScroll)
-      }
-   }, [])
-
-   useEffect(() => {
-      dispatch(getAllTeams())
-      dispatch(getOurTeam())
-   }, [dispatch])
-
-   const handleSearchClick = () => {
-      setSearchVisible(!searchVisible)
-      if (!searchVisible) {
-         setSearchQuery('')
-      }
-   }
-
-   const handleDrawerToggle = () => setDrawerVisible(!drawerVisible)
-
-   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const value = e.target.value
-      setSearchQuery(value)
-      if (value) {
-         dispatch(searchGlobal(value))
-      } else {
-         setSearchVisible(false)
-      }
-   }
-
-   const handleMenuClick = () => setSearchVisible(false)
-
-   const isOnDifferentPage = location.pathname !== '/'
-
-   const searchResults = data
-      ? [
-           ...data.teams.map((team) => ({
-              key: `team-${team.id}`,
-              label: (
-                 <NavLink to={`/team/${team.slug}`} onClick={handleMenuClick}>
-                    {team.title}
-                 </NavLink>
-              ),
-           })),
-           ...data.products.map((product) => ({
-              key: `product-${product.id}`,
-              label: (
-                 <NavLink
-                    to={`/shop/${product.slug}`}
-                    onClick={handleMenuClick}
-                 >
-                    {product.title}
-                 </NavLink>
-              ),
-           })),
-           ...data.news.map((news) => ({
-              key: `news-${news.id}`,
-              label: (
-                 <NavLink to={`/news/${news.slug}`} onClick={handleMenuClick}>
-                    {news.title}
-                 </NavLink>
-              ),
-           })),
-        ]
-      : []
+   const onClick: MenuProps['onClick'] = () => setDrawerVisible(false)
 
    return (
       <header
@@ -274,48 +393,31 @@ const Header = () => {
                      </>
                   )}
 
-                  <MenuOutlined
-                     className="mobile-menu"
-                     onClick={handleDrawerToggle}
-                  />
+                  <MenuOutlined className="mobile-menu" onClick={openDrawer} />
                </Flex>
             </StyledContainer>
          </Affix>
 
          <StyledDrawer
-            title=""
             placement="right"
             closable={true}
-            onClose={handleDrawerToggle}
+            onClose={() => setDrawerVisible(false)}
             open={drawerVisible}
          >
-            <Flex style={{ fontSize: '15px' }} gap={5} vertical align="start">
-               {navigations.map(({ path, title, id, sub_nav }) => (
-                  <Flex gap={7} vertical key={id}>
-                     <NavLink to={path} onClick={handleDrawerToggle}>
-                        {title}
-                     </NavLink>
+            <Menu
+               onClick={(e) => {
+                  onClick(e)
+                  handleMenuClick()
+               }}
+               mode="inline"
+               items={items}
+            />
 
-                     {sub_nav && (
-                        <Flex gap={7} vertical style={{ paddingLeft: '20px' }}>
-                           {sub_nav.map(
-                              ({
-                                 slug: subPath,
-                                 title: subTitle,
-                                 id: subId,
-                              }) => (
-                                 <NavLink
-                                    key={subId}
-                                    to={subPath}
-                                    onClick={handleDrawerToggle}
-                                 >
-                                    {subTitle}
-                                 </NavLink>
-                              )
-                           )}
-                        </Flex>
-                     )}
-                  </Flex>
+            <Flex wrap style={{ padding: '24px' }} align="center" gap={20}>
+               {partners.slice(0, 3).map((item) => (
+                  <a aria-label="партнеры" key={item.link} href={item.link}>
+                     <img src={item.image} width="90" alt="" />
+                  </a>
                ))}
             </Flex>
          </StyledDrawer>
@@ -342,12 +444,6 @@ const StyledContainer = styled(Flex)<StyledContainerProps>`
          height: 1.5rem;
          fill: #000;
       }
-   }
-
-   & .line {
-      border: 0.5px solid;
-      height: 25px;
-      opacity: 0.2;
    }
 
    & nav {
@@ -404,38 +500,6 @@ const StyledContainer = styled(Flex)<StyledContainerProps>`
 
       .search-desktop {
          display: none;
-
-         svg {
-            width: 1.5rem;
-            height: 1.5rem;
-            fill: #000;
-         }
-      }
-
-      .search-desktop {
-         color: transparent;
-
-         svg {
-            width: 2rem;
-            height: 2rem;
-
-            fill: #000;
-         }
-      }
-
-      .mobile-menu {
-         display: block;
-
-         svg {
-            width: 1.5rem;
-            height: 1.5rem;
-            fill: ${({ isscrolled }) =>
-               isscrolled === 'true' ? 'black' : 'white'};
-         }
-      }
-
-      .main-logo {
-         width: 65px;
       }
    }
 
@@ -466,12 +530,30 @@ const StyledInput = styled(Input)`
 `
 
 const StyledDrawer = styled(Drawer)`
+   .ant-drawer-body {
+      padding: 10px 0;
+   }
    .ant-drawer-header-title {
       flex-direction: row-reverse !important;
    }
 
-   a {
+   span {
       color: #2d2d2d;
+      padding: 15px 20px;
+      display: block;
+      font-weight: bold;
+      font-size: 20px;
+   }
+
+   .ant-menu-item-only-child {
+      .mobile_navigations {
+         font-weight: 600;
+         font-size: 18px;
+      }
+   }
+
+   a:hover {
+      background-color: rgba(0, 0, 0, 0.05);
    }
 `
 
@@ -486,10 +568,6 @@ const StyledDropdown = styled(Dropdown)`
    .ant-dropdown-menu-item {
       padding: 10px 16px;
       border-bottom: 1px solid #f0f0f0 !important;
-   }
-
-   .ant-dropdown-menu-item:last-child {
-      /* border-bottom: none;  */
    }
 
    .ant-dropdown-menu-item:hover {

@@ -8,7 +8,7 @@ import { useEffect } from 'react'
 import { getInfrastractures } from '../../../store/slice/infrastracture/infrastractureThunk'
 
 interface StyledCardProps {
-   bgImage: string
+   bgimage: string
 }
 
 const Infrastructures: FC = () => {
@@ -26,7 +26,7 @@ const Infrastructures: FC = () => {
          <CollageContainer wrap>
             {infrastractures?.map((item) => (
                <NavLink to={`/infrastructure/${item.slug}`} key={item.id}>
-                  <StyledCard bgImage={item.image}>
+                  <StyledCard bgimage={item.image}>
                      <div className="ant-card-body block">
                         <h1>{item.title}</h1>
 
@@ -81,7 +81,7 @@ const CollageContainer = styled(Flex)`
 
 const StyledCard = styled(Card)<StyledCardProps>`
    border-radius: 10px;
-   background-image: url(${(props) => props.bgImage});
+   background-image: url(${(props) => props.bgimage});
    background-size: cover;
    background-position: center;
    height: 300px;

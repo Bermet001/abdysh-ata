@@ -7,6 +7,7 @@ import ProductSlider from '../components/Products'
 import News from '../components/News'
 import { FC } from 'react'
 import Team from '../components/Team'
+// import { Helmet } from 'react-helmet'
 
 const Landing: FC = () => (
    <>

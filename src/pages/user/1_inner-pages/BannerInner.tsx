@@ -53,6 +53,21 @@ const BannerSection = styled.main`
    .space {
       margin-top: 130px;
    }
+
+   @media (max-width: 600px) {
+      .banner-title {
+         font-size: 30px;
+         margin-bottom: 20px;
+      }
+   }
+
+   @media (max-width: 500px) {
+      .banner-title {
+         font-size: 28px;
+         margin-bottom: 10px;
+         width: 70%;
+      }
+   }
 `
 
 const BannerImage = styled.img`
@@ -78,4 +93,9 @@ const BannerContent = styled.div`
    transform: translate(-50%, -50%);
    max-width: 800px;
    z-index: 2;
+
+   @media (max-width: 600px) {
+      padding: 30px;
+      top: 24%;
+   }
 `
