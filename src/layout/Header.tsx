@@ -25,6 +25,7 @@ interface StyledContainerProps {
 
 const Header = () => {
    const { headerTeam } = useAppSelector((state) => state.team)
+   const { infrastractures } = useAppSelector((state) => state.infrastracture)
    const { data } = useAppSelector((state) => state.global_search)
    const { partners } = useAppSelector((state) => state.partner)
 
@@ -88,48 +89,18 @@ const Header = () => {
       {
          key: '8',
          label: 'Инфраструктура',
-         children: [
-            {
-               key: '24',
+         children:
+            infrastractures?.map(({ slug, title }) => ({
+               key: slug,
                label: (
-                  <NavLink className="mobile_navigations" to="/">
-                     СК Нитро-Арена
+                  <NavLink
+                     className="mobile_navigations"
+                     to={`/infrastructure/${slug}`}
+                  >
+                     {title}
                   </NavLink>
                ),
-            },
-            {
-               key: '25',
-               label: (
-                  <NavLink className="mobile_navigations" to="/">
-                     СК Спорт-Сити
-                  </NavLink>
-               ),
-            },
-            {
-               key: '26',
-               label: (
-                  <NavLink className="mobile_navigations" to="/">
-                     Стадион Центральный
-                  </NavLink>
-               ),
-            },
-            {
-               key: '27',
-               label: (
-                  <NavLink className="mobile_navigations" to="/">
-                     Тренажерный зал
-                  </NavLink>
-               ),
-            },
-            {
-               key: '28',
-               label: (
-                  <NavLink className="mobile_navigations" to="/">
-                     Батутный зал
-                  </NavLink>
-               ),
-            },
-         ],
+            })) || [],
       },
       {
          key: '5',
@@ -245,15 +216,13 @@ const Header = () => {
       },
       { path: '/match', title: 'Матчи', id: 4 },
       {
-         path: '/infrastracture',
+         path: '#',
          title: 'Инфраструктура',
-         sub_nav: [
-            { slug: '/', title: 'СК Нитро-Арена ', id: 21 },
-            { slug: '/', title: 'СК Спорт-Сити', id: 22 },
-            { slug: '/', title: 'Стадион Центральный', id: 23 },
-            { slug: '/', title: 'Тренажерный зал', id: 24 },
-            { slug: '/', title: 'Батутный зал', id: 25 },
-         ],
+         sub_nav: infrastractures?.map(({ slug, title, id }) => ({
+            slug: `/infrastracture/${slug}`,
+            title,
+            id,
+         })),
          id: 8,
       },
       { path: '/rating', title: 'Таблица рейтинга', id: 5 },
