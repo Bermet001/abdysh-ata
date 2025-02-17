@@ -48,7 +48,8 @@ const Sponsors = () => {
                <SwiperSlide key={sponsor.id}>
                   <a aria-label="ссылка на сайтс спонсора" href={sponsor.link}>
                      <img
-                        height="auto"
+                        width="200px"
+                        height="100%"
                         src={sponsor.image}
                         alt={sponsor.title}
                      />
@@ -93,8 +94,6 @@ const StyledContainer = styled.section`
    .swiper-slide img {
       display: block;
       padding: 10px;
-      width: 200px;
-      height: auto;
       object-fit: cover;
       cursor: pointer;
       transition: transform 0.3s ease;

@@ -46,8 +46,11 @@ const MatchCard: FC<Match> = ({
                   justify="space-between"
                >
                   <Team vertical align="center" justify="center">
-                     <TeamLogo src={home_team.logo} alt={home_team.title} />
-                     {/* <p className="team-name">{home_team.title}</p> */}
+                     <TeamLogo
+                        width="50px"
+                        src={home_team.logo}
+                        alt={home_team.title}
+                     />
                   </Team>
 
                   <Countdown vertical align="center" justify="center">
@@ -57,8 +60,11 @@ const MatchCard: FC<Match> = ({
                   </Countdown>
 
                   <Team vertical align="center" justify="center">
-                     <TeamLogo src={away_team.logo} alt={away_team.title} />
-                     {/* <p className="team-name">{away_team.title}</p> */}
+                     <TeamLogo
+                        width="50px"
+                        src={away_team.logo}
+                        alt={away_team.title}
+                     />
                   </Team>
                </Flex>
             </MatchCardContainer>
@@ -142,7 +148,6 @@ const Team = styled(Flex)`
 `
 
 const TeamLogo = styled.img`
-   width: 50px;
    height: auto;
    min-width: 30px;
 

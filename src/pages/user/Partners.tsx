@@ -70,8 +70,7 @@ const Partners = () => {
                   <SponsorItem key={sponsor.id}>
                      <a aria-label="партнер" href={sponsor.link}>
                         <img
-                           height="auto"
-                           width={300}
+                           height="100%"
                            src={sponsor.image}
                            alt={sponsor.title}
                         />
@@ -180,8 +179,7 @@ const SponsorItem = styled.div`
    img {
       display: block;
       padding: 10px;
-      width: 160px;
-      height: auto;
+      width: 200px;
       object-fit: cover;
       cursor: pointer;
       transition: transform 0.3s ease;

@@ -51,7 +51,7 @@ const Trophy = () => {
                name="keywords"
                content="трофейная комната, достижения, FC Абдыш ата"
             />
-            <meta name="author" content="Ваше имя или название компании" />
+            <meta name="author" content="Абдыш ата" />
             <meta
                property="og:title"
                content="Трофейная комната FC Абдыш ата"

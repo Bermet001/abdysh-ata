@@ -49,21 +49,33 @@ const Infrastructure = () => {
             </Flex>
          </Flex>
 
-         <Flex vertical className="media">
-            <h2 className="main-title">Видео</h2>
-            <Flex style={{ overflowX: 'scroll' }} gap={20}>
-               {[...Array(3)].map((_, index) => (
+         <Flex style={{ overflowX: 'scroll' }} gap={20}>
+            {infrastracture?.videos.map(({ video }, index) => {
+               const getEmbedUrl = (url: string) => {
+                  if (url.includes('youtube.com')) {
+                     return `https://www.youtube.com/embed/${
+                        url.split('v=')[1]?.split('&')[0]
+                     }`
+                  } else if (url.includes('vimeo.com')) {
+                     return `https://player.vimeo.com/video/${url
+                        .split('/')
+                        .pop()}`
+                  }
+                  return url
+               }
+
+               return (
                   <iframe
                      key={index}
                      width="100%"
-                     title="видео обзор стадиона"
+                     title={`видео обзор стадиона ${index + 1}`}
                      height="240"
-                     src="https://www.youtube.com/embed/xx-fB-Ml_Yg?si=6ADORznAJs9OdMD6"
+                     src={getEmbedUrl(video)}
                      className="video"
                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   />
-               ))}
-            </Flex>
+               )
+            })}
          </Flex>
 
          <Flex vertical gap={20} wrap className="gallery">

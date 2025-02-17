@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 import Suspense from './Suspense'
 import { lazy } from 'react'
 const UserLayout = lazy(() => import('../layout/UserLayout'))
@@ -218,6 +218,11 @@ const AppRouter = () => {
                      <Guideline />
                   </Suspense>
                ),
+            },
+
+            {
+               path: '*',
+               element: <Navigate to="/" />,
             },
          ],
       },

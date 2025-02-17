@@ -44,19 +44,10 @@ const VictoryBlock = () => {
                spaceBetween={20}
                slidesPerView={1}
                breakpoints={{
-                  200: {
-                     slidesPerView: 2,
-                  },
-                  580: {
-                     slidesPerView: 3,
-                  },
-
-                  768: {
-                     slidesPerView: 3,
-                  },
-                  1130: {
-                     slidesPerView: 4,
-                  },
+                  200: { slidesPerView: 2 },
+                  580: { slidesPerView: 3 },
+                  768: { slidesPerView: 3 },
+                  1130: { slidesPerView: 4 },
                }}
             >
                {achievements?.map(({ id, title, season, image }) => (
@@ -232,7 +223,7 @@ const StyledCard = styled(Card)`
 
 const VictoryDes = styled.div`
    width: 100vw;
-   height: 350px;
+   height: 300px;
    display: flex;
    flex-direction: column;
    background-image: url(${Image});

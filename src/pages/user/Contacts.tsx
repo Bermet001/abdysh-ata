@@ -41,7 +41,7 @@ const Contacts = () => {
                name="keywords"
                content="контакты, FC Абдыш ата, адрес, телефон"
             />
-            <meta name="author" content="Ваше имя или название компании" />
+            <meta name="author" content="Абдыш ата" />
             <meta property="og:title" content="Контакты FC Абдыш ата" />
             <meta
                property="og:description"
@@ -181,10 +181,6 @@ const Contacts = () => {
                               {
                                  required: true,
                                  message: 'Пожалуйста напишите ваш номер',
-                              },
-                              {
-                                 pattern: /^[+()\d\s-]+$/,
-                                 message: 'Номер должен начинаться с +',
                               },
                            ]}
                         >

@@ -263,7 +263,7 @@ const Overlay = styled.div`
    opacity: 0;
    flex-direction: column;
    width: 100%;
-   height: auto;
+   height: 100%;
    transition: opacity 0.8s ease, transform 0.5s ease;
    border-radius: 5px;
    padding: 5px;

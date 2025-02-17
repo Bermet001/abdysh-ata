@@ -119,7 +119,7 @@ const SchedulMatches = () => {
                name="keywords"
                content="расписание матчей, FC Абдыш ата, футбол"
             />
-            <meta name="author" content="Ваше имя или название компании" />
+            <meta name="author" content="Абдыш ата" />
             <link rel="canonical" href="http://mysite.com/schedule" />
          </Helmet>
 

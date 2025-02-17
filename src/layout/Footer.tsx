@@ -71,6 +71,24 @@ const Footer = () => {
 
    const contact = contacts.length > 0 ? contacts[0] : null
 
+   const socialLinks = [
+      {
+         label: 'Перейти в телеграм чат',
+         href: contact?.telegram,
+         Icon: Telegram,
+      },
+      {
+         label: 'Перейти в инстаграм директ',
+         href: contact?.instagram,
+         Icon: Instagram,
+      },
+      {
+         label: 'Перейти в whatsapp чат',
+         href: contact?.whatsapp,
+         Icon: Whatsapp,
+      },
+   ]
+
    return (
       <StyledFooter>
          <Flex className="inner" vertical gap={15}>
@@ -82,7 +100,7 @@ const Footer = () => {
                <Flex gap={15} className="logo" align="center">
                   <img
                      loading="lazy"
-                     width={100}
+                     width="100px"
                      src={contact?.logo}
                      alt="logo"
                   />
@@ -90,26 +108,11 @@ const Footer = () => {
                </Flex>
 
                <Flex className="socials" align="center" gap={30}>
-                  <a
-                     aria-label="Перейти в телеграм чат"
-                     href={contact?.telegram}
-                  >
-                     <Telegram />
-                  </a>
-
-                  <a
-                     aria-label="Перейти в инстаграм директ"
-                     href={contact?.instagram}
-                  >
-                     <Instagram />
-                  </a>
-
-                  <a
-                     aria-label="Перейти в whatsapp чат"
-                     href={contact?.whatsapp}
-                  >
-                     <Whatsapp />
-                  </a>
+                  {socialLinks.map(({ label, href, Icon }, index) => (
+                     <a key={index} aria-label={label} href={href}>
+                        <Icon />
+                     </a>
+                  ))}
                </Flex>
             </Flex>
 
@@ -146,7 +149,7 @@ const Footer = () => {
 
                      <a aria-label="адрес" href="">
                         <EnvironmentOutlined />
-                        <p>Адрес: Лермонтова 2</p>
+                        <p>Адрес: {contact?.address}</p>
                      </a>
                   </Flex>
                </Flex>
@@ -225,14 +228,6 @@ const StyledFooter = styled.footer`
       color: #00a64f;
    }
 
-   .first-block {
-      .logo {
-         img {
-            width: 100px;
-         }
-      }
-   }
-
    @media (max-width: 1220px) {
       padding: 80px 30px;
       .inner {
@@ -268,7 +263,7 @@ const StyledFooter = styled.footer`
          .footer-map {
             width: 100%;
             min-width: 200px;
-            height: auto;
+            height: 100%;
          }
       }
    }
@@ -319,7 +314,7 @@ const StyledFooter = styled.footer`
          .footer-map {
             width: 100%;
             min-width: 200px;
-            height: auto;
+            height: 100%;
          }
       }
    }

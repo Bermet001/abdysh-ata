@@ -3,6 +3,11 @@ interface Image {
    image: string
 }
 
+interface Video {
+   video: string
+   id: number
+}
+
 interface Stadium {
    id: number
    title: string
@@ -14,7 +19,7 @@ interface Stadium {
    hectare: string
    image: string
    map_url: string | null
-   videos: string[]
+   videos: Video[]
    images: Image[]
 }
 

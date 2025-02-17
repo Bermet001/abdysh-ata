@@ -22,6 +22,7 @@ const Slider: FC = () => {
                <link key={item.id} rel="preload" href={item.image} as="image" />
             ))}
          </Helmet>
+
          <StyledCarousel
             dots={false}
             arrows
@@ -39,7 +40,7 @@ const Slider: FC = () => {
                      alt={`Slide ${index + 1}`}
                      loading="lazy"
                      width="100%"
-                     height="auto"
+                     height="100%"
                   />
 
                   <Flex align="start" vertical className="content">

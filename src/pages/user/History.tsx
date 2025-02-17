@@ -31,7 +31,7 @@ const History = () => {
                name="keywords"
                content="история, Абдыш ата, спортивный клуб"
             />
-            <meta name="author" content="Ваше имя или название компании" />
+            <meta name="author" content="Абдыш ата" />
             <meta property="og:title" content="История FC Абдыш ата" />
             <meta
                property="og:description"
@@ -59,11 +59,7 @@ const History = () => {
                   <Content>
                      <h1 className="main-title">{history_text?.title}</h1>
 
-                     <p>
-                        FC Абдыш ата is the most loved multi-sports club in the
-                        world, a brand that is globally recognised for its
-                        sporting excellence.
-                     </p>
+                     <p>{history_text?.subtitle}</p>
                   </Content>
                </div>
             </BackgroundSection>
