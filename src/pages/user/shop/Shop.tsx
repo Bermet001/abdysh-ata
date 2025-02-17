@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
 import { PRODUCT_THUNK } from '../../../store/slice/shop/shopThunk'
 import { ChangeEvent, useEffect, useState } from 'react'
-// import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet-async' // Импортируйте Helmet
 
 const { Search } = Input
 
@@ -33,16 +33,19 @@ const Shop = () => {
 
    return (
       <Container>
-         {/* <Helmet>
-            <title>Название вашей страницы</title>
+         <Helmet>
+            <title>Магазин FC Абдыш ата</title>
             <meta
                name="description"
-               content="Краткое описание вашей страницы для SEO."
+               content="Откройте для себя товары FC Абдыш ата. Найдите свою любимую экипировку и аксессуары."
             />
-            <meta name="keywords" content="Футбольная команда бишкек" />
+            <meta
+               name="keywords"
+               content="магазин, товары, FC Абдыш ата, экипировка"
+            />
             <meta name="author" content="Ваше имя или название компании" />
-            <link rel="canonical" href="https://www.example.com/" />
-         </Helmet> */}
+            <link rel="canonical" href="http://mysite.com/shop" />
+         </Helmet>
 
          <Flex align="center" justify="space-between" gap={50}>
             <StyledSelect

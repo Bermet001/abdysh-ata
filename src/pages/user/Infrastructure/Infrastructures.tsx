@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import { ArrowsAltOutlined, EnvironmentFilled } from '@ant-design/icons'
 import { useAppSelector } from '../../../store/store'
+import { Helmet } from 'react-helmet-async'
 interface StyledCardProps {
    bgimage: string
 }
@@ -14,6 +15,22 @@ const Infrastructures: FC = () => {
 
    return (
       <main>
+         <Helmet>
+            <title>Инфраструктуры FC Абдыш ата</title>
+            <meta
+               name="description"
+               content="Узнайте о инфраструктурах FC Абдыш ата, их местоположении и характеристиках."
+            />
+            <meta
+               name="keywords"
+               content="инфраструктуры, FC Абдыш ата, спортивные объекты"
+            />
+            <meta name="author" content="Абдыш ата" />
+            <link
+               rel="canonical"
+               href="https://abdysh-front.tw1.ru/infrastructures"
+            />
+         </Helmet>
          <CollageContainer wrap>
             {infrastractures?.map((item) => (
                <NavLink to={`/infrastructure/${item.slug}`} key={item.id}>

@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import styled from 'styled-components'
 import { useAppDispatch, useAppSelector } from '../../store/store'
 import { CONTACTS_THUNK } from '../../store/slice/contacts/contactsThunk'
+import { Helmet } from 'react-helmet-async' // Импортируйте Helmet
 
 export interface ContactData {
    name: string
@@ -29,150 +30,194 @@ const Contacts = () => {
    const contact = contacts.length > 0 ? contacts[0] : null
 
    return (
-      <StyledContainer>
-         <div className="main-container">
-            <Flex
-               wrap
-               className="main-block"
-               gap="15%"
-               justify="center"
-               align="center"
-            >
-               <Flex gap={30} vertical>
-                  <h3 className="fc-shop">{contact?.title} </h3>
-
-                  <Flex vertical gap={20}>
-                     <Flex gap={5} className="contacts" vertical>
-                        <h4>Адрес:</h4>
-
-                        <a
-                           aria-label="aдрес"
-                           href="https://2gis.kg/bishkek/geo/70030076256335684?m=74.575073%2C42.882296%2F18.28"
-                        >
-                           {contact?.address}
-                        </a>
-                     </Flex>
-
-                     <Flex gap={5} className="contacts" vertical>
-                        <h4> Телефон:</h4>
-                        <a aria-label="нормер" href="tel:996990007088">
-                           {contact?.phone}
-                        </a>
-                     </Flex>
-
-                     <Flex gap={5} className="contacts" vertical>
-                        <h4> Почта:</h4>
-                        <a aria-label="email" href={`mailto:${contact?.email}`}>
-                           {contact?.email || 'Нет почты'}
-                        </a>
-                     </Flex>
-
-                     <Flex gap={5} className="contacts" vertical>
-                        <h4> Режим работы</h4>
-                        <a aria-label="режим работы" href="">
-                           10:00 до 19:00
-                        </a>
-                     </Flex>
-                  </Flex>
-               </Flex>
-
-               <Form
-                  className="form"
-                  form={form}
-                  layout="vertical"
-                  onFinish={onFinish}
+      <>
+         <Helmet>
+            <title>Контакты FC Абдыш ата</title>
+            <meta
+               name="description"
+               content="Свяжитесь с FC Абдыш ата. Узнайте адрес, телефон и режим работы клуба."
+            />
+            <meta
+               name="keywords"
+               content="контакты, FC Абдыш ата, адрес, телефон"
+            />
+            <meta name="author" content="Ваше имя или название компании" />
+            <meta property="og:title" content="Контакты FC Абдыш ата" />
+            <meta
+               property="og:description"
+               content="Свяжитесь с FC Абдыш ата."
+            />
+            <meta
+               property="og:image"
+               content="http://mysite.com/default-image.jpg"
+            />
+            <meta property="og:url" content="http://mysite.com/contacts" />
+            <meta property="og:type" content="website" />
+            <script type="application/ld+json">
+               {`
+                  {
+                    "@context": "https://schema.org",
+                    "@type": "ContactPage",
+                    "name": "Контакты FC Абдыш ата",
+                    "description": "Свяжитесь с FC Абдыш ата.",
+                    "contactPoint": {
+                      "@type": "ContactPoint",
+                      "telephone": "+996990007088",
+                      "contactType": "customer service",
+                      "areaServed": "KG",
+                      "availableLanguage": "Russian"
+                    }
+                  }
+               `}
+            </script>
+         </Helmet>
+         <StyledContainer>
+            <div className="main-container">
+               <Flex
+                  wrap
+                  className="main-block"
+                  gap="15%"
+                  justify="center"
+                  align="center"
                >
-                  <h3 className="fc-shop">Напишите нам</h3>
+                  <Flex gap={30} vertical>
+                     <h3 className="fc-shop">{contact?.title} </h3>
 
-                  <Flex className="inputs-container" wrap gap={30}>
-                     <Form.Item
-                        label="Имя"
-                        name="name"
-                        rules={[
-                           {
-                              required: true,
-                              message: 'Это поле обязательно ',
-                           },
-                        ]}
-                     >
-                        <StyledInput placeholder="Напишите ваше имя" />
-                     </Form.Item>
+                     <Flex vertical gap={20}>
+                        <Flex gap={5} className="contacts" vertical>
+                           <h4>Адрес:</h4>
+                           <a
+                              aria-label="адрес"
+                              href="https://2gis.kg/bishkek/geo/70030076256335684?m=74.575073%2C42.882296%2F18.28"
+                           >
+                              {contact?.address}
+                           </a>
+                        </Flex>
 
-                     <Form.Item
-                        label="Фамилия"
-                        name="last_name"
-                        rules={[
-                           {
-                              required: true,
-                              message: 'Пожалуйста, напишите вашу фамилию',
-                           },
-                        ]}
-                     >
-                        <StyledInput placeholder="Напишите вашю фамилию" />
-                     </Form.Item>
+                        <Flex gap={5} className="contacts" vertical>
+                           <h4>Телефон:</h4>
+                           <a aria-label="номер" href="tel:996990007088">
+                              {contact?.phone}
+                           </a>
+                        </Flex>
+
+                        <Flex gap={5} className="contacts" vertical>
+                           <h4>Почта:</h4>
+                           <a
+                              aria-label="email"
+                              href={`mailto:${contact?.email}`}
+                           >
+                              {contact?.email || 'Нет почты'}
+                           </a>
+                        </Flex>
+
+                        <Flex gap={5} className="contacts" vertical>
+                           <h4>Режим работы</h4>
+                           <a aria-label="режим работы" href="">
+                              10:00 до 19:00
+                           </a>
+                        </Flex>
+                     </Flex>
                   </Flex>
 
-                  <Flex className="inputs-container" wrap gap={30}>
-                     <Form.Item
-                        label="E-mail"
-                        name="email"
-                        rules={[
-                           {
-                              required: true,
-                              message: 'Пожалуйста, введите ваш email',
-                           },
-                           {
-                              type: 'email',
-                              message: 'Некорректный формат email',
-                           },
-                        ]}
-                     >
-                        <StyledInput placeholder="Напишите вашу почту" />
-                     </Form.Item>
+                  <Form
+                     className="form"
+                     form={form}
+                     layout="vertical"
+                     onFinish={onFinish}
+                  >
+                     <h3 className="fc-shop">Напишите нам</h3>
 
-                     <Form.Item
-                        label="Телефон"
-                        name="phone"
-                        rules={[
-                           {
-                              required: true,
-                              message: 'Пожалуйста напишите ваш номер',
-                           },
-                           {
-                              pattern: /^[+()\d\s-]+$/,
-                              message: 'Номер должен начинаться с + ',
-                           },
-                        ]}
-                     >
-                        <StyledInput
-                           type="number"
-                           placeholder="Введите номер для связи"
+                     <Flex className="inputs-container" wrap gap={30}>
+                        <Form.Item
+                           label="Имя"
+                           name="name"
+                           rules={[
+                              {
+                                 required: true,
+                                 message: 'Это поле обязательно',
+                              },
+                           ]}
+                        >
+                           <StyledInput placeholder="Напишите ваше имя" />
+                        </Form.Item>
+
+                        <Form.Item
+                           label="Фамилия"
+                           name="last_name"
+                           rules={[
+                              {
+                                 required: true,
+                                 message: 'Пожалуйста, напишите вашу фамилию',
+                              },
+                           ]}
+                        >
+                           <StyledInput placeholder="Напишите вашу фамилию" />
+                        </Form.Item>
+                     </Flex>
+
+                     <Flex className="inputs-container" wrap gap={30}>
+                        <Form.Item
+                           label="E-mail"
+                           name="email"
+                           rules={[
+                              {
+                                 required: true,
+                                 message: 'Пожалуйста, введите ваш email',
+                              },
+                              {
+                                 type: 'email',
+                                 message: 'Некорректный формат email',
+                              },
+                           ]}
+                        >
+                           <StyledInput placeholder="Напишите вашу почту" />
+                        </Form.Item>
+
+                        <Form.Item
+                           label="Телефон"
+                           name="phone"
+                           rules={[
+                              {
+                                 required: true,
+                                 message: 'Пожалуйста напишите ваш номер',
+                              },
+                              {
+                                 pattern: /^[+()\d\s-]+$/,
+                                 message: 'Номер должен начинаться с +',
+                              },
+                           ]}
+                        >
+                           <StyledInput
+                              type="number"
+                              placeholder="Введите номер для связи"
+                           />
+                        </Form.Item>
+                     </Flex>
+
+                     <Form.Item label="Сообщение" name="message">
+                        <Input.TextArea
+                           rows={5}
+                           placeholder="Пожалуйста, введите ваше сообщение"
                         />
                      </Form.Item>
-                  </Flex>
 
-                  <Form.Item label="Cообщение" name="message">
-                     <Input.TextArea
-                        rows={5}
-                        placeholder="Пожалуйста, введите ваше сообщение"
-                     />
-                  </Form.Item>
+                     <Form.Item>
+                        <StyledButton htmlType="submit" type="primary">
+                           Отправить
+                        </StyledButton>
+                     </Form.Item>
+                  </Form>
+               </Flex>
+            </div>
 
-                  <Form.Item>
-                     <StyledButton htmlType="submit" type="primary">
-                        Отправит
-                     </StyledButton>
-                  </Form.Item>
-               </Form>
-            </Flex>
-         </div>
-
-         <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23385.367276005894!2d74.820501063743!3d42.89034070347272!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x389eaf1e78d922e1%3A0x567e4f8253a368ce!2z0JDQsdC00YvRiC3QkNGC0LA!5e0!3m2!1sru!2skg!4v1736753176654!5m2!1sru!2skg"
-            className="map"
-            title="локация"
-         />
-      </StyledContainer>
+            <iframe
+               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23385.367276005894!2d74.820501063743!3d42.89034070347272!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x389eaf1e78d922e1%3A0x567e4f8253a368ce!2z0JDQsdC00YvRiC3QkNGC0LA!5e0!3m2!1sru!2skg!4v1736753176654!5m2!1sru!2skg"
+               className="map"
+               title="локация"
+            />
+         </StyledContainer>
+      </>
    )
 }
 

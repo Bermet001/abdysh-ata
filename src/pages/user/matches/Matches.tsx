@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../../store/store'
 import { useEffect } from 'react'
 import { getMatches } from '../../../store/slice/matches/matchesThunk'
 import { NavLink } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 
 interface Team {
    id: number
@@ -108,6 +109,20 @@ const SchedulMatches = () => {
 
    return (
       <StyledMainContainer>
+         <Helmet>
+            <title>Расписание матчей FC Абдыш ата</title>
+            <meta
+               name="description"
+               content="Просмотрите расписание матчей FC Абдыш ата. Узнайте, когда и против кого играет команда."
+            />
+            <meta
+               name="keywords"
+               content="расписание матчей, FC Абдыш ата, футбол"
+            />
+            <meta name="author" content="Ваше имя или название компании" />
+            <link rel="canonical" href="http://mysite.com/schedule" />
+         </Helmet>
+
          <div className="main-container">
             <Overlay />
             <img

@@ -5,6 +5,7 @@ import { Input } from 'antd'
 import { useAppDispatch, useAppSelector } from '../../store/store'
 import { NEWS_THUNK } from '../../store/slice/news/newsThunk'
 import NewsCard from '../../components/UI/NewsCard'
+import { Helmet } from 'react-helmet-async'
 
 const { Search } = Input
 
@@ -34,45 +35,59 @@ const NewsPage: FC = () => {
       dispatch(NEWS_THUNK.getCategorizedNew(value))
 
    return (
-      <NewsContainer>
-         <Flex gap={20} vertical align="stretch">
-            <Flex className="sort-box" gap={16}>
-               <StyledInput
-                  placeholder="Поиск новостей"
-                  allowClear
-                  value={search}
-                  onChange={onSearch}
-                  style={{ flex: 1 }}
-                  size="large"
-               />
+      <>
+         <Helmet>
+            <title>Новости</title>
+            <meta
+               name="description"
+               content="Последние новости и события. Узнайте больше о текущих событиях и обновлениях в мире."
+            />
+            <meta
+               name="keywords"
+               content="новости, события, актуальные новости"
+            />
+            <meta name="author" content="Абдыш ата" />
+         </Helmet>
+         <NewsContainer>
+            <Flex gap={20} vertical align="stretch">
+               <Flex className="sort-box" gap={16}>
+                  <StyledInput
+                     placeholder="Поиск новостей"
+                     allowClear
+                     value={search}
+                     onChange={onSearch}
+                     style={{ flex: 1 }}
+                     size="large"
+                  />
 
-               <Select
-                  defaultValue="Категории"
-                  style={{ width: 120 }}
-                  onChange={handleChange}
-                  className="select"
-                  options={categories.map((category) => ({
-                     value: category.title,
-                     label: category.title,
-                  }))}
+                  <Select
+                     defaultValue="Категории"
+                     style={{ width: 120 }}
+                     onChange={handleChange}
+                     className="select"
+                     options={categories.map((category) => ({
+                        value: category.title,
+                        label: category.title,
+                     }))}
+                  />
+               </Flex>
+
+               <CardsContainer>
+                  {allNews?.map((item) => (
+                     <NewsCard key={item.id} {...item} />
+                  ))}
+               </CardsContainer>
+
+               <StyledPagination
+                  current={currentPage}
+                  total={total_page}
+                  pageSize={itemsPerPage}
+                  onChange={onPageChange}
+                  showSizeChanger={false}
                />
             </Flex>
-
-            <CardsContainer>
-               {allNews?.map((item) => (
-                  <NewsCard key={item.id} {...item} />
-               ))}
-            </CardsContainer>
-
-            <StyledPagination
-               current={currentPage}
-               total={total_page}
-               pageSize={itemsPerPage}
-               onChange={onPageChange}
-               showSizeChanger={false}
-            />
-         </Flex>
-      </NewsContainer>
+         </NewsContainer>
+      </>
    )
 }
 

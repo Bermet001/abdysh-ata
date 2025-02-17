@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
 import { useEffect } from 'react'
 import { GALLERY_THUNK } from '../../../store/slice/gallery/galleryThunk'
+import { Helmet } from 'react-helmet-async'
 
 const Gallery = () => {
    window.scrollTo(0, 0)
@@ -17,6 +18,19 @@ const Gallery = () => {
 
    return (
       <StyledContainer>
+         <Helmet>
+            <title>Галерея FC Абдыш ата</title>
+            <meta
+               name="description"
+               content="Посмотрите галерею FC Абдыш ата, где собраны лучшие моменты команды."
+            />
+            <meta
+               name="keywords"
+               content="галерея, FC Абдыш ата, фотографии, футбол"
+            />
+            <meta name="author" content="Абдыш ата" />
+            <link rel="canonical" href="https://abdysh-front.tw1.ru/gallery" />
+         </Helmet>
          <Flex gap={20} wrap>
             {gallery?.map((item) => (
                <NavLink key={item.id} to={`/gallery/${item.slug}`}>

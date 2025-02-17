@@ -4,6 +4,7 @@ import bgImage from '../../assets/images/partners-baner/partners-image.jpg'
 import { useAppDispatch, useAppSelector } from '../../store/store'
 import { getPartners } from '../../store/slice/partners/partnersThunk'
 import { useEffect } from 'react'
+import { Helmet } from 'react-helmet-async'
 
 const Partners = () => {
    window.scrollTo(0, 0)
@@ -16,36 +17,70 @@ const Partners = () => {
    }, [dispatch])
 
    return (
-      <StyledContainer>
-         <BackgroundSection>
-            <div className="first-part">
-               <Content>
-                  <h1 className="main-title">Спонсоры Абдыш ата</h1>
-                  <p>
-                     Спонсоры Абдыш ата являются ключевыми партнерами клуба,
-                     обеспечивая необходимую поддержку для развития команд и
-                     организации различных мероприятий. Их вклад способствует
-                     росту и популяризации спорта в нашем регионе.
-                  </p>
-               </Content>
-            </div>
-         </BackgroundSection>
+      <>
+         <Helmet>
+            <title>Партнеры</title>
+            <meta
+               name="description"
+               content="Спонсоры Абдыш ата являются ключевыми партнерами клуба, обеспечивая необходимую поддержку для развития команд и организации различных мероприятий."
+            />
+            <meta name="keywords" content="партнеры" />
+            <meta name="author" content="Абдыш ата" />
+            <script type="application/ld+json">
+               {`
+         {
+           "@context": "https://schema.org",
+           "@type": "Organization",
+           "name": "Абдыш ата",      
+           "member": [
+             ${partners
+                .map(
+                   (sponsor) => `
+               {
+                 "@type": "Organization",
+                 "name": "${sponsor.title}",
+                 "url": "${sponsor.link}",
+                 "logo": "${sponsor.image}"
+               }
+             `
+                )
+                .join(',')}
+           ]
+         }
+      `}
+            </script>
+         </Helmet>
+         <StyledContainer>
+            <BackgroundSection>
+               <div className="first-part">
+                  <Content>
+                     <h1 className="main-title">Спонсоры Абдыш ата</h1>
+                     <p>
+                        Спонсоры Абдыш ата являются ключевыми партнерами клуба,
+                        обеспечивая необходимую поддержку для развития команд и
+                        организации различных мероприятий. Их вклад способствует
+                        росту и популяризации спорта в нашем регионе.
+                     </p>
+                  </Content>
+               </div>
+            </BackgroundSection>
 
-         <Flex gap={40} justify="center" wrap className="partners-container">
-            {partners.map((sponsor) => (
-               <SponsorItem key={sponsor.id}>
-                  <a aria-label="партнер" href={sponsor.link}>
-                     <img
-                        height="auto"
-                        width={300}
-                        src={sponsor.image}
-                        alt={sponsor.title}
-                     />
-                  </a>
-               </SponsorItem>
-            ))}
-         </Flex>
-      </StyledContainer>
+            <Flex gap={40} justify="center" wrap className="partners-container">
+               {partners.map((sponsor) => (
+                  <SponsorItem key={sponsor.id}>
+                     <a aria-label="партнер" href={sponsor.link}>
+                        <img
+                           height="auto"
+                           width={300}
+                           src={sponsor.image}
+                           alt={sponsor.title}
+                        />
+                     </a>
+                  </SponsorItem>
+               ))}
+            </Flex>
+         </StyledContainer>
+      </>
    )
 }
 

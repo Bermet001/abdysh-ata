@@ -4,6 +4,7 @@ import styled, { keyframes } from 'styled-components'
 import TrophyRoom from '../../../assets/images/Trophy/TrophyRoom.webp'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
 import { getAchievements } from '../../../store/slice/ahievements/ahievementsThunk'
+import { Helmet } from 'react-helmet-async'
 
 const Trophy = () => {
    window.scrollTo(0, 0)
@@ -39,51 +40,96 @@ const Trophy = () => {
    }, [dispatch])
 
    return (
-      <StyledContainer vertical>
-         <StyledFirstPart>
-            <div className="first-part">
-               <Flex className="first" align="end">
-                  <DarkOverlay />
+      <main>
+         <Helmet>
+            <title>Трофейная комната FC Абдыш ата</title>
+            <meta
+               name="description"
+               content="Посмотрите достижения FC Абдыш ата в нашей трофейной комнате. Узнайте о национальных и европейских наградах клуба."
+            />
+            <meta
+               name="keywords"
+               content="трофейная комната, достижения, FC Абдыш ата"
+            />
+            <meta name="author" content="Ваше имя или название компании" />
+            <meta
+               property="og:title"
+               content="Трофейная комната FC Абдыш ата"
+            />
+            <meta
+               property="og:description"
+               content="Посмотрите достижения FC Абдыш ата."
+            />
+            <meta property="og:image" content={TrophyRoom} />
+            <meta property="og:url" content="http://mysite.com/trophy" />
+            <meta property="og:type" content="website" />
+            <script type="application/ld+json">
+               {`
+               {
+                 "@context": "https://schema.org",
+                 "@type": "WebPage",
+                 "name": "Трофейная комната FC Абдыш ата",
+                 "description": "Посмотрите достижения FC Абдыш ата.",
+                 "url": "http://mysite.com/trophy",
+                 "image": "${TrophyRoom}"
+               }
+            `}
+            </script>
+         </Helmet>
+         <StyledContainer vertical>
+            <StyledFirstPart>
+               <div className="first-part">
+                  <Flex className="first" align="end">
+                     <DarkOverlay />
 
-                  <Flex justify="end" vertical className="container">
-                     <h2 className="title">ТРОФЕЙНАЯ КОМНАТА</h2>
-                     <p>В этом разделе вы можете посмотреть наши достижения</p>
-                  </Flex>
-               </Flex>
-            </div>
-         </StyledFirstPart>
-         <div className="second-part-trophy">
-            <p className="text">
-               Когда речь заходит о главных национальных и европейских наградах,
-               наша мужская команда выигрывает все, а женская и Академическая
-               команды в последнее время регулярно завоевывают кубки.
-            </p>
-
-            <Flex vertical className="trophy-block-container">
-               {achievements.map((item, index) => (
-                  <Flex
-                     key={index}
-                     className="trophy-block"
-                     style={{
-                        flexDirection: index % 2 === 1 ? 'row-reverse' : 'row',
-                     }}
-                  >
-                     <img className="image" src={item.image} alt={item.title} />
-
-                     <Flex
-                        align="start"
-                        gap={40}
-                        vertical
-                        className="texstovka"
-                     >
-                        <h2>{item.title}</h2>
-                        <p className="text-info">{item.descriptions}</p>
+                     <Flex justify="end" vertical className="container">
+                        <h2 className="title">ТРОФЕЙНАЯ КОМНАТА</h2>
+                        <p>
+                           В этом разделе вы можете посмотреть наши достижения
+                        </p>
                      </Flex>
                   </Flex>
-               ))}
-            </Flex>
-         </div>
-      </StyledContainer>
+               </div>
+            </StyledFirstPart>
+            <div className="second-part-trophy">
+               <p className="text">
+                  Когда речь заходит о главных национальных и европейских
+                  наградах, наша мужская команда выигрывает все, а женская и
+                  Академическая команды в последнее время регулярно завоевывают
+                  кубки.
+               </p>
+
+               <Flex vertical className="trophy-block-container">
+                  {achievements.map((item, index) => (
+                     <Flex
+                        key={index}
+                        className="trophy-block"
+                        style={{
+                           flexDirection:
+                              index % 2 === 1 ? 'row-reverse' : 'row',
+                        }}
+                     >
+                        <img
+                           className="image"
+                           src={item.image}
+                           alt={item.title}
+                        />
+
+                        <Flex
+                           align="start"
+                           gap={40}
+                           vertical
+                           className="texstovka"
+                        >
+                           <h2>{item.title}</h2>
+                           <p className="text-info">{item.descriptions}</p>
+                        </Flex>
+                     </Flex>
+                  ))}
+               </Flex>
+            </div>
+         </StyledContainer>
+      </main>
    )
 }
 

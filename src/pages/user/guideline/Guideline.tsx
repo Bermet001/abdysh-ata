@@ -4,6 +4,7 @@ import { FC, useEffect, useState } from 'react'
 import { InfoCircleOutlined } from '@ant-design/icons'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
 import { getManagmets } from '../../../store/slice/guideline/guidelineThunk'
+import { Helmet } from 'react-helmet-async'
 
 interface IManagment {
    id: number
@@ -40,6 +41,20 @@ const Guideline: FC = () => {
 
    return (
       <StyledContainer>
+         <Helmet>
+            <title>Руководство FC Абдыш ата</title>
+            <meta
+               name="description"
+               content="Узнайте о руководстве FC Абдыш ата, их ролях и обязанностях."
+            />
+            <meta
+               name="keywords"
+               content="руководство, FC Абдыш ата, менеджмент"
+            />
+            <meta name="author" content="Абдыш ата" />
+            <link rel="canonical" href="http://mysite.com/guideline" />
+         </Helmet>
+
          <div>
             <h1 className="main-title">Руководство</h1>
             <Row gutter={[10, 10]}>

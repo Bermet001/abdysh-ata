@@ -1,9 +1,10 @@
 import styled, { keyframes } from 'styled-components'
-import Team from '../../assets/images/heistory/team.webp'
+import Team from '../../assets/images/history/team.webp'
 import { Flex, Typography } from 'antd'
 import { useAppDispatch, useAppSelector } from '../../store/store'
 import { useEffect } from 'react'
 import { getHistory } from '../../store/slice/history/historyThunk'
+import { Helmet } from 'react-helmet-async'
 
 const { Paragraph } = Typography
 
@@ -19,54 +20,89 @@ const History = () => {
    const history_text = history.length > 0 ? history[0] : null
 
    return (
-      <StyledContainer>
-         <BackgroundSection>
-            <Overlay />
+      <>
+         <Helmet>
+            <title>История FC Абдыш ата</title>
+            <meta
+               name="description"
+               content="Узнайте о богатой истории и достижениях FC Абдыш ата, самого любимого многопрофильного спортивного клуба в мире."
+            />
+            <meta
+               name="keywords"
+               content="история, Абдыш ата, спортивный клуб"
+            />
+            <meta name="author" content="Ваше имя или название компании" />
+            <meta property="og:title" content="История FC Абдыш ата" />
+            <meta
+               property="og:description"
+               content="Узнайте о богатой истории и достижениях FC Абдыш ата."
+            />
+            <meta property="og:url" content="http://mysite.com/history" />
+            <meta property="og:type" content="website" />
+            <script type="application/ld+json">
+               {`
+                  {
+                    "@context": "https://schema.org",
+                    "@type": "WebPage",
+                    "name": "История FC Абдыш ата",
+                    "description": "Узнайте о богатой истории и достижениях FC Абдыш ата.",
+                    "url": "http://mysite.com/history"
+                  }
+               `}
+            </script>
+         </Helmet>
+         <StyledContainer>
+            <BackgroundSection>
+               <Overlay />
 
-            <div className="first-part">
-               <Content>
-                  <h1 className="main-title">{history_text?.title}</h1>
+               <div className="first-part">
+                  <Content>
+                     <h1 className="main-title">{history_text?.title}</h1>
 
-                  <p>
-                     FC Абдыш ата is the most loved multi-sports club in the
-                     world, a brand that is globally recognised for its sporting
-                     excellence.
-                  </p>
-               </Content>
-            </div>
-         </BackgroundSection>
+                     <p>
+                        FC Абдыш ата is the most loved multi-sports club in the
+                        world, a brand that is globally recognised for its
+                        sporting excellence.
+                     </p>
+                  </Content>
+               </div>
+            </BackgroundSection>
 
-         <Flex vertical className="main-part">
-            <h1 className="main-title">{history_text?.title}</h1>
+            <Flex vertical className="main-part">
+               <h1 className="main-title">{history_text?.title}</h1>
 
-            <StyledParagraph>
-               <div
-                  dangerouslySetInnerHTML={{
-                     __html: history_text?.content || '',
-                  }}
-               />
-            </StyledParagraph>
-
-            <br />
-            <br />
-            <br />
-            <br />
-            <Flex vertical>
-               <h3 className="main-title">{history_text?.subtitle}</h3>
                <StyledParagraph>
-                  <Flex className="second-block">
-                     <div
-                        dangerouslySetInnerHTML={{
-                           __html: history_text?.content_end || '',
-                        }}
-                     />
-
-                     <img src={history_text?.image} alt="" />
-                  </Flex>
+                  <div
+                     dangerouslySetInnerHTML={{
+                        __html: history_text?.content || '',
+                     }}
+                  />
                </StyledParagraph>
+
+               <br />
+               <br />
+               <br />
+               <br />
+               <Flex vertical>
+                  <h3 className="main-title">{history_text?.subtitle}</h3>
+                  <StyledParagraph>
+                     <Flex className="second-block">
+                        <div
+                           dangerouslySetInnerHTML={{
+                              __html: history_text?.content_end || '',
+                           }}
+                        />
+
+                        <img
+                           src={history_text?.image}
+                           alt={history_text?.title}
+                        />
+                     </Flex>
+                  </StyledParagraph>
+               </Flex>
             </Flex>
-         </Flex>
-      </StyledContainer>
+         </StyledContainer>
+      </>
    )
 }
 

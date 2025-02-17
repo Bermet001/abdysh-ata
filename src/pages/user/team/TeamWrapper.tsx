@@ -7,6 +7,7 @@ import { getTeam } from '../../../store/slice/team/teamThunk'
 import { useAppDispatch } from '../../../store/store'
 import { useParams } from 'react-router-dom'
 import type { TabsProps } from 'antd'
+import { Helmet } from 'react-helmet-async'
 
 const items: TabsProps['items'] = [
    {
@@ -32,9 +33,33 @@ const TeamWrapper: FC = () => {
    }, [dispatch, slug])
 
    return (
-      <StyledContainer>
-         <Tabs defaultActiveKey="1" items={items} />
-      </StyledContainer>
+      <>
+         <Helmet>
+            <title>Команда FC Абдыш ата</title>
+            <meta
+               name="description"
+               content="Узнайте о команде FC Абдыш ата, их достижениях и тренерском штабе."
+            />
+            <meta
+               name="keywords"
+               content="команда, тренерский штаб, FC Абдыш ата"
+            />
+            <meta property="og:title" content="Команда FC Абдыш ата" />
+            <meta
+               property="og:description"
+               content="Все о команде FC Абдыш ата."
+            />
+            <meta property="og:type" content="website" />
+            <meta
+               property="og:url"
+               content={`http://mysite.com/team/${slug}`}
+            />
+         </Helmet>
+
+         <StyledContainer>
+            <Tabs defaultActiveKey="1" items={items} />
+         </StyledContainer>
+      </>
    )
 }
 
