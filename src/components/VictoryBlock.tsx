@@ -106,7 +106,7 @@ const SliderContainer = styled.div`
    max-width: 1600px;
    margin: 0 auto;
    padding: 0 15px;
-   margin-top: -100px;
+   margin-top: -70px;
 
    @media (max-width: 768px) {
       margin-top: -50px;
@@ -160,7 +160,7 @@ const StyledCard = styled(Card)`
 
    .trophy-image {
       width: 200px;
-      height: 250px;
+      height: 230px;
       object-position: top;
       object-fit: cover;
       width: 100%;

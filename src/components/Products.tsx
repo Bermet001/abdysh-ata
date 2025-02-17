@@ -34,21 +34,11 @@ const ProductSlider = () => {
          <Swiper
             spaceBetween={10}
             breakpoints={{
-               200: {
-                  slidesPerView: 2,
-               },
-               640: {
-                  slidesPerView: 2,
-               },
-               768: {
-                  slidesPerView: 3,
-               },
-               1024: {
-                  slidesPerView: 4,
-               },
-               1440: {
-                  slidesPerView: 5,
-               },
+               200: { slidesPerView: 2 },
+               640: { slidesPerView: 2 },
+               768: { slidesPerView: 3 },
+               1024: { slidesPerView: 4 },
+               1440: { slidesPerView: 5 },
             }}
          >
             {products?.map((product) => {

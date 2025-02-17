@@ -27,21 +27,11 @@ const Sponsors = () => {
             modules={[Pagination, Autoplay]}
             className="mySwiper"
             breakpoints={{
-               200: {
-                  slidesPerView: 3,
-               },
-               768: {
-                  slidesPerView: 3,
-               },
-               1024: {
-                  slidesPerView: 3,
-               },
-               1440: {
-                  slidesPerView: 4,
-               },
-               1600: {
-                  slidesPerView: 4,
-               },
+               200: { slidesPerView: 3 },
+               768: { slidesPerView: 3 },
+               1024: { slidesPerView: 3 },
+               1440: { slidesPerView: 4 },
+               1600: { slidesPerView: 4 },
             }}
          >
             {partners?.map((sponsor) => (

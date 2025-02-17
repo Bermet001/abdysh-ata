@@ -33,15 +33,9 @@ const Team = () => {
             spaceBetween={10}
             slidesPerView={1}
             breakpoints={{
-               200: {
-                  slidesPerView: 2,
-               },
-               768: {
-                  slidesPerView: 3,
-               },
-               1024: {
-                  slidesPerView: 4,
-               },
+               200: { slidesPerView: 2 },
+               768: { slidesPerView: 3 },
+               1024: { slidesPerView: 4 },
             }}
          >
             {players?.map(({ image, id, name, position, number, slug }) => (

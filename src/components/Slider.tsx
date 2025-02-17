@@ -16,7 +16,7 @@ const Slider: FC = () => {
    }, [dispatch])
 
    return (
-      <>
+      <section>
          <Helmet>
             {banners?.map((item) => (
                <link key={item.id} rel="preload" href={item.image} as="image" />
@@ -55,7 +55,7 @@ const Slider: FC = () => {
                </div>
             ))}
          </StyledCarousel>
-      </>
+      </section>
    )
 }
 

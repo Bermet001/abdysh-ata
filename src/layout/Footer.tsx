@@ -98,12 +98,7 @@ const Footer = () => {
                align="center"
             >
                <Flex gap={15} className="logo" align="center">
-                  <img
-                     loading="lazy"
-                     width="100px"
-                     src={contact?.logo}
-                     alt="logo"
-                  />
+                  <img loading="lazy" src={contact?.logo} alt="logo" />
                   <h1>Abdysh-ata</h1>
                </Flex>
 
@@ -171,7 +166,7 @@ const Footer = () => {
                <Flex>
                   <iframe
                      src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6738.152065823012!2d74.84559925585054!3d42.89327015188126!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x389eaf1c6c88f963%3A0x1c2c66a255f92694!2zNyDRg9C7LiDQnNC-0YHQutC-0LLRgdC60LDRjywg0JrQsNC90YI!5e0!3m2!1sru!2skg!4v1734777304392!5m2!1sru!2skg"
-                     width="450"
+                     width="450px"
                      height="100%"
                      loading="lazy"
                      className="footer-map"
@@ -192,6 +187,7 @@ const StyledFooter = styled.footer`
    padding: 80px 75px;
    background-color: #18191b;
    color: #fff;
+   overflow: hidden;
 
    h1 {
       color: #fff;
@@ -200,6 +196,7 @@ const StyledFooter = styled.footer`
    & > .inner {
       max-width: 1600px;
       margin: 0 auto;
+      overflow: hidden;
    }
 
    & .line {
@@ -226,6 +223,16 @@ const StyledFooter = styled.footer`
    a:hover {
       transform: translateX(5px);
       color: #00a64f;
+   }
+
+   .inner {
+      .first-block {
+         .logo {
+            img {
+               width: 100px;
+            }
+         }
+      }
    }
 
    @media (max-width: 1220px) {
