@@ -202,7 +202,8 @@ const StyledContainer = styled.section`
    flex-direction: column;
    justify-content: center;
    padding: 120px 75px 0 75px;
-   overflow: hidden;
+   margin: 0 auto;
+   max-width: 1600px;
 
    img {
       object-fit: cover;
