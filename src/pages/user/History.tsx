@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components'
-import Team from '../../assets/images/history/team.webp'
+import Team from '../../assets/images/heistory/team.webp'
 import { Flex, Typography } from 'antd'
 import { useAppDispatch, useAppSelector } from '../../store/store'
 import { useEffect } from 'react'
