@@ -31,13 +31,16 @@ const Gallery = () => {
             <meta name="author" content="Абдыш ата" />
             <link rel="canonical" href="https://abdysh-front.tw1.ru/gallery" />
          </Helmet>
+
          <Flex gap={20} wrap>
             {gallery?.map((item) => (
                <NavLink key={item.id} to={`/gallery/${item.slug}`}>
                   <StyledImage
-                     width={400}
-                     height={300}
-                     style={{ objectFit: 'cover', borderRadius: '10px' }}
+                     style={{
+                        objectFit: 'cover',
+                        borderRadius: '10px',
+                        maxWidth: '400px',
+                     }}
                      key={item.id}
                      src={item.image_main}
                   />
@@ -52,14 +55,22 @@ export default Gallery
 
 const StyledContainer = styled.main`
    padding: 100px 75px;
+   max-width: 1600px;
+   margin: 0 auto;
+
+   @media (max-width: 1209px) {
+      padding: 40px 20px;
+   }
 `
 
 const StyledImage = styled(Image)`
-   .ant-image .ant-image-mask {
+   .ant-image-mask {
       object-fit: cover;
-      width: 500px !important;
-      height: auto !important;
       border-radius: 8px !important;
       cursor: pointer;
+   }
+
+   @media (max-width: 500px) {
+      max-width: 100%;
    }
 `

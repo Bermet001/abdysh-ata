@@ -52,15 +52,15 @@ const Infrastructure = () => {
          <Flex style={{ overflowX: 'scroll' }} gap={20}>
             {infrastracture?.videos.map(({ video }, index) => {
                const getEmbedUrl = (url: string) => {
-                  if (url.includes('youtube.com')) {
-                     return `https://www.youtube.com/embed/${
-                        url.split('v=')[1]?.split('&')[0]
-                     }`
-                  } else if (url.includes('vimeo.com')) {
-                     return `https://player.vimeo.com/video/${url
-                        .split('/')
-                        .pop()}`
-                  }
+                  const youtubeMatch = url.match(
+                     /(?:youtube\.com.+?v=|be\.com\/)([^&]+)/
+                  )
+                  const vimeoMatch = url.match(/vimeo\.com\/(\d+)/)
+
+                  if (youtubeMatch)
+                     return `https://www.youtube.com/embed/${youtubeMatch[1]}`
+                  if (vimeoMatch)
+                     return `https://player.vimeo.com/video/${vimeoMatch[1]}`
                   return url
                }
 
