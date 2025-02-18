@@ -118,7 +118,7 @@ const Title = styled.h1`
 `
 
 const Description = styled.p`
-   margin-bottom: 40px;
+   margin-bottom: 50px;
    font-size: 1rem;
    color: white;
    width: 700px;
@@ -134,6 +134,7 @@ const Description = styled.p`
 
    @media (max-width: 480px) {
       font-size: 0.6rem;
+      margin-bottom: 30px;
    }
 `
 

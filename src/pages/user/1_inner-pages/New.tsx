@@ -70,6 +70,10 @@ export default New
 const StyledContainer = styled.main`
    margin-bottom: 40px;
    margin: 0 auto;
+
+   @media (max-width: 600px) {
+      margin-top: 65px;
+   }
 `
 
 const BackgroundContainer = styled.div<{ image: string }>`

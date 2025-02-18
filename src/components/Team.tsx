@@ -102,6 +102,7 @@ const CardBackground = styled.div<{ $image: string }>`
    transition: transform 0.3s;
    border-radius: 6px;
    text-align: center;
+   background-color: #f0f0f0;
 
    &:hover {
       transform: scale(1.05);
