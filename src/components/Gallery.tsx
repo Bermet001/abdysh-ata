@@ -59,7 +59,11 @@ const Gallery = () => {
                      />
                      <DarkOverlay />
                      <Overlay>
-                        <Flex gap={15} align="center">
+                        <Flex
+                           className="overlay-container"
+                           gap={15}
+                           align="center"
+                        >
                            <Flex
                               onClick={() =>
                                  handleImageClick(image1.image_main)
@@ -76,8 +80,8 @@ const Gallery = () => {
                                  Посмотреть
                               </p>
                            </Flex>
-                           <Flex vertical gap={10} align="center">
-                              <NavLink to={`/gallery/${image1.slug}`}>
+                           <NavLink to={`/gallery/${image1.slug}`}>
+                              <Flex vertical gap={10} align="center">
                                  <StyledRightSquareOutlined />
                                  <p
                                     className="explanation"
@@ -85,8 +89,8 @@ const Gallery = () => {
                                  >
                                     Подробнее
                                  </p>
-                              </NavLink>
-                           </Flex>
+                              </Flex>
+                           </NavLink>
                         </Flex>
                      </Overlay>
                   </ImageWrapper>
@@ -101,7 +105,11 @@ const Gallery = () => {
                      <DarkOverlay />
 
                      <Overlay>
-                        <Flex gap={15} align="center">
+                        <Flex
+                           className="overlay-container"
+                           gap={15}
+                           align="center"
+                        >
                            <Flex
                               onClick={() =>
                                  handleImageClick(image2.image_main)
@@ -118,8 +126,9 @@ const Gallery = () => {
                                  Посмотреть
                               </p>
                            </Flex>
-                           <Flex vertical gap={10} align="center">
-                              <NavLink to={`/gallery/${image2.slug}`}>
+
+                           <NavLink to={`/gallery/${image2.slug}`}>
+                              <Flex vertical gap={10} align="center">
                                  <StyledRightSquareOutlined />
                                  <p
                                     className="explanation"
@@ -127,8 +136,8 @@ const Gallery = () => {
                                  >
                                     Подробнее
                                  </p>
-                              </NavLink>
-                           </Flex>
+                              </Flex>
+                           </NavLink>
                         </Flex>
                      </Overlay>
                   </ImageWrapper>
@@ -143,7 +152,11 @@ const Gallery = () => {
                      />
                      <DarkOverlay />
                      <Overlay>
-                        <Flex gap={15} align="center">
+                        <Flex
+                           className="overlay-container"
+                           gap={15}
+                           align="center"
+                        >
                            <Flex
                               onClick={() =>
                                  handleImageClick(image3.image_main)
@@ -160,8 +173,8 @@ const Gallery = () => {
                                  Посмотреть
                               </p>
                            </Flex>
-                           <Flex vertical gap={10} align="center">
-                              <NavLink to={`/gallery/${image3.slug}`}>
+                           <NavLink to={`/gallery/${image3.slug}`}>
+                              <Flex vertical gap={10} align="center">
                                  <StyledRightSquareOutlined />
                                  <p
                                     className="explanation"
@@ -169,8 +182,8 @@ const Gallery = () => {
                                  >
                                     Подробнее
                                  </p>
-                              </NavLink>
-                           </Flex>
+                              </Flex>
+                           </NavLink>
                         </Flex>
                      </Overlay>
                   </ImageWrapper>
@@ -219,6 +232,8 @@ const StyledContainer = styled.section`
       padding: 0;
    }
 
+   .overlay-container {
+   }
    @media (max-width: 1024px) {
       padding: 40px 20px 0 20px;
    }
@@ -233,6 +248,14 @@ const StyledContainer = styled.section`
 
    @media (max-width: 480px) {
       padding: 0 20px;
+
+      .overlay-container {
+         gap: 9px !important;
+
+         p {
+            font-size: 11px;
+         }
+      }
    }
 `
 

@@ -19,15 +19,8 @@ const News = () => {
    }, [dispatch])
 
    useEffect(() => {
-      const handleResize = () => {
-         if (window.innerWidth <= 600) {
-            setVisibleCount(6)
-         } else if (window.innerWidth <= 900) {
-            setVisibleCount(6)
-         } else {
-            setVisibleCount(10)
-         }
-      }
+      const handleResize = () =>
+         setVisibleCount(window.innerWidth <= 900 ? 6 : 10)
 
       handleResize()
       window.addEventListener('resize', handleResize, { passive: true })

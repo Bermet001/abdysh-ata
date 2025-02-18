@@ -78,6 +78,12 @@ const BackgroundContainer = styled.div<{ image: string }>`
    background-repeat: no-repeat;
    background-attachment: fixed;
    min-height: 70vh;
+
+   @media (max-width: 600px) {
+      min-height: 45vh;
+      background-position: center;
+      background-attachment: scroll;
+   }
 `
 
 const ContentCard = styled(Card)`
