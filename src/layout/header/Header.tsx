@@ -9,14 +9,14 @@ import {
    MenuProps,
 } from 'antd'
 import { SearchOutlined, MenuOutlined, CloseOutlined } from '@ant-design/icons'
-import Logo from '../assets/images/main-logo.png'
+import Logo from '../../assets/images/main-logo.png'
 import styled from 'styled-components'
 import { NavLink, useLocation } from 'react-router-dom'
 import { ChangeEvent, useEffect, useState } from 'react'
-import { useAppDispatch, useAppSelector } from '../store/store'
-import { getAllTeams, getOurTeam } from '../store/slice/team/teamThunk'
-import { searchGlobal } from '../store/slice/globalSearch/globalSearchThunk'
-import { getInfrastractures } from '../store/slice/infrastracture/infrastractureThunk'
+import { useAppDispatch, useAppSelector } from '../../store/store'
+import { getAllTeams, getOurTeam } from '../../store/slice/team/teamThunk'
+import { searchGlobal } from '../../store/slice/globalSearch/globalSearchThunk'
+import { getInfrastractures } from '../../store/slice/infrastracture/infrastractureThunk'
 
 type MenuItem = Required<MenuProps>['items'][number]
 
@@ -352,7 +352,6 @@ const Header = () => {
                </Flex>
             </StyledContainer>
          </Affix>
-
          <StyledDrawer
             placement="right"
             closable={true}
@@ -367,7 +366,6 @@ const Header = () => {
                mode="inline"
                items={items}
             />
-
             <Flex wrap style={{ padding: '24px' }} align="center" gap={20}>
                {partners.slice(0, 3).map((item) => (
                   <a aria-label="партнеры" key={item.link} href={item.link}>
