@@ -39,7 +39,7 @@ const Team = () => {
             }}
          >
             {players?.map(({ image, id, name, position, number, slug }) => (
-               <Link to={`/player/${slug}`}>
+               <Link key={id} to={`/player/${slug}`}>
                   <SwiperSlide key={id}>
                      <StyledCard>
                         <CardBackground $image={image}>
