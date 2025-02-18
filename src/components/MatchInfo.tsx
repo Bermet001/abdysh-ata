@@ -16,7 +16,7 @@ const MatchInfo = () => {
 
    return (
       <StyledContainer>
-         <StyledFlexContainer align="end" justify="center" wrap gap={15}>
+         <StyledFlexContainer align="end" justify="center" gap={15}>
             {matches?.map((match, index: number) => (
                <MatchCard key={index} {...match} />
             ))}
@@ -65,7 +65,7 @@ const StyledFlexContainer = styled(Flex)`
    }
 
    @media (max-width: 880px) {
-      gap: 10px;
+      gap: 5px !important;
       width: 900px;
    }
 
