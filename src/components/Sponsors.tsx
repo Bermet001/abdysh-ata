@@ -15,7 +15,7 @@ const Sponsors = () => {
 
    return (
       <StyledContainer>
-         <h2 className="main-title">Наши спонсоры</h2>
+         <h2 className="main-title-center">Наши спонсоры</h2>
 
          <Swiper
             loop={partners.length > 4}
@@ -25,7 +25,6 @@ const Sponsors = () => {
                disableOnInteraction: false,
             }}
             modules={[Pagination, Autoplay]}
-            className="mySwiper"
             breakpoints={{
                200: { slidesPerView: 3 },
                768: { slidesPerView: 3 },
@@ -35,16 +34,11 @@ const Sponsors = () => {
             }}
          >
             {partners?.map((sponsor) => (
-               <SwiperSlide key={sponsor.id}>
-                  <a aria-label="ссылка на сайтс спонсора" href={sponsor.link}>
-                     <img
-                        width="200px"
-                        height="100%"
-                        src={sponsor.image}
-                        alt={sponsor.title}
-                     />
-                  </a>
-               </SwiperSlide>
+               <a aria-label="ссылка на сайтс спонсора" href={sponsor.link}>
+                  <SwiperSlide key={sponsor.id}>
+                     <img src={sponsor.image} alt={sponsor.title} />
+                  </SwiperSlide>
+               </a>
             ))}
          </Swiper>
       </StyledContainer>
@@ -55,27 +49,14 @@ export default Sponsors
 
 const StyledContainer = styled.section`
    padding: 0 0 60px 0;
-   text-align: center;
    max-width: 1600px;
    margin: 0 auto;
 
    @media (max-width: 1024px) {
-      padding: 60px 20px 40px;
-   }
-
-   @media (max-width: 480px) {
       padding: 40px 20px 25px;
    }
 
-   .swiper {
-      width: 100%;
-      height: 100%;
-   }
-
    .swiper-slide {
-      text-align: center;
-      font-size: 18px;
-
       display: flex;
       justify-content: center;
       align-items: center;
@@ -84,20 +65,18 @@ const StyledContainer = styled.section`
    .swiper-slide img {
       display: block;
       padding: 10px;
+      height: auto;
+      width: 200px;
       object-fit: cover;
       cursor: pointer;
       transition: transform 0.3s ease;
 
       @media (max-width: 680px) {
-         width: 130px;
-      }
-
-      @media (max-width: 400px) {
          width: 100px;
       }
-   }
 
-   .swiper-slide img:hover {
-      transform: translateY(-6px);
+      &:hover {
+         transform: translateY(-6px);
+      }
    }
 `

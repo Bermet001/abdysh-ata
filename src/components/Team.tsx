@@ -22,6 +22,7 @@ const Team = () => {
       <Container>
          <Flex justify="space-between" align="start">
             <h2 className="main-title">ИГРОКИ</h2>
+
             <NavLink to="/team">
                <Button type="primary">
                   Посмотреть всю команду <RightOutlined />
@@ -31,7 +32,6 @@ const Team = () => {
 
          <Swiper
             spaceBetween={10}
-            slidesPerView={1}
             breakpoints={{
                200: { slidesPerView: 2 },
                768: { slidesPerView: 3 },
@@ -39,8 +39,8 @@ const Team = () => {
             }}
          >
             {players?.map(({ image, id, name, position, number, slug }) => (
-               <SwiperSlide key={id}>
-                  <Link to={`/player/${slug}`}>
+               <Link to={`/player/${slug}`}>
+                  <SwiperSlide key={id}>
                      <StyledCard>
                         <CardBackground $image={image}>
                            <Overlay>
@@ -50,8 +50,8 @@ const Team = () => {
                            </Overlay>
                         </CardBackground>
                      </StyledCard>
-                  </Link>
-               </SwiperSlide>
+                  </SwiperSlide>
+               </Link>
             ))}
          </Swiper>
       </Container>
@@ -67,7 +67,6 @@ const Container = styled.section`
 
    @media (max-width: 1024px) {
       padding: 40px 20px 0;
-      overflow: hidden;
    }
 `
 
@@ -102,6 +101,7 @@ const CardBackground = styled.div<{ $image: string }>`
    display: flex;
    transition: transform 0.3s;
    border-radius: 6px;
+   text-align: center;
 
    &:hover {
       transform: scale(1.05);
@@ -123,7 +123,6 @@ const Overlay = styled.div`
 const PlayerNumber = styled.div`
    font-size: 120px;
    font-weight: bold;
-   text-align: center;
    color: rgba(255, 255, 255, 0.268);
    opacity: 0;
    transform: translateY(-30px);
@@ -135,18 +134,13 @@ const PlayerNumber = styled.div`
    }
 
    @media (max-width: 768px) {
-      font-size: 80px;
-   }
-
-   @media (max-width: 480px) {
-      font-size: 60px;
+      font-size: 70px;
    }
 `
 
 const PlayerName = styled.h2`
    font-size: 24px;
    font-weight: bold;
-   text-align: center;
    color: white;
    transform: translateY(10px);
    transition: transform 0.3s;
@@ -158,16 +152,11 @@ const PlayerName = styled.h2`
    @media (max-width: 768px) {
       font-size: 20px;
    }
-
-   @media (max-width: 480px) {
-      font-size: 18px;
-   }
 `
 
 const PlayerPosition = styled.h3`
    font-size: 18px;
    font-weight: normal;
-   text-align: center;
    color: white;
    transform: translateY(10px);
    transition: transform 0.3s;
@@ -178,9 +167,6 @@ const PlayerPosition = styled.h3`
 
    @media (max-width: 768px) {
       font-size: 16px;
-   }
-
-   @media (max-width: 480px) {
-      font-size: 14px;
+      opacity: 0.7;
    }
 `

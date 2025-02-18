@@ -36,10 +36,7 @@ const Header = () => {
    const [searchQuery, setSearchQuery] = useState('')
 
    const items: MenuItem[] = [
-      {
-         key: '1',
-         label: <NavLink to="/">Главная</NavLink>,
-      },
+      { key: '1', label: <NavLink to="/">Главная</NavLink> },
       {
          key: '2',
          label: 'Команды',
@@ -83,10 +80,7 @@ const Header = () => {
             },
          ],
       },
-      {
-         key: '4',
-         label: <NavLink to="/match">Матчи</NavLink>,
-      },
+      { key: '4', label: <NavLink to="/match">Матчи</NavLink> },
       {
          key: '8',
          label: 'Инфраструктура',
@@ -103,18 +97,9 @@ const Header = () => {
                ),
             })) || [],
       },
-      {
-         key: '5',
-         label: <NavLink to="/rating">Таблица рейтинга</NavLink>,
-      },
-      {
-         key: '6',
-         label: <NavLink to="/partners">Партнеры</NavLink>,
-      },
-      {
-         key: '7',
-         label: <NavLink to="/trophy">Наши достижения</NavLink>,
-      },
+      { key: '5', label: <NavLink to="/rating">Таблица рейтинга</NavLink> },
+      { key: '6', label: <NavLink to="/partners">Партнеры</NavLink> },
+      { key: '7', label: <NavLink to="/trophy">Наши достижения</NavLink> },
    ]
 
    const location = useLocation()

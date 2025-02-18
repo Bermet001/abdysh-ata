@@ -36,27 +36,36 @@ a {
    font-size: 40px;
    margin-bottom: 60px;
 }
+.main-title-center {
+   font-size: 40px;
+   margin-bottom: 60px;
+   text-align: center;
+}
 
 @media (max-width: 900px) {
-   .main-title {
+   .main-title,
+   .main-title-center {
       margin-bottom: 60px;
    }
 }
 @media (max-width: 800px) {
-   .main-title {
+   .main-title,
+   .main-title-center {
       font-size: 30px;
       margin-bottom: 30px;
    }
 }
 
 @media (max-width: 660px) {
-   .main-title {
+   .main-title,
+   .main-title-center {
       font-size: 25px;
    }
 }
 
 @media (max-width: 450px) {
-   .main-title {
+   .main-title,
+   .main-title-center {
       font-size: 22px;
       margin-bottom: 20px;
    }

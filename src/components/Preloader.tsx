@@ -32,6 +32,8 @@ const Preloader: FC = () => (
    </PreloaderContainer>
 )
 
+export default Preloader
+
 const fadeIn = keyframes`
    0% { opacity: 1; }
    100% { opacity: 1; }
@@ -155,5 +157,3 @@ const Bg = styled.div`
    width: 100%;
    transition: all 800ms cubic-bezier(0.77, 0, 0.175, 1);
 `
-
-export default Preloader

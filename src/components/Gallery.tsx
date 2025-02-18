@@ -50,7 +50,7 @@ const Gallery = () => {
 
             <Flex gap={20} className="image-gallery">
                <Flex className="gallery-image" vertical gap={20}>
-                  <ImageWrapper>
+                  <ImageWrapper justify="center">
                      <img
                         height="100%"
                         width="100%"
@@ -58,6 +58,7 @@ const Gallery = () => {
                         alt="Event 1"
                      />
                      <DarkOverlay />
+
                      <Overlay>
                         <Flex
                            className="overlay-container"
@@ -95,7 +96,7 @@ const Gallery = () => {
                      </Overlay>
                   </ImageWrapper>
 
-                  <ImageWrapper>
+                  <ImageWrapper justify="center">
                      <img
                         height="100%"
                         width="100%"
@@ -143,7 +144,7 @@ const Gallery = () => {
                   </ImageWrapper>
                </Flex>
                <Flex>
-                  <ImageWrapper>
+                  <ImageWrapper justify="center">
                      <img
                         height="100%"
                         width="100%"
@@ -223,17 +224,10 @@ const StyledContainer = styled.section`
       border-radius: 10px;
    }
 
-   > .ant-flex {
-      margin: 0 auto;
-      max-width: 1600px;
-   }
-
    .ant-modal .ant-modal-content {
       padding: 0;
    }
 
-   .overlay-container {
-   }
    @media (max-width: 1024px) {
       padding: 40px 20px 0 20px;
    }
@@ -259,15 +253,12 @@ const StyledContainer = styled.section`
    }
 `
 
-const ImageWrapper = styled.div`
+const ImageWrapper = styled(Flex)`
    position: relative;
-   display: flex;
-   justify-content: center;
    cursor: pointer;
 
    img {
       transition: transform 0.3s ease;
-      width: 100%;
    }
 
    &:hover img {

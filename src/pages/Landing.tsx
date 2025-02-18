@@ -25,9 +25,7 @@ const Landing: FC = () => (
       </Helmet>
 
       <main>
-         <section>
-            <Slider />
-         </section>
+         <Slider />
          <MatchInfo />
          <ProductSlider />
          <News />

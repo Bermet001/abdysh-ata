@@ -21,6 +21,8 @@ const Footer = () => {
 
    const dispatch = useAppDispatch()
 
+   const contact = contacts.length > 0 ? contacts[0] : null
+
    useEffect(() => {
       dispatch(CONTACTS_THUNK.getContacts())
    }, [dispatch])
@@ -68,8 +70,6 @@ const Footer = () => {
       { path: '/partners', title: 'Партнеры', id: 6 },
       { path: '/trophy', title: 'Наши достижения', id: 7 },
    ]
-
-   const contact = contacts.length > 0 ? contacts[0] : null
 
    const socialLinks = [
       {

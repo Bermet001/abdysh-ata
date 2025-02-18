@@ -180,10 +180,6 @@ const StyledButtonView = styled(Button)`
    font-weight: 500;
    font-family: 'Roboto Condensed', serif;
 
-   svg {
-      margin-left: 5px;
-   }
-
    @media (max-width: 900px) {
       padding: 20px 35px;
       font-size: 14px;

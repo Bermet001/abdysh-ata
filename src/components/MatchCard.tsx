@@ -95,19 +95,8 @@ const MatchCardContainer = styled(Flex)`
 
    > .main-info {
       min-height: 120px;
-      padding: 20px;
+      padding: 15px;
       width: 100%;
-      justify-content: space-between;
-
-      .team-name {
-         width: 70px;
-         font-size: 11px;
-         font-weight: 500;
-         @media (max-width: 950px) {
-            width: 100%;
-            font-size: 8px;
-         }
-      }
 
       @media (max-width: 1000px) {
          padding: 0px 15px;
@@ -176,10 +165,6 @@ const Time = styled.h3`
    }
 
    @media (max-width: 600px) {
-      font-size: 14px;
-   }
-
-   @media (max-width: 480px) {
       font-size: 13px;
    }
 `
@@ -193,10 +178,6 @@ const Countdown = styled(Flex)`
 
       @media (max-width: 1200px) {
          font-size: 26px;
-      }
-
-      @media (max-width: 1000px) {
-         font-size: 23px;
       }
 
       @media (max-width: 600px) {

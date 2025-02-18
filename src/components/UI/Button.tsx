@@ -7,9 +7,9 @@ interface IProps {
    type?: 'default' | 'primary' | 'dashed' | 'text' | 'link'
 }
 
-const Button: FC<IProps> = ({ children, type = 'primary' }) => {
-   return <StyledButton type={type}>{children}</StyledButton>
-}
+const Button: FC<IProps> = ({ children, type = 'primary' }) => (
+   <StyledButton type={type}>{children}</StyledButton>
+)
 
 export default Button
 
