@@ -65,13 +65,7 @@ const Footer: FC = () => {
                align="center"
             >
                <Flex gap={15} className="logo" align="center">
-                  <img
-                     width="60"
-                     height="75"
-                     loading="lazy"
-                     src={contact.logo}
-                     alt="logo"
-                  />
+                  <img loading="lazy" src={contact.logo} alt="logo" />
                   <h1 className="main-title">Abdysh-ata</h1>
                </Flex>
                <Flex className="socials" align="center" gap={30}>
@@ -82,9 +76,7 @@ const Footer: FC = () => {
                   ))}
                </Flex>
             </Flex>
-
             <div className="line" />
-
             <Flex
                gap={30}
                wrap
@@ -92,25 +84,20 @@ const Footer: FC = () => {
                justify="space-between"
             >
                <FooterSection title="Разделы сайта" items={navigations} isNav />
-
                <FooterContacts contact={contact} />
-
                <FooterSection
                   title="Команды"
                   items={headerTeam.slice(0, 5)}
                   prefix="team/"
                />
-
-               <Flex>
-                  <iframe
-                     src="https://www.google.com/maps/embed?..."
-                     width="450px"
-                     height="300px"
-                     loading="lazy"
-                     className="footer-map"
-                     title="локация"
-                  />
-               </Flex>
+               <iframe
+                  src="https://www.google.com/maps/embed?..."
+                  width="450px"
+                  height="300px"
+                  loading="lazy"
+                  className="footer-map"
+                  title="локация"
+               />
             </Flex>
             <div className="line" />
          </Flex>
@@ -120,25 +107,26 @@ const Footer: FC = () => {
 export default Footer
 
 const StyledFooter = styled.footer`
-   padding: 80px 75px;
-   width: 100vw;
-
+   padding: 40px;
    background-color: #18191b;
    color: #fff;
+   .logo {
+      img {
+         width: 60px;
+         height: 75px;
+      }
+   }
 
    @media (max-width: 1024px) {
-      padding: 60px 20px;
-
+      padding: 20px 20px;
       .footer-map {
          width: 100%;
       }
    }
-
    h1 {
       color: #fff;
       margin-bottom: 0;
    }
-
    .inner {
       max-width: 1600px;
       margin: 0 auto;
@@ -152,7 +140,6 @@ const StyledFooter = styled.footer`
       font-size: 30px;
       font-weight: 500;
    }
-
    a {
       font-size: 15px;
       font-weight: 600;
@@ -166,11 +153,25 @@ const StyledFooter = styled.footer`
       color: #00a64f;
    }
 
+   @media (max-width: 500px) {
+      .footer-main-info-box {
+         min-height: 100%;
+         justify-content: flex-start !important;
+      }
+
+      .column-footer {
+         max-width: 145px !important;
+      }
+
+      .socials {
+         gap: 10px !important;
+      }
+   }
+
    @media (max-width: 1024px) {
       .title {
          font-size: 16px;
       }
-
       p,
       a {
          font-size: 12px;

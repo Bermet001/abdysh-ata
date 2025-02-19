@@ -23,14 +23,12 @@ const VictoryBlock = () => {
             <Flex className="inner" align="center" justify="space-between">
                <Flex vertical align="start">
                   <Title>Достижения Команды</Title>
-
                   <Description>
                      Мы гордимся нашими трофеями и достижениями, которые стали
                      результатом упорного труда и преданности команды на
                      протяжении многих лет.
                   </Description>
                </Flex>
-
                <NavLink to={'/trophy'}>
                   <StyledButton type="primary">
                      Все трофеи <RightOutlined />
@@ -38,7 +36,6 @@ const VictoryBlock = () => {
                </NavLink>
             </Flex>
          </VictoryDes>
-
          <SliderContainer>
             <Swiper
                spaceBetween={20}
@@ -59,7 +56,6 @@ const VictoryBlock = () => {
                               src={image}
                               alt="trophy"
                            />
-
                            <div className="contents-trophy">
                               <p>{season}</p>
                               <h2>{title}</h2>

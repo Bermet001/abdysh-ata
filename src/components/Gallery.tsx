@@ -221,7 +221,7 @@ const StyledContainer = styled.section`
 
    img {
       object-fit: cover;
-      border-radius: 10px;
+      border-radius: 8px;
    }
 
    .ant-modal .ant-modal-content {
@@ -280,7 +280,7 @@ const Overlay = styled.div`
    width: 100%;
    height: 100%;
    transition: opacity 0.8s ease, transform 0.5s ease;
-   border-radius: 5px;
+   border-radius: 8px;
    padding: 5px;
 
    ${ImageWrapper}:hover & {
@@ -301,7 +301,7 @@ const DarkOverlay = styled.div`
    background: rgba(0, 0, 0, 0.365);
    opacity: 0;
    transition: opacity 0.3s ease;
-   border-radius: 10px;
+   border-radius: 8px;
 
    ${ImageWrapper}:hover & {
       opacity: 1;

@@ -243,6 +243,7 @@ const Header = () => {
                         className="main-logo"
                         src={Logo}
                         width="50px"
+                        height="50px"
                         alt="logo"
                      />
                   </NavLink>

@@ -48,6 +48,7 @@ const MatchCard: FC<Match> = ({
                   <Team vertical align="center" justify="center">
                      <TeamLogo
                         width="50px"
+                        height="50px"
                         src={home_team.logo}
                         alt={home_team.title}
                      />
@@ -61,6 +62,7 @@ const MatchCard: FC<Match> = ({
 
                   <Team vertical align="center" justify="center">
                      <TeamLogo
+                        height="50px"
                         width="50px"
                         src={away_team.logo}
                         alt={away_team.title}
