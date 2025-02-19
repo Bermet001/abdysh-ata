@@ -1,5 +1,5 @@
 import { FC, useEffect } from 'react'
-import { Carousel, Button, Flex } from 'antd'
+import { Carousel, Button, Flex, Skeleton } from 'antd'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../store/store'
@@ -7,7 +7,7 @@ import { BANNER_THUNK } from '../store/slice/banner/bannerThunk'
 import { Helmet } from 'react-helmet-async'
 
 const Slider: FC = () => {
-   const { banners } = useAppSelector((state) => state.banner)
+   const { banners, isLoading } = useAppSelector((state) => state.banner)
 
    const dispatch = useAppDispatch()
 
@@ -31,29 +31,32 @@ const Slider: FC = () => {
             infinite
             aria-hidden="false"
          >
-            {banners?.map((item, index) => (
-               <div className="main-container" key={index}>
-                  <Overlay />
+            {isLoading
+               ? [...Array(3)].map((_, index) => (
+                    <Skeleton key={index} active paragraph={{ rows: 4 }} />
+                 ))
+               : banners?.map((item, index) => (
+                    <div className="main-container" key={index}>
+                       <Overlay />
 
-                  <img
-                     src={item.image}
-                     alt={`Slide ${index + 1}`}
-                     loading="lazy"
-                     width="100%"
-                     height="100%"
-                  />
+                       <img
+                          src={item.image}
+                          alt={`Slide ${index + 1}`}
+                          width="100%"
+                          height="100%"
+                       />
 
-                  <Flex align="start" vertical className="content">
-                     <h2>{item.title}</h2>
+                       <Flex align="start" vertical className="content">
+                          <h2>{item.title}</h2>
 
-                     <NavLink to={`/banner/${item.slug}`}>
-                        <StyledButtonView type="primary">
-                           Читать дальше
-                        </StyledButtonView>
-                     </NavLink>
-                  </Flex>
-               </div>
-            ))}
+                          <NavLink to={`/banner/${item.slug}`}>
+                             <StyledButtonView type="primary">
+                                Читать дальше
+                             </StyledButtonView>
+                          </NavLink>
+                       </Flex>
+                    </div>
+                 ))}
          </StyledCarousel>
       </section>
    )

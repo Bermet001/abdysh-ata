@@ -31,7 +31,6 @@ const Gallery = () => {
             <meta name="author" content="Абдыш ата" />
             <link rel="canonical" href="https://abdysh-front.tw1.ru/gallery" />
          </Helmet>
-
          <Flex gap={20} wrap>
             {gallery?.map((item) => (
                <NavLink key={item.id} to={`/gallery/${item.slug}`}>

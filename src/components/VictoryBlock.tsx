@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Card, Flex, Button } from 'antd'
+import { Card, Flex, Button, Skeleton } from 'antd'
 import Image from '../assets/images/image7.jpg'
 import { RightOutlined } from '@ant-design/icons'
 import { NavLink } from 'react-router-dom'
@@ -9,7 +9,9 @@ import { useEffect } from 'react'
 import { getAchievements } from '../store/slice/ahievements/ahievementsThunk'
 
 const VictoryBlock = () => {
-   const { achievements } = useAppSelector((state) => state.achievements)
+   const { achievements, isLoading } = useAppSelector(
+      (state) => state.achievements
+   )
 
    const dispatch = useAppDispatch()
 
@@ -47,23 +49,32 @@ const VictoryBlock = () => {
                   1130: { slidesPerView: 4 },
                }}
             >
-               {achievements?.map(({ id, title, season, image }) => (
-                  <SwiperSlide key={id}>
-                     <StyledCard>
-                        <Flex vertical>
-                           <img
-                              className="trophy-image"
-                              src={image}
-                              alt="trophy"
-                           />
-                           <div className="contents-trophy">
-                              <p>{season}</p>
-                              <h2>{title}</h2>
-                           </div>
-                        </Flex>
-                     </StyledCard>
-                  </SwiperSlide>
-               ))}
+               {isLoading
+                  ? Array.from({ length: 4 }).map((_, index) => (
+                       <SwiperSlide key={index}>
+                          <StyledCard>
+                             <Skeleton active />
+                          </StyledCard>
+                       </SwiperSlide>
+                    ))
+                  : achievements?.map(({ id, title, season, image }) => (
+                       <SwiperSlide key={id}>
+                          <StyledCard>
+                             <Flex vertical>
+                                <img
+                                   loading="lazy"
+                                   className="trophy-image"
+                                   src={image}
+                                   alt="trophy"
+                                />
+                                <div className="contents-trophy">
+                                   <p>{season}</p>
+                                   <h2>{title}</h2>
+                                </div>
+                             </Flex>
+                          </StyledCard>
+                       </SwiperSlide>
+                    ))}
             </Swiper>
          </SliderContainer>
       </Container>

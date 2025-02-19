@@ -19,7 +19,13 @@ interface IProps {
 const NewsCard: FC<IProps> = ({ slug, id, image, title, category, date }) => (
    <StyledNewsCard key={id}>
       <NavLink to={`/news/${slug}`}>
-         <NewsImage width="100%" height="150px" src={image} alt={title} />
+         <NewsImage
+            loading="lazy"
+            width="100%"
+            height="150px"
+            src={image}
+            alt={title}
+         />
          <NewsContent>
             <Category>{category.title}</Category>
             <Popover

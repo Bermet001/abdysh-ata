@@ -54,7 +54,6 @@ const Guideline: FC = () => {
             <meta name="author" content="Абдыш ата" />
             <link rel="canonical" href="http://mysite.com/guideline" />
          </Helmet>
-
          <div>
             <h1 className="main-title">Руководство</h1>
             <Row gutter={[10, 10]}>
@@ -69,7 +68,6 @@ const Guideline: FC = () => {
                   </Col>
                ))}
             </Row>
-
             {selectedDirector && (
                <Modal
                   title={selectedDirector.name}

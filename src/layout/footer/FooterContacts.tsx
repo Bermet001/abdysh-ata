@@ -16,7 +16,12 @@ interface IProps {
 }
 
 const FooterContacts: FC<IProps> = ({ contact }) => (
-   <Flex className='column-footer' style={{ maxWidth: '195px' }} vertical gap={20}>
+   <Flex
+      className="column-footer"
+      style={{ maxWidth: '195px' }}
+      vertical
+      gap={20}
+   >
       <p className="title">Контакты</p>
       <Flex gap={10} vertical>
          <a aria-label="номер телефона" href={`tel:${contact.phone}`}>

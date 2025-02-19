@@ -40,7 +40,11 @@ const Sponsors = () => {
                   href={sponsor.link}
                >
                   <SwiperSlide key={sponsor.id}>
-                     <img src={sponsor.image} alt={sponsor.title} />
+                     <img
+                        loading="lazy"
+                        src={sponsor.image}
+                        alt={sponsor.title}
+                     />
                   </SwiperSlide>
                </a>
             ))}
@@ -69,7 +73,7 @@ const StyledContainer = styled.section`
    .swiper-slide img {
       display: block;
       padding: 10px;
-      height: auto;
+      height: 130px;
       width: 200px;
       object-fit: cover;
       cursor: pointer;

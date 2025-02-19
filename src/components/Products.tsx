@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import styled from 'styled-components'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Card, Flex, Button as AntdButton } from 'antd'
+import { Card, Flex, Button as AntdButton, Skeleton } from 'antd'
 import { RightOutlined } from '@ant-design/icons'
 import { NavLink } from 'react-router-dom'
 import Button from './UI/Button'
@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from '../store/store'
 import { PRODUCT_THUNK } from '../store/slice/shop/shopThunk'
 
 const ProductSlider = () => {
-   const { products } = useAppSelector((state) => state.shop)
+   const { products, isLoading } = useAppSelector((state) => state.shop)
    const { contacts } = useAppSelector((state) => state.contacts)
    const contact = contacts.length > 0 ? contacts[0] : null
 
@@ -41,36 +41,48 @@ const ProductSlider = () => {
                1440: { slidesPerView: 5 },
             }}
          >
-            {products?.map((product) => {
-               const message = `Хотела бы узнать подробнее о ${product.title}.`
-               const encodedMessage = encodeURIComponent(message)
+            {isLoading
+               ? [...Array(5)].map((_, index) => (
+                    <SwiperSlide key={index}>
+                       <Skeleton active />
+                    </SwiperSlide>
+                 ))
+               : products?.map((product) => {
+                    const message = `Хотела бы узнать подробнее о ${product.title}.`
+                    const encodedMessage = encodeURIComponent(message)
 
-               return (
-                  <SwiperSlide key={product.id}>
-                     <StyledCard
-                        cover={<img alt={product.title} src={product.image} />}
-                     >
-                        <NavLink to={`/shop/${product.slug}`}>
-                           <Card.Meta
-                              title={product.title}
-                              description={`${product.price} сом`}
-                           />
-                        </NavLink>
+                    return (
+                       <SwiperSlide key={product.id}>
+                          <StyledCard
+                             cover={
+                                <img
+                                   loading="lazy"
+                                   alt={product.title}
+                                   src={product.image}
+                                />
+                             }
+                          >
+                             <NavLink to={`/shop/${product.slug}`}>
+                                <Card.Meta
+                                   title={product.title}
+                                   description={`${product.price} сом`}
+                                />
+                             </NavLink>
 
-                        <a
-                           href={`https://wa.me/${contact?.whatsapp}?text=${encodedMessage}`}
-                           aria-label="перейти в чат"
-                           target="_blank"
-                           rel="noopener noreferrer"
-                        >
-                           <StyledButton type="primary">
-                              Оформить заказ
-                           </StyledButton>
-                        </a>
-                     </StyledCard>
-                  </SwiperSlide>
-               )
-            })}
+                             <a
+                                href={`https://wa.me/${contact?.whatsapp}?text=${encodedMessage}`}
+                                aria-label="перейти в чат"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                             >
+                                <StyledButton type="primary">
+                                   Оформить заказ
+                                </StyledButton>
+                             </a>
+                          </StyledCard>
+                       </SwiperSlide>
+                    )
+                 })}
          </Swiper>
       </Container>
    )

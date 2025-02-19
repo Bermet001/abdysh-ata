@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Flex } from 'antd'
+import { Flex, Skeleton } from 'antd'
 import { RightOutlined } from '@ant-design/icons'
 import { NavLink } from 'react-router-dom'
 import NewsCard from './UI/NewsCard'
@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from '../store/store'
 import { NEWS_THUNK } from '../store/slice/news/newsThunk'
 
 const News = () => {
-   const { news } = useAppSelector((state) => state.news)
+   const { news, isLoading } = useAppSelector((state) => state.news)
    const [visibleCount, setVisibleCount] = useState<number>(news?.length)
 
    const dispatch = useAppDispatch()
@@ -43,9 +43,13 @@ const News = () => {
          </Flex>
 
          <CardsContainer>
-            {news?.slice(0, visibleCount).map((item) => (
-               <NewsCard key={item.id} {...item} />
-            ))}
+            {isLoading
+               ? [...Array(visibleCount)].map((_, index) => (
+                    <Skeleton key={index} active paragraph={{ rows: 4 }} />
+                 ))
+               : news
+                    ?.slice(0, visibleCount)
+                    .map((item) => <NewsCard key={item.id} {...item} />)}
          </CardsContainer>
       </NewsContainer>
    )

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Card, Flex } from 'antd'
+import { Card, Flex, Skeleton } from 'antd'
 import { RightOutlined } from '@ant-design/icons'
 import { Link, NavLink } from 'react-router-dom'
 import Button from './UI/Button'
@@ -9,13 +9,15 @@ import { useEffect } from 'react'
 import { getTeam } from '../store/slice/team/teamThunk'
 
 const Team = () => {
-   const { players, allTeams } = useAppSelector((state) => state.team)
+   const { players, allTeams, isLoading } = useAppSelector(
+      (state) => state.team
+   )
    const first_team = allTeams?.length > 0 ? allTeams[0] : null
 
    const dispatch = useAppDispatch()
 
    useEffect(() => {
-      if (first_team?.slug) dispatch(getTeam(first_team?.slug))
+      if (first_team?.slug) dispatch(getTeam(first_team.slug))
    }, [dispatch, first_team])
 
    return (
@@ -36,21 +38,33 @@ const Team = () => {
                1024: { slidesPerView: 4 },
             }}
          >
-            {players?.map(({ image, id, name, position, number, slug }) => (
-               <Link key={id} to={`/player/${slug}`}>
-                  <SwiperSlide key={id}>
-                     <StyledCard>
-                        <CardBackground $image={image}>
-                           <Overlay>
-                              <PlayerNumber>{number}</PlayerNumber>
-                              <PlayerName>{name}</PlayerName>
-                              <PlayerPosition>{position}</PlayerPosition>
-                           </Overlay>
-                        </CardBackground>
-                     </StyledCard>
-                  </SwiperSlide>
-               </Link>
-            ))}
+            {isLoading
+               ? [...Array(4)].map((_, index) => (
+                    <SwiperSlide key={index}>
+                       <StyledCard>
+                          <Skeleton
+                             active
+                             title={false}
+                             paragraph={{ rows: 4 }}
+                          />
+                       </StyledCard>
+                    </SwiperSlide>
+                 ))
+               : players?.map(({ image, id, name, position, number, slug }) => (
+                    <Link key={id} to={`/player/${slug}`}>
+                       <SwiperSlide>
+                          <StyledCard>
+                             <CardBackground $image={image}>
+                                <Overlay>
+                                   <PlayerNumber>{number}</PlayerNumber>
+                                   <PlayerName>{name}</PlayerName>
+                                   <PlayerPosition>{position}</PlayerPosition>
+                                </Overlay>
+                             </CardBackground>
+                          </StyledCard>
+                       </SwiperSlide>
+                    </Link>
+                 ))}
          </Swiper>
       </Container>
    )
