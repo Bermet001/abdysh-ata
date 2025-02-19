@@ -35,43 +35,37 @@ const MatchCard: FC<Match> = ({
    slug,
 }) => {
    return (
-      <>
-         <NavLink to={`match/${slug}`}>
-            <MatchCardContainer vertical align="center">
-               <Time>{new Date(date).toLocaleString()}</Time>
+      <NavLink to={`match/${slug}`}>
+         <MatchCardContainer vertical align="center">
+            <Time>{new Date(date).toLocaleString()}</Time>
 
-               <Flex
-                  className="main-info"
-                  align="center"
-                  justify="space-between"
-               >
-                  <Team vertical align="center" justify="center">
-                     <TeamLogo
-                        width="50px"
-                        height="50px"
-                        src={home_team.logo}
-                        alt={home_team.title}
-                     />
-                  </Team>
+            <Flex className="main-info" align="center" justify="space-between">
+               <Team vertical align="center" justify="center">
+                  <TeamLogo
+                     width="50px"
+                     height="50px"
+                     src={home_team.logo}
+                     alt={home_team.title}
+                  />
+               </Team>
 
-                  <Countdown vertical align="center" justify="center">
-                     <p>
-                        {home_score} : {away_score}
-                     </p>
-                  </Countdown>
+               <Countdown vertical align="center" justify="center">
+                  <p>
+                     {home_score} : {away_score}
+                  </p>
+               </Countdown>
 
-                  <Team vertical align="center" justify="center">
-                     <TeamLogo
-                        height="50px"
-                        width="50px"
-                        src={away_team.logo}
-                        alt={away_team.title}
-                     />
-                  </Team>
-               </Flex>
-            </MatchCardContainer>
-         </NavLink>
-      </>
+               <Team vertical align="center" justify="center">
+                  <TeamLogo
+                     height="50px"
+                     width="50px"
+                     src={away_team.logo}
+                     alt={away_team.title}
+                  />
+               </Team>
+            </Flex>
+         </MatchCardContainer>
+      </NavLink>
    )
 }
 

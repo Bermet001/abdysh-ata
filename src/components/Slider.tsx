@@ -32,9 +32,7 @@ const Slider: FC = () => {
             aria-hidden="false"
          >
             {isLoading
-               ? [...Array(3)].map((_, index) => (
-                    <Skeleton key={index} active paragraph={{ rows: 4 }} />
-                 ))
+               ? [...Array(3)].map((_, index) => <SkeletonImage key={index} />)
                : banners?.map((item, index) => (
                     <div className="main-container" key={index}>
                        <Overlay />
@@ -191,4 +189,11 @@ const StyledButtonView = styled(Button)`
       padding: 10px 20px;
       font-size: 10px;
    }
+`
+
+const SkeletonImage = styled(Skeleton)`
+   height: 600px;
+   width: 100%;
+   border-radius: 10px;
+   background: rgba(240, 240, 240, 0.5);
 `

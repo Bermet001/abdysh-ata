@@ -1,4 +1,4 @@
-import { Flex } from 'antd'
+import { Flex, Skeleton } from 'antd'
 import MatchCard from './MatchCard'
 import styled from 'styled-components'
 import { useAppDispatch, useAppSelector } from '../store/store'
@@ -6,7 +6,7 @@ import { useEffect } from 'react'
 import { getMatches } from '../store/slice/matches/matchesThunk'
 
 const MatchInfo = () => {
-   const { matches } = useAppSelector((state) => state.matches)
+   const { matches, isLoading } = useAppSelector((state) => state.matches)
 
    const dispatch = useAppDispatch()
 
@@ -17,9 +17,13 @@ const MatchInfo = () => {
    return (
       <StyledContainer>
          <StyledFlexContainer align="end" justify="center" gap={15}>
-            {matches?.map((match, index: number) => (
-               <MatchCard key={index} {...match} />
-            ))}
+            {isLoading
+               ? [...Array(4)].map((_, index) => (
+                    <SkeletonMatchCard key={index} />
+                 ))
+               : matches?.map((match, index: number) => (
+                    <MatchCard key={index} {...match} />
+                 ))}
          </StyledFlexContainer>
       </StyledContainer>
    )
@@ -77,4 +81,11 @@ const StyledFlexContainer = styled(Flex)`
       height: 150px;
       width: 600px;
    }
+`
+
+const SkeletonMatchCard = styled(Skeleton)`
+   width: 270px; /* Match the width of MatchCard */
+   height: 120px; /* Match the height of MatchCard */
+   border-radius: 10px; /* Optional: Add border radius to match design */
+   margin: 0 10px; /* Spacing between skeletons */
 `
