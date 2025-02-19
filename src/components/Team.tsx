@@ -40,7 +40,7 @@ const Team = () => {
          >
             {isLoading
                ? [...Array(4)].map((_, index) => (
-                    <SwiperSlide key={index}>
+                    <SwiperSlide key={index + 1}>
                        <StyledCard>
                           <Skeleton
                              active
@@ -51,8 +51,8 @@ const Team = () => {
                     </SwiperSlide>
                  ))
                : players?.map(({ image, id, name, position, number, slug }) => (
-                    <Link key={id} to={`/player/${slug}`}>
-                       <SwiperSlide>
+                    <Link key={slug} to={`/player/${slug}`}>
+                       <SwiperSlide key={id}>
                           <StyledCard>
                              <CardBackground $image={image}>
                                 <Overlay>
