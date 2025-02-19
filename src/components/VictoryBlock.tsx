@@ -87,6 +87,7 @@ const Container = styled.section`
    text-align: center;
    padding: 120px 0;
    color: black;
+   min-height: 840px;
 
    @media (max-width: 1024px) {
       overflow: hidden;

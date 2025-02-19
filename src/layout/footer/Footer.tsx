@@ -137,7 +137,7 @@ const StyledFooter = styled.footer`
    }
 
    .title {
-      font-size: 30px;
+      font-size: 27px;
       font-weight: 500;
    }
    a {

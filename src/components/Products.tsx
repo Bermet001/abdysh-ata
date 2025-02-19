@@ -94,6 +94,7 @@ const Container = styled.section`
    margin: auto;
    padding: 120px 75px 0 75px;
    max-width: 1600px;
+   min-height: 600px;
 
    @media (max-width: 1024px) {
       padding: 60px 20px 0;

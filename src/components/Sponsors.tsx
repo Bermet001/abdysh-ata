@@ -59,6 +59,7 @@ const StyledContainer = styled.section`
    padding: 0 0 60px 0;
    max-width: 1600px;
    margin: 0 auto;
+   min-height: 100px;
 
    @media (max-width: 1024px) {
       padding: 40px 20px 25px;
@@ -73,14 +74,20 @@ const StyledContainer = styled.section`
    .swiper-slide img {
       display: block;
       padding: 10px;
-      height: 130px;
-      width: 200px;
+      height: auto;
+      width: 230px;
       object-fit: cover;
       cursor: pointer;
       transition: transform 0.3s ease;
 
-      @media (max-width: 680px) {
+      @media (max-width: 800px) {
+         width: 150px;
+         height: auto;
+      }
+
+      @media (max-width: 500px) {
          width: 100px;
+         height: auto;
       }
 
       &:hover {
