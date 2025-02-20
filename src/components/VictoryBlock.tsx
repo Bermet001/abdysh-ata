@@ -90,13 +90,17 @@ const Container = styled.section`
    min-height: 840px;
 
    @media (max-width: 1024px) {
-      overflow: hidden;
       padding: 0;
       padding-top: 60px;
+      min-height: 500px;
 
       .swiper {
          padding: 0px !important;
       }
+   }
+
+   @media (max-width: 600px) {
+      min-height: 400px;
    }
 
    & .swiper {

@@ -98,8 +98,10 @@ const Container = styled.section`
 
    @media (max-width: 1024px) {
       padding: 60px 20px 0;
+      min-height: 500px;
    }
    @media (max-width: 600px) {
+      min-height: 400px;
       padding: 30px 20px 0;
    }
 `

@@ -461,7 +461,7 @@ const StyledContainer = styled(Flex)<StyledContainerProps>`
       padding: 5px 20px;
 
       .main-logo {
-         width: 40px;
+         width: 50px;
       }
 
       .mobile-menu {
