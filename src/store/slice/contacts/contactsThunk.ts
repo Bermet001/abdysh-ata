@@ -2,6 +2,7 @@ import { axiosInstance } from '../../../configs/axiosInstance'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { AxiosError } from 'axios'
 import { ContactData } from '../../../pages/user/Contacts'
+import { notification } from 'antd'
 
 const getContacts = createAsyncThunk(
    'contacts/getContacts',
@@ -22,15 +23,27 @@ const getContacts = createAsyncThunk(
 
 const sendMessage = createAsyncThunk(
    'contacts/sendContactData',
-   async (contactData: ContactData, { rejectWithValue }) => {
+   async (
+      { values, reset }: { values: ContactData; reset: () => void },
+      { rejectWithValue }
+   ) => {
       try {
-         const { data } = await axiosInstance.post(
-            'settings/contact/',
-            contactData
-         )
+         const { data } = await axiosInstance.post('settings/contct/', values)
+
+         notification.success({
+            message: 'Сообщение отправлено!',
+            description: 'Ваше сообщение было успешно отправлено.',
+         })
+
+         reset()
          return data
       } catch (error) {
          const err = error as AxiosError
+
+         notification.error({
+            message: 'Что-то пошло не так!',
+            description: 'Попробуйте еще раз.',
+         })
 
          return rejectWithValue({
             message: err.message,

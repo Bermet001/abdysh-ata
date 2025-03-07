@@ -21,7 +21,7 @@ const Contacts = () => {
    const dispatch = useAppDispatch()
 
    const onFinish = (values: ContactData) =>
-      dispatch(CONTACTS_THUNK.sendMessage(values))
+      dispatch(CONTACTS_THUNK.sendMessage({ values, reset: form.resetFields }))
 
    useEffect(() => {
       dispatch(CONTACTS_THUNK.getContacts())
@@ -182,16 +182,30 @@ const Contacts = () => {
                                  required: true,
                                  message: 'Пожалуйста напишите ваш номер',
                               },
+                              {
+                                 pattern: /^\+996\d{9}$/,
+                                 message:
+                                    'Номер телефона должен начинаться с +996 и содержать 9 цифр.',
+                              },
                            ]}
                         >
                            <StyledInput
-                              type="number"
+                              type="text"
                               placeholder="Введите номер для связи"
                            />
                         </Form.Item>
                      </Flex>
 
-                     <Form.Item label="Сообщение" name="message">
+                     <Form.Item
+                        rules={[
+                           {
+                              required: true,
+                              message: 'Это поле обязательно',
+                           },
+                        ]}
+                        label="Сообщение"
+                        name="message"
+                     >
                         <Input.TextArea
                            rows={5}
                            placeholder="Пожалуйста, введите ваше сообщение"
