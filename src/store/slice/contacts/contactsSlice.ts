@@ -11,6 +11,7 @@ interface Contacts {
    telegram: string
    instagram: string
    whatsapp: string
+   location: string
 }
 
 const initialState = {

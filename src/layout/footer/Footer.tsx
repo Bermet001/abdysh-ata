@@ -91,7 +91,7 @@ const Footer: FC = () => {
                   prefix="team/"
                />
                <iframe
-                  src="https://www.google.com/maps/embed?..."
+                  src={contact.location}
                   width="450px"
                   height="300px"
                   loading="lazy"

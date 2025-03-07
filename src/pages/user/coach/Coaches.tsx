@@ -16,10 +16,8 @@ const Coaches = () => {
                <StyledCard key={id}>
                   <div className="card-coach">
                      <img className="coach-photo" src={image} alt={name} />
-
                      <h2 className="coach-name">{name}</h2>
                      <p className="coach-position">{position}</p>
-
                      <Button type="primary" className="more-info-btn">
                         <NavLink to={`/coaches/${slug}`}>
                            Смотреть профиль
