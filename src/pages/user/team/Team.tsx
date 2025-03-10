@@ -13,7 +13,7 @@ const Team = () => {
    const { players } = useAppSelector((state) => state.team)
 
    return (
-      <Container>
+      <Container> 
          <h2 className="main-title">Название команды</h2>
 
          <TeamContainer className="team-container" wrap gap={22}>
@@ -44,7 +44,6 @@ export default Team
 const Container = styled.div`
    margin: auto;
    max-width: 1600px;
-   overflow: hidden;
 `
 
 const StyledCard = styled(Card)`
@@ -53,7 +52,10 @@ const StyledCard = styled(Card)`
    position: relative;
    cursor: pointer;
    height: 350px;
-
+   background: linear-gradient(to top left, #00c8ff, #9cff66);
+   &:hover {
+      transform: scale(1.05);
+   }
    @media (max-width: 390px) {
       height: 400px !important;
    }
@@ -72,10 +74,6 @@ const CardBackground = styled.div<CardBackgroundProps>`
    display: flex;
    transition: transform 0.3s;
    border-radius: 6px;
-
-   &:hover {
-      transform: scale(1.05);
-   }
 `
 
 const Overlay = styled.div`
