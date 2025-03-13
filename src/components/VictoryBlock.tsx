@@ -86,8 +86,8 @@ export default VictoryBlock
 const Container = styled.section`
    text-align: center;
    padding: 120px 0;
+   padding-bottom: 0;
    color: black;
-   min-height: 840px;
 
    @media (max-width: 1024px) {
       padding: 0;
@@ -235,7 +235,7 @@ const StyledCard = styled(Card)`
 `
 
 const VictoryDes = styled.div`
-   width: 100vw;
+   width: 100%;
    height: 300px;
    display: flex;
    flex-direction: column;

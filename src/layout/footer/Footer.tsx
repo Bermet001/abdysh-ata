@@ -33,7 +33,7 @@ const Footer: FC = () => {
       },
       { path: '/match', title: 'Матчи' },
       { path: '/infrastracture', title: 'Инфраструктура' },
-      { path: '/rating', title: 'Таблица рейтинга' },
+      { path: '/rating', title: 'Турниры' },
       { path: '/partners', title: 'Партнеры' },
       { path: '/trophy', title: 'Наши достижения' },
    ]

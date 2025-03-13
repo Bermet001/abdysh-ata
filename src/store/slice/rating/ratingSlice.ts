@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { getTeamsRating } from './ratingThunk'
+import { getTeamsRating, getTournaments } from './ratingThunk'
 
-interface Team {
+interface TourStats {
    id: number | null
-   team: number
+   team: number | null
    team_title: string
    team_logo: string
    played: number
@@ -16,10 +16,22 @@ interface Team {
    points: number
    form_list: string[]
 }
+interface Team {
+   id: number | null
+   slug: string
+   title: string
+   tour_stats: TourStats[]
+}
+
+interface Teams {
+   id: number
+   title: string
+   slug: string
+}
 
 interface RatingState {
    isLoading: boolean
-   teams: Team[]
+   teams: Teams[]
    currentTeam: Team | null
 }
 
@@ -36,17 +48,30 @@ export const ratingSlice = createSlice({
 
    extraReducers: (builder) => {
       builder
+         .addCase(getTeamsRating.pending, (state) => {
+            state.isLoading = true
+         })
          .addCase(
             getTeamsRating.fulfilled,
-            (state, { payload }: PayloadAction<Team[]>) => {
+            (state, { payload }: PayloadAction<Team>) => {
+               state.currentTeam = payload
+               state.isLoading = false
+            }
+         )
+         .addCase(getTeamsRating.rejected, (state) => {
+            state.isLoading = false
+         })
+         .addCase(getTournaments.pending, (state) => {
+            state.isLoading = true
+         })
+         .addCase(
+            getTournaments.fulfilled,
+            (state, { payload }: PayloadAction<Teams[]>) => {
                state.teams = payload
                state.isLoading = false
             }
          )
-         .addCase(getTeamsRating.pending, (state) => {
-            state.isLoading = true
-         })
-         .addCase(getTeamsRating.rejected, (state) => {
+         .addCase(getTournaments.rejected, (state) => {
             state.isLoading = false
          })
    },

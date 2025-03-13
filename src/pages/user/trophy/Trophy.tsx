@@ -287,7 +287,7 @@ const StyledFirstPart = styled(Flex)`
    background-size: cover;
    background-position: center;
    height: 70vh;
-   width: 100vw;
+   width: 100%;
    color: white;
 
    .container {

@@ -169,7 +169,15 @@ const AppRouter = () => {
             },
 
             {
-               path: 'rating',
+               path: 'tournaments',
+               element: (
+                  <Suspense>
+                     <Rating />
+                  </Suspense>
+               ),
+            },
+            {
+               path: 'tournaments/:slug',
                element: (
                   <Suspense>
                      <Rating />

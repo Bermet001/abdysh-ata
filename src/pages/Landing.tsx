@@ -27,11 +27,11 @@ const Landing: FC = () => (
       <main>
          <Slider />
          <MatchInfo />
+         <Team />
+         <Gallery />
+         <VictoryBlock />
          <ProductSlider />
          <News />
-         <Gallery />
-         <Team />
-         <VictoryBlock />
          <Sponsors />
       </main>
    </>

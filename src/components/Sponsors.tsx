@@ -41,6 +41,7 @@ const Sponsors = () => {
                >
                   <SwiperSlide key={sponsor.id}>
                      <img
+                        width="50px"
                         loading="lazy"
                         src={sponsor.image}
                         alt={sponsor.title}
@@ -56,7 +57,7 @@ const Sponsors = () => {
 export default Sponsors
 
 const StyledContainer = styled.section`
-   padding: 0 0 60px 0;
+   padding: 120px 75px 60px 75px;
    max-width: 1600px;
    margin: 0 auto;
    min-height: 100px;
@@ -65,9 +66,8 @@ const StyledContainer = styled.section`
       padding: 40px 20px 25px;
    }
 
-   .swiper-slide {
+   .swiper-wrapper {
       display: flex;
-      justify-content: center;
       align-items: center;
    }
 
@@ -75,7 +75,7 @@ const StyledContainer = styled.section`
       display: block;
       padding: 10px;
       height: auto;
-      width: 230px;
+      width: 180px;
       object-fit: cover;
       cursor: pointer;
       transition: transform 0.3s ease;

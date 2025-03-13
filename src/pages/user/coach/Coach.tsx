@@ -27,7 +27,7 @@ const Coach: FC = () => {
                <Flex
                   className="first-part-coach"
                   justify="space-between"
-                  align="end"
+                  align="center"
                >
                   <Flex
                      gap={80}
@@ -128,7 +128,7 @@ const StyledComponent = styled(Flex)`
    margin: 0 auto;
 
    .first-part-coach {
-      padding: 150px 75px 0;
+      padding: 0 75px;
       max-width: 1600px;
       width: 100vw;
 
@@ -232,7 +232,7 @@ const AnimatedImage = styled.img`
    animation: ${fadeIn} 0.4s ease-in-out forwards;
    animation-delay: 0.3s;
 
-   box-shadow: inset 0px -186px 162px -200px rgba(0, 166, 79, 1);
+   box-shadow: inset 0px -186px 162px -250px rgba(0, 166, 79, 1);
 
    @media (max-width: 870px) {
       width: 400px;

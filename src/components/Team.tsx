@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Card, Flex, Skeleton } from 'antd'
 import { RightOutlined } from '@ant-design/icons'
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import Button from './UI/Button'
 import { useAppDispatch, useAppSelector } from '../store/store'
 import { useEffect } from 'react'
@@ -51,7 +51,7 @@ const Team = () => {
                     </SwiperSlide>
                  ))
                : players?.map(({ image, id, name, position, number, slug }) => (
-                    <Link key={slug} to={`/player/${slug}`}>
+                    <NavLink key={slug} to={`/player/${slug}`}>
                        <SwiperSlide key={id}>
                           <StyledCard>
                              <CardBackground $image={image}>
@@ -63,7 +63,7 @@ const Team = () => {
                              </CardBackground>
                           </StyledCard>
                        </SwiperSlide>
-                    </Link>
+                    </NavLink>
                  ))}
          </Swiper>
       </Container>
@@ -74,7 +74,7 @@ export default Team
 
 const Container = styled.section`
    margin: auto;
-   padding: 120px 75px 0 75px;
+   padding: 110px 75px 0 75px;
    max-width: 1600px;
 
    @media (max-width: 1024px) {
@@ -94,6 +94,7 @@ const StyledCard = styled(Card)`
    .ant-card-body {
       height: 100%;
       padding: 0;
+      background: linear-gradient(to top left, #00c8ff, #9cff66);
    }
 
    @media (max-width: 768px) {
@@ -114,7 +115,6 @@ const CardBackground = styled.div<{ $image: string }>`
    transition: transform 0.3s;
    border-radius: 6px;
    text-align: center;
-   background-color: #f0f0f0;
 
    &:hover {
       transform: scale(1.05);

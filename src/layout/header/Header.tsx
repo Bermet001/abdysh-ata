@@ -17,6 +17,7 @@ import { useAppDispatch, useAppSelector } from '../../store/store'
 import { getAllTeams, getOurTeam } from '../../store/slice/team/teamThunk'
 import { searchGlobal } from '../../store/slice/globalSearch/globalSearchThunk'
 import { getInfrastractures } from '../../store/slice/infrastracture/infrastractureThunk'
+import { getTournaments } from '../../store/slice/rating/ratingThunk'
 
 type MenuItem = Required<MenuProps>['items'][number]
 
@@ -29,6 +30,7 @@ const Header = () => {
    const { infrastractures } = useAppSelector((state) => state.infrastracture)
    const { data } = useAppSelector((state) => state.global_search)
    const { partners } = useAppSelector((state) => state.partner)
+   const { teams } = useAppSelector((state) => state.rating)
 
    const [isscrolled, setIsScrolled] = useState(false)
    const [searchVisible, setSearchVisible] = useState(false)
@@ -44,7 +46,10 @@ const Header = () => {
             headerTeam?.map(({ slug, title }) => ({
                key: slug,
                label: (
-                  <NavLink className="mobile_navigations" to={`/team/${slug}`}>
+                  <NavLink
+                     className="mobile_navigations active_nav"
+                     to={`/team/${slug}`}
+                  >
                      {title}
                   </NavLink>
                ),
@@ -89,7 +94,7 @@ const Header = () => {
                key: slug,
                label: (
                   <NavLink
-                     className="mobile_navigations"
+                     className="mobile_navigations active_nav"
                      to={`/infrastructure/${slug}`}
                   >
                      {title}
@@ -97,7 +102,22 @@ const Header = () => {
                ),
             })) || [],
       },
-      { key: '5', label: <NavLink to="/rating">Таблица рейтинга</NavLink> },
+      {
+         key: '5',
+         label: <NavLink to="/rating">Турниры</NavLink>,
+         children:
+            teams?.map(({ slug, title }) => ({
+               key: slug,
+               label: (
+                  <NavLink
+                     className="mobile_navigations active_nav"
+                     to={`/infrastructure/${slug}`}
+                  >
+                     {title}
+                  </NavLink>
+               ),
+            })) || [],
+      },
       { key: '6', label: <NavLink to="/partners">Партнеры</NavLink> },
       { key: '7', label: <NavLink to="/trophy">Наши достижения</NavLink> },
    ]
@@ -119,6 +139,7 @@ const Header = () => {
       dispatch(getAllTeams())
       dispatch(getOurTeam())
       dispatch(getInfrastractures())
+      dispatch(getTournaments())
    }, [dispatch])
 
    const handleSearchClick = () => {
@@ -147,7 +168,11 @@ const Header = () => {
            ...data.teams.map((team) => ({
               key: `team-${team.id}`,
               label: (
-                 <NavLink to={`/team/${team.slug}`} onClick={handleMenuClick}>
+                 <NavLink
+                    className={({ isActive }) => (isActive ? 'active_nav' : '')}
+                    to={`/team/${team.slug}`}
+                    onClick={handleMenuClick}
+                 >
                     {team.title}
                  </NavLink>
               ),
@@ -156,6 +181,7 @@ const Header = () => {
               key: `product-${product.id}`,
               label: (
                  <NavLink
+                    className={({ isActive }) => (isActive ? 'active_nav' : '')}
                     to={`/shop/${product.slug}`}
                     onClick={handleMenuClick}
                  >
@@ -166,7 +192,11 @@ const Header = () => {
            ...data.news.map((news) => ({
               key: `news-${news.id}`,
               label: (
-                 <NavLink to={`/news/${news.slug}`} onClick={handleMenuClick}>
+                 <NavLink
+                    className={({ isActive }) => (isActive ? 'active_nav' : '')}
+                    to={`/news/${news.slug}`}
+                    onClick={handleMenuClick}
+                 >
                     {news.title}
                  </NavLink>
               ),
@@ -187,7 +217,7 @@ const Header = () => {
          })),
       },
       {
-         path: '/',
+         path: '/history',
          title: 'О клубе',
          sub_nav: [
             { slug: '/history', title: 'История ', id: 21 },
@@ -207,7 +237,16 @@ const Header = () => {
          })),
          id: 8,
       },
-      { path: '/rating', title: 'Таблица рейтинга', id: 5 },
+      {
+         path: '/tournaments',
+         title: 'Турниры',
+         id: 5,
+         sub_nav: teams?.map(({ slug, title, id }) => ({
+            slug: `/tournaments/${slug}`,
+            title,
+            id,
+         })),
+      },
       { path: '/partners', title: 'Партнеры', id: 6 },
       { path: '/trophy', title: 'Наши достижения', id: 7 },
    ]
@@ -290,6 +329,9 @@ const Header = () => {
                                          key: subId,
                                          label: (
                                             <NavLink
+                                               className={({ isActive }) =>
+                                                  isActive ? 'active_nav' : ''
+                                               }
                                                to={subPath}
                                                onClick={handleMenuClick}
                                             >
@@ -309,6 +351,9 @@ const Header = () => {
                                     trigger={['hover']}
                                  >
                                     <NavLink
+                                       className={({ isActive }) =>
+                                          isActive ? 'active_nav' : ''
+                                       }
                                        to={path}
                                        onClick={handleMenuClick}
                                     >
@@ -522,9 +567,11 @@ const StyledDropdown = styled(Dropdown)`
    .ant-dropdown-menu-item {
       padding: 10px 16px;
       border-bottom: 1px solid #f0f0f0 !important;
-   }
+      transition: color 0.3s;
 
-   .ant-dropdown-menu-item:hover {
-      background-color: rgba(0, 0, 0, 0.05);
+      > .active_nav:hover {
+         background-color: rgba(0, 0, 0, 0.05);
+         color: green !important;
+      }
    }
 `

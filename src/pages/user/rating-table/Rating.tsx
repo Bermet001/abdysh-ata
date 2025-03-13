@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../../store/store'
 import { useEffect } from 'react'
 import type { ColumnsType } from 'antd/es/table'
 import { getTeamsRating } from '../../../store/slice/rating/ratingThunk'
+import { useParams } from 'react-router-dom'
 
 interface TeamData {
    key: string | number
@@ -142,19 +143,22 @@ const Rating = () => {
       },
    ]
 
+   const { slug } = useParams<{ slug: string }>()
+
    window.scrollTo(0, 0)
 
-   const { teams } = useAppSelector((state) => state.rating)
+   const { currentTeam } = useAppSelector((state) => state.rating)
    const dispatch = useAppDispatch()
 
    useEffect(() => {
-      dispatch(getTeamsRating())
-   }, [dispatch])
+      dispatch(getTeamsRating(slug))
+   }, [dispatch, slug])
 
-   const dataSource = teams.map((team) => ({
-      ...team,
-      key: team.id || team.team_title,
-   }))
+   const dataSource: TeamData[] =
+      currentTeam?.tour_stats?.map((team) => ({
+         ...team,
+         key: Math.random(),
+      })) || []
 
    return (
       <StyledContainer>

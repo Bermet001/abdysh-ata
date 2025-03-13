@@ -142,4 +142,9 @@ const StyledButton = styled(AntdButton)`
    margin-top: 10px;
    border: none;
    width: 100%;
+   background-color: #00a64f;
+
+   &:hover {
+      background-color: #03c661 !important;
+   }
 `

@@ -191,6 +191,11 @@ const StyledButton = styled(Button)`
    margin-top: 10px;
    border: none;
    width: 100%;
+   background-color: #00a64f;
+
+   &:hover {
+      background-color: #00c166 !important;
+   }
 `
 
 const StyledSelect = styled(Select)`
