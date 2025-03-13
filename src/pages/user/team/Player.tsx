@@ -247,6 +247,7 @@ const PlayerInfo = styled.div`
    padding: 20px;
    border-radius: 10px;
    max-width: 850px;
+   width: 100%;
    backdrop-filter: blur(10px);
    color: black;
 
