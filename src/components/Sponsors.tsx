@@ -60,6 +60,7 @@ const StyledContainer = styled.section`
    padding: 120px 75px 60px 75px;
    max-width: 1600px;
    margin: 0 auto;
+   width: 100%;
    min-height: 100px;
 
    @media (max-width: 1024px) {
@@ -69,6 +70,7 @@ const StyledContainer = styled.section`
    .swiper-wrapper {
       display: flex;
       align-items: center;
+      justify-content: center;
    }
 
    .swiper-slide img {
