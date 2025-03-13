@@ -34,20 +34,20 @@ const Sponsors = () => {
             }}
          >
             {partners?.map((sponsor) => (
-               <a
-                  key={sponsor.id}
-                  aria-label="ссылка на сайтс спонсора"
-                  href={sponsor.link}
-               >
-                  <SwiperSlide key={sponsor.id}>
+               <SwiperSlide key={sponsor.id}>
+                  <a
+                     key={sponsor.id}
+                     aria-label="ссылка на сайтс спонсора"
+                     href={sponsor.link}
+                  >
                      <img
                         width="50px"
                         loading="lazy"
                         src={sponsor.image}
                         alt={sponsor.title}
                      />
-                  </SwiperSlide>
-               </a>
+                  </a>
+               </SwiperSlide>
             ))}
          </Swiper>
       </StyledContainer>
