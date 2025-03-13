@@ -51,8 +51,8 @@ const Team = () => {
                     </SwiperSlide>
                  ))
                : players?.map(({ image, id, name, position, number, slug }) => (
-                    <NavLink key={slug} to={`/player/${slug}`}>
-                       <SwiperSlide key={id}>
+                    <SwiperSlide key={id}>
+                       <NavLink key={slug} to={`/player/${slug}`}>
                           <StyledCard>
                              <CardBackground $image={image}>
                                 <Overlay>
@@ -62,8 +62,8 @@ const Team = () => {
                                 </Overlay>
                              </CardBackground>
                           </StyledCard>
-                       </SwiperSlide>
-                    </NavLink>
+                       </NavLink>
+                    </SwiperSlide>
                  ))}
          </Swiper>
       </Container>

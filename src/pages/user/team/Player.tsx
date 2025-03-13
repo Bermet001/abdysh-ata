@@ -48,7 +48,6 @@ const Player = () => {
                         src={player.team.logo}
                         alt="логотим команды"
                      />
-                     {'  '}
                      <p>{player.team.title}</p>
                   </PlayerBio>
                   <PlayerBio>insta: {player.instagram} </PlayerBio>
@@ -140,7 +139,7 @@ const StyledContainer = styled.main`
    align-items: center;
    justify-content: center;
    min-height: 100vh;
-   /* max-width: 1600px; */
+   max-width: 1600px;
 
    @media (max-width: 768px) {
       padding: 60px 20px;
