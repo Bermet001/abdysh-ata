@@ -568,10 +568,5 @@ const StyledDropdown = styled(Dropdown)`
       padding: 10px 16px;
       border-bottom: 1px solid #f0f0f0 !important;
       transition: color 0.3s;
-
-      > .active_nav:hover {
-         background-color: rgba(0, 0, 0, 0.05);
-         color: green !important;
-      }
    }
 `
