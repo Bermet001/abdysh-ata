@@ -6,8 +6,8 @@ const App = () => {
       <ConfigProvider
          theme={{
             token: {
-               colorPrimary: '#ed5a0c',
-               colorPrimaryHover: '#ff6411',
+               colorPrimary: '#00a64f',
+               colorPrimaryHover: '#00bc5b',
                borderRadius: 10,
                fontFamily: 'Lato, sans-serif',
             },

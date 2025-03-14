@@ -24,7 +24,7 @@ const Team = () => {
       <Container>
          <Flex justify="space-between" align="start">
             <h2 className="main-title">ИГРОКИ</h2>
-            <NavLink to="/team">
+            <NavLink to="/team/fk-abdysh-ata">
                <Button type="primary">
                   Посмотреть всю команду <RightOutlined />
                </Button>
@@ -54,7 +54,9 @@ const Team = () => {
                     <SwiperSlide key={id}>
                        <NavLink key={slug} to={`/player/${slug}`}>
                           <StyledCard>
-                             <CardBackground $image={image}>
+                             <CardBackground
+                                $image={`https://abdysh-backend.webtm.ru/${image}`}
+                             >
                                 <Overlay>
                                    <PlayerNumber>{number}</PlayerNumber>
                                    <PlayerName>{name}</PlayerName>
@@ -90,12 +92,6 @@ const StyledCard = styled(Card)`
    cursor: pointer;
    height: 400px;
    border: none;
-
-   .ant-card-body {
-      height: 100%;
-      padding: 0;
-      background: linear-gradient(to top left, #00c8ff, #9cff66);
-   }
 
    @media (max-width: 768px) {
       height: 350px;

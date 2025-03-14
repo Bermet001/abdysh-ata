@@ -11,7 +11,7 @@ import {
 import { SearchOutlined, MenuOutlined, CloseOutlined } from '@ant-design/icons'
 import Logo from '../../assets/images/main-logo.png'
 import styled from 'styled-components'
-import { NavLink, useLocation } from 'react-router-dom'
+import { NavLink, NavLinkProps, useLocation } from 'react-router-dom'
 import { ChangeEvent, useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../store/store'
 import { getAllTeams, getOurTeam } from '../../store/slice/team/teamThunk'
@@ -46,12 +46,12 @@ const Header = () => {
             headerTeam?.map(({ slug, title }) => ({
                key: slug,
                label: (
-                  <NavLink
-                     className="mobile_navigations active_nav"
+                  <StyledNavLink
+                     className="mobile_navigations"
                      to={`/team/${slug}`}
                   >
                      {title}
-                  </NavLink>
+                  </StyledNavLink>
                ),
             })) || [],
       },
@@ -62,25 +62,25 @@ const Header = () => {
             {
                key: '21',
                label: (
-                  <NavLink className="mobile_navigations" to="/history">
+                  <StyledNavLink className="mobile_navigations" to="/history">
                      История
-                  </NavLink>
+                  </StyledNavLink>
                ),
             },
             {
                key: '22',
                label: (
-                  <NavLink className="mobile_navigations" to="/guideline">
+                  <StyledNavLink className="mobile_navigations" to="/guideline">
                      Руководство
-                  </NavLink>
+                  </StyledNavLink>
                ),
             },
             {
                key: '23',
                label: (
-                  <NavLink className="mobile_navigations" to="/contacts">
+                  <StyledNavLink className="mobile_navigations" to="/contacts">
                      Контакты
-                  </NavLink>
+                  </StyledNavLink>
                ),
             },
          ],
@@ -93,12 +93,12 @@ const Header = () => {
             infrastractures?.map(({ slug, title }) => ({
                key: slug,
                label: (
-                  <NavLink
+                  <StyledNavLink
                      className="mobile_navigations active_nav"
                      to={`/infrastructure/${slug}`}
                   >
                      {title}
-                  </NavLink>
+                  </StyledNavLink>
                ),
             })) || [],
       },
@@ -109,12 +109,12 @@ const Header = () => {
             teams?.map(({ slug, title }) => ({
                key: slug,
                label: (
-                  <NavLink
+                  <StyledNavLink
                      className="mobile_navigations active_nav"
                      to={`/infrastructure/${slug}`}
                   >
                      {title}
-                  </NavLink>
+                  </StyledNavLink>
                ),
             })) || [],
       },
@@ -168,37 +168,37 @@ const Header = () => {
            ...data.teams.map((team) => ({
               key: `team-${team.id}`,
               label: (
-                 <NavLink
-                    className={({ isActive }) => (isActive ? 'active_nav' : '')}
+                 <StyledNavLink
+                    className="mobile_navigations"
                     to={`/team/${team.slug}`}
                     onClick={handleMenuClick}
                  >
                     {team.title}
-                 </NavLink>
+                 </StyledNavLink>
               ),
            })),
            ...data.products.map((product) => ({
               key: `product-${product.id}`,
               label: (
-                 <NavLink
-                    className={({ isActive }) => (isActive ? 'active_nav' : '')}
+                 <StyledNavLink
+                    className="mobile_navigations"
                     to={`/shop/${product.slug}`}
                     onClick={handleMenuClick}
                  >
                     {product.title}
-                 </NavLink>
+                 </StyledNavLink>
               ),
            })),
            ...data.news.map((news) => ({
               key: `news-${news.id}`,
               label: (
-                 <NavLink
-                    className={({ isActive }) => (isActive ? 'active_nav' : '')}
+                 <StyledNavLink
+                    className="mobile_navigations"
                     to={`/news/${news.slug}`}
                     onClick={handleMenuClick}
                  >
                     {news.title}
-                 </NavLink>
+                 </StyledNavLink>
               ),
            })),
         ]
@@ -328,15 +328,13 @@ const Header = () => {
                                       }) => ({
                                          key: subId,
                                          label: (
-                                            <NavLink
-                                               className={({ isActive }) =>
-                                                  isActive ? 'active_nav' : ''
-                                               }
+                                            <StyledNavLink
+                                               className="mobile_navigations"
                                                to={subPath}
                                                onClick={handleMenuClick}
                                             >
                                                {subTitle}
-                                            </NavLink>
+                                            </StyledNavLink>
                                          ),
                                       })
                                    )
@@ -350,15 +348,13 @@ const Header = () => {
                                     }}
                                     trigger={['hover']}
                                  >
-                                    <NavLink
-                                       className={({ isActive }) =>
-                                          isActive ? 'active_nav' : ''
-                                       }
+                                    <StyledNavLink
+                                       className="mobile_navigations"
                                        to={path}
                                        onClick={handleMenuClick}
                                     >
                                        {title}
-                                    </NavLink>
+                                    </StyledNavLink>
                                  </Dropdown>
                               )
                            })}
@@ -548,6 +544,10 @@ const StyledDrawer = styled(Drawer)`
       .mobile_navigations {
          font-weight: 600;
          font-size: 18px;
+
+         &:hover {
+            color: green;
+         }
       }
    }
 
@@ -568,5 +568,13 @@ const StyledDropdown = styled(Dropdown)`
       padding: 10px 16px;
       border-bottom: 1px solid #f0f0f0 !important;
       transition: color 0.3s;
+   }
+`
+
+const StyledNavLink = styled(NavLink)<NavLinkProps>`
+   text-decoration: none;
+
+   &:hover {
+      color: #05a550;
    }
 `

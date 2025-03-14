@@ -5,6 +5,7 @@ import TrophyRoom from '../../../assets/images/Trophy/TrophyRoom.webp'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
 import { getAchievements } from '../../../store/slice/ahievements/ahievementsThunk'
 import { Helmet } from 'react-helmet-async'
+import { NavLink } from 'react-router-dom'
 
 const Trophy = () => {
    window.scrollTo(0, 0)
@@ -101,30 +102,32 @@ const Trophy = () => {
 
                <Flex vertical className="trophy-block-container">
                   {achievements.map((item, index) => (
-                     <Flex
-                        key={index}
-                        className="trophy-block"
-                        style={{
-                           flexDirection:
-                              index % 2 === 1 ? 'row-reverse' : 'row',
-                        }}
-                     >
-                        <img
-                           className="image"
-                           src={item.image}
-                           alt={item.title}
-                        />
-
+                     <NavLink to={`/trophy/${item.slug}`}>
                         <Flex
-                           align="start"
-                           gap={40}
-                           vertical
-                           className="texstovka"
+                           key={index}
+                           className="trophy-block"
+                           style={{
+                              flexDirection:
+                                 index % 2 === 1 ? 'row-reverse' : 'row',
+                           }}
                         >
-                           <h2>{item.title}</h2>
-                           <p className="text-info">{item.descriptions}</p>
+                           <img
+                              className="image"
+                              src={item.image}
+                              alt={item.title}
+                           />
+
+                           <Flex
+                              align="start"
+                              gap={40}
+                              vertical
+                              className="texstovka"
+                           >
+                              <h2>{item.title}</h2>
+                              <p className="text-info">{item.descriptions}</p>
+                           </Flex>
                         </Flex>
-                     </Flex>
+                     </NavLink>
                   ))}
                </Flex>
             </div>

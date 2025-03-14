@@ -1,6 +1,7 @@
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 import Suspense from './Suspense'
 import { lazy } from 'react'
+import TrorhyDetails from '../pages/user/trophy/TrorhyDetails'
 const UserLayout = lazy(() => import('../layout/UserLayout'))
 const Landing = lazy(() => import('../pages/Landing'))
 const MatchInfo = lazy(() => import('../pages/user/matches/MatchInfo'))
@@ -164,6 +165,15 @@ const AppRouter = () => {
                element: (
                   <Suspense>
                      <Trophy />
+                  </Suspense>
+               ),
+            },
+
+            {
+               path: 'trophy/:slug',
+               element: (
+                  <Suspense>
+                     <TrorhyDetails />
                   </Suspense>
                ),
             },

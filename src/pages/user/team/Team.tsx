@@ -21,7 +21,9 @@ const Team = () => {
                <Col key={id} xs={11} sm={11} md={7} lg={5} xl={4}>
                   <StyledCard>
                      <Link to={`/player/${slug}`}>
-                        <CardBackground image={image}>
+                        <CardBackground
+                           image={`https://abdysh-backend.webtm.ru/${image}`}
+                        >
                            <Overlay>
                               <PlayerNumber>{number}</PlayerNumber>
                               <div style={{ marginBottom: '15px' }}>
@@ -53,7 +55,6 @@ const StyledCard = styled(Card)`
    position: relative;
    cursor: pointer;
    height: 350px;
-   background: linear-gradient(to top left, #00c8ff, #9cff66);
    &:hover {
       transform: scale(1.05);
    }
@@ -68,7 +69,7 @@ const StyledCard = styled(Card)`
 `
 
 const CardBackground = styled.div<CardBackgroundProps>`
-   background-image: url(${(props) => props.image});
+   background-image: url(${({ image }) => image});
    background-size: cover;
    background-position: center;
    height: 100%;

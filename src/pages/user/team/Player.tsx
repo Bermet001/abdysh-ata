@@ -23,23 +23,23 @@ const Player = () => {
          <Flex vertical className="main-box">
             <Flex className="content" align="end">
                <Flex vertical className="main-info">
-                  <PlayerImage src={player.image} alt="Player" />
+                  <PlayerImage src={player?.image} alt="Player" />
 
                   <PlayerCard>
                      <PlayerDetails>
-                        <PlayerPosition>{player.position}</PlayerPosition>
+                        <PlayerPosition>{player?.position}</PlayerPosition>
                         <PlayerName>
-                           <PlayerNumber>{player.number}</PlayerNumber>
-                           <span className="name">{player.name}</span>
+                           <PlayerNumber>{player?.number}</PlayerNumber>
+                           <span className="name">{player?.name}</span>
                         </PlayerName>
                      </PlayerDetails>
                   </PlayerCard>
                </Flex>
 
                <PlayerInfo>
-                  <h3 className="player-title">{player.bio_title}</h3>
+                  <h3 className="player-title">{player?.bio_title}</h3>
 
-                  <PlayerBio>{player.bio}</PlayerBio>
+                  <PlayerBio>{player?.bio}</PlayerBio>
 
                   <h3 className="player-title">Команда</h3>
                   <PlayerBio style={{ display: 'flex', alignItems: 'center' }}>
@@ -48,9 +48,9 @@ const Player = () => {
                         src={player.team.logo}
                         alt="логотим команды"
                      />
-                     <p>{player.team.title}</p>
+                     <p>{player?.team?.title}</p>
                   </PlayerBio>
-                  <PlayerBio>insta: {player.instagram} </PlayerBio>
+                  <PlayerBio>insta: {player?.instagram} </PlayerBio>
 
                   <DetailsContainer
                      className="characteristics-container"
@@ -60,22 +60,22 @@ const Player = () => {
                   >
                      <Flex vertical gap={5}>
                         <DetailLabel>Дата рождения</DetailLabel>
-                        <DetailValue>{player.birth_date}</DetailValue>
+                        <DetailValue>{player?.birth_date}</DetailValue>
                      </Flex>
 
                      <Flex vertical gap={5}>
                         <DetailLabel>Вес</DetailLabel>
-                        <DetailValue>{player.weight} кг</DetailValue>
+                        <DetailValue>{player?.weight} кг</DetailValue>
                      </Flex>
 
                      <Flex vertical gap={5}>
                         <DetailLabel>Рост</DetailLabel>
-                        <DetailValue>{player.height} см</DetailValue>
+                        <DetailValue>{player?.height} см</DetailValue>
                      </Flex>
 
                      <Flex vertical gap={5}>
                         <DetailLabel>Дебют в клубе</DetailLabel>
-                        <DetailValue>{player.debut}</DetailValue>
+                        <DetailValue>{player?.debut}</DetailValue>
                      </Flex>
                   </DetailsContainer>
                </PlayerInfo>
@@ -115,11 +115,13 @@ const Player = () => {
                            align="start"
                         >
                            <Flex vertical align="start">
-                              <h5 className="liga-honour">{item.liga.title}</h5>
-                              <h4 className="text-honour">{item.title}</h4>
+                              <h5 className="liga-honour">
+                                 {item?.liga?.title}
+                              </h5>
+                              <h4 className="text-honour">{item?.title}</h4>
                            </Flex>
 
-                           <p className="year-honour">{item.date}</p>
+                           <p className="year-honour">{item?.date}</p>
                         </Flex>
                      </SwiperSlide>
                   ))}
