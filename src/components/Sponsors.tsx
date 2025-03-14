@@ -13,12 +13,15 @@ const Sponsors = () => {
       dispatch(getPartners())
    }, [dispatch])
 
+   const duplicatedPartners =
+      partners.length < 5 ? [...partners, ...partners].slice(0, 5) : partners
+
    return (
       <StyledContainer>
          <h2 className="main-title-center">Наши спонсоры</h2>
 
          <Swiper
-            loop={partners.length > 4}
+            loop={duplicatedPartners.length > 4}
             spaceBetween={30}
             autoplay={{
                delay: 2500,
@@ -33,13 +36,9 @@ const Sponsors = () => {
                1600: { slidesPerView: 4 },
             }}
          >
-            {partners?.map((sponsor) => (
+            {duplicatedPartners.map((sponsor) => (
                <SwiperSlide key={sponsor.id}>
-                  <a
-                     key={sponsor.id}
-                     aria-label="ссылка на сайтс спонсора"
-                     href={sponsor.link}
-                  >
+                  <a aria-label="ссылка на сайт спонсора" href={sponsor.link}>
                      <img
                         width="50px"
                         loading="lazy"
@@ -65,12 +64,6 @@ const StyledContainer = styled.section`
 
    @media (max-width: 1024px) {
       padding: 40px 20px 25px;
-   }
-
-   .swiper-wrapper {
-      display: flex;
-      align-items: center;
-      justify-content: center;
    }
 
    .swiper-slide img {
