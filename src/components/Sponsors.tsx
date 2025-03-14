@@ -15,7 +15,6 @@ const Sponsors = () => {
 
    const duplicatedPartners =
       partners.length < 5 ? [...partners, ...partners].slice(0, 5) : partners
-
    return (
       <StyledContainer>
          <h2 className="main-title-center">Наши спонсоры</h2>
