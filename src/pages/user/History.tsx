@@ -1,5 +1,4 @@
 import styled, { keyframes } from 'styled-components'
-import Team from '../../assets/images/heistory/team.webp'
 import { Flex, Typography } from 'antd'
 import { useAppDispatch, useAppSelector } from '../../store/store'
 import { useEffect } from 'react'
@@ -52,7 +51,7 @@ const History = () => {
             </script>
          </Helmet>
          <StyledContainer>
-            <BackgroundSection>
+            <BackgroundSection $image={history_text?.banner}>
                <Overlay />
 
                <div className="first-part">
@@ -186,12 +185,12 @@ const StyledContainer = styled.main`
    }
 `
 
-const BackgroundSection = styled.div`
+const BackgroundSection = styled.div<{ $image: string | undefined }>`
    position: relative;
    height: 500px;
    padding-top: 200px;
    text-align: center;
-   background-image: url(${Team});
+   background-image: url(${(props) => props.$image});
    background-size: cover;
    background-position: center;
    background-repeat: no-repeat;
