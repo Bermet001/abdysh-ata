@@ -50,23 +50,27 @@ const Team = () => {
                        </StyledCard>
                     </SwiperSlide>
                  ))
-               : players?.map(({ image, id, name, position, number, slug }) => (
-                    <SwiperSlide key={id}>
-                       <NavLink key={slug} to={`/player/${slug}`}>
-                          <StyledCard>
-                             <CardBackground
-                                $image={`https://abdysh-backend.webtm.ru/${image}`}
-                             >
-                                <Overlay>
-                                   <PlayerNumber>{number}</PlayerNumber>
-                                   <PlayerName>{name}</PlayerName>
-                                   <PlayerPosition>{position}</PlayerPosition>
-                                </Overlay>
-                             </CardBackground>
-                          </StyledCard>
-                       </NavLink>
-                    </SwiperSlide>
-                 ))}
+               : players
+                    ?.slice(0, 6)
+                    .map(({ image, id, name, position, number, slug }) => (
+                       <SwiperSlide key={id}>
+                          <NavLink key={slug} to={`/player/${slug}`}>
+                             <StyledCard>
+                                <CardBackground
+                                   $image={`https://abdysh-backend.webtm.ru/${image}`}
+                                >
+                                   <Overlay>
+                                      <PlayerNumber>{number}</PlayerNumber>
+                                      <PlayerName>{name}</PlayerName>
+                                      <PlayerPosition>
+                                         {position}
+                                      </PlayerPosition>
+                                   </Overlay>
+                                </CardBackground>
+                             </StyledCard>
+                          </NavLink>
+                       </SwiperSlide>
+                    ))}
          </Swiper>
       </Container>
    )
