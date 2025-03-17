@@ -57,22 +57,24 @@ const VictoryBlock = () => {
                           </StyledCard>
                        </SwiperSlide>
                     ))
-                  : achievements?.map(({ id, title, season, image }) => (
+                  : achievements?.map(({ id, title, season, image, slug }) => (
                        <SwiperSlide key={id}>
-                          <StyledCard>
-                             <Flex vertical>
-                                <img
-                                   loading="lazy"
-                                   className="trophy-image"
-                                   src={image}
-                                   alt="trophy"
-                                />
-                                <div className="contents-trophy">
-                                   <p>{season}</p>
-                                   <h2>{title}</h2>
-                                </div>
-                             </Flex>
-                          </StyledCard>
+                          <NavLink to={`/trophy/${slug}`}>
+                             <StyledCard>
+                                <Flex vertical>
+                                   <img
+                                      loading="lazy"
+                                      className="trophy-image"
+                                      src={image}
+                                      alt="trophy"
+                                   />
+                                   <div className="contents-trophy">
+                                      <p>{season}</p>
+                                      <h2>{title}</h2>
+                                   </div>
+                                </Flex>
+                             </StyledCard>
+                          </NavLink>
                        </SwiperSlide>
                     ))}
             </Swiper>

@@ -124,7 +124,11 @@ const Trophy = () => {
                               className="texstovka"
                            >
                               <h2>{item.title}</h2>
-                              <p className="text-info">{item.descriptions}</p>
+                              <p className="description-text">
+                                 {item.descriptions}
+                              </p>
+
+                              <p className="read-more">Читать дальше →</p>
                            </Flex>
                         </Flex>
                      </NavLink>
@@ -150,6 +154,12 @@ const fadeInUp = keyframes`
 `
 
 const StyledContainer = styled(Flex)`
+   .read-more {
+      &:hover {
+         color: #93b2fc !important;
+      }
+   }
+
    @media (max-width: 768px) {
       flex-direction: column;
    }

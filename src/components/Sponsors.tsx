@@ -15,6 +15,7 @@ const Sponsors = () => {
 
    const duplicatedPartners =
       partners.length < 5 ? [...partners, ...partners].slice(0, 5) : partners
+
    return (
       <StyledContainer>
          <h2 className="main-title-center">Наши спонсоры</h2>
@@ -35,9 +36,13 @@ const Sponsors = () => {
                1600: { slidesPerView: 4 },
             }}
          >
-            {duplicatedPartners.map((sponsor) => (
-               <SwiperSlide key={sponsor.id}>
-                  <a aria-label="ссылка на сайт спонсора" href={sponsor.link}>
+            {duplicatedPartners.map((sponsor, index) => (
+               <SwiperSlide key={`${sponsor.id}-${index}`}>
+                  <a
+                     key={sponsor.id}
+                     aria-label="ссылка на сайт спонсора"
+                     href={sponsor.link}
+                  >
                      <img
                         width="50px"
                         loading="lazy"
