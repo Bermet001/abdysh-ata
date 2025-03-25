@@ -114,7 +114,7 @@ const Contacts = () => {
                         <Flex gap={5} className="contacts" vertical>
                            <h4>Режим работы</h4>
                            <a aria-label="режим работы" href="">
-                              10:00 до 19:00
+                              9:00 до 17:00
                            </a>
                         </Flex>
                      </Flex>
