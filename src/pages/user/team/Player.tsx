@@ -39,7 +39,7 @@ const Player = () => {
                <PlayerInfo>
                   <h3 className="player-title">{player?.bio_title}</h3>
 
-                  <PlayerBio>{player?.bio}</PlayerBio>
+                  <PlayerBio>{player?.bio} </PlayerBio>
 
                   <h3 className="player-title">Команда</h3>
                   <PlayerBio style={{ display: 'flex', alignItems: 'center' }}>
@@ -263,7 +263,9 @@ const PlayerInfo = styled.div`
    .player-title {
       font-size: 35px;
       width: 80%;
+      font-weight: normal;
       margin-bottom: 20px;
+      color: #249a53;
 
       @media (max-width: 768px) {
          font-size: 24px;

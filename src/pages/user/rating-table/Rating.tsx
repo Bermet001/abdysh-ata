@@ -24,122 +24,93 @@ interface TeamData {
 const Rating = () => {
    const columns: ColumnsType<TeamData> = [
       {
-         title: 'Команда',
+         title: '',
+         dataIndex: 'index',
+         key: 'index',
+         align: 'center',
+         render: (text: string, record: TeamData, index: number) => index + 1,
+      },
+
+      {
+         title: '',
          dataIndex: 'team_title',
          key: 'team_title',
          render: (text: string, record: TeamData) => (
             <Flex
                className="first-block-box"
-               style={{ width: '250px' }}
+               style={{ width: '260px', borderRadius: '10px' }}
                align="center"
             >
-               <img
-                  src={record.team_logo}
-                  alt={`${record.team_title} logo`}
+               <div
                   style={{
-                     width: '30px',
-                     height: '30px',
-                     marginRight: '10px',
+                     background: '#217c3d',
+                     padding: '10px',
+                     borderRadius: '10px',
                   }}
-               />
-               {text}
+               >
+                  <img
+                     src={record.team_logo}
+                     alt={`${record.team_title} logo`}
+                     style={{
+                        width: '30px',
+                        height: '35px',
+                        borderRadius: '10px',
+                     }}
+                  />
+               </div>
+               <p style={{ borderRadius: '10px', background: '#217c3d' }}>
+                  {text}
+               </p>
             </Flex>
          ),
       },
       {
-         title: 'Игры',
+         title: 'И',
          dataIndex: 'played',
          key: 'played',
          align: 'center',
       },
       {
-         title: 'Победы',
+         title: 'В',
          dataIndex: 'won',
          key: 'won',
          align: 'center',
       },
       {
-         title: 'Ничьи',
+         title: 'Н',
          dataIndex: 'drawn',
          key: 'drawn',
          align: 'center',
       },
       {
-         title: 'Поражения',
+         title: 'П',
          dataIndex: 'lost',
          key: 'lost',
          align: 'center',
       },
       {
-         title: 'Забито',
+         title: 'З-П',
          dataIndex: 'goals_for',
          key: 'goals_for',
          align: 'center',
       },
       {
-         title: 'Пропущено',
+         title: 'ПП',
          dataIndex: 'goals_against',
          key: 'goals_against',
          align: 'center',
       },
       {
-         title: 'Разница',
+         title: '+/-',
          dataIndex: 'goal_difference',
          key: 'goal_difference',
          align: 'center',
       },
       {
-         title: 'Очки',
+         title: '0',
          dataIndex: 'points',
          key: 'points',
          align: 'center',
-      },
-      {
-         title: 'Форма',
-         dataIndex: 'form_list',
-         key: 'form_list',
-         align: 'center',
-         render: (form: string[]) => (
-            <Flex>
-               {form.map((result: string, index: number) => {
-                  let color = ''
-                  switch (result) {
-                     case 'W':
-                        color = '#00a54a'
-                        break
-                     case 'L':
-                        color = '#cd122c'
-                        break
-                     case 'D':
-                        color = '#727272'
-                        break
-                     default:
-                        color = '#727272'
-                  }
-                  return (
-                     <span
-                        key={index}
-                        style={{
-                           display: 'flex',
-                           alignItems: 'center',
-                           justifyContent: 'center',
-                           width: '18px',
-                           height: '20px',
-                           backgroundColor: color,
-                           borderRadius: '5px',
-                           marginRight: '5px',
-                           textAlign: 'center',
-                           color: 'white',
-                           fontWeight: 'bold',
-                           fontSize: '8px',
-                        }}
-                     >
-                        {result}
-                     </span>
-                  )
-               })}
-            </Flex>
-         ),
       },
    ]
 
@@ -185,8 +156,10 @@ export default Rating
 
 const StyledContainer = styled.main`
    padding: 100px 75px;
+   background: #217c3d;
+   font-family: 'Roboto Condensed', sans-serif !important;
 
-   background-color: #f0f3f7;
+   /* background-color: #f0f3f7; */
 
    @media (max-width: 1024px) {
       padding: 100px 20px;
@@ -197,7 +170,8 @@ const StyledContainer = styled.main`
    }
 
    .table-container {
-      background-color: #fff;
+      /* background-color: #fff; */
+      background: #217c3d;
       padding: 40px 20px;
       max-width: 1600px;
       margin: 0 auto;
@@ -224,10 +198,21 @@ const StyledContainer = styled.main`
          }
       }
 
+      .ant-table-tbody,
+      .ant-table {
+         background-color: #217c3d !important;
+      }
+      .ant-table-tbody > tr {
+         padding: 10px;
+      }
       .ant-table-tbody > tr > td {
          border: none;
+         background-color: white;
          border-top: 1px solid #dadde9;
          font-size: 14px;
+         margin: 10px;
+         padding: 0;
+         border-radius: 10px;
 
          @media (max-width: 768px) {
             font-size: 12px;
