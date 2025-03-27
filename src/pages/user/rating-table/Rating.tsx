@@ -28,7 +28,7 @@ const Rating = () => {
          dataIndex: 'index',
          key: 'index',
          align: 'center',
-         render: (text: string, record: TeamData, index: number) => (
+         render: (_text: string, _record: TeamData, index: number) => (
             <h3
                className="text-content"
                style={{
