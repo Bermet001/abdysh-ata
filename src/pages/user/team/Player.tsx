@@ -261,7 +261,7 @@ const PlayerInfo = styled.div`
    }
 
    .player-title {
-      font-size: 35px;
+      font-size: 25px;
       width: 80%;
       font-weight: normal;
       margin-bottom: 20px;
