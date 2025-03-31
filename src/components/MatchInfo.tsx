@@ -84,8 +84,8 @@ const StyledFlexContainer = styled(Flex)`
 `
 
 const SkeletonMatchCard = styled(Skeleton)`
-   width: 270px; /* Match the width of MatchCard */
-   height: 120px; /* Match the height of MatchCard */
-   border-radius: 10px; /* Optional: Add border radius to match design */
-   margin: 0 10px; /* Spacing between skeletons */
+   width: 270px; 
+   height: 120px; 
+   border-radius: 10px; 
+   margin: 0 10px; 
 `

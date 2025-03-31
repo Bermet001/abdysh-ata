@@ -575,6 +575,6 @@ const StyledNavLink = styled(NavLink)<NavLinkProps>`
    text-decoration: none;
 
    &:hover {
-      color: #05a550;
+      color: #ed5a0c;
    }
 `

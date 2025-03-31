@@ -150,7 +150,7 @@ const StyledFooter = styled.footer`
    }
    a:hover {
       transform: translateX(5px);
-      color: #00a64f;
+      color: #ed5a0c;
    }
 
    @media (max-width: 500px) {

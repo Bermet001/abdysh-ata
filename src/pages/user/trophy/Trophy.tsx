@@ -104,11 +104,14 @@ const Trophy = () => {
                   {achievements.map((item, index) => (
                      <NavLink to={`/trophy/${item.slug}`}>
                         <Flex
+                           justify="space-between"
                            key={index}
                            className="trophy-block"
                            style={{
                               flexDirection:
                                  index % 2 === 1 ? 'row-reverse' : 'row',
+                              justifyContent:
+                                 index % 2 === 1 ? 'space-between' : 'start',
                            }}
                         >
                            <img
@@ -117,12 +120,7 @@ const Trophy = () => {
                               alt={item.title}
                            />
 
-                           <Flex
-                              align="start"
-                              gap={40}
-                              vertical
-                              className="texstovka"
-                           >
+                           <Flex gap={40} vertical className="texstovka">
                               <h2>{item.title}</h2>
                               <p className="description-text">
                                  {item.descriptions}
@@ -154,10 +152,15 @@ const fadeInUp = keyframes`
 `
 
 const StyledContainer = styled(Flex)`
+   .description-text {
+      color: grey;
+   }
+
    .read-more {
-      &:hover {
-         color: #93b2fc !important;
-      }
+      color: #ed5a0c !important;
+   }
+   .read-more:hover {
+      color: #f39f71 !important;
    }
 
    @media (max-width: 768px) {
@@ -234,6 +237,10 @@ const StyledContainer = styled(Flex)`
       }
 
       .trophy-block {
+         &:hover .read-more {
+            color: grey;
+         }
+
          @media (max-width: 480px) {
             flex-direction: column !important;
          }

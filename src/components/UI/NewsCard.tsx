@@ -94,7 +94,7 @@ const NewsContent = styled.div`
 
 const Category = styled.p`
    font-size: 14px;
-   color: #888;
+   color: #ed5a0c;
 
    @media (max-width: 768px) {
       font-size: 12px;

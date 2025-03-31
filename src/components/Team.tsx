@@ -80,7 +80,7 @@ export default Team
 
 const Container = styled.section`
    margin: auto;
-   padding: 110px 75px 0 75px;
+   padding: 100px 75px 0 75px;
    max-width: 1600px;
 
    @media (max-width: 1024px) {

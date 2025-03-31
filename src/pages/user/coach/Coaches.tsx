@@ -2,59 +2,13 @@ import styled from 'styled-components'
 import { Button, Flex, Table } from 'antd'
 import { NavLink, useParams } from 'react-router-dom'
 import { useAppSelector } from '../../../store/store'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { FreeMode, Pagination } from 'swiper/modules'
 
 const Coaches = () => {
    window.scrollTo(0, 0)
    const { slug } = useParams<{ slug: string }>()
    const { coaches } = useAppSelector((state) => state.team)
-
-   const schedule = [
-      {
-         key: '1',
-         trainer: 'name',
-         group: 1,
-         students: 15,
-         hours: 8,
-         monday: '17:00 - 18:30',
-         tuesday: '',
-         wednesday: '17:00 - 18:30',
-         thursday: '',
-         friday: '17:00 - 18:30',
-         saturday: '17:00 - 18:30',
-         sunday: '',
-         location: 'Зал 1',
-      },
-      {
-         key: '2',
-         trainer: name,
-         group: 1,
-         students: 14,
-         hours: 12,
-         monday: '18:00 - 19:30',
-         tuesday: '18:00 - 19:30',
-         wednesday: '17:10 - 18:40',
-         thursday: '17:10 - 18:40',
-         friday: '',
-         saturday: '13:50 - 15:20 (бассейн)',
-         sunday: '',
-         location: 'Стадион',
-      },
-      {
-         key: '3',
-         trainer: name,
-         group: 1,
-         students: 30,
-         hours: 3,
-         monday: '15:00 - 15:45',
-         tuesday: '',
-         wednesday: '15:00 - 15:45',
-         thursday: '',
-         friday: '15:00 - 15:45',
-         saturday: '',
-         sunday: '',
-         location: 'Зал 2',
-      },
-   ]
 
    const columns = [
       { title: '№', dataIndex: 'key', key: 'key' },
@@ -76,35 +30,40 @@ const Coaches = () => {
       <StyledContainer>
          <h1 className="main-title">Тренерский штаб</h1>
 
-         <Flex justify="space-around" wrap>
+         <Swiper
+            navigation
+            slidesPerView={3}
+            spaceBetween={30}
+            pagination={{
+               clickable: true,
+            }}
+            modules={[FreeMode, Pagination]}
+         >
             {coaches.map(({ name, position, id, image, slug }) => (
-               <StyledCard key={id}>
-                  <div className="card-coach">
-                     <img className="coach-photo" src={image} alt={name} />
-                     <h2 className="coach-name">{name}</h2>
-                     <p className="coach-position">{position}</p>
-                     <Button type="primary" className="more-info-btn">
-                        <NavLink to={`/coaches/${slug}`}>
-                           Смотреть профиль
-                        </NavLink>
-                     </Button>
-                  </div>
-               </StyledCard>
+               <SwiperSlide key={id}>
+                  <StyledCard>
+                     <div className="card-coach">
+                        <img className="coach-photo" src={image} alt={name} />
+                        <h2 className="coach-name">{name}</h2>
+                        <p className="coach-position">{position}</p>
+                        <Button type="primary" className="more-info-btn">
+                           <NavLink to={`/coaches/${slug}`}>
+                              Смотреть профиль
+                           </NavLink>
+                        </Button>
+                     </div>
+                  </StyledCard>
+               </SwiperSlide>
             ))}
-         </Flex>
-         <br />
+         </Swiper>
+
          <br />
          <br />
          <Flex vertical>
             <h2 className="main-title">Расписание тренеров</h2>
-
-            {slug == 'futbolnaya-akademiya' ? (
-               <Table
-                  dataSource={schedule}
-                  columns={columns}
-                  pagination={false}
-               />
-            ) : null}
+            {slug === 'futbolnaya-akademiya' && (
+               <Table dataSource={[]} columns={columns} pagination={false} />
+            )}
          </Flex>
       </StyledContainer>
    )
@@ -115,6 +74,24 @@ export default Coaches
 const StyledContainer = styled.section`
    max-width: 1600px;
    margin: 0 auto;
+
+   .swiper-button-prev {
+      left: -10px;
+   }
+
+   .swiper-button-next {
+      right: -10px;
+   }
+   .swiper-button-prev,
+   .swiper-button-next {
+      color: #ed5a0c;
+      width: 50px;
+      height: 50px;
+   }
+
+   .swiper-pagination-bullet {
+      background: #ed5a0c !important;
+   }
 `
 
 const StyledCard = styled.div`

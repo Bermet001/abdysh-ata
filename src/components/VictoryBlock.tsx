@@ -7,6 +7,7 @@ import { NavLink } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../store/store'
 import { useEffect } from 'react'
 import { getAchievements } from '../store/slice/ahievements/ahievementsThunk'
+import Person from '../assets/images/person.png'
 
 const VictoryBlock = () => {
    const { achievements, isLoading } = useAppSelector(
@@ -120,7 +121,7 @@ const SliderContainer = styled.div`
    max-width: 1600px;
    margin: 0 auto;
    padding: 0 15px;
-   margin-top: -70px;
+   margin-top: -60px;
 
    @media (max-width: 768px) {
       margin-top: -50px;
@@ -152,90 +153,6 @@ const Description = styled.p`
    }
 `
 
-const StyledCard = styled(Card)`
-   text-align: start;
-   border-radius: 10px;
-   margin: 10px;
-
-   .contents-trophy {
-      padding: 15px !important;
-   }
-
-   .ant-card-body {
-      padding: 0px !important;
-   }
-
-   @media (max-width: 830px) {
-      margin: 0px;
-
-      .contents-trophy {
-         padding: 10px !important;
-      }
-   }
-
-   .trophy-image {
-      width: 200px;
-      height: 230px;
-      object-position: top;
-      object-fit: cover;
-      width: 100%;
-      margin: 0 auto;
-      border-radius: 10px 10px 0 0;
-
-      @media (max-width: 910px) {
-         width: 100%;
-         height: 200px;
-      }
-
-      @media (max-width: 830px) {
-         width: 100%;
-         min-height: 190px;
-         max-height: 190px;
-      }
-      @media (max-width: 450px) {
-         width: 100%;
-         min-height: 160px;
-         max-height: 165px;
-      }
-   }
-
-   h2 {
-      font-size: 0.9rem;
-      margin-top: 10px;
-
-      @media (max-width: 830px) {
-         margin-top: 5px;
-         font-size: 0.9rem;
-         max-height: 45px;
-         min-height: 45px;
-      }
-
-      @media (max-width: 768px) {
-         font-size: 1rem;
-      }
-
-      @media (max-width: 480px) {
-         font-size: 0.9rem;
-      }
-   }
-
-   p {
-      font-size: 0.9rem;
-
-      @media (max-width: 830px) {
-         font-size: 0.7rem;
-      }
-
-      @media (max-width: 768px) {
-         font-size: 0.8rem;
-      }
-
-      @media (max-width: 480px) {
-         font-size: 0.5rem;
-      }
-   }
-`
-
 const VictoryDes = styled.div`
    width: 100%;
    height: 300px;
@@ -256,17 +173,6 @@ const VictoryDes = styled.div`
       max-width: 1500px;
       margin: 0 auto;
       width: 100%;
-   }
-
-   &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(0, 0, 0, 0.5);
-      z-index: 1;
    }
 
    p {
@@ -319,5 +225,123 @@ const StyledButton = styled(Button)`
    @media (max-width: 480px) {
       padding: 15px 20px;
       font-size: 0.8rem;
+   }
+`
+
+const StyledCard = styled(Card)`
+   text-align: start;
+   border-radius: 10px;
+   margin: 10px;
+   position: relative;
+   overflow: hidden;
+   border: none;
+
+   .contents-trophy {
+      padding: 15px !important;
+
+      p {
+         font-size: 10px;
+      }
+
+      h2 {
+         font-size: 20px;
+      }
+   }
+
+   .ant-card-body {
+      padding: 0px !important;
+   }
+
+   @media (max-width: 830px) {
+      margin: 0px;
+
+      .contents-trophy {
+         padding: 10px !important;
+      }
+   }
+
+   .trophy-image {
+      width: 200px;
+      height: 230px;
+      object-position: top;
+      object-fit: cover;
+      width: 100%;
+      margin: 0 auto;
+      border-radius: 10px 10px 0 0;
+      transition: transform 0.3s ease-in-out;
+      position: relative;
+   }
+
+   &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(237, 91, 12, 0.85);
+      z-index: 2;
+      height: 75%;
+      transition: opacity 0.3s ease;
+   }
+
+   &::after {
+      content: '';
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100px;
+      height: 100px;
+      background-image: url(${Person});
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      z-index: 3;
+      transition: opacity 0.3s ease;
+   }
+
+   &:hover {
+      .trophy-image {
+         transform: scale(1.1);
+      }
+
+      &::before,
+      &::after {
+         opacity: 0;
+      }
+   }
+
+   h2 {
+      @media (max-width: 830px) {
+         margin-top: 5px;
+         font-size: 0.9rem;
+         max-height: 45px;
+         min-height: 45px;
+      }
+
+      @media (max-width: 768px) {
+         font-size: 1rem;
+      }
+
+      @media (max-width: 480px) {
+         font-size: 0.9rem;
+      }
+   }
+
+   p {
+      font-size: 0.9rem;
+
+      @media (max-width: 830px) {
+         font-size: 0.7rem;
+      }
+
+      @media (max-width: 768px) {
+         font-size: 0.8rem;
+      }
+
+      @media (max-width: 480px) {
+         font-size: 0.5rem;
+      }
    }
 `
