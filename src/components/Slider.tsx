@@ -179,7 +179,6 @@ const StyledButtonView = styled(Button)`
    align-items: center;
    justify-content: center;
    font-weight: 500;
-   font-family: 'Roboto Condensed', serif;
 
    @media (max-width: 900px) {
       padding: 20px 35px;

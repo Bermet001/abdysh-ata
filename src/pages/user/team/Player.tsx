@@ -326,7 +326,6 @@ const PlayerName = styled.div`
    color: #fff;
    gap: 7px;
    justify-content: center;
-   font-family: 'Roboto Condensed', serif;
 
    .name {
       color: #acafb9;
@@ -339,7 +338,6 @@ const PlayerNumber = styled.div`
    font-size: 35px;
    color: #808490;
    line-height: 1;
-   font-family: 'Roboto Condensed', serif;
 `
 
 const PlayerBio = styled.p`

@@ -14,8 +14,6 @@ const Coaches = () => {
       { title: '№', dataIndex: 'key', key: 'key' },
       { title: 'Ф.И.О. тренера', dataIndex: 'trainer', key: 'trainer' },
       { title: 'Группа', dataIndex: 'group', key: 'group' },
-      { title: 'Ученики', dataIndex: 'students', key: 'students' },
-      { title: 'Часы', dataIndex: 'hours', key: 'hours' },
       { title: 'Понедельник', dataIndex: 'monday', key: 'monday' },
       { title: 'Вторник', dataIndex: 'tuesday', key: 'tuesday' },
       { title: 'Среда', dataIndex: 'wednesday', key: 'wednesday' },
@@ -24,6 +22,48 @@ const Coaches = () => {
       { title: 'Суббота', dataIndex: 'saturday', key: 'saturday' },
       { title: 'Воскресенье', dataIndex: 'sunday', key: 'sunday' },
       { title: 'Место проведения', dataIndex: 'location', key: 'location' },
+   ]
+
+   const dataSource = [
+      {
+         key: '1',
+         trainer: 'Иван Иванов',
+         group: 'U-10',
+         monday: '10:00 - 12:00',
+         tuesday: '16:00 - 18:00',
+         wednesday: '—',
+         thursday: '14:00 - 16:00',
+         friday: '—',
+         saturday: '09:00 - 11:00',
+         sunday: '—',
+         location: 'Стадион Центральный',
+      },
+      {
+         key: '2',
+         trainer: 'Петр Петров',
+         group: 'U-12',
+         monday: '14:00 - 16:00',
+         tuesday: '—',
+         wednesday: '15:00 - 17:00',
+         thursday: '—',
+         friday: '16:00 - 18:00',
+         saturday: '—',
+         sunday: '10:00 - 12:00',
+         location: 'Манеж Олимпийский',
+      },
+      {
+         key: '3',
+         trainer: 'Алексей Смирнов',
+         group: 'U-14',
+         monday: '09:00 - 11:00',
+         tuesday: '10:00 - 12:00',
+         wednesday: '—',
+         thursday: '13:00 - 15:00',
+         friday: '—',
+         saturday: '11:00 - 13:00',
+         sunday: '—',
+         location: 'Стадион Лужники',
+      },
    ]
 
    return (
@@ -62,7 +102,11 @@ const Coaches = () => {
          <Flex vertical>
             <h2 className="main-title">Расписание тренеров</h2>
             {slug === 'futbolnaya-akademiya' && (
-               <Table dataSource={[]} columns={columns} pagination={false} />
+               <Table
+                  dataSource={dataSource}
+                  columns={columns}
+                  pagination={false}
+               />
             )}
          </Flex>
       </StyledContainer>

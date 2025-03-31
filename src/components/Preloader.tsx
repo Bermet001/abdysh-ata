@@ -89,7 +89,6 @@ const Spinner = styled.div`
 `
 
 const TxtLoading = styled.div`
-   font: bold 5em 'Syne', sans-serif;
    text-align: center;
    user-select: none;
 

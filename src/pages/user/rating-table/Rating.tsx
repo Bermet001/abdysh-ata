@@ -165,6 +165,8 @@ const Rating = () => {
    return (
       <StyledContainer>
          <Flex vertical className="table">
+            <h1 className="main-title">Таблица рейтинга</h1>
+
             <div className="table-container">
                <Table
                   dataSource={dataSource}
@@ -184,8 +186,7 @@ const Rating = () => {
 export default Rating
 const StyledContainer = styled.main`
    padding: 100px 75px;
-   background: linear-gradient(to bottom, #23a356, #18191b);
-   font-family: 'Roboto Condensed', serif;
+   background: #e0e0e0;
 
    @media (max-width: 1024px) {
       padding: 100px 20px;
@@ -195,11 +196,15 @@ const StyledContainer = styled.main`
       padding: 100px 5px;
    }
 
+   h1 {
+      text-align: center;
+   }
    .table-container {
       padding: 40px 20px;
       max-width: 1600px;
       margin: 0 auto;
       border-radius: 10px;
+      background: white;
 
       @media (max-width: 900px) {
          h1 {
@@ -216,7 +221,7 @@ const StyledContainer = styled.main`
          background: transparent;
          font-size: 16px;
          margin: 10px 15px;
-         color: white;
+         color: black;
          border: none;
 
          &::before {
@@ -269,7 +274,6 @@ const StyledContainer = styled.main`
       .ant-table-tbody > tr:hover .text-content {
          background: #00a851;
          color: white !important;
-         background-color: #e0e0e0 !important;
       }
    }
 `
