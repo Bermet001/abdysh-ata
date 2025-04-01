@@ -279,9 +279,9 @@ const StyledCard = styled(Card)`
       left: 0;
       right: 0;
       bottom: 0;
-      background-color: rgba(237, 91, 12, 0.85);
+      background-color: rgba(237, 91, 12, 0.583);
       z-index: 2;
-      height: 75%;
+      height: 230px;
       transition: opacity 0.3s ease;
    }
 
