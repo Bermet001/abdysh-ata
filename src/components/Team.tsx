@@ -86,11 +86,16 @@ const Container = styled.section`
    @media (max-width: 1024px) {
       padding: 40px 20px 0;
    }
+
+   .ant-card .ant-card-body {
+      padding: 0;
+   }
 `
 
 const StyledCard = styled(Card)`
    border-radius: 6px;
    width: 100%;
+   max-height: 400px;
    overflow: hidden;
    position: relative;
    cursor: pointer;
@@ -98,11 +103,14 @@ const StyledCard = styled(Card)`
    border: none;
 
    @media (max-width: 768px) {
-      height: 350px;
+      min-height: 350px;
    }
 
    @media (max-width: 480px) {
-      height: 300px;
+      min-height: 300px;
+   }
+
+   @media (max-width: 480px) {
    }
 `
 
@@ -110,7 +118,7 @@ const CardBackground = styled.div<{ $image: string }>`
    background-image: url(${(props) => props.$image});
    background-size: cover;
    background-position: center;
-   height: 100%;
+   height: auto;
    display: flex;
    transition: transform 0.3s;
    border-radius: 6px;
@@ -127,10 +135,14 @@ const Overlay = styled.div`
    display: flex;
    flex-direction: column;
    justify-content: flex-end;
-   height: 100%;
+   height: 350px;
    border-radius: 6px;
    z-index: 10;
    background: linear-gradient(to top, rgba(0, 0, 0, 0.769), transparent);
+
+   @media (max-width: 480px) {
+      height: 300px;
+   }
 `
 
 const PlayerNumber = styled.div`
