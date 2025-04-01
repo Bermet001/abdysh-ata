@@ -66,7 +66,7 @@ const Footer: FC = () => {
             >
                <Flex gap={15} className="logo" align="center">
                   <img loading="lazy" src={contact.logo} alt="logo" />
-                  <h1 className="main-title">Abdysh-ata</h1>
+                  <h1 className="main-title">Абдыш-ата</h1>
                </Flex>
                <Flex className="socials" align="center" gap={30}>
                   {socialLinks.map(({ label, href, Icon }, index) => (

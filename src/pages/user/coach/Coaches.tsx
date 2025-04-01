@@ -3,7 +3,7 @@ import { Button, Flex, Table } from 'antd'
 import { NavLink, useParams } from 'react-router-dom'
 import { useAppSelector } from '../../../store/store'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { FreeMode, Pagination } from 'swiper/modules'
+import { FreeMode, Pagination, Navigation } from 'swiper/modules'
 
 const Coaches = () => {
    window.scrollTo(0, 0)
@@ -77,7 +77,7 @@ const Coaches = () => {
             pagination={{
                clickable: true,
             }}
-            modules={[FreeMode, Pagination]}
+            modules={[FreeMode, Pagination, Navigation]}
          >
             {coaches.map(({ name, position, id, image, slug }) => (
                <SwiperSlide key={id}>

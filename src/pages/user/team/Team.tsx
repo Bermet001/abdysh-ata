@@ -16,9 +16,9 @@ const Team = () => {
       <Container>
          <h2 className="main-title">Название команды</h2>
 
-         <TeamContainer className="team-container" wrap gap={22}>
+         <TeamContainer wrap gap={42}>
             {players.map(({ image, id, name, position, number, slug }) => (
-               <Col key={id} xs={11} sm={11} md={7} lg={5} xl={4}>
+               <Col key={id} xs={24} sm={5} md={5} lg={4}>
                   <StyledCard>
                      <Link to={`/player/${slug}`}>
                         <CardBackground
@@ -44,14 +44,13 @@ const Team = () => {
 export default Team
 
 const Container = styled.div`
-   margin: auto;
+   margin: 0 auto;
    max-width: 1600px;
-   overflow: hidden;
 `
 
 const StyledCard = styled(Card)`
    border-radius: 8px;
-   width: 100%;
+   width: 230px;
    position: relative;
    cursor: pointer;
    height: 350px;
@@ -60,6 +59,10 @@ const StyledCard = styled(Card)`
    }
    @media (max-width: 390px) {
       height: 400px !important;
+   }
+
+   @media (max-width: 1400px) {
+      width: 200px !important;
    }
 
    .ant-card-body {
@@ -145,15 +148,21 @@ const PlayerPosition = styled.h3`
 `
 
 const TeamContainer = styled(Flex)`
-   width: 100vw;
+   max-width: 1600px;
+   margin: 0 auto;
 
    @media (max-width: 1400px) {
       flex-wrap: wrap;
       width: 100%;
    }
 
+   @media (max-width: 800px) {
+      gap: 0px !important;
+   }
+
    @media (max-width: 480px) {
       flex-direction: column !important;
+
       .ant-col-xs-11 {
          max-width: 100% !important;
          flex: 1 0 45% !important;
