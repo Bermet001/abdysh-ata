@@ -239,14 +239,6 @@ const StyledCard = styled(Card)`
 
    .contents-trophy {
       padding: 15px !important;
-
-      p {
-         font-size: 10px;
-      }
-
-      h2 {
-         font-size: 20px;
-      }
    }
 
    .ant-card-body {
@@ -302,6 +294,13 @@ const StyledCard = styled(Card)`
       transition: opacity 0.3s ease;
    }
 
+   @media (max-width: 450px) {
+      &::before,
+      .trophy-image {
+         height: 170px;
+      }
+   }
+
    &:hover {
       .trophy-image {
          transform: scale(1.1);
@@ -316,7 +315,7 @@ const StyledCard = styled(Card)`
    h2 {
       @media (max-width: 830px) {
          margin-top: 5px;
-         font-size: 0.9rem;
+         font-size: 20px;
          max-height: 45px;
          min-height: 45px;
       }
@@ -326,7 +325,7 @@ const StyledCard = styled(Card)`
       }
 
       @media (max-width: 480px) {
-         font-size: 0.9rem;
+         font-size: 0.8rem;
       }
    }
 

@@ -60,14 +60,14 @@ a {
 @media (max-width: 660px) {
    .main-title,
    .main-title-center {
-      font-size: 25px;
+      font-size: 22px;
    }
 }
 
 @media (max-width: 450px) {
    .main-title,
    .main-title-center {
-      font-size: 22px;
+      font-size: 19px;
       margin-bottom: 20px;
    }
 }
