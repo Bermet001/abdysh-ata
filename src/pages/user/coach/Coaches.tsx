@@ -1,69 +1,73 @@
 import styled from 'styled-components'
 import { Button, Flex, Table } from 'antd'
 import { NavLink, useParams } from 'react-router-dom'
-import { useAppSelector } from '../../../store/store'
+import { useAppDispatch, useAppSelector } from '../../../store/store'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { FreeMode, Pagination, Navigation } from 'swiper/modules'
+import { Schedule } from '../../../store/slice/coach/coachSlice'
+import { ColumnType } from 'antd/es/table'
+import { useEffect } from 'react'
+import { getSchedules } from '../../../store/slice/coach/coachThunk'
 
 const Coaches = () => {
    window.scrollTo(0, 0)
    const { slug } = useParams<{ slug: string }>()
    const { coaches } = useAppSelector((state) => state.team)
+   const { schedules } = useAppSelector((state) => state.coach)
 
-   const columns = [
-      { title: '№', dataIndex: 'key', key: 'key' },
-      { title: 'Ф.И.О. тренера', dataIndex: 'trainer', key: 'trainer' },
+   const dispatch = useAppDispatch()
+
+   useEffect(() => {
+      dispatch(getSchedules())
+   }, [dispatch])
+
+   const columns: ColumnType<Schedule>[] = [
+      { title: '№', dataIndex: 'id', key: 'id' },
+      { title: 'Ф.И.О. тренера', dataIndex: 'coach_name', key: 'coach_name' },
       { title: 'Группа', dataIndex: 'group', key: 'group' },
-      { title: 'Понедельник', dataIndex: 'monday', key: 'monday' },
-      { title: 'Вторник', dataIndex: 'tuesday', key: 'tuesday' },
-      { title: 'Среда', dataIndex: 'wednesday', key: 'wednesday' },
-      { title: 'Четверг', dataIndex: 'thursday', key: 'thursday' },
-      { title: 'Пятница', dataIndex: 'friday', key: 'friday' },
-      { title: 'Суббота', dataIndex: 'saturday', key: 'saturday' },
-      { title: 'Воскресенье', dataIndex: 'sunday', key: 'sunday' },
+      {
+         title: 'Понедельник',
+         key: 'monday',
+         render: (_, record: Schedule) =>
+            `${record.monday_start || '—'} - ${record.monday_end || '—'}`,
+      },
+      {
+         title: 'Вторник',
+         key: 'tuesday',
+         render: (_, record: Schedule) =>
+            `${record.tuesday_start || '—'} - ${record.tuesday_end || '—'}`,
+      },
+      {
+         title: 'Среда',
+         key: 'wednesday',
+         render: (_, record: Schedule) =>
+            `${record.wednesday_start || '—'} - ${record.wednesday_end || '—'}`,
+      },
+      {
+         title: 'Четверг',
+         key: 'thursday',
+         render: (_, record: Schedule) =>
+            `${record.thursday_start || '—'} - ${record.thursday_end || '—'}`,
+      },
+      {
+         title: 'Пятница',
+         key: 'friday',
+         render: (_, record: Schedule) =>
+            `${record.friday_start || '—'} - ${record.friday_end || '—'}`,
+      },
+      {
+         title: 'Суббота',
+         key: 'saturday',
+         render: (_, record: Schedule) =>
+            `${record.saturday_start || '—'} - ${record.saturday_end || '—'}`,
+      },
+      {
+         title: 'Воскресенье',
+         key: 'sunday',
+         render: (_, record: Schedule) =>
+            `${record.sunday_start || '—'} - ${record.sunday_end || '—'}`,
+      },
       { title: 'Место проведения', dataIndex: 'location', key: 'location' },
-   ]
-
-   const dataSource = [
-      {
-         key: '1',
-         trainer: 'Иван Иванов',
-         group: 'U-10',
-         monday: '10:00 - 12:00',
-         tuesday: '16:00 - 18:00',
-         wednesday: '—',
-         thursday: '14:00 - 16:00',
-         friday: '—',
-         saturday: '09:00 - 11:00',
-         sunday: '—',
-         location: 'Стадион Центральный',
-      },
-      {
-         key: '2',
-         trainer: 'Петр Петров',
-         group: 'U-12',
-         monday: '14:00 - 16:00',
-         tuesday: '—',
-         wednesday: '15:00 - 17:00',
-         thursday: '—',
-         friday: '16:00 - 18:00',
-         saturday: '—',
-         sunday: '10:00 - 12:00',
-         location: 'Манеж Олимпийский',
-      },
-      {
-         key: '3',
-         trainer: 'Алексей Смирнов',
-         group: 'U-14',
-         monday: '09:00 - 11:00',
-         tuesday: '10:00 - 12:00',
-         wednesday: '—',
-         thursday: '13:00 - 15:00',
-         friday: '—',
-         saturday: '11:00 - 13:00',
-         sunday: '—',
-         location: 'Стадион Лужники',
-      },
    ]
 
    return (
@@ -74,6 +78,11 @@ const Coaches = () => {
             navigation
             slidesPerView={3}
             spaceBetween={30}
+            breakpoints={{
+               350: { slidesPerView: 1 },
+               500: { slidesPerView: 2 },
+               768: { slidesPerView: 3 },
+            }}
             pagination={{
                clickable: true,
             }}
@@ -103,9 +112,11 @@ const Coaches = () => {
             <h2 className="main-title">Расписание тренеров</h2>
             {slug === 'futbolnaya-akademiya' && (
                <Table
-                  dataSource={dataSource}
+                  dataSource={schedules}
                   columns={columns}
                   pagination={false}
+                  rowKey="id"
+                  scroll={{ x: 1150 }}
                />
             )}
          </Flex>

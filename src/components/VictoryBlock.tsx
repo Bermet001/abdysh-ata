@@ -160,6 +160,7 @@ const VictoryDes = styled.div`
    flex-direction: column;
    background-image: url(${Image});
    background-size: cover;
+
    background-position: center;
    background-repeat: no-repeat;
    position: relative;
@@ -288,12 +289,12 @@ const StyledCard = styled(Card)`
    &::after {
       content: '';
       position: absolute;
-      top: 40%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      top: 25%;
+      left: 30%;
       width: 100px;
       height: 100px;
       background-image: url(${Person});
+      transform: rotate(300deg);
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;

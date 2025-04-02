@@ -1,10 +1,10 @@
 import { Flex } from 'antd'
 import styled, { keyframes } from 'styled-components'
-import { Swiper, SwiperSlide } from 'swiper/react'
 import { useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
 import { useEffect } from 'react'
 import { getPlayer } from '../../../store/slice/team/teamThunk'
+import star from '../../../assets/images/start.png'
 
 const Player = () => {
    const { slug } = useParams<{ slug: string }>()
@@ -46,9 +46,9 @@ const Player = () => {
                      <img
                         width={30}
                         src={player.team.logo}
-                        alt="логотим команды"
+                        alt="логотип команды"
                      />
-                     <p>{player?.team?.title}</p>
+                     <span>{player?.team?.title}</span>
                   </PlayerBio>
                   <PlayerBio>insta: {player?.instagram} </PlayerBio>
 
@@ -84,48 +84,14 @@ const Player = () => {
             <Flex vertical className="accomplishments">
                <h2 className="main-title">Достижения</h2>
 
-               <Swiper
-                  slidesPerView={1}
-                  centeredSlides={true}
-                  spaceBetween={10}
-                  grabCursor={true}
-                  breakpoints={{
-                     200: {
-                        slidesPerView: 1.2,
-                     },
-                     500: {
-                        slidesPerView: 1,
-                     },
-
-                     768: {
-                        slidesPerView: 3,
-                     },
-                     1130: {
-                        slidesPerView: 5,
-                     },
-                  }}
-                  className="mySwiper"
-               >
+               <ol className="honours-list">
                   {player.achievements.map((item) => (
-                     <SwiperSlide key={item.id}>
-                        <Flex
-                           vertical
-                           justify="space-between"
-                           className="honours-box"
-                           align="start"
-                        >
-                           <Flex vertical align="start">
-                              <h5 className="liga-honour">
-                                 {item?.liga?.title}
-                              </h5>
-                              <h4 className="text-honour">{item?.title}</h4>
-                           </Flex>
-
-                           <p className="year-honour">{item?.date}</p>
-                        </Flex>
-                     </SwiperSlide>
+                     <Flex key={item.id} gap={40}>
+                        <img src={star} alt="star" width={20} height="20" />
+                        <li className="text-honour">{item?.title} </li>
+                     </Flex>
                   ))}
-               </Swiper>
+               </ol>
             </Flex>
          </Flex>
       </StyledContainer>
@@ -195,30 +161,17 @@ const StyledContainer = styled.main`
       }
    }
 
-   .honours-box {
-      background-color: #18191b;
-      height: 150px;
-      width: 350px;
-      padding: 20px;
-      text-align: start;
-      border-radius: 3px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+   .honours-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+   }
 
-      .liga-honour {
-         color: #7f7f7f;
-      }
-      font-size: 13px;
-
-      .year-honour {
-         color: #7f7f7f;
-         font-size: 10px;
-         font-weight: bold;
-      }
-
-      .text-honour {
-         color: white;
-         font-size: 15px;
-      }
+   .text-honour {
+      line-height: 28px;
+      font-weight: normal;
+      font-size: 20px;
+      color: #474747;
    }
 `
 
@@ -364,14 +317,12 @@ const DetailsContainer = styled(Flex)`
 `
 
 const DetailLabel = styled.span`
-   font-weight: bold;
-   color: #000000;
-   font-size: 12px;
+   font-size: 15px;
 `
 
 const DetailValue = styled.span`
    color: #3b3b3b;
-   font-size: 25px;
+   font-size: 20px;
 
    @media (max-width: 768px) {
       font-size: 20px;
