@@ -129,6 +129,10 @@ const StyledCard = styled(Card)`
       box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
    }
 
+   @media (max-width: 570px) {
+      border-radius: 10px;
+   }
+
    .info-icon {
       svg {
          width: 1.5rem;
@@ -141,6 +145,11 @@ const StyledCard = styled(Card)`
          &:hover {
             transform: translateY(-2px);
             fill: #ffcc00;
+         }
+
+         @media (max-width: 570px) {
+            width: 1rem;
+            height: 1rem;
          }
       }
    }
@@ -160,19 +169,24 @@ const CardContent = styled.p`
    font-size: 14px;
    color: #555;
    margin: 10px 0 0;
+   height: 29px;
 
-   @media (max-width: 570px) {
-      min-height: 40px;
+   @media (max-width: 550px) {
+      min-height: 15px;
+      font-size: 10px;
+   }
+   @media (max-width: 550px) {
+      min-height: 25px;
    }
 `
 
 const Image = styled.img`
    width: 100%;
-   height: auto;
    border-radius: 10px 10px 0 0;
    object-fit: cover;
    object-position: top;
    min-height: 370px;
+   height: 370px;
 
    @media (max-width: 1224px) {
       min-height: 300px;
@@ -180,6 +194,8 @@ const Image = styled.img`
 
    @media (max-width: 768px) {
       max-height: 250px;
-      min-height: 100%;
+      height: 190px;
+      min-height: 200px;
+      border-radius: 5px 5px 0 0;
    }
 `
