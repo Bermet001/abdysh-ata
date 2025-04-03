@@ -77,6 +77,7 @@ const Footer: FC = () => {
                </Flex>
             </Flex>
             <div className="line" />
+
             <Flex
                gap={30}
                wrap
@@ -108,12 +109,23 @@ export default Footer
 
 const StyledFooter = styled.footer`
    padding: 40px;
-   background-color: #18191b;
-   color: #fff;
+
    .logo {
       img {
          width: 60px;
          height: 75px;
+      }
+   }
+
+   .socials {
+      a > svg {
+         fill: #40a852;
+         width: 30px;
+         height: 30px;
+
+         path {
+            fill: #40a852;
+         }
       }
    }
 
@@ -124,8 +136,8 @@ const StyledFooter = styled.footer`
       }
    }
    h1 {
-      color: #fff;
       margin-bottom: 0;
+      color: #05a558;
    }
    .inner {
       max-width: 1600px;
@@ -143,7 +155,8 @@ const StyledFooter = styled.footer`
    a {
       font-size: 15px;
       font-weight: 600;
-      color: white;
+      /* color: white; */
+      color: #212121;
       display: flex;
       gap: 10px;
       transition: color 0.4s ease, transform 0.4s ease;

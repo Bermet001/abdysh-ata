@@ -5,6 +5,8 @@ import { useEffect } from 'react'
 import type { ColumnsType } from 'antd/es/table'
 import { getTeamsRating } from '../../../store/slice/rating/ratingThunk'
 import { useParams } from 'react-router-dom'
+import background1 from '../../../assets/images/banner-rating.png'
+import { getPartners } from '../../../store/slice/partners/partnersThunk'
 
 interface TeamData {
    key: string | number
@@ -44,24 +46,24 @@ const Rating = () => {
 
       {
          title: '',
-         dataIndex: 'team_title',
-         key: 'team_title',
-         render: (record: TeamData) => (
+         dataIndex: 'team_logo',
+         key: 'team_logo',
+         render: (record: string) => (
             <Flex align="center">
-               <div style={{ background: 'transtapern', marginRight: '15px' }}>
+               <div style={{ background: 'transtapern', marginLeft: '10px' }}>
                   <img
-                     src={record.team_logo}
-                     alt={`${record.team_title} logo`}
+                     src={record}
+                     alt={`${record} logo`}
                      style={{
-                        padding: '5px',
-                        width: '45px',
-                        height: '50px',
+                        width: '40px',
+                        maxHeight: '50px',
                      }}
                   />
                </div>
             </Flex>
          ),
       },
+
       {
          title: '',
          dataIndex: 'team_title',
@@ -69,7 +71,6 @@ const Rating = () => {
          render: (text: string) => (
             <h3
                style={{
-                  width: '260px',
                   borderRadius: '6px 0 0 6px',
                }}
                className="text-content"
@@ -150,10 +151,12 @@ const Rating = () => {
    window.scrollTo(0, 0)
 
    const { currentTeam } = useAppSelector((state) => state.rating)
+   const { partners } = useAppSelector((state) => state.partner)
    const dispatch = useAppDispatch()
 
    useEffect(() => {
       dispatch(getTeamsRating(slug))
+      dispatch(getPartners())
    }, [dispatch, slug])
 
    const dataSource: TeamData[] =
@@ -164,18 +167,27 @@ const Rating = () => {
 
    return (
       <StyledContainer>
+         <Flex className="partners" align="center">
+            {partners?.slice(0, 3).map((item) => (
+               <div className="partner" key={item.id}>
+                  <img src={item.image} alt={item.title} width={70} />
+               </div>
+            ))}
+         </Flex>
+         <br />
          <Flex vertical className="table">
-            <h1 className="main-title">Таблица рейтинга</h1>
+            <Flex align="center" vertical>
+               <h1 className="main-title">Турнирная таблица</h1>
+               <p className="sub-title">{slug}</p>
+            </Flex>
 
             <div className="table-container">
                <Table
                   dataSource={dataSource}
                   columns={columns}
                   pagination={false}
-                  scroll={{ x: 'max-content' }}
-                  style={{
-                     width: '100%',
-                  }}
+                  rowKey="id"
+                  scroll={{ x: 1150 }}
                />
             </div>
          </Flex>
@@ -185,8 +197,13 @@ const Rating = () => {
 
 export default Rating
 const StyledContainer = styled.main`
+   max-width: 1600px;
    padding: 100px 75px;
-   background: #e0e0e0;
+   background-image: url(${background1});
+   background-size: cover;
+   background-position: center;
+   margin: 0 auto;
+   background-repeat: no-repeat;
 
    @media (max-width: 1024px) {
       padding: 100px 20px;
@@ -198,18 +215,45 @@ const StyledContainer = styled.main`
 
    h1 {
       text-align: center;
+      color: #fff;
+      text-transform: uppercase;
+      margin-bottom: 20px;
    }
+
+   .sub-title {
+      color: white;
+      font-size: 20px;
+      font-weight: 300;
+      background-color: #00a851;
+      border-radius: 6px;
+      padding: 10px;
+   }
+
+   .partner {
+      background-color: rgba(255, 255, 255, 0.603);
+      border-radius: 8px;
+      padding: 10px;
+      margin-right: 10px;
+      display: inline-block;
+      transition: filter 0.3s;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      height: 70px;
+      display: flex;
+      align-items: center;
+   }
+
    .table-container {
       padding: 40px 20px;
-      max-width: 1600px;
-      margin: 0 auto;
       border-radius: 10px;
-      background: white;
 
       @media (max-width: 900px) {
          h1 {
             margin-left: 10px;
          }
+      }
+
+      .ant-table-cell {
+         color: white !important;
       }
 
       .table {
@@ -252,6 +296,14 @@ const StyledContainer = styled.main`
             font-size: 12px;
             max-width: 100%;
             padding: 10px;
+         }
+      }
+
+      td:nth-child(3) {
+         /* background-color: white; */
+         border-radius: 6px;
+
+         & :hover {
          }
       }
 

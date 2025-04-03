@@ -19,4 +19,21 @@ const getHistory = createAsyncThunk(
    }
 )
 
-export { getHistory }
+const getHistoryAcademy = createAsyncThunk(
+   'history/getHistoryAcademy',
+   async (_, { rejectWithValue }) => {
+      try {
+         const { data } = await axiosInstance(`teams/academia/`)
+
+         return data
+      } catch (error) {
+         const err = error as AxiosError
+
+         return rejectWithValue({
+            message: err.message,
+         })
+      }
+   }
+)
+
+export { getHistory, getHistoryAcademy }

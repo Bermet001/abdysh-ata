@@ -14,7 +14,7 @@ const Team = () => {
 
    return (
       <Container>
-         <h2 className="main-title">Название команды</h2>
+         <h2 className="main-title">Cостав команды</h2>
 
          <TeamContainer wrap gap={42}>
             {players.map(({ image, id, name, position, number, slug }) => (

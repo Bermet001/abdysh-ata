@@ -8,6 +8,7 @@ import { useAppDispatch } from '../../../store/store'
 import { useParams } from 'react-router-dom'
 import type { TabsProps } from 'antd'
 import { Helmet } from 'react-helmet-async'
+import Academy from '../academy/Academy'
 
 const items: TabsProps['items'] = [
    {
@@ -56,7 +57,9 @@ const TeamWrapper: FC = () => {
             />
          </Helmet>
 
-         <StyledContainer>
+         {slug == 'futbolnaya-akademiya' ? <Academy /> : null}
+
+         <StyledContainer slug={slug}>
             <Tabs defaultActiveKey="1" items={items} />
          </StyledContainer>
       </>
@@ -65,11 +68,13 @@ const TeamWrapper: FC = () => {
 
 export default TeamWrapper
 
-const StyledContainer = styled.main`
+const StyledContainer = styled.main<{ slug?: string }>`
    margin: 0 auto;
-   margin-top: 80px;
+   margin-top: ${({ slug }) =>
+      slug === 'futbolnaya-akademiya' ? '10px' : '120px'};
    margin-bottom: 80px;
-   padding: 0 75px;
+   padding: ${({ slug }) =>
+      slug === 'futbolnaya-akademiya' ? ' 0 40px' : ' 0 75px'};
    max-width: 1600px;
 
    @media (max-width: 1024px) {

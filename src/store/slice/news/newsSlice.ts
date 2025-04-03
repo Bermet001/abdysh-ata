@@ -96,7 +96,7 @@ export const NewsSlice = createSlice({
             NEWS_THUNK.getNew.fulfilled,
             (state, { payload }: PayloadAction<News>) => {
                state.currentNews = payload
-               state.isLoading = false
+               state.isLoading = false 
             }
          )
          .addCase(NEWS_THUNK.getNew.pending, (state) => {
