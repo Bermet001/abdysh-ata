@@ -108,9 +108,9 @@ const Coaches = () => {
 
          <br />
          <br />
-         <Flex vertical>
-            <h2 className="main-title">Расписание тренеров</h2>
-            {slug === 'futbolnaya-akademiya' && (
+         {slug === 'futbolnaya-akademiya' && (
+            <Flex vertical>
+               <h2 className="main-title">Расписание тренеров</h2>
                <Table
                   dataSource={schedules}
                   columns={columns}
@@ -118,8 +118,8 @@ const Coaches = () => {
                   rowKey="id"
                   scroll={{ x: 1150 }}
                />
-            )}
-         </Flex>
+            </Flex>
+         )}
       </StyledContainer>
    )
 }

@@ -1,13 +1,13 @@
 import styled from 'styled-components'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Card, Flex, Button, Skeleton } from 'antd'
-import Image from '../assets/images/image7.jpg'
 import { RightOutlined } from '@ant-design/icons'
 import { NavLink } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../store/store'
 import { useEffect } from 'react'
 import { getAchievements } from '../store/slice/ahievements/ahievementsThunk'
 import Person from '../assets/images/person.png'
+import Vicroty from '../assets/images/victory.webp'
 
 const VictoryBlock = () => {
    const { achievements, isLoading } = useAppSelector(
@@ -155,17 +155,28 @@ const Description = styled.p`
 
 const VictoryDes = styled.div`
    width: 100%;
-   height: 300px;
+   height: 350px;
    display: flex;
    flex-direction: column;
-   background-image: url(${Image});
+   background-image: url(${Vicroty});
    background-size: cover;
-
    background-position: center;
    background-repeat: no-repeat;
    position: relative;
    padding: 100px 75px 0 75px;
 
+   &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.365);
+      z-index: 2;
+      height: 100%;
+      transition: opacity 0.3s ease;
+   }
    @media (max-width: 1024px) {
       padding: 70px 20px 0 20px;
    }
