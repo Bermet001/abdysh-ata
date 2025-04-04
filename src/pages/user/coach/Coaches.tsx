@@ -157,10 +157,15 @@ const StyledCard = styled.div`
    justify-content: center;
    text-align: center;
    overflow: hidden;
+   height: 610px;
 
    .card-coach {
       padding: 40px;
       transition: filter 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      height: 100%;
 
       @media (max-width: 1400px) {
          padding: 0;

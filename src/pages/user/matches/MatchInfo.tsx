@@ -13,7 +13,6 @@ const MatchInfo = () => {
    const [countdown, setCountdown] = useState('')
    const { slug } = useParams<{ slug: string }>()
    const { match } = useAppSelector((state) => state.matches)
-   console.log(match, 'fajshdfh')
 
    const dispatch = useAppDispatch()
 
