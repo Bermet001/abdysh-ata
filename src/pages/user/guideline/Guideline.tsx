@@ -118,6 +118,24 @@ const StyledContainer = styled.main`
          padding: 13px;
       }
    }
+
+   .ant-modal-body {
+      font-family: 'Inter', sans-serif !important;
+
+      .ant-modal-header {
+         .ant-modal-title {
+            font-size: 20px !important;
+         }
+      }
+
+      p {
+         strong {
+            span {
+               font-family: 'Inter', sans-serif !important;
+            }
+         }
+      }
+   }
 `
 
 const StyledCard = styled(Card)`

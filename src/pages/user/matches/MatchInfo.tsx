@@ -1,19 +1,19 @@
 import styled from 'styled-components'
 import { Card, Typography, Col, Flex } from 'antd'
-import bg from '../../../assets/images/banner.avif'
 import { useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
 import { useEffect, useState } from 'react'
 import { getMatch } from '../../../store/slice/matches/matchesThunk'
 import Button from '../../../components/UI/Button'
+import bg from '../../../assets/images/banner.avif'
 
 const { Title, Text } = Typography
 
 const MatchInfo = () => {
    const [countdown, setCountdown] = useState('')
-
    const { slug } = useParams<{ slug: string }>()
    const { match } = useAppSelector((state) => state.matches)
+   console.log(match, 'fajshdfh')
 
    const dispatch = useAppDispatch()
 
