@@ -1,9 +1,11 @@
 import styled from 'styled-components'
 import { Table, Button } from 'antd'
-import ldsjd from '../../../assets/images/banner.avif'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
 import { useEffect } from 'react'
-import { getMatches } from '../../../store/slice/matches/matchesThunk'
+import {
+   getMatchBanner,
+   getMatches,
+} from '../../../store/slice/matches/matchesThunk'
 import { NavLink } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 
@@ -39,11 +41,12 @@ interface Match {
 
 const SchedulMatches = () => {
    window.scrollTo(0, 0)
-   const { matches } = useAppSelector((state) => state.matches)
+   const { matches, banner } = useAppSelector((state) => state.matches)
    const dispatch = useAppDispatch()
 
    useEffect(() => {
       dispatch(getMatches())
+      dispatch(getMatchBanner())
    }, [dispatch])
 
    const columns = [
@@ -107,6 +110,8 @@ const SchedulMatches = () => {
       },
    ]
 
+   const bannerImage = banner[0]?.image || ''
+
    return (
       <StyledMainContainer>
          <Helmet>
@@ -130,7 +135,7 @@ const SchedulMatches = () => {
                width="100%"
                className="image-background"
                height={400}
-               src={ldsjd}
+               src={bannerImage}
             />
          </div>
 
@@ -161,6 +166,7 @@ const StyledMainContainer = styled.main`
 
    .main-container {
       position: relative;
+      margin-top: 55px;
    }
 
    .image-background {

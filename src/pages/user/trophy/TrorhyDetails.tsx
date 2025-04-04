@@ -1,10 +1,9 @@
 import { FC, useEffect } from 'react'
 import { Typography, Card, Flex } from 'antd'
 import styled from 'styled-components'
-import image from '../../../assets/images/banner.avif'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
-import { NEWS_THUNK } from '../../../store/slice/news/newsThunk'
 import { useParams } from 'react-router-dom'
+import { getAchievement } from '../../../store/slice/ahievements/ahievementsThunk'
 
 const { Title, Paragraph } = Typography
 
@@ -12,31 +11,32 @@ const New: FC = () => {
    window.scrollTo(0, 0)
 
    const { slug } = useParams<{ slug: string }>()
-   const { currentNews } = useAppSelector((state) => state.news)
+   const { currentAchievement } = useAppSelector((state) => state.achievements)
    const dispatch = useAppDispatch()
 
    useEffect(() => {
-      dispatch(NEWS_THUNK.getNew(slug))
+      dispatch(getAchievement(slug))
    }, [dispatch, slug])
 
    return (
       <StyledContainer>
-         <BackgroundContainer image={currentNews?.image || image} />
+         <BackgroundContainer image={currentAchievement?.image || null} />
          <ContentCard>
             <Flex>
                <Flex vertical>
-                  <StyledTitle level={1}>{currentNews?.title}</StyledTitle>
+                  <StyledTitle level={1}>
+                     {currentAchievement?.title}
+                  </StyledTitle>
 
                   <Flex justify="space-between" className="date-info">
                      <Paragraph className="sport-type">
-                        {currentNews?.category.title}
+                        {currentAchievement?.season}
                      </Paragraph>
                   </Flex>
-
                   <StyledParagraph
                      dangerouslySetInnerHTML={{
                         __html:
-                           currentNews?.content ||
+                           currentAchievement?.content ||
                            'loreasdfasdfasjdhfas ajdh fajsdkfkal laksjhdfak aksdhjfa skdhfa ldksfjahsdf laksjdhfajksdha cdjadkschalksdjch',
                      }}
                   />
@@ -47,8 +47,8 @@ const New: FC = () => {
          <div className="box_container">
             <h3 className="main-title">Кадры с события</h3>
             <Flex wrap gap={15}>
-               {Array.from({ length: 4 }).map(() => (
-                  <img src={image} alt="" />
+               {currentAchievement?.images?.map((item) => (
+                  <img src={item} alt="" />
                ))}
             </Flex>
          </div>
@@ -61,6 +61,7 @@ export default New
 const StyledContainer = styled.main`
    margin-bottom: 40px;
    margin: 0 auto;
+   max-width: 1600px;
 
    @media (max-width: 600px) {
       margin-top: 65px;
@@ -73,15 +74,15 @@ const StyledContainer = styled.main`
 
    .box_container {
       padding: 40px;
+      padding-left: 20px;
    }
 `
 
-const BackgroundContainer = styled.div<{ image: string }>`
+const BackgroundContainer = styled.div<{ image: string | null }>`
    background-image: url(${(props) => props.image});
    background-size: cover;
    background-repeat: no-repeat;
-   background-attachment: fixed;
-   min-height: 70vh;
+   min-height: 80vh;
 
    @media (max-width: 600px) {
       min-height: 45vh;
@@ -110,4 +111,5 @@ const StyledParagraph = styled.p`
    font-size: 1rem;
    color: #8e8e8e;
    font-weight: 300;
+   margin-left: 20px;
 `

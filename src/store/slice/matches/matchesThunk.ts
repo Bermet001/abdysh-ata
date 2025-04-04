@@ -34,5 +34,20 @@ const getMatch = createAsyncThunk(
       }
    }
 )
+const getMatchBanner = createAsyncThunk(
+   'matches/getMatchBanner',
+   async (__, { rejectWithValue }) => {
+      try {
+         const { data } = await axiosInstance(`/matches/banner`)
 
-export { getMatches, getMatch }
+         return data
+      } catch (error) {
+         const err = error as AxiosError
+         return rejectWithValue({
+            message: err.message,
+         })
+      }
+   }
+)
+
+export { getMatches, getMatch, getMatchBanner }

@@ -1,16 +1,19 @@
 import { useEffect, useState } from 'react'
 import { Flex } from 'antd'
 import styled, { keyframes } from 'styled-components'
-import TrophyRoom from '../../../assets/images/Trophy/TrophyRoom.webp'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
-import { getAchievements } from '../../../store/slice/ahievements/ahievementsThunk'
+import {
+   getAchievements,
+   getAchievementsBanner,
+} from '../../../store/slice/ahievements/ahievementsThunk'
 import { Helmet } from 'react-helmet-async'
 import { NavLink } from 'react-router-dom'
 
 const Trophy = () => {
    window.scrollTo(0, 0)
-   const { achievements } = useAppSelector((state) => state.achievements)
-
+   const { achievements, banner } = useAppSelector(
+      (state) => state.achievements
+   )
    const isMobile = window.innerWidth <= 768
    const [isUserScrolling, setIsUserScrolling] = useState<boolean>(false)
 
@@ -38,7 +41,11 @@ const Trophy = () => {
 
    useEffect(() => {
       dispatch(getAchievements())
+
+      dispatch(getAchievementsBanner())
    }, [dispatch])
+
+   console.log(banner[0]?.image)
 
    return (
       <main>
@@ -61,7 +68,6 @@ const Trophy = () => {
                property="og:description"
                content="Посмотрите достижения FC Абдыш ата."
             />
-            <meta property="og:image" content={TrophyRoom} />
             <meta property="og:url" content="http://mysite.com/trophy" />
             <meta property="og:type" content="website" />
             <script type="application/ld+json">
@@ -72,13 +78,12 @@ const Trophy = () => {
                  "name": "Трофейная комната FC Абдыш ата",
                  "description": "Посмотрите достижения FC Абдыш ата.",
                  "url": "http://mysite.com/trophy",
-                 "image": "${TrophyRoom}"
                }
             `}
             </script>
          </Helmet>
          <StyledContainer vertical>
-            <StyledFirstPart>
+            <StyledFirstPart banner={banner[0]?.image}>
                <div className="first-part">
                   <Flex className="first" align="end">
                      <DarkOverlay />
@@ -102,10 +107,10 @@ const Trophy = () => {
 
                <Flex vertical className="trophy-block-container">
                   {achievements.map((item, index) => (
-                     <NavLink to={`/trophy/${item.slug}`}>
+                     <NavLink to={`/trophy/${item.slug}`} key={item.id}>
                         <Flex
                            justify="space-between"
-                           key={index}
+                           key={item.id}
                            className="trophy-block"
                            style={{
                               flexDirection:
@@ -192,11 +197,13 @@ const StyledContainer = styled(Flex)`
 
    .image {
       width: 50%;
+      min-width: 50%;
       height: 400px;
       object-fit: cover;
 
       @media (max-width: 768px) {
          height: auto;
+         min-width: none;
       }
 
       @media (max-width: 480px) {
@@ -301,9 +308,9 @@ const StyledContainer = styled(Flex)`
    }
 `
 
-const StyledFirstPart = styled(Flex)`
+const StyledFirstPart = styled(Flex)<{ banner: string | undefined }>`
    position: relative;
-   background-image: url(${TrophyRoom});
+   background-image: url(${(props) => props.banner});
    background-size: cover;
    background-position: center;
    height: 70vh;

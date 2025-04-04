@@ -8,6 +8,7 @@ import { FC, useEffect } from 'react'
 import { CONTACTS_THUNK } from '../../store/slice/contacts/contactsThunk'
 import FooterSection from './FooterSection'
 import FooterContacts from './FooterContacts'
+import logo from '../../assets/images/white-logo.png'
 
 const Footer: FC = () => {
    const dispatch = useAppDispatch()
@@ -51,7 +52,7 @@ const Footer: FC = () => {
       },
       {
          label: 'Перейти в whatsapp чат',
-         href: contact.whatsapp,
+         href: `https://wa.me/${contact.whatsapp}`,
          Icon: Whatsapp,
       },
    ]
@@ -65,7 +66,7 @@ const Footer: FC = () => {
                align="center"
             >
                <Flex gap={15} className="logo" align="center">
-                  <img loading="lazy" src={contact.logo} alt="logo" />
+                  <img loading="lazy" src={logo} alt="logo" />
                   <h1 className="main-title">Абдыш-ата</h1>
                </Flex>
                <Flex className="socials" align="center" gap={30}>
@@ -109,23 +110,13 @@ export default Footer
 
 const StyledFooter = styled.footer`
    padding: 40px;
+   background-color: #05a550;
+   color: #fff;
 
    .logo {
       img {
-         width: 60px;
-         height: 75px;
-      }
-   }
-
-   .socials {
-      a > svg {
-         fill: #40a852;
-         width: 30px;
-         height: 30px;
-
-         path {
-            fill: #40a852;
-         }
+         width: 90px;
+         height: 80px;
       }
    }
 
@@ -137,7 +128,7 @@ const StyledFooter = styled.footer`
    }
    h1 {
       margin-bottom: 0;
-      color: #05a558;
+      color: #fff;
    }
    .inner {
       max-width: 1600px;
@@ -155,8 +146,8 @@ const StyledFooter = styled.footer`
    a {
       font-size: 15px;
       font-weight: 600;
-      /* color: white; */
-      color: #212121;
+      color: white;
+      /* color: #212121; */
       display: flex;
       gap: 10px;
       transition: color 0.4s ease, transform 0.4s ease;

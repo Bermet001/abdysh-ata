@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { getMatch, getMatches } from './matchesThunk'
+import { getMatch, getMatchBanner, getMatches } from './matchesThunk'
+import { Banner } from '../interface'
 
 interface Team {
    id: number
@@ -31,16 +32,19 @@ export interface Match {
    stream_link: string | null
 }
 
+
 interface MatchesState {
    isLoading: boolean
    matches: Match[]
    match: Match | null
+   banner: Banner[]
 }
 
 const initialState: MatchesState = {
    isLoading: false,
    matches: [],
    match: null,
+   banner: [],
 }
 
 export const MatchesSlice = createSlice({
@@ -62,7 +66,6 @@ export const MatchesSlice = createSlice({
          .addCase(getMatches.rejected, (state) => {
             state.isLoading = false
          })
-
          .addCase(
             getMatch.fulfilled,
             (state, { payload }: PayloadAction<Match>) => {
@@ -74,6 +77,19 @@ export const MatchesSlice = createSlice({
             state.isLoading = true
          })
          .addCase(getMatch.rejected, (state) => {
+            state.isLoading = false
+         })
+         .addCase(
+            getMatchBanner.fulfilled,
+            (state, { payload }: PayloadAction<Banner[]>) => {
+               state.banner = payload
+               state.isLoading = false
+            }
+         )
+         .addCase(getMatchBanner.pending, (state) => {
+            state.isLoading = true
+         })
+         .addCase(getMatchBanner.rejected, (state) => {
             state.isLoading = false
          })
    },

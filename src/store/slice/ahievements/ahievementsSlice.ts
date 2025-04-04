@@ -1,5 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { getAchievement, getAchievements } from './ahievementsThunk'
+import {
+   getAchievement,
+   getAchievements,
+   getAchievementsBanner,
+} from './ahievementsThunk'
+import { Banner } from '../interface'
 
 interface Achievement {
    id: number | null
@@ -8,13 +13,16 @@ interface Achievement {
    slug: string
    descriptions: string
    image: string
+   images: string[] | null
    date: string
+   content: string | null
 }
 
 interface AchievementsState {
    isLoading: boolean
    achievements: Achievement[]
    currentAchievement: Achievement | null
+   banner: Banner[]
 }
 
 const initialState: AchievementsState = {
@@ -28,6 +36,8 @@ const initialState: AchievementsState = {
          descriptions: '',
          image: '',
          date: '',
+         images: null,
+         content: null,
       },
    ],
    currentAchievement: {
@@ -38,7 +48,10 @@ const initialState: AchievementsState = {
       date: '',
       descriptions: '',
       image: '',
+      images: null,
+      content: null,
    },
+   banner: [],
 }
 
 export const achievementsSlice = createSlice({
@@ -72,6 +85,19 @@ export const achievementsSlice = createSlice({
             state.isLoading = true
          })
          .addCase(getAchievement.rejected, (state) => {
+            state.isLoading = false
+         })
+         .addCase(
+            getAchievementsBanner.fulfilled,
+            (state, { payload }: PayloadAction<Banner[]>) => {
+               state.banner = payload
+               state.isLoading = false
+            }
+         )
+         .addCase(getAchievementsBanner.pending, (state) => {
+            state.isLoading = true
+         })
+         .addCase(getAchievementsBanner.rejected, (state) => {
             state.isLoading = false
          })
    },

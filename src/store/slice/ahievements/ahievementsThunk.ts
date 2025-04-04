@@ -37,5 +37,20 @@ const getAchievement = createAsyncThunk(
       }
    }
 )
+const getAchievementsBanner = createAsyncThunk(
+   'achievement/getAchievementsBanner',
+   async (_, { rejectWithValue }) => {
+      try {
+         const { data } = await axiosInstance(`achievements/banner`)
 
-export { getAchievements, getAchievement }
+         return data
+      } catch (error) {
+         const err = error as AxiosError
+         return rejectWithValue({
+            message: err.message,
+         })
+      }
+   }
+)
+
+export { getAchievements, getAchievement, getAchievementsBanner }
