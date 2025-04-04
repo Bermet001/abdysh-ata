@@ -79,10 +79,18 @@ const slideInLeft = keyframes`
 
 const StyledComponent = styled(Flex)`
    margin: 0 auto;
+   margin-top: 80px;
+
    .first-part-coach {
       padding: 0 75px;
       max-width: 1600px;
       width: 100vw;
+
+      @media (max-width: 1100px) {
+         flex-direction: column-reverse;
+         gap: 40px;
+         align-items: start;
+      }
    }
    .coach-full-name {
       line-height: 0.6;
@@ -127,6 +135,10 @@ const AnimatedImage = styled.img`
    opacity: 0;
    animation: ${fadeIn} 0.4s ease-in-out forwards;
    animation-delay: 0.3s;
+
+   @media (max-width: 1100px) {
+      width: 300px;
+   }
 `
 const AnimatedSurname = styled.p`
    opacity: 0;
