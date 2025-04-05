@@ -146,6 +146,10 @@ const StyledContainer = styled.section`
 
    .swiper-pagination-bullet {
       background: #ed5a0c !important;
+
+      @media (max-width: 600px) {
+         display: none;
+      }
    }
 `
 
@@ -157,7 +161,6 @@ const StyledCard = styled.div`
    justify-content: center;
    text-align: center;
    overflow: hidden;
-   height: 610px;
 
    .card-coach {
       padding: 40px;
@@ -181,17 +184,23 @@ const StyledCard = styled.div`
 
    .coach-photo {
       width: 350px;
-      height: auto;
+      object-fit: cover;
+      height: 600px;
       margin-bottom: 20px;
       -webkit-box-shadow: inset 0px -186px 162px -200px rgba(0, 166, 79, 1);
       -moz-box-shadow: inset 0px -186px 162px -200px rgba(0, 166, 79, 1);
       box-shadow: inset 0px -186px 162px -200px rgba(0, 166, 79, 1);
+
+      @media (max-width: 800px) {
+         height: 500px;
+      }
    }
 
    .coach-name {
       font-size: 24px;
       font-weight: 400;
       margin: 0;
+      width: 320px;
    }
 
    .coach-surname {

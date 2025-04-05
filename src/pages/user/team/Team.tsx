@@ -62,7 +62,13 @@ const StyledCard = styled(Card)`
    }
 
    @media (max-width: 1400px) {
+      min-width: 200px !important;
       width: 200px !important;
+   }
+
+   @media (max-width: 550px) {
+      width: 100% !important;
+      height: 550px !important;
    }
 
    .ant-card-body {
