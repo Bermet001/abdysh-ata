@@ -157,6 +157,7 @@ const fadeInUp = keyframes`
 `
 
 const StyledContainer = styled(Flex)`
+   margin-top: 30px;
    .description-text {
       color: grey;
    }

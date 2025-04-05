@@ -88,6 +88,7 @@ export default Partners
 const StyledContainer = styled.main`
    max-width: 1600px;
    margin: 0 auto;
+   margin-top: 30px;
    color: white;
 
    .partners-container {

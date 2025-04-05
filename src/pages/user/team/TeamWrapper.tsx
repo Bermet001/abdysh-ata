@@ -10,6 +10,7 @@ import type { TabsProps } from 'antd'
 import { Helmet } from 'react-helmet-async'
 import Academy from '../academy/Academy'
 import Guideline from '../guideline/Guideline'
+import TournamentAcademy from '../TournamentAcademy'
 
 const TeamWrapper: FC = () => {
    window.scrollTo(0, 0)
@@ -44,7 +45,7 @@ const TeamWrapper: FC = () => {
          {
             key: '4',
             label: 'Турниры',
-            children: <div>Содержимое турниров</div>,
+            children: <TournamentAcademy/>,
          }
       )
    }
