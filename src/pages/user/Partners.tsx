@@ -168,7 +168,7 @@ const SponsorItem = styled.div`
    flex: 0 0 calc(18% - 40px);
    max-width: calc(25% - 40px);
    display: flex;
-   gap: 30px;
+   gap: 40px;
    align-items: center;
    justify-content: center;
    transition: transform 0.3s ease;
@@ -182,7 +182,7 @@ const SponsorItem = styled.div`
       padding: 10px;
       width: 195px;
       height: 140px;
-      object-fit: cover;
+      object-fit: contain;
       cursor: pointer;
       transition: transform 0.3s ease;
    }
