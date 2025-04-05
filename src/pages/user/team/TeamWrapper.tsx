@@ -82,7 +82,8 @@ const StyledContainer = styled.main<{ slug?: string }>`
    }
 
    @media (max-width: 768px) {
-      margin-top: 50px;
+      margin-top: ${({ slug }) =>
+         slug === 'futbolnaya-akademiya' ? '0px' : '50px'};
    }
 
    .ant-tabs-tab {
