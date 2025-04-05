@@ -104,7 +104,7 @@ const StyledContainer = styled.main<{ slug?: string }>`
    }
 
    @media (max-width: 1024px) {
-      padding: 100px 20px;
+      ${({ slug }) => (slug === 'futbolnaya-akademiya' ? '0' : ' 100px 20px;')};
    }
 
    @media (max-width: 768px) {
