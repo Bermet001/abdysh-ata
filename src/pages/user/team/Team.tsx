@@ -66,7 +66,7 @@ const StyledCard = styled(Card)`
       width: 200px !important;
    }
 
-   @media (max-width: 550px) {
+   @media (max-width: 700px) {
       width: 100% !important;
       height: 550px !important;
    }

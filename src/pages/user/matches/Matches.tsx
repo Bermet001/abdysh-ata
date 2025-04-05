@@ -57,10 +57,10 @@ const SchedulMatches = () => {
          render: (_text: string, record: Match) => (
             <DateTimeWrapper>
                <StyledDate>
-                  {new Date(record.date).toLocaleDateString()}
+                  {new Date(record?.date).toLocaleDateString()}
                </StyledDate>
                <StyledTime>
-                  {new Date(record.date).toLocaleTimeString([], {
+                  {new Date(record?.date).toLocaleTimeString([], {
                      hour: '2-digit',
                      minute: '2-digit',
                   })}
@@ -71,8 +71,12 @@ const SchedulMatches = () => {
       {
          title: 'Лига',
          dataIndex: 'liga',
-         key: 'league',
-         render: (liga: League) => <League>{liga.title}</League>,
+         key: 'liga',
+         render: (liga: League) => {
+            console.log(liga)
+
+            return <League>{liga?.title}</League>
+         },
       },
       {
          title: 'Команды',
@@ -80,10 +84,10 @@ const SchedulMatches = () => {
          render: (record: Match) => (
             <TeamsWrapper>
                <TeamWrapper className="team-box">
-                  <span className="team-name">{record.home_team.title}</span>
+                  <span className="team-name">{record?.home_team?.title}</span>
                   <img
-                     src={record.home_team.logo}
-                     alt={record.home_team.title}
+                     src={record.home_team?.logo}
+                     alt={record.home_team?.title}
                   />
                </TeamWrapper>
 
@@ -91,10 +95,10 @@ const SchedulMatches = () => {
 
                <TeamWrapper className="team-box">
                   <img
-                     src={record.away_team.logo}
-                     alt={record.away_team.title}
+                     src={record.away_team?.logo}
+                     alt={record.away_team?.title}
                   />
-                  <span className="team-name">{record.away_team.title}</span>
+                  <span className="team-name">{record?.away_team?.title}</span>
                </TeamWrapper>
             </TeamsWrapper>
          ),
@@ -104,7 +108,7 @@ const SchedulMatches = () => {
          key: 'action',
          render: (record: Match) => (
             <Button type="primary">
-               <NavLink to={`${record.slug}`}>Смотреть</NavLink>
+               <NavLink to={`${record?.slug}`}>Смотреть</NavLink>
             </Button>
          ),
       },
@@ -144,7 +148,7 @@ const SchedulMatches = () => {
 
             <Table
                columns={columns}
-               dataSource={matches.map((match) => ({
+               dataSource={matches?.map((match) => ({
                   ...match,
                   key: match.id,
                }))}

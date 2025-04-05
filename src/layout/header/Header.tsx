@@ -106,17 +106,19 @@ const Header = () => {
          key: '5',
          label: <NavLink to="/rating">Турниры</NavLink>,
          children:
-            teams?.map(({ slug, title }) => ({
-               key: slug,
-               label: (
-                  <StyledNavLink
-                     className="mobile_navigations active_nav"
-                     to={`/infrastructure/${slug}`}
-                  >
-                     {title}
-                  </StyledNavLink>
-               ),
-            })) || [],
+            teams?.map(({ slug, title }) => {
+               return {
+                  key: slug,
+                  label: (
+                     <StyledNavLink
+                        className="mobile_navigations active_nav"
+                        to={`/infrastructure/${slug}`}
+                     >
+                        {title}
+                     </StyledNavLink>
+                  ),
+               }
+            }) || [],
       },
       { key: '6', label: <NavLink to="/partners">Партнеры</NavLink> },
       { key: '7', label: <NavLink to="/trophy">Наши достижения</NavLink> },

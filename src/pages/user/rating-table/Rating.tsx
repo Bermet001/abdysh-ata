@@ -56,6 +56,7 @@ const Rating = () => {
                      alt={`${record} logo`}
                      style={{
                         width: '40px',
+                        height: '50px',
                         maxHeight: '50px',
                      }}
                   />

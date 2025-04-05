@@ -16,6 +16,7 @@ interface TourStats {
    points: number
    form_list: string[]
 }
+
 interface Team {
    id: number | null
    slug: string
@@ -33,19 +34,24 @@ interface RatingState {
    isLoading: boolean
    teams: Teams[]
    currentTeam: Team | null
+   selectedRating: number | null // Новое поле для сохранения выбранного рейтинга
 }
 
 const initialState: RatingState = {
    isLoading: false,
    teams: [],
    currentTeam: null,
+   selectedRating: null, // Инициализация нового поля
 }
 
 export const ratingSlice = createSlice({
    name: 'rating',
    initialState,
-   reducers: {},
-
+   reducers: {
+      setSelectedRating(state, action: PayloadAction<number | null>) {
+         state.selectedRating = action.payload // Сохранение выбранного рейтинга в состояние
+      },
+   },
    extraReducers: (builder) => {
       builder
          .addCase(getTeamsRating.pending, (state) => {
@@ -76,3 +82,8 @@ export const ratingSlice = createSlice({
          })
    },
 })
+
+// Экспортируем action для использования в компонентах
+export const { setSelectedRating } = ratingSlice.actions
+
+export default ratingSlice.reducer

@@ -52,11 +52,11 @@ const MatchInfo = () => {
          <BackgroundImage />
 
          <Content>
-            <LeagueLogo src={match?.liga.image} alt={match?.liga.title} />
+            <LeagueLogo src={match?.liga?.image} alt={match?.liga?.title} />
             <h4 className="time">
                <Countdown>
                   {match?.date
-                     ? new Date(match.date).toLocaleDateString()
+                     ? new Date(match?.date).toLocaleDateString()
                      : 'Дата не доступна'}
                </Countdown>
             </h4>
@@ -75,12 +75,12 @@ const MatchInfo = () => {
                   <TeamCard>
                      <Team>
                         <img
-                           src={match?.home_team.logo}
-                           alt={match?.home_team.title}
+                           src={match?.home_team?.logo}
+                           alt={match?.home_team?.title}
                            style={{ width: '80px' }}
                         />
                         <Title className="team-name" level={4}>
-                           {match?.home_team.title}
+                           {match?.home_team?.title}
                         </Title>
                      </Team>
                   </TeamCard>
@@ -96,12 +96,12 @@ const MatchInfo = () => {
                   <TeamCard>
                      <Team>
                         <img
-                           src={match?.away_team.logo}
-                           alt={match?.away_team.title}
+                           src={match?.away_team?.logo}
+                           alt={match?.away_team?.title}
                            style={{ width: '80px' }}
                         />
                         <Title className="team-name" level={4}>
-                           {match?.away_team.title}
+                           {match?.away_team?.title}
                         </Title>
                      </Team>
                   </TeamCard>
