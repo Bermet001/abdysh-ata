@@ -71,7 +71,7 @@ export default TeamWrapper
 const StyledContainer = styled.main<{ slug?: string }>`
    margin: 0 auto;
    margin-top: ${({ slug }) =>
-      slug === 'futbolnaya-akademiya' ? '10px' : '120px'};
+      slug === 'futbolnaya-akademiya' ? '10px' : '50px'};
    margin-bottom: 80px;
    padding: ${({ slug }) =>
       slug === 'futbolnaya-akademiya' ? ' 0 40px' : ' 0 75px'};

@@ -168,6 +168,7 @@ const TeamContainer = styled(Flex)`
 
    @media (max-width: 480px) {
       flex-direction: column !important;
+      gap: 25px !important;
 
       .ant-col-xs-11 {
          max-width: 100% !important;

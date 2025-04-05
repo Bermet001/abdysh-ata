@@ -38,7 +38,7 @@ export default Academy
 
 const StyledContainer = styled.div`
    margin: 0 auto;
-   padding: 40px;
-   padding-top: 100px;
+   padding: 30px;
+   padding-top: 80px;
    max-width: 1600px;
 `
