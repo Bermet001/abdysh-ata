@@ -47,12 +47,7 @@ const initialState: RatingState = {
 export const ratingSlice = createSlice({
    name: 'rating',
    initialState,
-   reducers: {
-      setSelectedRating(state, action: PayloadAction<string | null>) {
-         state.selectedRating = action.payload
-         console.log('action.payload', action.payload)
-      },
-   },
+   reducers: {},
    extraReducers: (builder) => {
       builder
          .addCase(getTeamsRating.pending, (state) => {
@@ -83,8 +78,5 @@ export const ratingSlice = createSlice({
          })
    },
 })
-
-// Экспортируем action для использования в компонентах
-export const { setSelectedRating } = ratingSlice.actions
 
 export default ratingSlice.reducer

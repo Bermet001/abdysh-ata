@@ -55,6 +55,7 @@ const Rating = () => {
                      src={record}
                      alt={`${record} logo`}
                      style={{
+                        objectFit: 'contain',
                         width: '55px',
                         height: '50px',
                         maxHeight: '50px',
@@ -151,9 +152,7 @@ const Rating = () => {
 
    window.scrollTo(0, 0)
 
-   const { currentTeam, selectedRating } = useAppSelector(
-      (state) => state.rating
-   )
+   const { currentTeam } = useAppSelector((state) => state.rating)
    const { partners } = useAppSelector((state) => state.partner)
    const dispatch = useAppDispatch()
 
@@ -181,7 +180,7 @@ const Rating = () => {
          <Flex vertical className="table">
             <Flex align="center" vertical>
                <h1 className="main-title">Турнирная таблица</h1>
-               <p className="sub-title">{selectedRating}</p>
+               <p className="sub-title">{currentTeam?.title}</p>
             </Flex>
 
             <div className="table-container">

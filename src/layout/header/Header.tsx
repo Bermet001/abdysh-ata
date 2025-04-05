@@ -12,13 +12,12 @@ import { SearchOutlined, MenuOutlined, CloseOutlined } from '@ant-design/icons'
 import Logo from '../../assets/images/main-logo.png'
 import styled from 'styled-components'
 import { NavLink, NavLinkProps, useLocation } from 'react-router-dom'
-import { ChangeEvent, useCallback, useEffect, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../store/store'
 import { getAllTeams, getOurTeam } from '../../store/slice/team/teamThunk'
 import { searchGlobal } from '../../store/slice/globalSearch/globalSearchThunk'
 import { getInfrastractures } from '../../store/slice/infrastracture/infrastractureThunk'
 import { getTournaments } from '../../store/slice/rating/ratingThunk'
-import { setSelectedRating } from '../../store/slice/rating/ratingSlice'
 
 type MenuItem = Required<MenuProps>['items'][number]
 
@@ -39,15 +38,6 @@ const Header = () => {
    const [searchQuery, setSearchQuery] = useState('')
 
    const dispatch = useAppDispatch()
-
-   const handleRatingClick = useCallback(
-      (title: string) => {
-         console.log(title, 'fksadjhfkajsl')
-
-         dispatch(setSelectedRating(title))
-      },
-      [dispatch]
-   )
 
    const items: MenuItem[] = [
       { key: '1', label: <NavLink to="/">Главная</NavLink> },
@@ -124,7 +114,6 @@ const Header = () => {
                   <StyledNavLink
                      className="mobile_navigations active_nav"
                      to={`/tournaments/${slug}`}
-                     onClick={() => handleRatingClick(title)}
                   >
                      {title}
                   </StyledNavLink>
@@ -364,9 +353,6 @@ const Header = () => {
                                        className="mobile_navigations"
                                        to={path}
                                        onClick={() => {
-                                          if (path.startsWith('/tournaments')) {
-                                             handleRatingClick(title)
-                                          }
                                           handleMenuClick()
                                        }}
                                     >
