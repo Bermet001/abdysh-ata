@@ -169,7 +169,7 @@ const Rating = () => {
 
    return (
       <StyledContainer>
-         <Flex className="partners" align="center">
+         <Flex className="partners" align="center" justify="center">
             {partners?.slice(0, 3).map((item) => (
                <div className="partner" key={item.id}>
                   <img src={item.image} alt={item.title} width={70} />
