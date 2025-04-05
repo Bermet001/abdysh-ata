@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Flex } from 'antd'
-import bgImage from '../../assets/images/partners-baner/partners-image.jpg'
+import bgImage from '../../assets/images/victory.webp'
 import { useAppDispatch, useAppSelector } from '../../store/store'
 import { getPartners } from '../../store/slice/partners/partnersThunk'
 import { useEffect } from 'react'
