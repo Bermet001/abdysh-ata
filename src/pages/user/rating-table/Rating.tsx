@@ -171,9 +171,11 @@ const Rating = () => {
       <StyledContainer>
          <Flex className="partners" align="center" justify="center">
             {partners?.slice(0, 3).map((item) => (
-               <div className="partner" key={item.id}>
-                  <img src={item.image} alt={item.title} width={70} />
-               </div>
+               <a href={item.link}>
+                  <div className="partner" key={item.id}>
+                     <img src={item.image} alt={item.title} width={70} />
+                  </div>
+               </a>
             ))}
          </Flex>
          <br />
