@@ -180,7 +180,7 @@ const SponsorItem = styled.div`
    img {
       display: block;
       padding: 10px;
-      width: 195px;
+      width: 155px;
       height: 140px;
       object-fit: contain;
       cursor: pointer;
