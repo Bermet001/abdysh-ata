@@ -71,6 +71,10 @@ const StyledContainer = styled.section`
       padding: 40px 20px 25px;
    }
 
+   img {
+      object-fit: contain;
+   }
+
    .swiper-slide img {
       display: block;
       padding: 10px;
