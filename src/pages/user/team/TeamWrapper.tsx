@@ -9,29 +9,45 @@ import { useParams } from 'react-router-dom'
 import type { TabsProps } from 'antd'
 import { Helmet } from 'react-helmet-async'
 import Academy from '../academy/Academy'
-
-const items: TabsProps['items'] = [
-   {
-      key: '1',
-      label: 'Команда',
-      children: <Team />,
-   },
-   {
-      key: '2',
-      label: 'Тренерский штаб',
-      children: <Сoaches />,
-   },
-]
+import Guideline from '../guideline/Guideline'
 
 const TeamWrapper: FC = () => {
    window.scrollTo(0, 0)
-   const { slug } = useParams<{ slug: string }>()
+   const { slug } = useParams<{ slug: string }>() // Получаем slug из URL
 
    const dispatch = useAppDispatch()
 
    useEffect(() => {
       dispatch(getTeam(slug))
    }, [dispatch, slug])
+
+   const baseItems: TabsProps['items'] = [
+      {
+         key: '1',
+         label: 'Команда',
+         children: <Team />,
+      },
+      {
+         key: '2',
+         label: 'Тренерский штаб',
+         children: <Сoaches />,
+      },
+   ]
+
+   if (slug === 'futbolnaya-akademiya') {
+      baseItems.push(
+         {
+            key: '3',
+            label: 'Руководство',
+            children: <Guideline />,
+         },
+         {
+            key: '4',
+            label: 'Турниры',
+            children: <div>Содержимое турниров</div>,
+         }
+      )
+   }
 
    return (
       <>
@@ -57,10 +73,10 @@ const TeamWrapper: FC = () => {
             />
          </Helmet>
 
-         {slug == 'futbolnaya-akademiya' ? <Academy /> : null}
+         {slug === 'futbolnaya-akademiya' ? <Academy /> : null}
 
          <StyledContainer slug={slug}>
-            <Tabs defaultActiveKey="1" items={items} />
+            <Tabs defaultActiveKey="1" items={baseItems} />
          </StyledContainer>
       </>
    )
@@ -74,7 +90,7 @@ const StyledContainer = styled.main<{ slug?: string }>`
       slug === 'futbolnaya-akademiya' ? '10px' : '50px'};
    margin-bottom: 80px;
    padding: ${({ slug }) =>
-      slug === 'futbolnaya-akademiya' ? ' 0 40px' : ' 0 75px'};
+      slug === 'futbolnaya-akademiya' ? '0 40px' : '0 75px'};
    max-width: 1600px;
 
    @media (max-width: 1024px) {

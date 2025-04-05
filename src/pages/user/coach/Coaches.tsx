@@ -200,7 +200,8 @@ const StyledCard = styled.div`
       font-size: 24px;
       font-weight: 400;
       margin: 0;
-      width: 320px;
+      text-align: center;
+      width: 300px;
    }
 
    .coach-surname {

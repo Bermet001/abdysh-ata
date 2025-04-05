@@ -5,6 +5,7 @@ import { InfoCircleOutlined } from '@ant-design/icons'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
 import { getManagmets } from '../../../store/slice/guideline/guidelineThunk'
 import { Helmet } from 'react-helmet-async'
+import { useParams } from 'react-router-dom'
 
 interface IManagment {
    id: number
@@ -16,6 +17,7 @@ interface IManagment {
 
 const Guideline: FC = () => {
    window.scrollTo(0, 0)
+   const { slug } = useParams<{ slug: string }>()
    const { persons } = useAppSelector((state) => state.management)
 
    const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
@@ -40,7 +42,7 @@ const Guideline: FC = () => {
    }
 
    return (
-      <StyledContainer>
+      <StyledContainer slug={slug}>
          <Helmet>
             <title>Руководство FC Абдыш ата</title>
             <meta
@@ -89,11 +91,12 @@ const Guideline: FC = () => {
 
 export default Guideline
 
-const StyledContainer = styled.main`
-   background-color: #f7f9fc;
-   border-radius: 10px;
-   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-   padding: 100px 75px;
+const StyledContainer = styled.main<{ slug?: string }>`
+   background-color: ${({ slug }) =>
+      slug === 'futbolnaya-akademiya' ? 'white' : '#f7f9fc'};
+
+   padding: ${({ slug }) =>
+      slug === 'futbolnaya-akademiya' ? '0' : '100px 75px'};
 
    > div {
       margin: 0 auto;
