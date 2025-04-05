@@ -52,6 +52,7 @@ const Gallery = () => {
                <Flex className="gallery-image" vertical gap={20}>
                   <ImageWrapper justify="center">
                      <img
+                        loading="lazy"
                         height="100%"
                         width="100%"
                         src={image1.image_main}
@@ -98,6 +99,7 @@ const Gallery = () => {
 
                   <ImageWrapper justify="center">
                      <img
+                        loading="lazy"
                         height="100%"
                         width="100%"
                         src={image2.image_main}
@@ -148,6 +150,7 @@ const Gallery = () => {
                      <img
                         height="100%"
                         width="100%"
+                        loading="lazy"
                         src={image3.image_main}
                         alt="Event 3"
                      />
