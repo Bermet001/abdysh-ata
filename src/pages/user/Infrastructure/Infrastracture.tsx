@@ -4,6 +4,8 @@ import { useAppDispatch, useAppSelector } from '../../../store/store'
 import { useParams } from 'react-router-dom'
 import { useEffect } from 'react'
 import { getInfrastracture } from '../../../store/slice/infrastracture/infrastractureThunk'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { FreeMode, Navigation } from 'swiper/modules'
 
 const Infrastructure = () => {
    window.scrollTo(0, 0)
@@ -78,19 +80,24 @@ const Infrastructure = () => {
             })}
          </Flex>
 
-         <Flex vertical gap={20} wrap className="gallery">
-            <h2 className="main-title">Картинки</h2>
-            <Flex gap={20} wrap>
-               {infrastracture?.images.map((item) => (
-                  <img
-                     key={item.id}
-                     className="gallery-image"
-                     src={item.image}
-                     alt="image"
-                  />
-               ))}
-            </Flex>
-         </Flex>
+         <h2 className="main-title">Картинки</h2>
+         <Swiper
+            navigation
+            modules={[FreeMode, Navigation]}
+            spaceBetween={10}
+            slidesPerView={4}
+            breakpoints={{
+               350: { slidesPerView: 2, spaceBetween: 20 },
+               500: { slidesPerView: 2, spaceBetween: 20 },
+               900: { slidesPerView: 2.5, spaceBetween: 20 },
+            }}
+         >
+            {infrastracture?.images.map((item) => (
+               <SwiperSlide key={item.id}>
+                  <img className="gallery-image" src={item.image} alt="image" />
+               </SwiperSlide>
+            ))}
+         </Swiper>
 
          <Flex vertical className="map-block">
             <h2>Маршрут</h2>
@@ -114,6 +121,13 @@ const StyledContainer = styled.main`
    margin-top: 80px;
    padding: 20px 75px;
    background-color: #f9f9f9;
+
+   .swiper-button-prev,
+   .swiper-button-next {
+      color: #ed5a0c;
+      width: 50px;
+      height: 50px;
+   }
 
    @media (max-width: 1300px) {
       padding: 20px;
@@ -156,33 +170,10 @@ const StyledContainer = styled.main`
       }
    }
 
-   .gallery {
-      padding: 0 100px;
-      margin-top: 90px;
-
-      @media (max-width: 1300px) {
-         margin-top: 50px;
-         padding: 0 20px;
-      }
-
-      @media (max-width: 768px) {
-         padding: 0;
-      }
-
-      img {
-         width: calc(33.33% - 20px);
-         height: 250px;
-         object-fit: cover;
-         border-radius: 6px;
-
-         @media (max-width: 768px) {
-            width: calc(50% - 10px);
-            height: auto;
-         }
-         @media (max-width: 480px) {
-            width: calc(50% - 10px);
-         }
-      }
+   .gallery-image {
+      border-radius: 6px;
+      width: 100%;
+      height: auto;
    }
 
    .media {
