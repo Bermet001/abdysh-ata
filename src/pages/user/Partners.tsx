@@ -2,17 +2,21 @@ import styled from 'styled-components'
 import { Flex } from 'antd'
 import bgImage from '../../assets/images/victory.webp'
 import { useAppDispatch, useAppSelector } from '../../store/store'
-import { getPartners } from '../../store/slice/partners/partnersThunk'
+import {
+   getPartners,
+   getPartnersBanner,
+} from '../../store/slice/partners/partnersThunk'
 import { useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 
 const Partners = () => {
    window.scrollTo(0, 0)
 
-   const { partners } = useAppSelector((state) => state.partner)
+   const { partners, banner } = useAppSelector((state) => state.partner)
    const dispatch = useAppDispatch()
 
    useEffect(() => {
+      dispatch(getPartnersBanner())
       dispatch(getPartners())
    }, [dispatch])
 
@@ -51,7 +55,7 @@ const Partners = () => {
             </script>
          </Helmet>
          <StyledContainer>
-            <BackgroundSection>
+            <BackgroundSection banners={banner[0]?.image}>
                <div className="first-part">
                   <Content>
                      <h1 className="main-title">Спонсоры Абдыш ата</h1>
@@ -109,12 +113,12 @@ const StyledContainer = styled.main`
    }
 `
 
-const BackgroundSection = styled.div`
+const BackgroundSection = styled.div<{ banners: string }>`
    position: relative;
    height: 500px;
    padding-top: 200px;
    text-align: center;
-   background-image: url(${bgImage});
+   background-image: url(${(props) => props.banners || bgImage});
    background-size: cover;
    background-position: center;
    background-repeat: no-repeat;

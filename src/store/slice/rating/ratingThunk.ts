@@ -23,7 +23,6 @@ const getTeamsRating = createAsyncThunk(
    async (slug: string | undefined, { rejectWithValue }) => {
       try {
          const { data } = await axiosInstance(`teams/tournamend/${slug}`)
-         console.log(data, 'data')
 
          return data
       } catch (error) {

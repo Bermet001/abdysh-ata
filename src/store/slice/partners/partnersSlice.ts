@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { getPartners, getPartnersBanner } from './partnersThunk'
+import { Banner } from '../interface'
 interface Partner {
    id: number
    title: string
@@ -10,13 +11,13 @@ interface Partner {
 interface PartnerState {
    partners: Partner[]
    isLoading: boolean
-   banner: string
+   banner: Banner[]
 }
 
 const initialState: PartnerState = {
    partners: [],
    isLoading: false,
-   banner: '',
+   banner: [],
 }
 
 export const partnerSlice = createSlice({
@@ -29,7 +30,6 @@ export const partnerSlice = createSlice({
             getPartners.fulfilled,
             (state, { payload }: PayloadAction<Partner[]>) => {
                state.partners = payload
-               console.log(payload)
 
                state.isLoading = false
             }
@@ -43,9 +43,8 @@ export const partnerSlice = createSlice({
          })
          .addCase(
             getPartnersBanner.fulfilled,
-            (state, { payload }: PayloadAction<string>) => {
+            (state, { payload }: PayloadAction<Banner[]>) => {
                state.banner = payload
-               console.log(payload)
 
                state.isLoading = false
             }

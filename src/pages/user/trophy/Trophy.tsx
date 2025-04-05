@@ -45,8 +45,6 @@ const Trophy = () => {
       dispatch(getAchievementsBanner())
    }, [dispatch])
 
-   console.log(banner[0]?.image)
-
    return (
       <main>
          <Helmet>
