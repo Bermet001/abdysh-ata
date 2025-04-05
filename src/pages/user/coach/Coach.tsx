@@ -57,7 +57,10 @@ const Coach: FC = () => {
 
                <Flex vertical className="biography-box">
                   <h2 className="main-title">Биография</h2>
-                  <p className="bio">{bio}</p>
+                  <p
+                     dangerouslySetInnerHTML={{ __html: bio || '' }}
+                     className="bio"
+                  />
                </Flex>
             </Flex>
          </StyledComponent>
@@ -81,15 +84,23 @@ const StyledComponent = styled(Flex)`
    margin: 0 auto;
    margin-top: 80px;
 
+   .ant-flex-align-stretch {
+      width: 100%;
+   }
+
    .first-part-coach {
       padding: 0 75px;
       max-width: 1600px;
-      width: 100vw;
+      width: 100%;
 
       @media (max-width: 1100px) {
          flex-direction: column-reverse;
          gap: 40px;
          align-items: start;
+      }
+
+      @media (max-width: 600px) {
+         padding: 0 20px;
       }
    }
    .coach-full-name {
@@ -119,6 +130,10 @@ const AnimatedCard = styled(StyledCard)`
    min-width: 325px;
    animation: ${slideInLeft} 0.9s ease-in-out forwards;
    animation-delay: 0.4s;
+
+   @media (max-width: 600px) {
+      width: 100%;
+   }
 `
 
 const StyledTitle = styled(Title)`
@@ -135,6 +150,9 @@ const AnimatedImage = styled.img`
    opacity: 0;
    animation: ${fadeIn} 0.4s ease-in-out forwards;
    animation-delay: 0.3s;
+   -webkit-box-shadow: inset 0px -186px 162px -200px rgba(0, 166, 79, 1);
+   -moz-box-shadow: inset 0px -186px 162px -200px rgba(0, 166, 79, 1);
+   box-shadow: inset 0px -186px 162px -200px rgba(0, 166, 79, 1);
 
    @media (max-width: 1100px) {
       width: 300px;
@@ -144,5 +162,6 @@ const AnimatedSurname = styled.p`
    opacity: 0;
    animation: ${fadeIn} 0.6s ease-in-out forwards;
    animation-delay: 0.5s;
+   line-height: 1;
    width: 100%;
 `

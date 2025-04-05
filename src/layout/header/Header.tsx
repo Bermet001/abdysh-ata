@@ -12,12 +12,13 @@ import { SearchOutlined, MenuOutlined, CloseOutlined } from '@ant-design/icons'
 import Logo from '../../assets/images/main-logo.png'
 import styled from 'styled-components'
 import { NavLink, NavLinkProps, useLocation } from 'react-router-dom'
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, useCallback, useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../store/store'
 import { getAllTeams, getOurTeam } from '../../store/slice/team/teamThunk'
 import { searchGlobal } from '../../store/slice/globalSearch/globalSearchThunk'
 import { getInfrastractures } from '../../store/slice/infrastracture/infrastractureThunk'
 import { getTournaments } from '../../store/slice/rating/ratingThunk'
+import { setSelectedRating } from '../../store/slice/rating/ratingSlice'
 
 type MenuItem = Required<MenuProps>['items'][number]
 
@@ -36,6 +37,17 @@ const Header = () => {
    const [searchVisible, setSearchVisible] = useState(false)
    const [drawerVisible, setDrawerVisible] = useState(false)
    const [searchQuery, setSearchQuery] = useState('')
+
+   const dispatch = useAppDispatch()
+
+   const handleRatingClick = useCallback(
+      (title: string) => {
+         console.log(title, 'fksadjhfkajsl')
+
+         dispatch(setSelectedRating(title))
+      },
+      [dispatch]
+   )
 
    const items: MenuItem[] = [
       { key: '1', label: <NavLink to="/">Главная</NavLink> },
@@ -106,26 +118,24 @@ const Header = () => {
          key: '5',
          label: <NavLink to="/rating">Турниры</NavLink>,
          children:
-            teams?.map(({ slug, title }) => {
-               return {
-                  key: slug,
-                  label: (
-                     <StyledNavLink
-                        className="mobile_navigations active_nav"
-                        to={`/infrastructure/${slug}`}
-                     >
-                        {title}
-                     </StyledNavLink>
-                  ),
-               }
-            }) || [],
+            teams?.map(({ slug, title }) => ({
+               key: slug,
+               label: (
+                  <StyledNavLink
+                     className="mobile_navigations active_nav"
+                     to={`/tournaments/${slug}`}
+                     onClick={() => handleRatingClick(title)}
+                  >
+                     {title}
+                  </StyledNavLink>
+               ),
+            })) || [],
       },
       { key: '6', label: <NavLink to="/partners">Партнеры</NavLink> },
       { key: '7', label: <NavLink to="/trophy">Наши достижения</NavLink> },
    ]
 
    const location = useLocation()
-   const dispatch = useAppDispatch()
 
    const handleScroll = () => setIsScrolled(window.scrollY > 50)
 
@@ -353,7 +363,12 @@ const Header = () => {
                                     <StyledNavLink
                                        className="mobile_navigations"
                                        to={path}
-                                       onClick={handleMenuClick}
+                                       onClick={() => {
+                                          if (path.startsWith('/tournaments')) {
+                                             handleRatingClick(title)
+                                          }
+                                          handleMenuClick()
+                                       }}
                                     >
                                        {title}
                                     </StyledNavLink>

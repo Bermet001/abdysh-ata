@@ -34,22 +34,23 @@ interface RatingState {
    isLoading: boolean
    teams: Teams[]
    currentTeam: Team | null
-   selectedRating: number | null // Новое поле для сохранения выбранного рейтинга
+   selectedRating: string | null
 }
 
 const initialState: RatingState = {
    isLoading: false,
    teams: [],
    currentTeam: null,
-   selectedRating: null, // Инициализация нового поля
+   selectedRating: null,
 }
 
 export const ratingSlice = createSlice({
    name: 'rating',
    initialState,
    reducers: {
-      setSelectedRating(state, action: PayloadAction<number | null>) {
-         state.selectedRating = action.payload // Сохранение выбранного рейтинга в состояние
+      setSelectedRating(state, action: PayloadAction<string | null>) {
+         state.selectedRating = action.payload
+         console.log('action.payload', action.payload)
       },
    },
    extraReducers: (builder) => {

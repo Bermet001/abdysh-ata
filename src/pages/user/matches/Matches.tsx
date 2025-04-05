@@ -3,8 +3,8 @@ import { Table, Button } from 'antd'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
 import { useEffect } from 'react'
 import {
+   getAllMatches,
    getMatchBanner,
-   getMatches,
 } from '../../../store/slice/matches/matchesThunk'
 import { NavLink } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
@@ -41,11 +41,11 @@ interface Match {
 
 const SchedulMatches = () => {
    window.scrollTo(0, 0)
-   const { matches, banner } = useAppSelector((state) => state.matches)
+   const { allMatches, banner } = useAppSelector((state) => state.matches)
    const dispatch = useAppDispatch()
 
    useEffect(() => {
-      dispatch(getMatches())
+      dispatch(getAllMatches())
       dispatch(getMatchBanner())
    }, [dispatch])
 
@@ -57,7 +57,7 @@ const SchedulMatches = () => {
          render: (_text: string, record: Match) => (
             <DateTimeWrapper>
                <StyledDate>
-                  {new Date(record?.date).toLocaleDateString()}
+                  {new Date(record?.date).toLocaleDateString('ky-KG')}
                </StyledDate>
                <StyledTime>
                   {new Date(record?.date).toLocaleTimeString([], {
@@ -72,11 +72,7 @@ const SchedulMatches = () => {
          title: 'Лига',
          dataIndex: 'liga',
          key: 'liga',
-         render: (liga: League) => {
-            console.log(liga)
-
-            return <League>{liga?.title}</League>
-         },
+         render: (liga: League) => <League>{liga?.title}</League>,
       },
       {
          title: 'Команды',
@@ -148,7 +144,7 @@ const SchedulMatches = () => {
 
             <Table
                columns={columns}
-               dataSource={matches?.map((match) => ({
+               dataSource={allMatches?.map((match) => ({
                   ...match,
                   key: match.id,
                }))}
@@ -274,8 +270,8 @@ const TeamWrapper = styled.div`
    font-weight: 700;
 
    img {
-      width: 45px;
-      height: 50px;
+      width: 50px;
+      height: 53px;
       margin-right: 10px;
    }
 

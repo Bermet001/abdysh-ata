@@ -1,5 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { getMatch, getMatchBanner, getMatches } from './matchesThunk'
+import {
+   getAllMatches,
+   getMatch,
+   getMatchBanner,
+   getMatches,
+} from './matchesThunk'
 import { Banner } from '../interface'
 
 interface Team {
@@ -32,10 +37,10 @@ export interface Match {
    stream_link: string | null
 }
 
-
 interface MatchesState {
    isLoading: boolean
    matches: Match[]
+   allMatches: Match[]
    match: Match | null
    banner: Banner[]
 }
@@ -43,6 +48,7 @@ interface MatchesState {
 const initialState: MatchesState = {
    isLoading: false,
    matches: [],
+   allMatches: [],
    match: null,
    banner: [],
 }
@@ -64,6 +70,19 @@ export const MatchesSlice = createSlice({
             state.isLoading = true
          })
          .addCase(getMatches.rejected, (state) => {
+            state.isLoading = false
+         })
+         .addCase(
+            getAllMatches.fulfilled,
+            (state, { payload }: PayloadAction<Match[]>) => {
+               state.allMatches = payload
+               state.isLoading = false
+            }
+         )
+         .addCase(getAllMatches.pending, (state) => {
+            state.isLoading = true
+         })
+         .addCase(getAllMatches.rejected, (state) => {
             state.isLoading = false
          })
          .addCase(

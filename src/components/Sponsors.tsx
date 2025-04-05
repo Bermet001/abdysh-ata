@@ -45,6 +45,7 @@ const Sponsors = () => {
                   >
                      <img
                         width="50px"
+                        height={53}
                         loading="lazy"
                         src={sponsor.image}
                         alt={sponsor.title}

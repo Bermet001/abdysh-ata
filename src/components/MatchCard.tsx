@@ -37,7 +37,14 @@ const MatchCard: FC<Match> = ({
    return (
       <NavLink to={`match/${slug}`}>
          <MatchCardContainer vertical align="center">
-            <Time>{new Date(date).toLocaleString()}</Time>
+            <Time>
+               {new Date(date).toLocaleDateString('ky-KG')}{' '}
+               {new Date(date).toLocaleTimeString('ky-KG', {
+                  hour: '2-digit',
+                  minute: '2-digit',
+                  hour12: false,
+               })}
+            </Time>
 
             <Flex className="main-info" align="center" justify="space-between">
                <Team vertical align="center" justify="center">
