@@ -18,5 +18,21 @@ const getPartners = createAsyncThunk(
       }
    }
 )
+const getPartnersBanner = createAsyncThunk(
+   'partners/getPartnersBanner',
+   async (_, { rejectWithValue }) => {
+      try {
+         const { data } = await axiosInstance(`partners/banner/`)
 
-export { getPartners }
+         return data
+      } catch (error) {
+         const err = error as AxiosError
+
+         return rejectWithValue({
+            message: err.message,
+         })
+      }
+   }
+)
+
+export { getPartners, getPartnersBanner }
