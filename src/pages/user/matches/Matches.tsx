@@ -181,6 +181,7 @@ const StyledMainContainer = styled.main`
    .team-box:first-child {
       display: flex;
       justify-content: end;
+      gap: 5px;
    }
 
    @media (max-width: 900px) {

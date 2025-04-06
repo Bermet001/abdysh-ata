@@ -19,18 +19,22 @@ const MatchInfo = () => {
    useEffect(() => {
       dispatch(getMatch(slug))
    }, [dispatch, slug])
-
    useEffect(() => {
-      if (match) {
+      if (match?.date) {
          const matchDate = new Date(match.date)
-         const interval = setInterval(() => {
+
+         const updateCountdown = () => {
             const now = new Date()
             const diff = matchDate.getTime() - now.getTime()
 
             if (diff <= 0) {
-               clearInterval(interval)
-               setCountdown('Матч начался')
+               if (match.status_display === 'Завершен') {
+                  setCountdown('Матч завершен')
+               } else {
+                  setCountdown('Матч начался')
+               }
             } else {
+               const days = Math.floor(diff / (1000 * 60 * 60 * 24))
                const hours = Math.floor(
                   (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
                )
@@ -38,11 +42,30 @@ const MatchInfo = () => {
                   (diff % (1000 * 60 * 60)) / (1000 * 60)
                )
                const seconds = Math.floor((diff % (1000 * 60)) / 1000)
-               setCountdown(`${hours}h ${minutes}m ${seconds}s`)
-            }
-         }, 1000)
 
+               let countdownString = ''
+               if (days > 0) {
+                  countdownString += `${days} дн `
+               }
+               if (days > 0 || hours > 0) {
+                  countdownString += `${hours.toString().padStart(2, '0')}: `
+               }
+               countdownString += `${minutes.toString().padStart(2, '0')} : `
+               countdownString += `${seconds.toString().padStart(2, '0')} сек`
+
+               setCountdown(countdownString)
+            }
+         }
+
+         // Обновляем сразу
+         updateCountdown()
+         // Затем обновляем каждую секунду
+         const interval = setInterval(updateCountdown, 1000)
+
+         // Очистка интервала при размонтировании или изменении матча
          return () => clearInterval(interval)
+      } else {
+         setCountdown('Дата не доступна')
       }
    }, [match])
 
@@ -149,7 +172,7 @@ const BackgroundImage = styled.div`
    background-position: center;
    position: absolute;
    width: 100%;
-   height: 75vh;
+   height: 100%;
 
    top: 0;
    left: 0;
@@ -164,7 +187,7 @@ const DarkOverlay = styled.div`
    bottom: 0;
    background: rgba(0, 0, 0, 0.5);
    z-index: 1;
-   height: 75vh;
+   height: 100%;
 `
 
 const Content = styled.div`
@@ -214,9 +237,6 @@ const Team = styled.div`
    align-items: center;
    gap: 10px;
    flex-direction: column;
-
-   /* @media (max-width: 768px) { */
-   /* } */
 `
 
 const Score = styled.div`
@@ -226,7 +246,7 @@ const Score = styled.div`
 `
 
 const LeagueLogo = styled.img`
-   width: 60px;
+   width: 100px;
    height: auto;
 
    @media (max-width: 768px) {

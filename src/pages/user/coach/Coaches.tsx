@@ -183,16 +183,16 @@ const StyledCard = styled.div`
    }
 
    .coach-photo {
-      width: 350px;
+      width: 300px;
       object-fit: cover;
-      height: 600px;
+      height: 420px;
       margin-bottom: 20px;
       -webkit-box-shadow: inset 0px -186px 162px -200px rgba(0, 166, 79, 1);
       -moz-box-shadow: inset 0px -186px 162px -200px rgba(0, 166, 79, 1);
       box-shadow: inset 0px -186px 162px -200px rgba(0, 166, 79, 1);
 
       @media (max-width: 800px) {
-         height: 500px;
+         height: 300px;
       }
    }
 
