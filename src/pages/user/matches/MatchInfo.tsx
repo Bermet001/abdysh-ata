@@ -57,18 +57,22 @@ const MatchInfo = () => {
             }
          }
 
-         // Обновляем сразу
          updateCountdown()
-         // Затем обновляем каждую секунду
          const interval = setInterval(updateCountdown, 1000)
 
-         // Очистка интервала при размонтировании или изменении матча
          return () => clearInterval(interval)
       } else {
          setCountdown('Дата не доступна')
       }
    }, [match])
 
+   const formatDateWithLeadingZeros = (date: Date): string => {
+      const day = String(date.getDate()).padStart(2, '0')
+      const month = String(date.getMonth() + 1).padStart(2, '0')
+      const year = date.getFullYear()
+
+      return `${day}.${month}.${year}`
+   }
    return (
       <MatchCard>
          <DarkOverlay />
@@ -79,7 +83,7 @@ const MatchInfo = () => {
             <h4 className="time">
                <Countdown>
                   {match?.date
-                     ? new Date(match?.date).toLocaleDateString()
+                     ? formatDateWithLeadingZeros(new Date(match?.date))
                      : 'Дата не доступна'}
                </Countdown>
             </h4>

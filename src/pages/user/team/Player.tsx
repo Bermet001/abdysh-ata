@@ -39,7 +39,11 @@ const Player = () => {
                <PlayerInfo>
                   <h3 className="player-title">{player?.bio_title}</h3>
 
-                  <PlayerBio>{player?.bio} </PlayerBio>
+                  <PlayerBio
+                     dangerouslySetInnerHTML={{
+                        __html: player?.bio || '',
+                     }}
+                  />
 
                   <h3 className="player-title">Команда</h3>
                   <PlayerBio style={{ display: 'flex', alignItems: 'center' }}>

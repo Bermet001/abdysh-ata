@@ -82,7 +82,6 @@ const slideInLeft = keyframes`
 
 const StyledComponent = styled(Flex)`
    margin: 0 auto;
-   margin-top: 80px;
 
    .ant-flex-align-stretch {
       width: 100%;
@@ -112,7 +111,6 @@ const StyledComponent = styled(Flex)`
    .biography-box {
       padding: 35px 75px 55px;
       max-width: 1600px;
-      margin-top: 50px;
       background-color: #f1f4f6;
    }
 `
@@ -145,7 +143,7 @@ const StyledText = styled.h2`
    color: #00a64f;
 `
 const AnimatedImage = styled.img`
-   width: 500px;
+   width: 360px;
    height: auto;
    opacity: 0;
    animation: ${fadeIn} 0.4s ease-in-out forwards;

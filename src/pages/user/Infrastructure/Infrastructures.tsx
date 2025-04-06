@@ -139,6 +139,12 @@ const StyledCard = styled(Card)<StyledCardProps>`
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
          }
 
+         @media (max-width: 768px) {
+            h1 {
+               font-size: 1.3rem;
+            }
+         }
+
          .info-block {
             p {
                font-size: 13px;
@@ -160,7 +166,7 @@ const StyledCard = styled(Card)<StyledCardProps>`
          padding: 10px;
 
          h1 {
-            font-size: 1.5rem;
+            font-size: 1rem;
          }
 
          .info-block {

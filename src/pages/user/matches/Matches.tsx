@@ -81,10 +81,12 @@ const SchedulMatches = () => {
             <TeamsWrapper>
                <TeamWrapper className="team-box">
                   <span className="team-name">{record?.home_team?.title}</span>
-                  <img
-                     src={record.home_team?.logo}
-                     alt={record.home_team?.title}
-                  />
+                  <div style={{ marginLeft: '10px' }}>
+                     <img
+                        src={record.home_team?.logo}
+                        alt={record.home_team?.title}
+                     />
+                  </div>
                </TeamWrapper>
 
                <Vs>vs</Vs>
