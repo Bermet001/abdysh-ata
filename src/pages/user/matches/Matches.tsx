@@ -271,8 +271,8 @@ const TeamWrapper = styled.div`
    font-weight: 700;
 
    img {
-      width: 50px;
-      height: 50px;
+      width: 40px;
+      height: 40px;
       object-fit: contain;
       margin-right: 10px;
    }
