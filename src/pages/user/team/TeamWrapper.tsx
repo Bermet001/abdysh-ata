@@ -14,7 +14,7 @@ import TournamentAcademy from '../TournamentAcademy'
 
 const TeamWrapper: FC = () => {
    window.scrollTo(0, 0)
-   const { slug } = useParams<{ slug: string }>() // Получаем slug из URL
+   const { slug } = useParams<{ slug: string }>()
 
    const dispatch = useAppDispatch()
 

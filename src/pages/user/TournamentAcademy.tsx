@@ -18,6 +18,7 @@ import image24 from '../../assets/images/tournament-academy/IMG_2361.jpg'
 import image25 from '../../assets/images/tournament-academy/IMG_2362.jpg'
 import image26 from '../../assets/images/tournament-academy/IMG_2363.jpg'
 import image27 from '../../assets/images/tournament-academy/IMG_2369.jpg'
+import { useAppSelector } from '../../store/store'
 const { Title, Paragraph } = Typography
 
 const TournamentWrapper = styled.div`
@@ -47,10 +48,12 @@ const StyledBanner = styled.div`
    overflow: hidden;
    margin-bottom: 24px;
    display: flex;
+   padding: 30px;
+   text-transform: uppercase;
    align-items: center;
    justify-content: center;
    color: #fff;
-   font-size: 24px;
+   font-size: 17px;
    background-size: cover;
    background-position: center;
 
@@ -85,6 +88,24 @@ const PastTournamentsSection = styled.div`
    border-left: 4px solid #ed5a0c;
 `
 
+const Overlay = styled.div`
+   border-radius: 12px;
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 400px;
+   background-color: rgba(0, 0, 0, 0.237);
+   z-index: 1;
+
+   @media (max-width: 768px) {
+      height: 200px;
+   }
+
+   @media (max-width: 480px) {
+      height: 150px;
+   }
+`
 const TournamentItem = styled.div`
    margin-bottom: 20px;
    padding: 16px;
@@ -188,6 +209,10 @@ const ContactSection = styled.div`
 `
 
 const TournamentAcademy = () => {
+   const { contacts } = useAppSelector((state) => state.contacts)
+
+   const contact = contacts.length > 0 ? contacts[0] : null
+
    const mockData = {
       banner: image10,
       text: 'Добро пожаловать в Академию Футбола! Здесь мы готовим будущих чемпионов и проводим захватывающие турниры для юных талантов. Ознакомьтесь с нашими прошедшими событиями и присоединяйтесь к следующему сезону!',
@@ -232,9 +257,19 @@ const TournamentAcademy = () => {
    return (
       <TournamentWrapper>
          <StyledBanner style={{ backgroundImage: `url(${mockData.banner})` }}>
-            <Title style={{ color: '#fff', margin: 0 }}>
+            <Overlay />
+            <Title
+               style={{
+                  position: 'relative',
+                  zIndex: 10,
+                  color: '#fff',
+                  margin: 0,
+               }}
+            >
                {' '}
-               САКЕБАЕВ АБДЫШ – КОМСОМОЛЬСКИЙ ВОЖАК 40-50-Х ГОДОВ.
+               Tурнир, посвященный памяти абдыша альмикуловича, отличный способ
+               сохранить и передать его наследие и вдохновить молодое поколение
+               следовать его примеру.
             </Title>
          </StyledBanner>
 
@@ -288,17 +323,12 @@ const TournamentAcademy = () => {
                носят имя легендарного Абдыша Сакебаева.
                <br />
                <br />
-               <strong>
-                  Tурнир, посвященный памяти абдыша альмикуловича, отличный
-                  способ сохранить и передать его наследие и вдохновить молодое
-                  поколение следовать его примеру.
-               </strong>
             </Paragraph>
          </TextContent>
 
          <PastTournamentsSection>
             <Title level={3} style={{ color: '#ed5a0c' }}>
-               САКЕБАЕВ АБДЫШ – КОМСОМОЛЬСКИЙ ВОЖАК 40-50-Х ГОДОВ.
+               АКЕБАЕВ АБДЫШ – КОМСОМОЛЬСКИЙ ВОЖАК 40-50-Х ГОДОВ.
             </Title>
             {mockData.pastTournaments.map((tournament, index) => (
                <TournamentItem key={index}>
@@ -370,11 +400,11 @@ const TournamentAcademy = () => {
                   href="mailto:academy@football.ru"
                   style={{ color: '#ed5a0c' }}
                >
-                  academy@football.ru
+                  {contact?.email}
                </a>
                <br />
                Телефон:
-               <span style={{ color: '#00a64f' }}>+7 (495) 555-12-34</span>
+               <span style={{ color: '#00a64f' }}>{contact?.phone}</span>
             </Paragraph>
          </ContactSection>
       </TournamentWrapper>
