@@ -192,7 +192,7 @@ const StyledCard = styled.div`
       box-shadow: inset 0px -186px 162px -200px rgba(0, 166, 79, 1);
 
       @media (max-width: 800px) {
-         height: 300px;
+         height: 400px;
       }
    }
 
