@@ -38,7 +38,7 @@ const MatchCard: FC<Match> = ({
       <NavLink to={`match/${slug}`}>
          <MatchCardContainer vertical align="center">
             <Time>
-               {new Date(date).toLocaleDateString('ky-KG')}{' '}
+               {new Date(date).toLocaleDateString('ru-RU')}{' '}
                {new Date(date).toLocaleTimeString('ky-KG', {
                   hour: '2-digit',
                   minute: '2-digit',
