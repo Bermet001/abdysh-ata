@@ -1,80 +1,75 @@
 import styled from 'styled-components'
-import {
-   Button,
-   //    Flex, Table
-} from 'antd'
-import {
-   NavLink,
-   // useParams
-} from 'react-router-dom'
+import { Button, Flex, Table } from 'antd'
+import { NavLink, useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { FreeMode, Pagination, Navigation } from 'swiper/modules'
-// import { Schedule } from '../../../store/slice/coach/coachSlice'
-// import { ColumnType } from 'antd/es/table'
+import { Schedule } from '../../../store/slice/coach/coachSlice'
+import { ColumnType } from 'antd/es/table'
 import { useEffect } from 'react'
 import { getSchedules } from '../../../store/slice/coach/coachThunk'
 
 const Coaches = () => {
    window.scrollTo(0, 0)
-   // const { slug } = useParams<{ slug: string }>()
+   const { slug } = useParams<{ slug: string }>()
    const { coaches } = useAppSelector((state) => state.team)
-   // const { schedules } = useAppSelector((state) => state.coach)
+   const { schedules } = useAppSelector((state) => state.coach)
 
+   const linkSlug = slug
    const dispatch = useAppDispatch()
 
    useEffect(() => {
       dispatch(getSchedules())
    }, [dispatch])
 
-   // const columns: ColumnType<Schedule>[] = [
-   //    { title: '№', dataIndex: 'id', key: 'id' },
-   //    { title: 'Ф.И.О. тренера', dataIndex: 'coach_name', key: 'coach_name' },
-   //    { title: 'Группа', dataIndex: 'group', key: 'group' },
-   //    {
-   //       title: 'Понедельник',
-   //       key: 'monday',
-   //       render: (_, record: Schedule) =>
-   //          `${record.monday_start || '—'} - ${record.monday_end || '—'}`,
-   //    },
-   //    {
-   //       title: 'Вторник',
-   //       key: 'tuesday',
-   //       render: (_, record: Schedule) =>
-   //          `${record.tuesday_start || '—'} - ${record.tuesday_end || '—'}`,
-   //    },
-   //    {
-   //       title: 'Среда',
-   //       key: 'wednesday',
-   //       render: (_, record: Schedule) =>
-   //          `${record.wednesday_start || '—'} - ${record.wednesday_end || '—'}`,
-   //    },
-   //    {
-   //       title: 'Четверг',
-   //       key: 'thursday',
-   //       render: (_, record: Schedule) =>
-   //          `${record.thursday_start || '—'} - ${record.thursday_end || '—'}`,
-   //    },
-   //    {
-   //       title: 'Пятница',
-   //       key: 'friday',
-   //       render: (_, record: Schedule) =>
-   //          `${record.friday_start || '—'} - ${record.friday_end || '—'}`,
-   //    },
-   //    {
-   //       title: 'Суббота',
-   //       key: 'saturday',
-   //       render: (_, record: Schedule) =>
-   //          `${record.saturday_start || '—'} - ${record.saturday_end || '—'}`,
-   //    },
-   //    {
-   //       title: 'Воскресенье',
-   //       key: 'sunday',
-   //       render: (_, record: Schedule) =>
-   //          `${record.sunday_start || '—'} - ${record.sunday_end || '—'}`,
-   //    },
-   //    { title: 'Место проведения', dataIndex: 'location', key: 'location' },
-   // ]
+   const columns: ColumnType<Schedule>[] = [
+      { title: '№', dataIndex: 'id', key: 'id' },
+      { title: 'Ф.И.О. тренера', dataIndex: 'coach_name', key: 'coach_name' },
+      { title: 'Группа', dataIndex: 'group', key: 'group' },
+      {
+         title: 'Понедельник',
+         key: 'monday',
+         render: (_, record: Schedule) =>
+            `${record.monday_start || '—'} - ${record.monday_end || '—'}`,
+      },
+      {
+         title: 'Вторник',
+         key: 'tuesday',
+         render: (_, record: Schedule) =>
+            `${record.tuesday_start || '—'} - ${record.tuesday_end || '—'}`,
+      },
+      {
+         title: 'Среда',
+         key: 'wednesday',
+         render: (_, record: Schedule) =>
+            `${record.wednesday_start || '—'} - ${record.wednesday_end || '—'}`,
+      },
+      {
+         title: 'Четверг',
+         key: 'thursday',
+         render: (_, record: Schedule) =>
+            `${record.thursday_start || '—'} - ${record.thursday_end || '—'}`,
+      },
+      {
+         title: 'Пятница',
+         key: 'friday',
+         render: (_, record: Schedule) =>
+            `${record.friday_start || '—'} - ${record.friday_end || '—'}`,
+      },
+      {
+         title: 'Суббота',
+         key: 'saturday',
+         render: (_, record: Schedule) =>
+            `${record.saturday_start || '—'} - ${record.saturday_end || '—'}`,
+      },
+      {
+         title: 'Воскресенье',
+         key: 'sunday',
+         render: (_, record: Schedule) =>
+            `${record.sunday_start || '—'} - ${record.sunday_end || '—'}`,
+      },
+      { title: 'Место проведения', dataIndex: 'location', key: 'location' },
+   ]
 
    return (
       <StyledContainer>
@@ -107,6 +102,19 @@ const Coaches = () => {
                            </NavLink>
                         </Button>
                      </div>
+
+                     {linkSlug === 'futbolnaya-akademiya' && (
+                        <Flex vertical>
+                           <h2 className="main-title">Расписание тренеров</h2>
+                           <Table
+                              dataSource={schedules}
+                              columns={columns}
+                              pagination={false}
+                              rowKey="id"
+                              scroll={{ x: 1150 }}
+                           />
+                        </Flex>
+                     )}
                   </StyledCard>
                </SwiperSlide>
             ))}
@@ -114,18 +122,6 @@ const Coaches = () => {
 
          <br />
          <br />
-         {/* {slug === 'futbolnaya-akademiya' && (
-            <Flex vertical>
-               <h2 className="main-title">Расписание тренеров</h2>
-               <Table
-                  dataSource={schedules}
-                  columns={columns}
-                  pagination={false}
-                  rowKey="id"
-                  scroll={{ x: 1150 }}
-               />
-            </Flex>
-         )} */}
       </StyledContainer>
    )
 }

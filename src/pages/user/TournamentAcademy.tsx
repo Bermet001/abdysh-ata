@@ -269,12 +269,7 @@ const TournamentAcademy = () => {
       <TournamentWrapper>
          <StyledBanner style={{ backgroundImage: `url(${mockData.banner})` }}>
             <Overlay />
-            <Title>
-               {' '}
-               Tурнир, посвященный памяти абдыша альмикуловича, отличный способ
-               сохранить и передать его наследие и вдохновить молодое поколение
-               следовать его примеру.
-            </Title>
+            <Title> Международный турнир Мемориал А.А. Сакебаева</Title>
          </StyledBanner>
 
          <TextContent>
@@ -327,6 +322,11 @@ const TournamentAcademy = () => {
                носят имя легендарного Абдыша Сакебаева.
                <br />
                <br />
+               <Title level={3} style={{ color: '#05a550' }}>
+                  Tурнир, посвященный памяти Абдыша Альмикуловича, отличный
+                  способ сохранить и передать его наследие и вдохновить молодое
+                  поколение следовать его примеру.
+               </Title>
             </Paragraph>
          </TextContent>
 
