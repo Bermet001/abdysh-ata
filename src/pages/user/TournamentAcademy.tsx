@@ -190,7 +190,7 @@ const ContactSection = styled.div`
 
 const TournamentAcademy = () => {
    const mockData = {
-      banner: image,
+      banner: image10,
       text: 'Добро пожаловать в Академию Футбола! Здесь мы готовим будущих чемпионов и проводим захватывающие турниры для юных талантов. Ознакомьтесь с нашими прошедшими событиями и присоединяйтесь к следующему сезону!',
       pastTournaments: [
          {
