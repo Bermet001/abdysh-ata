@@ -13,7 +13,6 @@ import image7 from '../../assets/images/tournament-academy/IMG_2092.jpg'
 import image8 from '../../assets/images/tournament-academy/IMG_2352.jpg'
 import image9 from '../../assets/images/tournament-academy/IMG_2353.jpg'
 import image10 from '../../assets/images/tournament-academy/IMG_2354.jpg'
-import image211 from '../../assets/images/tournament-academy/IMG_2355.jpg'
 import image21 from '../../assets/images/tournament-academy/IMG_2356.jpg'
 import image210 from '../../assets/images/tournament-academy/IMG_2358.jpg'
 import image24 from '../../assets/images/tournament-academy/IMG_2361.jpg'
@@ -208,15 +207,7 @@ const TournamentAcademy = () => {
             location: 'Санкт-Петербург, Арена "Петровский"',
             description:
                'Соревнование для игроков до 16 лет. Чемпионы — "Зенит Молодежь" с разгромным счетом 5:0 в финальном матче.',
-            photos: [
-               image8,
-               image211,
-               image210,
-               image2333,
-               image23,
-               image22,
-               image21,
-            ],
+            photos: [image8, image210, image2333, image23, image22, image21],
          },
          {
             name: 'Кубок Академии 2022',
