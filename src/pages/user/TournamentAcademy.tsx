@@ -52,19 +52,30 @@ const StyledBanner = styled.div`
    text-transform: uppercase;
    align-items: center;
    justify-content: center;
-   color: #fff;
-   font-size: 17px;
+   color: #fff !important;
    background-size: cover;
    background-position: center;
+   text-shadow: 2px 2px 4px #00a64f;
 
+   h1 {
+      color: #fff !important;
+      font-size: 25px !important;
+      text-shadow: 2px 2px 4px #ed5a0c;
+   }
    @media (max-width: 768px) {
       height: 200px;
-      font-size: 18px;
+      h1 {
+         color: #fff !important;
+         font-size: 14px !important;
+      }
    }
 
    @media (max-width: 480px) {
       height: 150px;
-      font-size: 16px;
+      h1 {
+         color: #fff !important;
+         font-size: 12px !important;
+      }
    }
 `
 
@@ -94,8 +105,8 @@ const Overlay = styled.div`
    top: 0;
    left: 0;
    width: 100%;
+   /* background-color: rgba(0, 0, 0, 0.237); */
    height: 400px;
-   background-color: rgba(0, 0, 0, 0.237);
    z-index: 1;
 
    @media (max-width: 768px) {
@@ -258,14 +269,7 @@ const TournamentAcademy = () => {
       <TournamentWrapper>
          <StyledBanner style={{ backgroundImage: `url(${mockData.banner})` }}>
             <Overlay />
-            <Title
-               style={{
-                  position: 'relative',
-                  zIndex: 10,
-                  color: '#fff',
-                  margin: 0,
-               }}
-            >
+            <Title>
                {' '}
                Tурнир, посвященный памяти абдыша альмикуловича, отличный способ
                сохранить и передать его наследие и вдохновить молодое поколение
