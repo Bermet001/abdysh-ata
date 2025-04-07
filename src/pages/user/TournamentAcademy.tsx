@@ -1,6 +1,5 @@
 import { Typography, Carousel } from 'antd'
 import styled from 'styled-components'
-import image from '../../assets/images/tournament-academy/IMG_2021.jpg'
 import image1 from '../../assets/images/tournament-academy/IMG_2030 (1).jpg'
 import image2 from '../../assets/images/tournament-academy/image.png'
 import image22 from '../../assets/images/tournament-academy/IMG_2025.jpg'
