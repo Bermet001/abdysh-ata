@@ -82,6 +82,7 @@ const slideInLeft = keyframes`
 
 const StyledComponent = styled(Flex)`
    margin: 0 auto;
+   padding: 100px 0;
 
    .ant-flex-align-stretch {
       width: 100%;
@@ -112,6 +113,11 @@ const StyledComponent = styled(Flex)`
       padding: 35px 75px 55px;
       max-width: 1600px;
       background-color: #f1f4f6;
+      margin-top: 30px;
+
+      @media (max-width: 1100px) {
+         padding: 20px;
+      }
    }
 `
 

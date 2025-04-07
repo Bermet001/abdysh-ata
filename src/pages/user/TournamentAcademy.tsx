@@ -1,6 +1,25 @@
 import { Typography, Carousel } from 'antd'
 import styled from 'styled-components'
-
+import image from '../../assets/images/tournament-academy/IMG_2021.jpg'
+import image1 from '../../assets/images/tournament-academy/IMG_2030 (1).jpg'
+import image2 from '../../assets/images/tournament-academy/image.png'
+import image22 from '../../assets/images/tournament-academy/IMG_2025.jpg'
+import image222 from '../../assets/images/tournament-academy/IMG_2030.jpg'
+import image2333 from '../../assets/images/tournament-academy/IMG_2033.jpg'
+import image23 from '../../assets/images/tournament-academy/IMG_2050.jpg'
+import image5 from '../../assets/images/tournament-academy/IMG_2080.jpg'
+import image6 from '../../assets/images/tournament-academy/IMG_2080.jpg'
+import image7 from '../../assets/images/tournament-academy/IMG_2092.jpg'
+import image8 from '../../assets/images/tournament-academy/IMG_2352.jpg'
+import image9 from '../../assets/images/tournament-academy/IMG_2353.jpg'
+import image10 from '../../assets/images/tournament-academy/IMG_2354.jpg'
+import image211 from '../../assets/images/tournament-academy/IMG_2355.jpg'
+import image21 from '../../assets/images/tournament-academy/IMG_2356.jpg'
+import image210 from '../../assets/images/tournament-academy/IMG_2358.jpg'
+import image24 from '../../assets/images/tournament-academy/IMG_2361.jpg'
+import image25 from '../../assets/images/tournament-academy/IMG_2362.jpg'
+import image26 from '../../assets/images/tournament-academy/IMG_2363.jpg'
+import image27 from '../../assets/images/tournament-academy/IMG_2369.jpg'
 const { Title, Paragraph } = Typography
 
 const TournamentWrapper = styled.div`
@@ -172,8 +191,7 @@ const ContactSection = styled.div`
 
 const TournamentAcademy = () => {
    const mockData = {
-      banner:
-         'https://images.unsplash.com/photo-1558008258-3256797b43f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+      banner: image,
       text: 'Добро пожаловать в Академию Футбола! Здесь мы готовим будущих чемпионов и проводим захватывающие турниры для юных талантов. Ознакомьтесь с нашими прошедшими событиями и присоединяйтесь к следующему сезону!',
       pastTournaments: [
          {
@@ -182,13 +200,7 @@ const TournamentAcademy = () => {
             location: 'Москва, Стадион "Юность"',
             description:
                'Турнир среди юниоров до 18 лет. 20 команд боролись за кубок, победу одержала команда "Спартак Юниор" со счетом 3:2 в финале.',
-            photos: [
-               'https://images.unsplash.com/photo-1517649763962-0c623066013b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-               'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-               'https://images.unsplash.com/photo-1601599963577-0959b89771b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-               'https://images.unsplash.com/photo-1512428813834-c7028b9af33b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-               'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-            ],
+            photos: [image1, image2, image2, image10, image21],
          },
          {
             name: 'Турнир "Золотой Мяч" 2023',
@@ -197,9 +209,13 @@ const TournamentAcademy = () => {
             description:
                'Соревнование для игроков до 16 лет. Чемпионы — "Зенит Молодежь" с разгромным счетом 5:0 в финальном матче.',
             photos: [
-               'https://images.unsplash.com/photo-1558008258-3256797b43f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-               'https://images.unsplash.com/photo-1512428813834-c7028b9af33b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-               'https://images.unsplash.com/photo-1601599963577-0959b89771b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+               image8,
+               image211,
+               image210,
+               image2333,
+               image23,
+               image22,
+               image21,
             ],
          },
          {
@@ -209,7 +225,15 @@ const TournamentAcademy = () => {
             description:
                'Первый крупный турнир академии. Победу одержала команда "Динамо Юниор" в серии пенальти.',
             photos: [
-               'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+               image27,
+               image26,
+               image25,
+               image24,
+               image9,
+               image7,
+               image6,
+               image5,
+               image222,
             ],
          },
       ],
