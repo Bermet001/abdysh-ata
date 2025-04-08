@@ -220,7 +220,8 @@ const StyledContainer = styled.section`
    justify-content: center;
    padding: 120px 75px 0 75px;
    margin: 0 auto;
-   background-color: grey;
+   background-color: #e2e2e2;
+
 
    max-width: 1600px;
 

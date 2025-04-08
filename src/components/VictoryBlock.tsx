@@ -89,7 +89,8 @@ export default VictoryBlock
 const Container = styled.section`
    text-align: center;
    padding: 120px 0;
-   background-color: grey;
+   background-color: #e2e2e2;
+
 
    padding-bottom: 0;
    color: black;

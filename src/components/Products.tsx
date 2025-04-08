@@ -92,8 +92,7 @@ export default ProductSlider
 
 const Container = styled.section`
    margin: auto;
-   background-color: grey;
-   background: linear-gradient(to top, grey, transparent 95%);
+   background: linear-gradient(to top,  #e2e2e2, transparent 98%);
 
    padding: 120px 75px 0 75px;
    max-width: 1600px;

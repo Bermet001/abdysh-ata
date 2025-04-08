@@ -60,7 +60,8 @@ export default News
 const NewsContainer = styled.section`
    padding: 120px 75px 0;
    max-width: 1600px;
-   background-color: grey;
+   background-color: #e2e2e2;
+
 
    margin: 0 auto;
 

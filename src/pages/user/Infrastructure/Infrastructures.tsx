@@ -31,6 +31,7 @@ const Infrastructures: FC = () => {
                href="https://abdysh-front.tw1.ru/infrastructures"
             />
          </Helmet>
+
          <CollageContainer wrap>
             {infrastractures?.map((item) => (
                <NavLink to={`/infrastructure/${item.slug}`} key={item.id}>
