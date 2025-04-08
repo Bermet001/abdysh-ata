@@ -220,7 +220,7 @@ const Header = () => {
 
       {
          path: '/team/futbolnaya-akademiya',
-         title: 'Футбольная академия',
+         title: 'Академия',
          id: 9,
       },
       {

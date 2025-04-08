@@ -5,6 +5,7 @@ import { ColumnsType } from 'antd/es/table'
 import { useEffect } from 'react'
 import { getTeamsRating } from '../../../store/slice/rating/ratingThunk'
 import { useLocation, useParams } from 'react-router-dom'
+import background1 from '../../../assets/images/banner-rating.png'
 
 interface TeamData {
    key: string | number | null | undefined
@@ -138,7 +139,7 @@ const TournamentTable = () => {
          .slice(0, isHomePage ? 6 : undefined) || []
 
    return (
-      <StyledComponent>
+      <StyledComponent path={isHomePage.toString()}>
          <Flex vertical className="table">
             <Flex
                vertical
@@ -152,7 +153,7 @@ const TournamentTable = () => {
                dataSource={dataSource}
                columns={columns}
                pagination={false}
-               rowKey="key"
+               rowKey="id"
                scroll={{ x: 'max-content' }}
             />
          </Flex>
@@ -162,9 +163,14 @@ const TournamentTable = () => {
 
 export default TournamentTable
 
-const StyledComponent = styled.div`
+const StyledComponent = styled.div<{ path: string }>`
    padding: 75px;
-   padding-bottom: 0;
+   margin-top: 30px;
+   background-image: ${({ path }) =>
+      path === 'true' ? `url(${background1})` : 'none'};
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
 
    @media (max-width: 1024px) {
       padding: 40px 20px;
@@ -176,7 +182,8 @@ const StyledComponent = styled.div`
 
    .main-title {
       text-transform: uppercase;
-      font-size: 28px;
+      color: white;
+      font-weight: 600;
       margin: 0;
 
       @media (max-width: 768px) {
@@ -214,7 +221,7 @@ const StyledComponent = styled.div`
    .ant-table-thead > tr > th {
       background: transparent;
       font-size: 14px;
-      color: #333;
+      color: #fff;
       border: none;
       padding: 8px;
       text-align: center;
@@ -254,7 +261,7 @@ const StyledComponent = styled.div`
       background: white;
       padding: 8px 12px;
       border-radius: 6px;
-      font-weight: 500;
+      font-weight: 700;
       color: #333;
 
       @media (max-width: 768px) {
@@ -263,6 +270,10 @@ const StyledComponent = styled.div`
       @media (max-width: 480px) {
          padding: 4px 8px;
       }
+   }
+
+   .ant-table-tbody > tr:hover {
+      background-color: transparent !important;
    }
 
    .ant-table-tbody > tr:hover .text-content {

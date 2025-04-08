@@ -46,8 +46,8 @@ const StyledContainer = styled.main`
    background-image: url(${background1});
    background-size: cover;
    background-position: center;
-   margin: 0 auto;
    background-repeat: no-repeat;
+   margin: 0 auto;
 
    @media (max-width: 1024px) {
       padding: 100px 20px;

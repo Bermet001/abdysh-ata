@@ -137,6 +137,7 @@ export default Coaches
 const StyledContainer = styled.section`
    max-width: 1600px;
    margin: 0 auto;
+
    .swiper-button-prev {
       left: -10px;
    }
