@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { getCoach, getCoaches, getSchedules } from './coachThunk'
+import { getCoach, getCoaches } from './coachThunk'
 
 export interface Schedule {
    id: number
@@ -31,13 +31,14 @@ interface Coach {
    position: string
    bio: string
    birth_date: string | null
+   schedules: Schedule[]
+   team_image: string
 }
 
 interface CoachState {
    coaches: Coach[]
    coach: Coach
    isLoading: boolean
-   schedules: Schedule[] 
 }
 
 const initialState: CoachState = {
@@ -50,9 +51,10 @@ const initialState: CoachState = {
       bio: '',
       position: '',
       birth_date: null,
+      schedules: [],
+      team_image: '',
    },
    isLoading: false,
-   schedules: [], 
 }
 
 export const coachSlice = createSlice({
@@ -87,19 +89,19 @@ export const coachSlice = createSlice({
          .addCase(getCoach.rejected, (state) => {
             state.isLoading = false
          })
-         .addCase(
-            getSchedules.fulfilled,
-            (state, { payload }: PayloadAction<Schedule[]>) => {
-               state.schedules = payload
-               state.isLoading = false
-            }
-         )
-         .addCase(getSchedules.pending, (state) => {
-            state.isLoading = true
-         })
-         .addCase(getSchedules.rejected, (state) => {
-            state.isLoading = false
-         })
+      // .addCase(
+      //    getSchedules.fulfilled,
+      //    (state, { payload }: PayloadAction<Schedule[]>) => {
+      //       // state.schedules = payload
+      //       state.isLoading = false
+      //    }
+      // )
+      // .addCase(getSchedules.pending, (state) => {
+      //    state.isLoading = true
+      // })
+      // .addCase(getSchedules.rejected, (state) => {
+      //    state.isLoading = false
+      // })
    },
 })
 

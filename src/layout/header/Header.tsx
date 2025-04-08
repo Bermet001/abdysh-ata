@@ -217,6 +217,12 @@ const Header = () => {
             id,
          })),
       },
+
+      {
+         path: '/team/futbolnaya-akademiya',
+         title: 'Футбольная академия',
+         id: 9,
+      },
       {
          path: '/history',
          title: 'О клубе',
@@ -376,7 +382,7 @@ const Header = () => {
                               >
                                  <img
                                     src={item.image}
-                                    width="60px"
+                                    width="50px"
                                     alt={`партне ${item.title}`}
                                  />
                               </a>

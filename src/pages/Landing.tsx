@@ -8,6 +8,9 @@ import News from '../components/News'
 import { FC } from 'react'
 import Team from '../components/Team'
 import { Helmet } from 'react-helmet-async'
+import Infrastructures from './user/Infrastructure/Infrastructures'
+import TournamentTable from './user/rating-table/TournamentTable'
+import AcademyLanding from './user/AcademyLanding'
 
 const Landing: FC = () => (
    <>
@@ -27,11 +30,14 @@ const Landing: FC = () => (
       <main>
          <Slider />
          <MatchInfo />
+         <TournamentTable />
+         <Infrastructures />
+         <AcademyLanding />
          <Team />
-         <Gallery />
-         <VictoryBlock />
          <ProductSlider />
          <News />
+         <Gallery />
+         <VictoryBlock />
          <Sponsors />
       </main>
    </>

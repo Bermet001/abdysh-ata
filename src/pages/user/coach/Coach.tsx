@@ -1,4 +1,4 @@
-import { Card, Flex, Typography } from 'antd'
+import { Card, Flex, Image, Typography } from 'antd'
 import { FC, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import styled, { keyframes } from 'styled-components'
@@ -56,6 +56,14 @@ const Coach: FC = () => {
                </Flex>
 
                <Flex vertical className="biography-box">
+                  <h2 className="main-title">Команда</h2>
+                  <Image
+                     className="teama-image"
+                     src={coach.team_image}
+                     alt="команда"
+                  />
+                  <br />
+                  <br />
                   <h2 className="main-title">Биография</h2>
                   <p
                      dangerouslySetInnerHTML={{ __html: bio || '' }}
@@ -114,6 +122,19 @@ const StyledComponent = styled(Flex)`
       max-width: 1600px;
       background-color: #f1f4f6;
       margin-top: 30px;
+
+      .ant-image {
+         .teama-image {
+            width: 550px;
+
+            @media (max-width: 700px) {
+               width: 100% !important;
+            }
+         }
+         @media (max-width: 700px) {
+            width: 100% !important;
+         }
+      }
 
       @media (max-width: 1100px) {
          padding: 20px;

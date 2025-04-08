@@ -1,3 +1,5 @@
+import { Schedule } from "../coach/coachSlice"
+
 interface Team {
    id: number
    title: string
@@ -13,6 +15,7 @@ interface Coach {
    image: string
    position: string
    bio: string
+   schedules: Schedule[]
    team: Team
 }
 

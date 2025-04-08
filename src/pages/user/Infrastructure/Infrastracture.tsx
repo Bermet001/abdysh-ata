@@ -40,7 +40,8 @@ const Infrastructure = () => {
                   </Flex>
 
                   <p className="info">
-                     <span>Размеры: </span> {infrastracture?.weave}
+                     <span>Гектар: </span> {infrastracture?.hectare}
+                     <span>Сотка: </span> {infrastracture?.weave}
                   </p>
                </Flex>
 
@@ -87,9 +88,9 @@ const Infrastructure = () => {
             spaceBetween={10}
             slidesPerView={4}
             breakpoints={{
-               350: { slidesPerView: 2, spaceBetween: 20 },
-               500: { slidesPerView: 2, spaceBetween: 20 },
-               900: { slidesPerView: 2.5, spaceBetween: 20 },
+               350: { slidesPerView: 2 },
+               500: { slidesPerView: 2 },
+               900: { slidesPerView: 2.5 },
             }}
          >
             {infrastracture?.images.map((item) => (
@@ -173,7 +174,11 @@ const StyledContainer = styled.main`
    .gallery-image {
       border-radius: 6px;
       width: 100%;
-      height: auto;
+      height: 230px;
+
+      @media (max-width: 768px) {
+         height: 170px;
+      }
    }
 
    .media {

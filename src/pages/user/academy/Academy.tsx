@@ -22,6 +22,7 @@ const Academy = () => {
                      __html: item?.contend || '',
                   }}
                />
+
                <div
                   key={item.id}
                   dangerouslySetInnerHTML={{

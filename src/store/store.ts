@@ -15,6 +15,7 @@ import { infrastractureSlice } from './slice/infrastracture/infrastractureSlice'
 import { ratingSlice } from './slice/rating/ratingSlice'
 import { globalSearch } from './slice/globalSearch/globalSearchSlice'
 import { guidelineSlice } from './slice/guideline/guidelineSlice'
+import { academySlice } from './slice/tournamentAcademy/TournamentAcademySlice'
 
 export const store = configureStore({
    reducer: {
@@ -33,6 +34,7 @@ export const store = configureStore({
       [ratingSlice.name]: ratingSlice.reducer,
       [globalSearch.name]: globalSearch.reducer,
       [guidelineSlice.name]: guidelineSlice.reducer,
+      [academySlice.name]: academySlice.reducer,
    },
 })
 

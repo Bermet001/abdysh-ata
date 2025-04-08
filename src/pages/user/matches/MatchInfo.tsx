@@ -13,12 +13,14 @@ const MatchInfo = () => {
    const [countdown, setCountdown] = useState('')
    const { slug } = useParams<{ slug: string }>()
    const { match } = useAppSelector((state) => state.matches)
+   window.scrollTo(0, 0)
 
    const dispatch = useAppDispatch()
 
    useEffect(() => {
       dispatch(getMatch(slug))
    }, [dispatch, slug])
+
    useEffect(() => {
       if (match?.date) {
          const matchDate = new Date(match.date)
@@ -79,19 +81,25 @@ const MatchInfo = () => {
          <BackgroundImage />
 
          <Content>
-            <LeagueLogo src={match?.liga?.image} alt={match?.liga?.title} />
-            <h4 className="time">
+            <Flex
+               vertical
+               align="center"
+               justify="center"
+               className="block-container-match-first"
+            >
+               <LeagueLogo src={match?.liga?.image} alt={match?.liga?.title} />
+               <h4 className="time">
+                  <Countdown>
+                     {match?.date
+                        ? formatDateWithLeadingZeros(new Date(match?.date))
+                        : 'Дата не доступна'}
+                  </Countdown>
+               </h4>
+
                <Countdown>
-                  {match?.date
-                     ? formatDateWithLeadingZeros(new Date(match?.date))
-                     : 'Дата не доступна'}
+                  <p className="text-state">{countdown} </p>
                </Countdown>
-            </h4>
-
-            <Countdown>
-               <p className="text-state">{countdown} </p>
-            </Countdown>
-
+            </Flex>
             <Flex
                gap={50}
                justify="center"
@@ -104,7 +112,8 @@ const MatchInfo = () => {
                         <img
                            src={match?.home_team?.logo}
                            alt={match?.home_team?.title}
-                           style={{ width: '80px' }}
+                           height="80px"
+                           style={{ width: '80px', objectFit: 'contain' }}
                         />
                         <Title className="team-name" level={4}>
                            {match?.home_team?.title}
@@ -125,7 +134,8 @@ const MatchInfo = () => {
                         <img
                            src={match?.away_team?.logo}
                            alt={match?.away_team?.title}
-                           style={{ width: '80px' }}
+                           height="80px"
+                           style={{ width: '80px', objectFit: 'contain' }}
                         />
                         <Title className="team-name" level={4}>
                            {match?.away_team?.title}
@@ -199,6 +209,11 @@ const Content = styled.div`
    z-index: 2;
    padding: 20px;
 
+   .block-container-match-first {
+      margin: 0 auto;
+      width: 200px;
+   }
+
    > .time {
       color: white;
       font-size: 20px;
@@ -229,6 +244,7 @@ const Countdown = styled.div`
 
 const TeamCard = styled.div`
    text-align: center;
+   width: 120px;
    transition: transform 0.3s;
 
    &:hover {
@@ -252,6 +268,7 @@ const Score = styled.div`
 const LeagueLogo = styled.img`
    width: 100px;
    height: auto;
+   margin: 0 auto;
 
    @media (max-width: 768px) {
       width: 80px;

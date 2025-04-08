@@ -1,80 +1,53 @@
 import styled from 'styled-components'
-import { Button, Flex, Table } from 'antd'
+import { Button, Modal } from 'antd'
 import { NavLink, useParams } from 'react-router-dom'
-import { useAppDispatch, useAppSelector } from '../../../store/store'
+import { useAppSelector } from '../../../store/store'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { FreeMode, Pagination, Navigation } from 'swiper/modules'
-import { Schedule } from '../../../store/slice/coach/coachSlice'
-import { ColumnType } from 'antd/es/table'
-import { useEffect } from 'react'
-import { getSchedules } from '../../../store/slice/coach/coachThunk'
+import { FreeMode, Navigation } from 'swiper/modules'
+import { useState } from 'react'
+
+interface Schedule {
+   id: number
+   coach: number
+   coach_name: string
+   group: string
+   day: string
+   start_time: string
+   end_time: string
+   location: string
+}
+
+interface Coach {
+   name: string
+   position: string
+   id: number
+   image: string
+   slug: string
+   schedules: Schedule[]
+}
 
 const Coaches = () => {
-   window.scrollTo(0, 0)
    const { slug } = useParams<{ slug: string }>()
-   const { coaches } = useAppSelector((state) => state.team)
-   const { schedules } = useAppSelector((state) => state.coach)
+   const { coaches } = useAppSelector((state) => state.team) as unknown as {
+      coaches: Coach[]
+   }
+   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
+   const [selectedCoachSchedules, setSelectedCoachSchedules] = useState<
+      Schedule[]
+   >([])
 
    const linkSlug = slug
-   const dispatch = useAppDispatch()
 
-   useEffect(() => {
-      dispatch(getSchedules())
-   }, [dispatch])
+   const showScheduleModal = (schedules: Schedule[]) => {
+      setSelectedCoachSchedules(schedules)
+      setIsModalOpen(true)
+   }
 
-   const columns: ColumnType<Schedule>[] = [
-      { title: '№', dataIndex: 'id', key: 'id' },
-      { title: 'Ф.И.О. тренера', dataIndex: 'coach_name', key: 'coach_name' },
-      { title: 'Группа', dataIndex: 'group', key: 'group' },
-      {
-         title: 'Понедельник',
-         key: 'monday',
-         render: (_, record: Schedule) =>
-            `${record.monday_start || '—'} - ${record.monday_end || '—'}`,
-      },
-      {
-         title: 'Вторник',
-         key: 'tuesday',
-         render: (_, record: Schedule) =>
-            `${record.tuesday_start || '—'} - ${record.tuesday_end || '—'}`,
-      },
-      {
-         title: 'Среда',
-         key: 'wednesday',
-         render: (_, record: Schedule) =>
-            `${record.wednesday_start || '—'} - ${record.wednesday_end || '—'}`,
-      },
-      {
-         title: 'Четверг',
-         key: 'thursday',
-         render: (_, record: Schedule) =>
-            `${record.thursday_start || '—'} - ${record.thursday_end || '—'}`,
-      },
-      {
-         title: 'Пятница',
-         key: 'friday',
-         render: (_, record: Schedule) =>
-            `${record.friday_start || '—'} - ${record.friday_end || '—'}`,
-      },
-      {
-         title: 'Суббота',
-         key: 'saturday',
-         render: (_, record: Schedule) =>
-            `${record.saturday_start || '—'} - ${record.saturday_end || '—'}`,
-      },
-      {
-         title: 'Воскресенье',
-         key: 'sunday',
-         render: (_, record: Schedule) =>
-            `${record.sunday_start || '—'} - ${record.sunday_end || '—'}`,
-      },
-      { title: 'Место проведения', dataIndex: 'location', key: 'location' },
-   ]
+   const handleCancel = () => setIsModalOpen(false)
 
    return (
       <StyledContainer>
          <h1 className="main-title">Тренерский штаб</h1>
-
          <Swiper
             navigation
             slidesPerView={3}
@@ -87,9 +60,9 @@ const Coaches = () => {
             pagination={{
                clickable: true,
             }}
-            modules={[FreeMode, Pagination, Navigation]}
+            modules={[FreeMode, Navigation]}
          >
-            {coaches.map(({ name, position, id, image, slug }) => (
+            {coaches.map(({ name, position, id, image, slug, schedules }) => (
                <SwiperSlide key={id}>
                   <StyledCard>
                      <div className="card-coach">
@@ -101,25 +74,58 @@ const Coaches = () => {
                               Смотреть профиль
                            </NavLink>
                         </Button>
+                        {linkSlug === 'futbolnaya-akademiya' &&
+                           schedules?.length > 0 && (
+                              <Button
+                                 type="default"
+                                 className="schedule-btn"
+                                 onClick={() => showScheduleModal(schedules)}
+                              >
+                                 Расписание
+                              </Button>
+                           )}
                      </div>
-
-                     {linkSlug === 'futbolnaya-akademiya' && (
-                        <Flex vertical>
-                           <h2 className="main-title">Расписание тренеров</h2>
-                           <Table
-                              dataSource={schedules}
-                              columns={columns}
-                              pagination={false}
-                              rowKey="id"
-                              scroll={{ x: 1150 }}
-                           />
-                        </Flex>
-                     )}
                   </StyledCard>
                </SwiperSlide>
             ))}
          </Swiper>
 
+         <Modal
+            title="Расписание тренировок"
+            open={isModalOpen}
+            onCancel={handleCancel}
+            footer={null}
+            width={600}
+            className="modal"
+         >
+            <ScheduleContainer>
+               {selectedCoachSchedules.map((schedule) => (
+                  <ScheduleCard key={schedule.id}>
+                     <ScheduleItem>
+                        <span className="label">День:</span>
+                        <span className="value">
+                           {schedule.day === 'tuesday' ? 'Вторник' : 'Пятница'}
+                        </span>
+                     </ScheduleItem>
+                     <ScheduleItem>
+                        <span className="label">Группа:</span>
+                        <span className="value">{schedule.group}</span>
+                     </ScheduleItem>
+                     <ScheduleItem>
+                        <span className="label">Время:</span>
+                        <span className="value">
+                           {schedule.start_time.slice(0, 5)} -{' '}
+                           {schedule.end_time.slice(0, 5)}
+                        </span>
+                     </ScheduleItem>
+                     <ScheduleItem>
+                        <span className="label">Место:</span>
+                        <span className="value">{schedule.location}</span>
+                     </ScheduleItem>
+                  </ScheduleCard>
+               ))}
+            </ScheduleContainer>
+         </Modal>
          <br />
          <br />
       </StyledContainer>
@@ -131,11 +137,9 @@ export default Coaches
 const StyledContainer = styled.section`
    max-width: 1600px;
    margin: 0 auto;
-
    .swiper-button-prev {
       left: -10px;
    }
-
    .swiper-button-next {
       right: -10px;
    }
@@ -145,10 +149,8 @@ const StyledContainer = styled.section`
       width: 50px;
       height: 50px;
    }
-
    .swiper-pagination-bullet {
       background: #ed5a0c !important;
-
       @media (max-width: 600px) {
          display: none;
       }
@@ -163,7 +165,6 @@ const StyledCard = styled.div`
    justify-content: center;
    text-align: center;
    overflow: hidden;
-
    .card-coach {
       padding: 40px;
       transition: filter 0.3s ease;
@@ -171,19 +172,16 @@ const StyledCard = styled.div`
       flex-direction: column;
       justify-content: flex-end;
       height: 100%;
-
       @media (max-width: 1400px) {
          padding: 0;
       }
    }
-
    &:hover .card-coach {
       .coach-photo,
       .coach-position {
          filter: blur(2px);
       }
    }
-
    .coach-photo {
       width: 300px;
       object-fit: cover;
@@ -192,12 +190,10 @@ const StyledCard = styled.div`
       -webkit-box-shadow: inset 0px -186px 162px -200px rgba(0, 166, 79, 1);
       -moz-box-shadow: inset 0px -186px 162px -200px rgba(0, 166, 79, 1);
       box-shadow: inset 0px -186px 162px -200px rgba(0, 166, 79, 1);
-
       @media (max-width: 800px) {
          height: 400px;
       }
    }
-
    .coach-name {
       font-size: 24px;
       font-weight: 400;
@@ -205,19 +201,11 @@ const StyledCard = styled.div`
       text-align: center;
       width: 300px;
    }
-
-   .coach-surname {
-      font-size: 36px;
-      font-weight: 700;
-      margin: 0;
-   }
-
    .coach-position {
       font-weight: 400;
       margin: 0;
       color: #d1d1d1;
    }
-
    .more-info-btn {
       position: absolute;
       top: 50%;
@@ -230,7 +218,16 @@ const StyledCard = styled.div`
       opacity: 0;
       transition: top 0.5s ease, opacity 0.3s ease;
    }
-
+   .schedule-btn {
+      margin-top: 10px;
+      background: #fff;
+      border: 1px solid #ed5a0c;
+      color: #ed5a0c;
+      &:hover {
+         background: #ed5a0c;
+         color: #fff;
+      }
+   }
    &:hover .more-info-btn {
       top: 65%;
       opacity: 1;
@@ -238,509 +235,29 @@ const StyledCard = styled.div`
    }
 `
 
-// import styled from 'styled-components'
-// import { Button, Flex, Table } from 'antd'
-// import { NavLink, useParams } from 'react-router-dom'
-// import { Swiper, SwiperSlide } from 'swiper/react'
-// import { FreeMode, Pagination, Navigation } from 'swiper/modules'
-// import { ColumnType } from 'antd/es/table'
-// import { useState, useMemo, useEffect } from 'react'
-// import { Swiper as SwiperType } from 'swiper'
-// import { useAppDispatch, useAppSelector } from '../../../store/store'
-// import { getSchedules } from '../../../store/slice/coach/coachThunk'
+const ScheduleContainer = styled.div`
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+   padding: 20px 0;
+`
 
-// interface Schedule {
-//    id: number
-//    coach_name: string
-//    group: string
-//    monday_start?: string
-//    monday_end?: string
-//    tuesday_start?: string
-//    tuesday_end?: string
-//    wednesday_start?: string
-//    wednesday_end?: string
-//    thursday_start?: string
-//    thursday_end?: string
-//    friday_start?: string
-//    friday_end?: string
-//    saturday_start?: string
-//    saturday_end?: string
-//    sunday_start?: string
-//    sunday_end?: string
-//    location: string
-// }
+const ScheduleCard = styled.div`
+   background: #f9f9f9;
+   padding: 15px;
+   border-radius: 8px;
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+`
 
-// const Coaches = () => {
-//    const { slug } = useParams<{ slug: string }>()
-//    const { coaches } = useAppSelector((state) => state.team)
-//    const { schedules } = useAppSelector((state) => state.coach)
-//    const [selectedCoach, setSelectedCoach] = useState<string>(coaches[0]?.name)
-
-//    const dispatch = useAppDispatch()
-
-//    useEffect(() => {
-//       window.scrollTo(0, 0)
-//       dispatch(getSchedules())
-//    }, [dispatch, slug])
-
-//    const columns: ColumnType<Schedule>[] = [
-//       { title: '№', dataIndex: 'id', key: 'id' },
-//       { title: 'Ф.И.О. тренера', dataIndex: 'coach_name', key: 'coach_name' },
-//       { title: 'Группа', dataIndex: 'group', key: 'group' },
-//       {
-//          title: 'Понедельник',
-//          key: 'monday',
-//          render: (_, record: Schedule) =>
-//             `${record.monday_start || '—'} - ${record.monday_end || '—'}`,
-//       },
-//       {
-//          title: 'Вторник',
-//          key: 'tuesday',
-//          render: (_, record: Schedule) =>
-//             `${record.tuesday_start || '—'} - ${record.tuesday_end || '—'}`,
-//       },
-//       {
-//          title: 'Среда',
-//          key: 'wednesday',
-//          render: (_, record: Schedule) =>
-//             `${record.wednesday_start || '—'} - ${record.wednesday_end || '—'}`,
-//       },
-//       {
-//          title: 'Четверг',
-//          key: 'thursday',
-//          render: (_, record: Schedule) =>
-//             `${record.thursday_start || '—'} - ${record.thursday_end || '—'}`,
-//       },
-//       {
-//          title: 'Пятница',
-//          key: 'friday',
-//          render: (_, record: Schedule) =>
-//             `${record.friday_start || '—'} - ${record.friday_end || '—'}`,
-//       },
-//       {
-//          title: 'Суббота',
-//          key: 'saturday',
-//          render: (_, record: Schedule) =>
-//             `${record.saturday_start || '—'} - ${record.saturday_end || '—'}`,
-//       },
-//       {
-//          title: 'Воскресенье',
-//          key: 'sunday',
-//          render: (_, record: Schedule) =>
-//             `${record.sunday_start || '—'} - ${record.sunday_end || '—'}`,
-//       },
-//       { title: 'Место проведения', dataIndex: 'location', key: 'location' },
-//    ]
-
-//    const filteredSchedules = useMemo(
-//       () =>
-//          selectedCoach
-//             ? schedules.filter(
-//                  (schedule) => schedule.coach_name === selectedCoach
-//               )
-//             : schedules,
-//       [selectedCoach, schedules]
-//    )
-
-//    const handleSlideChange = (swiper: SwiperType) => {
-//       const activeIndex = swiper.realIndex
-//       setSelectedCoach(coaches[activeIndex].name)
-//    }
-
-//    return (
-//       <StyledContainer>
-//          <h1 className="main-title">Тренерский штаб</h1>
-
-//          <Swiper
-//             navigation
-//             slidesPerView={3}
-//             spaceBetween={30}
-//             breakpoints={{
-//                350: { slidesPerView: 1 },
-//                500: { slidesPerView: 2 },
-//                768: { slidesPerView: 3 },
-//             }}
-//             pagination={{
-//                clickable: true,
-//             }}
-//             modules={[FreeMode, Pagination, Navigation]}
-//             onSlideChange={handleSlideChange}
-//             initialSlide={0}
-//          >
-//             {coaches.map(({ name, position, id, image, slug }) => (
-//                <SwiperSlide key={id}>
-//                   <StyledCard>
-//                      <div className="card-coach">
-//                         <img className="coach-photo" src={image} alt={name} />
-//                         <h2 className="coach-name">{name}</h2>
-//                         <p className="coach-position">{position}</p>
-//                         <Button type="primary" className="more-info-btn">
-//                            <NavLink to={`/coaches/${slug}`}>
-//                               Смотреть профиль
-//                            </NavLink>
-//                         </Button>
-//                      </div>
-//                   </StyledCard>
-//                </SwiperSlide>
-//             ))}
-//          </Swiper>
-
-//          <br />
-//          <br />
-//          {slug === 'futbolnaya-akademiya' ? (
-//             <Flex vertical>
-//                <h2 className="main-title">Расписание тренеров</h2>
-//                <Table
-//                   dataSource={filteredSchedules}
-//                   columns={columns}
-//                   pagination={false}
-//                   rowKey="id"
-//                   scroll={{ x: 1150 }}
-//                />
-//             </Flex>
-//          ) : null}
-//       </StyledContainer>
-//    )
-// }
-
-// export default Coaches
-
-// const StyledContainer = styled.section`
-//    max-width: 1600px;
-//    margin: 0 auto;
-
-//    .swiper-button-prev {
-//       left: -10px;
-//    }
-
-//    .swiper-button-next {
-//       right: -10px;
-//    }
-//    .swiper-button-prev,
-//    .swiper-button-next {
-//       color: #ed5a0c;
-//       width: 50px;
-//       height: 50px;
-//    }
-
-//    .swiper-pagination-bullet {
-//       background: #ed5a0c !important;
-
-//       @media (max-width: 600px) {
-//          display: none;
-//       }
-//    }
-// `
-
-// const StyledCard = styled.div`
-//    position: relative;
-//    display: flex;
-//    flex-direction: column;
-//    align-items: center;
-//    justify-content: center;
-//    text-align: center;
-//    overflow: hidden;
-
-//    .card-coach {
-//       padding: 40px;
-//       transition: filter 0.3s ease;
-//       display: flex;
-//       flex-direction: column;
-//       justify-content: flex-end;
-//       height: 100%;
-
-//       @media (max-width: 1400px) {
-//          padding: 0;
-//       }
-//    }
-
-//    &:hover .card-coach {
-//       .coach-photo,
-//       .coach-position {
-//          filter: blur(2px);
-//       }
-//    }
-
-//    .coach-photo {
-//       width: 300px;
-//       object-fit: cover;
-//       height: 420px;
-//       margin-bottom: 20px;
-//       -webkit-box-shadow: inset 0px -186px 162px -200px rgba(0, 166, 79, 1);
-//       -moz-box-shadow: inset 0px -186px 162px -200px rgba(0, 166, 79, 1);
-//       box-shadow: inset 0px -186px 162px -200px rgba(0, 166, 79, 1);
-
-//       @media (max-width: 800px) {
-//          height: 400px;
-//       }
-//    }
-
-//    .coach-name {
-//       font-size: 24px;
-//       font-weight: 400;
-//       margin: 0;
-//       text-align: center;
-//       width: 300px;
-//    }
-
-//    .coach-position {
-//       font-weight: 400;
-//       margin: 0;
-//       color: #d1d1d1;
-//    }
-
-//    .more-info-btn {
-//       position: absolute;
-//       top: 50%;
-//       left: 50%;
-//       transform: translateX(-10%);
-//       padding: 20px 30px;
-//       border: none;
-//       color: white;
-//       cursor: pointer;
-//       opacity: 0;
-//       transition: top 0.5s ease, opacity 0.3s ease;
-//    }
-
-//    &:hover .more-info-btn {
-//       top: 65%;
-//       opacity: 1;
-//       transform: translate(-50%, -50%);
-//    }
-// `
-
-// const Coaches = () => {
-//    const { slug } = { slug: 'futbolnaya-akademiya' } // Мокаем slug для теста
-//    const [selectedCoach, setSelectedCoach] = useState<string>(
-//       mockCoaches[0].name
-//    )
-
-//    useEffect(() => {
-//       window.scrollTo(0, 0)
-//    }, [])
-
-//    const columns: ColumnType<Schedule>[] = [
-//       { title: '№', dataIndex: 'id', key: 'id' },
-//       { title: 'Ф.И.О. тренера', dataIndex: 'coach_name', key: 'coach_name' },
-//       { title: 'Группа', dataIndex: 'group', key: 'group' },
-//       {
-//          title: 'Понедельник',
-//          key: 'monday',
-//          render: (_, record: Schedule) =>
-//             `${record.monday_start || '—'} - ${record.monday_end || '—'}`,
-//       },
-//       {
-//          title: 'Вторник',
-//          key: 'tuesday',
-//          render: (_, record: Schedule) =>
-//             `${record.tuesday_start || '—'} - ${record.tuesday_end || '—'}`,
-//       },
-//       {
-//          title: 'Среда',
-//          key: 'wednesday',
-//          render: (_, record: Schedule) =>
-//             `${record.wednesday_start || '—'} - ${record.wednesday_end || '—'}`,
-//       },
-//       {
-//          title: 'Четверг',
-//          key: 'thursday',
-//          render: (_, record: Schedule) =>
-//             `${record.thursday_start || '—'} - ${record.thursday_end || '—'}`,
-//       },
-//       {
-//          title: 'Пятница',
-//          key: 'friday',
-//          render: (_, record: Schedule) =>
-//             `${record.friday_start || '—'} - ${record.friday_end || '—'}`,
-//       },
-//       {
-//          title: 'Суббота',
-//          key: 'saturday',
-//          render: (_, record: Schedule) =>
-//             `${record.saturday_start || '—'} - ${record.saturday_end || '—'}`,
-//       },
-//       {
-//          title: 'Воскресенье',
-//          key: 'sunday',
-//          render: (_, record: Schedule) =>
-//             `${record.sunday_start || '—'} - ${record.sunday_end || '—'}`,
-//       },
-//       { title: 'Место проведения', dataIndex: 'location', key: 'location' },
-//    ]
-
-//    const filteredSchedules = useMemo(
-//       () =>
-//          selectedCoach
-//             ? mockSchedules.filter(
-//                  (schedule) => schedule.coach_name === selectedCoach
-//               )
-//             : mockSchedules,
-//       [selectedCoach]
-//    )
-
-//    const handleSlideChange = (swiper: SwiperType) => {
-//       const activeIndex = swiper.realIndex
-//       setSelectedCoach(mockCoaches[activeIndex].name)
-//    }
-
-//    return (
-//       <StyledContainer>
-//          <h1 className="main-title">Тренерский штаб</h1>
-
-//          <Swiper
-//             navigation
-//             slidesPerView={3}
-//             spaceBetween={30}
-//             breakpoints={{
-//                350: { slidesPerView: 1 },
-//                500: { slidesPerView: 2 },
-//                768: { slidesPerView: 3 },
-//             }}
-//             pagination={{
-//                clickable: true,
-//             }}
-//             modules={[FreeMode, Pagination, Navigation]}
-//             onSlideChange={handleSlideChange}
-//             initialSlide={0}
-//          >
-//             {mockCoaches.map(({ name, position, id, image, slug }) => (
-//                <SwiperSlide key={id}>
-//                   <StyledCard>
-//                      <div className="card-coach">
-//                         <img className="coach-photo" src={image} alt={name} />
-//                         <h2 className="coach-name">{name}</h2>
-//                         <p className="coach-position">{position}</p>
-//                         <Button type="primary" className="more-info-btn">
-//                            <NavLink to={`/coaches/${slug}`}>
-//                               Смотреть профиль
-//                            </NavLink>
-//                         </Button>
-//                      </div>
-//                   </StyledCard>
-//                </SwiperSlide>
-//             ))}
-//          </Swiper>
-
-//          <br />
-//          <br />
-//          {slug === 'futbolnaya-akademiya' && (
-//             <Flex vertical>
-//                <h2 className="main-title">Расписание тренеров</h2>
-//                <Table
-//                   dataSource={filteredSchedules}
-//                   columns={columns}
-//                   pagination={false}
-//                   rowKey="id"
-//                   scroll={{ x: 1150 }}
-//                />
-//             </Flex>
-//          )}
-//       </StyledContainer>
-//    )
-// }
-
-// export default Coaches
-
-// const StyledContainer = styled.section`
-//    max-width: 1600px;
-//    margin: 0 auto;
-
-//    .swiper-button-prev {
-//       left: -10px;
-//    }
-
-//    .swiper-button-next {
-//       right: -10px;
-//    }
-//    .swiper-button-prev,
-//    .swiper-button-next {
-//       color: #ed5a0c;
-//       width: 50px;
-//       height: 50px;
-//    }
-
-//    .swiper-pagination-bullet {
-//       background: #ed5a0c !important;
-
-//       @media (max-width: 600px) {
-//          display: none;
-//       }
-//    }
-// `
-
-// const StyledCard = styled.div`
-//    position: relative;
-//    display: flex;
-//    flex-direction: column;
-//    align-items: center;
-//    justify-content: center;
-//    text-align: center;
-//    overflow: hidden;
-
-//    .card-coach {
-//       padding: 40px;
-//       transition: filter 0.3s ease;
-//       display: flex;
-//       flex-direction: column;
-//       justify-content: flex-end;
-//       height: 100%;
-
-//       @media (max-width: 1400px) {
-//          padding: 0;
-//       }
-//    }
-
-//    &:hover .card-coach {
-//       .coach-photo,
-//       .coach-position {
-//          filter: blur(2px);
-//       }
-//    }
-
-//    .coach-photo {
-//       width: 300px;
-//       object-fit: cover;
-//       height: 420px;
-//       margin-bottom: 20px;
-//       -webkit-box-shadow: inset 0px -186px 162px -200px rgba(0, 166, 79, 1);
-//       -moz-box-shadow: inset 0px -186px 162px -200px rgba(0, 166, 79, 1);
-//       box-shadow: inset 0px -186px 162px -200px rgba(0, 166, 79, 1);
-
-//       @media (max-width: 800px) {
-//          height: 400px;
-//       }
-//    }
-
-//    .coach-name {
-//       font-size: 24px;
-//       font-weight: 400;
-//       margin: 0;
-//       text-align: center;
-//       width: 300px;
-//    }
-
-//    .coach-position {
-//       font-weight: 400;
-//       margin: 0;
-//       color: #d1d1d1;
-//    }
-
-//    .more-info-btn {
-//       position: absolute;
-//       top: 50%;
-//       left: 50%;
-//       transform: translateX(-10%);
-//       padding: 20px 30px;
-//       border: none;
-//       color: white;
-//       cursor: pointer;
-//       opacity: 0;
-//       transition: top 0.5s ease, opacity 0.3s ease;
-//    }
-
-//    &:hover .more-info-btn {
-//       top: 65%;
-//       opacity: 1;
-//       transform: translate(-50%, -50%);
-//    }
-// `
+const ScheduleItem = styled.div`
+   display: flex;
+   justify-content: space-between;
+   margin: 8px 0;
+   .label {
+      font-weight: 600;
+      color: #333;
+   }
+   .value {
+      color: #666;
+   }
+`
