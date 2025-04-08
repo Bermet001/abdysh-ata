@@ -33,8 +33,15 @@ const Infrastructures: FC = () => {
          </Helmet>
 
          <CollageContainer wrap>
-            {infrastractures?.map((item) => (
-               <NavLink to={`/infrastructure/${item.slug}`} key={item.id}>
+            {infrastractures?.map((item, index) => (
+               <NavLink
+                  style={{
+                     width: index % 2 === 1 ? 'max-content' : '55%',
+                  }}
+                  to={`/infrastructure/${item.slug}`}
+                  key={item.id}
+                  className="navlink"
+               >
                   <StyledCard bgimage={item.image}>
                      <div className="ant-card-body block">
                         <h1>{item.title}</h1>
@@ -80,6 +87,11 @@ const CollageContainer = styled(Flex)`
    @media (max-width: 1024px) {
       margin: 80px 20px;
    }
+   @media (max-width: 924px) {
+      .navlink {
+         width: max-content !important;
+      }
+   }
 
    @media (max-width: 768px) {
       flex-direction: column;
@@ -95,7 +107,6 @@ const StyledCard = styled(Card)<StyledCardProps>`
    background-position: center;
    height: 300px;
    min-width: 100%;
-   width: calc(37% - 20px);
    color: white;
    transition: transform 0.3s ease, box-shadow 0.3s ease;
 
