@@ -63,6 +63,7 @@ export default Sponsors
 const StyledContainer = styled.section`
    padding: 120px 75px 60px 75px;
    max-width: 1600px;
+   background-color: grey;
    margin: 0 auto;
    width: 100%;
    min-height: 100px;

@@ -89,6 +89,8 @@ export default VictoryBlock
 const Container = styled.section`
    text-align: center;
    padding: 120px 0;
+   background-color: grey;
+
    padding-bottom: 0;
    color: black;
 
@@ -250,6 +252,11 @@ const StyledCard = styled(Card)`
 
    .contents-trophy {
       padding: 15px !important;
+      height: 110px;
+
+      @media (max-width: 830px) {
+         height: auto;
+      }
    }
 
    .ant-card-body {

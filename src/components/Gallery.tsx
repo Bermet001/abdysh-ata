@@ -220,6 +220,8 @@ const StyledContainer = styled.section`
    justify-content: center;
    padding: 120px 75px 0 75px;
    margin: 0 auto;
+   background-color: grey;
+
    max-width: 1600px;
 
    img {
