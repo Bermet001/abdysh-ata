@@ -165,7 +165,7 @@ export default TournamentTable
 
 const StyledComponent = styled.div<{ path: string }>`
    padding: 75px;
-   margin-top: 30px;
+   margin-top: ${({ path }) => (path === 'true' ? '30px' : '0')};
    background-image: ${({ path }) =>
       path === 'true' ? `url(${background1})` : 'none'};
    background-size: cover;
