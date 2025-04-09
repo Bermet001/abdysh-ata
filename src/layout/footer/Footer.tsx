@@ -82,12 +82,13 @@ const Footer: FC = () => {
                className="first-block"
                justify="space-between"
                align="center"
+               gap={20}
             >
-               <Flex gap={15} className="logo" align="center">
+               <Flex gap={5} className="logo" align="center">
                   <img loading="lazy" src={logo} alt="logo" />
                   <h1 className="main-title">Абдыш-ата</h1>
                </Flex>
-               <Flex className="socials" align="center" gap={30}>
+               <Flex wrap className="socials" align="center" gap={30}>
                   {socialLinks.map(({ label, href, Icon }, index) => (
                      <a key={index} aria-label={label} href={href}>
                         <Icon />
@@ -136,22 +137,20 @@ const StyledFooter = styled.footer`
          width: 90px;
          height: 80px;
       }
+
+      @media (max-width: 450px) {
+         img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+         }
+      }
    }
 
    @media (max-width: 1024px) {
       padding: 20px 20px;
       .footer-map {
          width: 100%;
-      }
-   }
-
-   @media (max-width: 450px) {
-      .first-block {
-         flex-wrap: wrap;
-
-         .socials {
-            align-self: end;
-         }
       }
    }
 
@@ -204,8 +203,9 @@ const StyledFooter = styled.footer`
    }
 
    svg {
-      width: 25px;
-      height: 25px;
+      width: 20px;
+      height: 20px;
+
       path {
          fill: white !important;
       }

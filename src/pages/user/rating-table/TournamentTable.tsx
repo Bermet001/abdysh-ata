@@ -139,7 +139,7 @@ const TournamentTable = () => {
          .slice(0, isHomePage ? 6 : undefined) || []
 
    return (
-      <StyledComponent path={isHomePage.toString()}>
+      <StyledComponent $path={isHomePage.toString()}>
          <Flex vertical className="table">
             <Flex
                vertical
@@ -163,11 +163,11 @@ const TournamentTable = () => {
 
 export default TournamentTable
 
-const StyledComponent = styled.div<{ path: string }>`
+const StyledComponent = styled.div<{ $path: string }>`
    padding: 75px;
-   margin-top: ${({ path }) => (path === 'true' ? '30px' : '0')};
-   background-image: ${({ path }) =>
-      path === 'true' ? `url(${background1})` : 'none'};
+   margin-top: ${({ $path }) => ($path === 'true' ? '30px' : '0')};
+   background-image: ${({ $path }) =>
+      $path === 'true' ? `url(${background1})` : 'none'};
    background-size: cover;
    background-position: center;
    background-repeat: no-repeat;
