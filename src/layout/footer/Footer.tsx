@@ -1,8 +1,11 @@
 import { Flex } from 'antd'
 import styled from 'styled-components'
 import Telegram from '../../assets/icons/telegram.svg'
-import Instagram from '../../assets/icons/instagramm.svg'
+import Instagram from '../../assets/icons/instagram.svg'
 import Whatsapp from '../../assets/icons/whatsapp.svg'
+import Facebook from '../../assets/icons/facebook.svg'
+import Tiktok from '../../assets/icons/tiktok.svg'
+import Youtube from '../../assets/icons/youtube.svg'
 import { useAppDispatch, useAppSelector } from '../../store/store'
 import { FC, useEffect } from 'react'
 import { CONTACTS_THUNK } from '../../store/slice/contacts/contactsThunk'
@@ -54,6 +57,21 @@ const Footer: FC = () => {
          label: 'Перейти в whatsapp чат',
          href: `https://wa.me/${contact.whatsapp}`,
          Icon: Whatsapp,
+      },
+      {
+         label: 'Перейти в whatsapp чат',
+         href: `https://youtube.com/@fc-abdysh-ata?si=FzUmxg_dUyoSBoAR`,
+         Icon: Youtube,
+      },
+      {
+         label: 'Перейти в whatsapp чат',
+         href: `https://www.tiktok.com/@fc_abdysh_ata?_t=ZS-8vMZoh4FDh1&_r=1`,
+         Icon: Tiktok,
+      },
+      {
+         label: 'Перейти в whatsapp чат',
+         href: `https://www.facebook.com/share/16PmNCFP3S/?mibextid=wwXIfr`,
+         Icon: Facebook,
       },
    ]
 
@@ -126,6 +144,17 @@ const StyledFooter = styled.footer`
          width: 100%;
       }
    }
+
+   @media (max-width: 450px) {
+      .first-block {
+         flex-wrap: wrap;
+
+         .socials {
+            align-self: end;
+         }
+      }
+   }
+
    h1 {
       margin-bottom: 0;
       color: #fff;
@@ -147,7 +176,6 @@ const StyledFooter = styled.footer`
       font-size: 15px;
       font-weight: 600;
       color: white;
-      /* color: #212121; */
       display: flex;
       gap: 10px;
       transition: color 0.4s ease, transform 0.4s ease;
@@ -169,9 +197,19 @@ const StyledFooter = styled.footer`
 
       .socials {
          gap: 10px !important;
+
+         a {
+         }
       }
    }
 
+   svg {
+      width: 25px;
+      height: 25px;
+      path {
+         fill: white !important;
+      }
+   }
    @media (max-width: 1024px) {
       .title {
          font-size: 16px;

@@ -173,7 +173,6 @@ const StyledCard = styled(Card)<StyledCardProps>`
 
    @media (max-width: 768px) {
       height: 200px;
-      max-width: 100%;
       .block {
          padding: 10px;
 
