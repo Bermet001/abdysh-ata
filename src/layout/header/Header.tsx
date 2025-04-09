@@ -58,6 +58,10 @@ const Header = () => {
             })) || [],
       },
       {
+         key: '91',
+         label: <NavLink to="team/futbolnaya-akademiya">Академия</NavLink>,
+      },
+      {
          key: '3',
          label: 'О клубе',
          children: [

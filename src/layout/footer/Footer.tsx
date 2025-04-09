@@ -25,7 +25,7 @@ const Footer: FC = () => {
 
    const navigations = [
       { path: '/', title: 'Главная' },
-      { path: '/', title: 'Команды', sub_nav: headerTeam },
+      { path: 'team/futbolnaya-akademiya', title: 'Академия' },
       {
          path: '/',
          title: 'О клубе',
