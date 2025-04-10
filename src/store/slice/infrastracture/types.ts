@@ -39,7 +39,7 @@ interface Infrastructure {
 interface InitialState {
    isLoading: boolean
    infrastractures?: Infrastructure[]
-   infrastracture?: Stadium | null
+   infrastracture?: Stadium | null | undefined
 }
 
 export type { Stadium, InitialState, Infrastructure }

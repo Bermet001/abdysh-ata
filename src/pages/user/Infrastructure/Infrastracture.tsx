@@ -11,7 +11,6 @@ const Infrastructure = () => {
    window.scrollTo(0, 0)
    const { slug } = useParams<{ slug: string }>()
    const { infrastracture } = useAppSelector((state) => state.infrastracture)
-
    const dispatch = useAppDispatch()
 
    useEffect(() => {
@@ -46,7 +45,7 @@ const Infrastructure = () => {
                      </p>
 
                      <p className="info">
-                        <span>«Вместимость: </span> {infrastracture?.places}
+                        <span>Вместимость: </span> {infrastracture?.places}
                      </p>
                   </Flex>
                </Flex>
@@ -59,7 +58,7 @@ const Infrastructure = () => {
          </Flex>
 
          <Flex style={{ overflowX: 'scroll' }} gap={20}>
-            {infrastracture?.videos.map(({ video }, index) => {
+            {infrastracture?.videos?.map(({ video }, index) => {
                const getEmbedUrl = (url: string) => {
                   const youtubeMatch = url.match(
                      /(?:youtube\.com.+?v=|be\.com\/)([^&]+)/
@@ -99,16 +98,35 @@ const Infrastructure = () => {
                900: { slidesPerView: 3 },
             }}
          >
-            {infrastracture?.images.map((item) => (
+            {infrastracture?.images?.map((item) => (
                <SwiperSlide key={item.id}>
                   <img className="gallery-image" src={item.image} alt="image" />
                </SwiperSlide>
             ))}
          </Swiper>
 
+         {/* {infrastracture?.images && infrastracture.images.length > 0 && (
+            <Flex vertical className="gallery-block">
+               <h2 className="section-title">Фотографии</h2>
+               <Flex wrap="wrap" gap={20}>
+                  {infrastracture.images.map((item) => (
+                     <StyledCard key={item.id}>
+                        <h3 className="card-title">
+                           Поле с естественным покрытием
+                        </h3>
+                        <img
+                           className="card-image"
+                           src={item.image}
+                           alt="стадион"
+                        />
+                     </StyledCard>
+                  ))}
+               </Flex>
+            </Flex>
+         )} */}
+
          <Flex vertical className="map-block">
             <h2>Маршрут</h2>
-
             <iframe
                src={
                   infrastracture?.map_url ||
@@ -250,5 +268,57 @@ const StyledContainer = styled.main`
       }
 
       margin-bottom: 30px;
+   }
+
+   .gallery-block {
+      margin-bottom: 50px;
+
+      .section-title {
+         font-size: 40px;
+         color: #333;
+         margin-bottom: 30px;
+
+         @media (max-width: 768px) {
+            font-size: 30px;
+         }
+      }
+   }
+`
+
+const StyledCard = styled.div`
+   background: #fff;
+   border: 1px solid #e0e0e0;
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+   padding: 20px;
+   border-radius: 8px;
+   flex: 1 1 calc(33.333% - 40px / 3);
+   box-sizing: border-box;
+
+   .card-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #000;
+      margin: 0 0 15px 0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+
+      @media (max-width: 768px) {
+         font-size: 16px;
+      }
+   }
+
+   .card-image {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 4px;
+
+      @media (max-width: 768px) {
+         height: 200px;
+      }
+   }
+
+   @media (max-width: 768px) {
+      flex: 1 1 100%;
    }
 `
