@@ -46,6 +46,8 @@ const StyledSection = styled.section`
    position: relative;
    width: 100%;
    overflow: hidden;
+   max-width: 1600px;
+   margin: 0 auto;
 `
 
 const BannerContainer = styled.div`

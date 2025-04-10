@@ -34,181 +34,187 @@ const Gallery = () => {
    const image3 = gallery[2] || ''
 
    return (
-      <StyledContainer>
-         <Flex vertical gap={40}>
-            <Flex align="center" gap={10} justify="space-between">
-               <h2 className="main-title" style={{ margin: 0 }}>
-                  КАДРЫ И ВИДЕО С СОБЫТИЙ
-               </h2>
+      <div
+         style={{
+            background: '#e2e2e2',
+         }}
+      >
+         <StyledContainer>
+            <Flex vertical gap={40}>
+               <Flex align="center" gap={10} justify="space-between">
+                  <h2 className="main-title" style={{ margin: 0 }}>
+                     КАДРЫ И ВИДЕО С СОБЫТИЙ
+                  </h2>
 
-               <NavLink to="/gallery">
-                  <Button type="primary">
-                     Посмотреть все <RightOutlined />
-                  </Button>
-               </NavLink>
+                  <NavLink to="/gallery">
+                     <Button type="primary">
+                        Посмотреть все <RightOutlined />
+                     </Button>
+                  </NavLink>
+               </Flex>
+
+               <Flex gap={20} className="image-gallery">
+                  <Flex className="gallery-image" vertical gap={20}>
+                     <ImageWrapper justify="center">
+                        <img
+                           loading="lazy"
+                           height="100%"
+                           width="100%"
+                           src={image1.image_main}
+                           alt="Event 1"
+                        />
+                        <DarkOverlay />
+
+                        <Overlay>
+                           <Flex
+                              className="overlay-container"
+                              gap={15}
+                              align="center"
+                           >
+                              <Flex
+                                 onClick={() =>
+                                    handleImageClick(image1.image_main)
+                                 }
+                                 vertical
+                                 gap={10}
+                                 align="center"
+                              >
+                                 <StyledEyeOutlined />
+                                 <p
+                                    className="explanation"
+                                    style={{ color: 'white' }}
+                                 >
+                                    Посмотреть
+                                 </p>
+                              </Flex>
+                              <NavLink to={`/gallery/${image1.slug}`}>
+                                 <Flex vertical gap={10} align="center">
+                                    <StyledRightSquareOutlined />
+                                    <p
+                                       className="explanation"
+                                       style={{ color: 'white' }}
+                                    >
+                                       Подробнее
+                                    </p>
+                                 </Flex>
+                              </NavLink>
+                           </Flex>
+                        </Overlay>
+                     </ImageWrapper>
+
+                     <ImageWrapper justify="center">
+                        <img
+                           loading="lazy"
+                           height="100%"
+                           width="100%"
+                           src={image2.image_main}
+                           alt="Event 2"
+                        />
+                        <DarkOverlay />
+
+                        <Overlay>
+                           <Flex
+                              className="overlay-container"
+                              gap={15}
+                              align="center"
+                           >
+                              <Flex
+                                 onClick={() =>
+                                    handleImageClick(image2.image_main)
+                                 }
+                                 vertical
+                                 gap={10}
+                                 align="center"
+                              >
+                                 <StyledEyeOutlined />
+                                 <p
+                                    className="explanation"
+                                    style={{ color: 'white' }}
+                                 >
+                                    Посмотреть
+                                 </p>
+                              </Flex>
+
+                              <NavLink to={`/gallery/${image2.slug}`}>
+                                 <Flex vertical gap={10} align="center">
+                                    <StyledRightSquareOutlined />
+                                    <p
+                                       className="explanation"
+                                       style={{ color: 'white' }}
+                                    >
+                                       Подробнее
+                                    </p>
+                                 </Flex>
+                              </NavLink>
+                           </Flex>
+                        </Overlay>
+                     </ImageWrapper>
+                  </Flex>
+                  <Flex>
+                     <ImageWrapper justify="center">
+                        <img
+                           height="100%"
+                           width="100%"
+                           loading="lazy"
+                           src={image3.image_main}
+                           alt="Event 3"
+                        />
+                        <DarkOverlay />
+                        <Overlay>
+                           <Flex
+                              className="overlay-container"
+                              gap={15}
+                              align="center"
+                           >
+                              <Flex
+                                 onClick={() =>
+                                    handleImageClick(image3.image_main)
+                                 }
+                                 vertical
+                                 gap={10}
+                                 align="center"
+                              >
+                                 <StyledEyeOutlined />
+                                 <p
+                                    className="explanation"
+                                    style={{ color: 'white' }}
+                                 >
+                                    Посмотреть
+                                 </p>
+                              </Flex>
+                              <NavLink to={`/gallery/${image3.slug}`}>
+                                 <Flex vertical gap={10} align="center">
+                                    <StyledRightSquareOutlined />
+                                    <p
+                                       className="explanation"
+                                       style={{ color: 'white' }}
+                                    >
+                                       Подробнее
+                                    </p>
+                                 </Flex>
+                              </NavLink>
+                           </Flex>
+                        </Overlay>
+                     </ImageWrapper>
+                  </Flex>
+               </Flex>
             </Flex>
 
-            <Flex gap={20} className="image-gallery">
-               <Flex className="gallery-image" vertical gap={20}>
-                  <ImageWrapper justify="center">
-                     <img
-                        loading="lazy"
-                        height="100%"
-                        width="100%"
-                        src={image1.image_main}
-                        alt="Event 1"
-                     />
-                     <DarkOverlay />
-
-                     <Overlay>
-                        <Flex
-                           className="overlay-container"
-                           gap={15}
-                           align="center"
-                        >
-                           <Flex
-                              onClick={() =>
-                                 handleImageClick(image1.image_main)
-                              }
-                              vertical
-                              gap={10}
-                              align="center"
-                           >
-                              <StyledEyeOutlined />
-                              <p
-                                 className="explanation"
-                                 style={{ color: 'white' }}
-                              >
-                                 Посмотреть
-                              </p>
-                           </Flex>
-                           <NavLink to={`/gallery/${image1.slug}`}>
-                              <Flex vertical gap={10} align="center">
-                                 <StyledRightSquareOutlined />
-                                 <p
-                                    className="explanation"
-                                    style={{ color: 'white' }}
-                                 >
-                                    Подробнее
-                                 </p>
-                              </Flex>
-                           </NavLink>
-                        </Flex>
-                     </Overlay>
-                  </ImageWrapper>
-
-                  <ImageWrapper justify="center">
-                     <img
-                        loading="lazy"
-                        height="100%"
-                        width="100%"
-                        src={image2.image_main}
-                        alt="Event 2"
-                     />
-                     <DarkOverlay />
-
-                     <Overlay>
-                        <Flex
-                           className="overlay-container"
-                           gap={15}
-                           align="center"
-                        >
-                           <Flex
-                              onClick={() =>
-                                 handleImageClick(image2.image_main)
-                              }
-                              vertical
-                              gap={10}
-                              align="center"
-                           >
-                              <StyledEyeOutlined />
-                              <p
-                                 className="explanation"
-                                 style={{ color: 'white' }}
-                              >
-                                 Посмотреть
-                              </p>
-                           </Flex>
-
-                           <NavLink to={`/gallery/${image2.slug}`}>
-                              <Flex vertical gap={10} align="center">
-                                 <StyledRightSquareOutlined />
-                                 <p
-                                    className="explanation"
-                                    style={{ color: 'white' }}
-                                 >
-                                    Подробнее
-                                 </p>
-                              </Flex>
-                           </NavLink>
-                        </Flex>
-                     </Overlay>
-                  </ImageWrapper>
-               </Flex>
-               <Flex>
-                  <ImageWrapper justify="center">
-                     <img
-                        height="100%"
-                        width="100%"
-                        loading="lazy"
-                        src={image3.image_main}
-                        alt="Event 3"
-                     />
-                     <DarkOverlay />
-                     <Overlay>
-                        <Flex
-                           className="overlay-container"
-                           gap={15}
-                           align="center"
-                        >
-                           <Flex
-                              onClick={() =>
-                                 handleImageClick(image3.image_main)
-                              }
-                              vertical
-                              gap={10}
-                              align="center"
-                           >
-                              <StyledEyeOutlined />
-                              <p
-                                 className="explanation"
-                                 style={{ color: 'white' }}
-                              >
-                                 Посмотреть
-                              </p>
-                           </Flex>
-                           <NavLink to={`/gallery/${image3.slug}`}>
-                              <Flex vertical gap={10} align="center">
-                                 <StyledRightSquareOutlined />
-                                 <p
-                                    className="explanation"
-                                    style={{ color: 'white' }}
-                                 >
-                                    Подробнее
-                                 </p>
-                              </Flex>
-                           </NavLink>
-                        </Flex>
-                     </Overlay>
-                  </ImageWrapper>
-               </Flex>
-            </Flex>
-         </Flex>
-
-         <Modal
-            open={isModalVisible}
-            footer={null}
-            onCancel={handleCloseModal}
-            width={700}
-            className="modal-gallery"
-         >
-            <img
-               src={selectedImage}
-               alt="Detailed view"
-               style={{ width: '100%' }}
-            />
-         </Modal>
-      </StyledContainer>
+            <Modal
+               open={isModalVisible}
+               footer={null}
+               onCancel={handleCloseModal}
+               width={700}
+               className="modal-gallery"
+            >
+               <img
+                  src={selectedImage}
+                  alt="Detailed view"
+                  style={{ width: '100%' }}
+               />
+            </Modal>
+         </StyledContainer>
+      </div>
    )
 }
 
@@ -220,8 +226,6 @@ const StyledContainer = styled.section`
    justify-content: center;
    padding: 120px 75px 0 75px;
    margin: 0 auto;
-   background-color: #e2e2e2;
-
 
    max-width: 1600px;
 

@@ -21,6 +21,7 @@ interface Stadium {
    map_url: string | null
    videos: Video[]
    images: Image[]
+   places:string
 }
 
 interface Infrastructure {

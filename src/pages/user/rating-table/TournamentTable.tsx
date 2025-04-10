@@ -165,6 +165,7 @@ export default TournamentTable
 
 const StyledComponent = styled.div<{ $path: string }>`
    padding: 75px;
+   margin: 0 auto;
    margin-top: ${({ $path }) => ($path === 'true' ? '30px' : '0')};
    background-image: ${({ $path }) =>
       $path === 'true' ? `url(${background1})` : 'none'};
@@ -211,6 +212,10 @@ const StyledComponent = styled.div<{ $path: string }>`
          font-size: 14px;
          padding: 6px 10px;
       }
+   }
+   .table {
+      margin: 0 auto;
+      max-width: 1600px;
    }
 
    .ant-table {

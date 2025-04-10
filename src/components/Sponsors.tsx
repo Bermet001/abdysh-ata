@@ -17,44 +17,50 @@ const Sponsors = () => {
       partners.length < 5 ? [...partners, ...partners].slice(0, 5) : partners
 
    return (
-      <StyledContainer>
-         <h2 className="main-title-center">Наши спонсоры</h2>
+      <div
+         style={{
+            background: '#e2e2e2',
+         }}
+      >
+         <StyledContainer>
+            <h2 className="main-title-center">Наши спонсоры</h2>
 
-         <Swiper
-            loop={duplicatedPartners.length > 4}
-            spaceBetween={30}
-            autoplay={{
-               delay: 2500,
-               disableOnInteraction: false,
-            }}
-            modules={[Pagination, Autoplay]}
-            breakpoints={{
-               200: { slidesPerView: 3 },
-               768: { slidesPerView: 3 },
-               1024: { slidesPerView: 3 },
-               1440: { slidesPerView: 4 },
-               1600: { slidesPerView: 4 },
-            }}
-         >
-            {duplicatedPartners.map((sponsor, index) => (
-               <SwiperSlide key={`${sponsor.id}-${index}`}>
-                  <a
-                     key={sponsor.id}
-                     aria-label="ссылка на сайт спонсора"
-                     href={sponsor.link}
-                  >
-                     <img
-                        width="50px"
-                        height={53}
-                        loading="lazy"
-                        src={sponsor.image}
-                        alt={sponsor.title}
-                     />
-                  </a>
-               </SwiperSlide>
-            ))}
-         </Swiper>
-      </StyledContainer>
+            <Swiper
+               loop={duplicatedPartners.length > 4}
+               spaceBetween={30}
+               autoplay={{
+                  delay: 2500,
+                  disableOnInteraction: false,
+               }}
+               modules={[Pagination, Autoplay]}
+               breakpoints={{
+                  200: { slidesPerView: 3 },
+                  768: { slidesPerView: 3 },
+                  1024: { slidesPerView: 3 },
+                  1440: { slidesPerView: 4 },
+                  1600: { slidesPerView: 4 },
+               }}
+            >
+               {duplicatedPartners.map((sponsor, index) => (
+                  <SwiperSlide key={`${sponsor.id}-${index}`}>
+                     <a
+                        key={sponsor.id}
+                        aria-label="ссылка на сайт спонсора"
+                        href={sponsor.link}
+                     >
+                        <img
+                           width="50px"
+                           height={53}
+                           loading="lazy"
+                           src={sponsor.image}
+                           alt={sponsor.title}
+                        />
+                     </a>
+                  </SwiperSlide>
+               ))}
+            </Swiper>
+         </StyledContainer>
+      </div>
    )
 }
 
@@ -63,7 +69,6 @@ export default Sponsors
 const StyledContainer = styled.section`
    padding: 120px 75px 60px 75px;
    max-width: 1600px;
-   background-color: #e2e2e2;
    margin: 0 auto;
    width: 100%;
    min-height: 100px;

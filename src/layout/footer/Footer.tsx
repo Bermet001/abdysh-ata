@@ -60,17 +60,17 @@ const Footer: FC = () => {
       },
       {
          label: 'Перейти в whatsapp чат',
-         href: `https://youtube.com/@fc-abdysh-ata?si=FzUmxg_dUyoSBoAR`,
+         href: contact.youtube,
          Icon: Youtube,
       },
       {
          label: 'Перейти в whatsapp чат',
-         href: `https://www.tiktok.com/@fc_abdysh_ata?_t=ZS-8vMZoh4FDh1&_r=1`,
+         href: contact.tik_tok,
          Icon: Tiktok,
       },
       {
          label: 'Перейти в whatsapp чат',
-         href: `https://www.facebook.com/share/16PmNCFP3S/?mibextid=wwXIfr`,
+         href: contact.facebook,
          Icon: Facebook,
       },
    ]

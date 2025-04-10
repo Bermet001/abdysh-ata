@@ -32,13 +32,12 @@ const Landing: FC = () => (
          <MatchInfo />
          <TournamentTable />
          <AcademyLanding />
-
          <Infrastructures />
+         <VictoryBlock />
          <Team />
          <ProductSlider />
          <News />
          <Gallery />
-         <VictoryBlock />
          <Sponsors />
       </main>
    </>

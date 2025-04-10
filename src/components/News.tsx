@@ -31,27 +31,33 @@ const News = () => {
    }, [])
 
    return (
-      <NewsContainer>
-         <Flex justify="space-between">
-            <h2 className="main-title">ПОСЛЕДНИЕ НОВОСТИ</h2>
+      <div
+         style={{
+            background: '#e2e2e2',
+         }}
+      >
+         <NewsContainer>
+            <Flex justify="space-between">
+               <h2 className="main-title">ПОСЛЕДНИЕ НОВОСТИ</h2>
 
-            <NavLink to="/news">
-               <Button type="primary">
-                  Посмотреть все новости <RightOutlined />
-               </Button>
-            </NavLink>
-         </Flex>
+               <NavLink to="/news">
+                  <Button type="primary">
+                     Посмотреть все новости <RightOutlined />
+                  </Button>
+               </NavLink>
+            </Flex>
 
-         <CardsContainer>
-            {isLoading
-               ? [...Array(visibleCount)].map((_, index) => (
-                    <Skeleton key={index} active paragraph={{ rows: 4 }} />
-                 ))
-               : news
-                    ?.slice(0, visibleCount)
-                    .map((item) => <NewsCard key={item.id} {...item} />)}
-         </CardsContainer>
-      </NewsContainer>
+            <CardsContainer>
+               {isLoading
+                  ? [...Array(visibleCount)].map((_, index) => (
+                       <Skeleton key={index} active paragraph={{ rows: 4 }} />
+                    ))
+                  : news
+                       ?.slice(0, visibleCount)
+                       .map((item) => <NewsCard key={item.id} {...item} />)}
+            </CardsContainer>
+         </NewsContainer>
+      </div>
    )
 }
 
@@ -60,8 +66,6 @@ export default News
 const NewsContainer = styled.section`
    padding: 120px 75px 0;
    max-width: 1600px;
-   background-color: #e2e2e2;
-
 
    margin: 0 auto;
 

@@ -20,71 +20,77 @@ const ProductSlider = () => {
    }, [dispatch])
 
    return (
-      <Container>
-         <Flex gap={10} justify="space-between" align="start">
-            <h2 className="main-title">НАШ ОНЛАЙН МАГАЗИН</h2>
+      <div
+         style={{
+            background: 'linear-gradient(to top, #e2e2e2, transparent 98%)',
+         }}
+      >
+         <Container>
+            <Flex gap={10} justify="space-between" align="start">
+               <h2 className="main-title">НАШ ОНЛАЙН МАГАЗИН</h2>
 
-            <NavLink to="/shop">
-               <Button type="primary">
-                  Посмотреть все товары <RightOutlined />
-               </Button>
-            </NavLink>
-         </Flex>
+               <NavLink to="/shop">
+                  <Button type="primary">
+                     Посмотреть все товары <RightOutlined />
+                  </Button>
+               </NavLink>
+            </Flex>
 
-         <Swiper
-            spaceBetween={10}
-            breakpoints={{
-               200: { slidesPerView: 2 },
-               640: { slidesPerView: 2 },
-               768: { slidesPerView: 3 },
-               1024: { slidesPerView: 4 },
-               1440: { slidesPerView: 5 },
-            }}
-         >
-            {isLoading
-               ? [...Array(5)].map((_, index) => (
-                    <SwiperSlide key={index}>
-                       <Skeleton active />
-                    </SwiperSlide>
-                 ))
-               : products?.map((product) => {
-                    const message = `Хотела бы узнать подробнее о ${product.title}.`
-                    const encodedMessage = encodeURIComponent(message)
-
-                    return (
-                       <SwiperSlide key={product.id}>
-                          <StyledCard
-                             cover={
-                                <img
-                                   loading="lazy"
-                                   alt={product.title}
-                                   src={product.image}
-                                />
-                             }
-                          >
-                             <NavLink to={`/shop/${product.slug}`}>
-                                <Card.Meta
-                                   title={product.title}
-                                   description={`${product.price} сом`}
-                                />
-                             </NavLink>
-
-                             <a
-                                href={`https://wa.me/${contact?.whatsapp}?text=${encodedMessage}`}
-                                aria-label="перейти в чат"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                             >
-                                <StyledButton type="primary">
-                                   Оформить заказ
-                                </StyledButton>
-                             </a>
-                          </StyledCard>
+            <Swiper
+               spaceBetween={10}
+               breakpoints={{
+                  200: { slidesPerView: 2 },
+                  640: { slidesPerView: 2 },
+                  768: { slidesPerView: 3 },
+                  1024: { slidesPerView: 4 },
+                  1440: { slidesPerView: 5 },
+               }}
+            >
+               {isLoading
+                  ? [...Array(5)].map((_, index) => (
+                       <SwiperSlide key={index}>
+                          <Skeleton active />
                        </SwiperSlide>
-                    )
-                 })}
-         </Swiper>
-      </Container>
+                    ))
+                  : products?.map((product) => {
+                       const message = `Хотела бы узнать подробнее о ${product.title}.`
+                       const encodedMessage = encodeURIComponent(message)
+
+                       return (
+                          <SwiperSlide key={product.id}>
+                             <StyledCard
+                                cover={
+                                   <img
+                                      loading="lazy"
+                                      alt={product.title}
+                                      src={product.image}
+                                   />
+                                }
+                             >
+                                <NavLink to={`/shop/${product.slug}`}>
+                                   <Card.Meta
+                                      title={product.title}
+                                      description={`${product.price} сом`}
+                                   />
+                                </NavLink>
+
+                                <a
+                                   href={`https://wa.me/${contact?.whatsapp}?text=${encodedMessage}`}
+                                   aria-label="перейти в чат"
+                                   target="_blank"
+                                   rel="noopener noreferrer"
+                                >
+                                   <StyledButton type="primary">
+                                      Оформить заказ
+                                   </StyledButton>
+                                </a>
+                             </StyledCard>
+                          </SwiperSlide>
+                       )
+                    })}
+            </Swiper>
+         </Container>
+      </div>
    )
 }
 
@@ -92,8 +98,7 @@ export default ProductSlider
 
 const Container = styled.section`
    margin: auto;
-   background: linear-gradient(to top,  #e2e2e2, transparent 98%);
-
+   /* background:  */
    padding: 120px 75px 0 75px;
    max-width: 1600px;
    min-height: 600px;

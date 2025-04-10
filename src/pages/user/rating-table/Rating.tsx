@@ -23,31 +23,36 @@ const Rating = () => {
 
    return (
       <StyledContainer>
-         <Flex className="partners" align="center" justify="center">
-            {partners?.slice(0, 3).map((item) => (
-               <a href={item.link} key={item.id}>
-                  <div className="partner">
-                     <img src={item.image} alt={item.title} width={70} />
-                  </div>
-               </a>
-            ))}
-         </Flex>
-         <br />
+         <div className="second-container-table">
+            <Flex className="partners" align="center" justify="center">
+               {partners?.slice(0, 3).map((item) => (
+                  <a href={item.link} key={item.id}>
+                     <div className="partner">
+                        <img src={item.image} alt={item.title} width={70} />
+                     </div>
+                  </a>
+               ))}
+            </Flex>
+            <br />
 
-         <TournamentTable />
+            <TournamentTable />
+         </div>
       </StyledContainer>
    )
 }
 
 export default Rating
 const StyledContainer = styled.main`
-   max-width: 1600px;
    padding: 100px 75px;
-   background-image: url(${background1});
    background-size: cover;
    background-position: center;
    background-repeat: no-repeat;
-   margin: 0 auto;
+   background-image: url(${background1});
+
+   .second-container-table {
+      margin: 0 auto;
+      max-width: 1600px;
+   }
 
    @media (max-width: 1024px) {
       padding: 100px 20px;

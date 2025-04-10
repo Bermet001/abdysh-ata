@@ -39,10 +39,19 @@ const Infrastructure = () => {
                      </p>
                   </Flex>
 
-                  <p className="info">
-                     <span>Гектар: </span> {infrastracture?.hectare}
-                     <span>Сотка: </span> {infrastracture?.weave}
-                  </p>
+                  <Flex gap={20}>
+                     <p className="info">
+                        <span>Гектар: </span> {infrastracture?.hectare}
+                     </p>
+
+                     <p className="info">
+                        <span>Сотка: </span> {infrastracture?.weave}
+                     </p>
+
+                     <p className="info">
+                        <span>Количество трибун: </span> {infrastracture?.places}
+                     </p>
+                  </Flex>
                </Flex>
 
                <Flex className="short-info" gap={10} vertical>
@@ -119,6 +128,8 @@ const Infrastructure = () => {
 export default Infrastructure
 
 const StyledContainer = styled.main`
+   max-width: 1600px;
+   margin: 0 auto;
    margin-top: 80px;
    padding: 20px 75px;
    background-color: #f9f9f9;

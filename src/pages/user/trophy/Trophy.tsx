@@ -48,7 +48,7 @@ const Trophy = () => {
    return (
       <main>
          <Helmet>
-            <title>Трофейная комната FC Абдыш ата</title>
+            <title>Достижения Футбольного Клуба «Абдыш-Ата»</title>
             <meta
                name="description"
                content="Посмотрите достижения FC Абдыш ата в нашей трофейной комнате. Узнайте о национальных и европейских наградах клуба."
@@ -87,7 +87,9 @@ const Trophy = () => {
                      <DarkOverlay />
 
                      <Flex justify="end" vertical className="container">
-                        <h2 className="title">ТРОФЕЙНАЯ КОМНАТА</h2>
+                        <h2 className="title">
+                           ДОСТИЖЕНИЯ ФУТБОЛЬНОГО КЛУБА АБДЫШ-АТА»
+                        </h2>
                         <p>
                            В этом разделе вы можете посмотреть наши достижения
                         </p>
@@ -97,10 +99,24 @@ const Trophy = () => {
             </StyledFirstPart>
             <div className="second-part-trophy">
                <p className="text">
-                  Когда речь заходит о главных национальных и европейских
-                  наградах, наша мужская команда выигрывает все, а женская и
-                  Академическая команды в последнее время регулярно завоевывают
-                  кубки.
+                  Футбольный клуб «Абдыш-Ата» (г. Кант) — это команда с
+                  амбициозным духом, твердым стремлением к победе и постоянным
+                  развитием на протяжении своей истории. Каждый сезон для нас —
+                  это возможность выйти на новый уровень и продемонстрировать
+                  силу, сплоченность и мастерство на поле.
+                  <br />
+                  <br />
+                  <strong>Наш путь — это путь прогресса</strong>
+                  <br />
+                  <br />
+                  ФК «Абдыш-Ата» — это не просто клуб, это семья, для которой
+                  важны не только титулы, но и развитие футбольной культуры,
+                  поддержка молодёжи и преданность болельщикам. Мы не
+                  останавливаемся на достигнутом и стремимся к новым вершинам в
+                  каждом сезоне.
+                  <br />
+                  <br />
+                  <strong>Вперёд, Абдыш-Ата!</strong>
                </p>
 
                <Flex vertical className="trophy-block-container">
@@ -213,6 +229,7 @@ const StyledContainer = styled(Flex)`
 
    .text {
       padding: 75px;
+      padding-bottom: 0;
       height: auto;
       font-size: 20px;
       font-weight: 200;
@@ -325,7 +342,7 @@ const StyledFirstPart = styled(Flex)<{ banner: string | undefined }>`
          margin-bottom: 5px;
          text-transform: uppercase;
          color: white;
-         font-size: 75px;
+         font-size: 45px;
          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
          transition: color 0.3s ease;
          animation-name: ${fadeInUp};

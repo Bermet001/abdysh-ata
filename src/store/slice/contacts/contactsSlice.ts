@@ -12,6 +12,9 @@ interface Contacts {
    instagram: string
    whatsapp: string
    location: string
+   facebook: string
+   tik_tok: string
+   youtube: string
 }
 
 const initialState = {

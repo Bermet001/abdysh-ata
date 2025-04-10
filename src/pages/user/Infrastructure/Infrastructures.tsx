@@ -77,10 +77,11 @@ export default Infrastructures
 
 const CollageContainer = styled(Flex)`
    gap: 20px;
+   max-width: 1600px;
+   margin: 0 auto;
    padding: 20px;
    background-color: #f0f2f5;
    border-radius: 10px;
-   margin: 0 75px;
    margin-top: 80px;
    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 
