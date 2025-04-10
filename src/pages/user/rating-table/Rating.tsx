@@ -2,7 +2,6 @@ import { Flex } from 'antd'
 import styled from 'styled-components'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
 import { useEffect } from 'react'
-import { getTeamsRating } from '../../../store/slice/rating/ratingThunk'
 import { useParams } from 'react-router-dom'
 import background1 from '../../../assets/images/banner-rating.png'
 import { getPartners } from '../../../store/slice/partners/partnersThunk'
@@ -17,7 +16,6 @@ const Rating = () => {
    const dispatch = useAppDispatch()
 
    useEffect(() => {
-      dispatch(getTeamsRating(slug))
       dispatch(getPartners())
    }, [dispatch, slug])
 

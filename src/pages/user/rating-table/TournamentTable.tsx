@@ -1,10 +1,10 @@
-import { Flex, Table } from 'antd'
+import { Flex, Table, Button } from 'antd'
 import styled from 'styled-components'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
 import { ColumnsType } from 'antd/es/table'
 import { useEffect } from 'react'
 import { getTeamsRating } from '../../../store/slice/rating/ratingThunk'
-import { useLocation, useParams } from 'react-router-dom'
+import { NavLink, useLocation, useParams } from 'react-router-dom'
 import background1 from '../../../assets/images/banner-rating.png'
 
 interface TeamData {
@@ -142,13 +142,24 @@ const TournamentTable = () => {
       <StyledComponent $path={isHomePage.toString()}>
          <Flex vertical className="table">
             <Flex
-               vertical
+               justify="space-between"
                align={isHomePage ? 'start' : 'center'}
                className="header"
             >
-               <h1 className="main-title">Турнирная таблица</h1>
-               <p className="sub-title">{currentTeam?.title}</p>
+               <Flex vertical>
+                  <h1 className="main-title">Турнирная таблица</h1>
+                  <p className="sub-title">{currentTeam?.title}</p>
+               </Flex>
+
+               {isHomePage && (
+                  <StyledButton>
+                     <NavLink to="tournaments/kyrygzskaya-premer-liga">
+                        Узнать больше
+                     </NavLink>
+                  </StyledButton>
+               )}
             </Flex>
+
             <Table
                dataSource={dataSource}
                columns={columns}
@@ -292,7 +303,6 @@ const StyledComponent = styled.div<{ $path: string }>`
 
    @media (max-width: 768px) {
       padding: 20px 10px;
-
       .header {
          margin-bottom: 15px;
       }
@@ -300,9 +310,45 @@ const StyledComponent = styled.div<{ $path: string }>`
 
    @media (max-width: 480px) {
       padding: 15px 5px;
-
       .header {
          margin-bottom: 10px;
       }
+   }
+`
+
+const StyledButton = styled(Button)`
+   background: #00a851;
+   border: none;
+   border-radius: 6px;
+   color: white;
+   font-weight: 600;
+   padding: 10px 20px;
+   height: auto;
+   font-size: 16px;
+   text-transform: uppercase;
+   transition: all 0.3s ease;
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+   align-self: flex-start;
+
+   &:hover {
+      background: #008f43;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+   }
+
+   &:active {
+      transform: translateY(0);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+   }
+
+   @media (max-width: 768px) {
+      padding: 8px 16px;
+      font-size: 14px;
+   }
+
+   @media (max-width: 480px) {
+      padding: 6px 12px;
+      font-size: 12px;
    }
 `

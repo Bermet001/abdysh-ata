@@ -49,7 +49,8 @@ const Infrastructure = () => {
                      </p>
 
                      <p className="info">
-                        <span>Количество трибун: </span> {infrastracture?.places}
+                        <span>Количество трибун: </span>{' '}
+                        {infrastracture?.places}
                      </p>
                   </Flex>
                </Flex>
@@ -99,7 +100,7 @@ const Infrastructure = () => {
             breakpoints={{
                350: { slidesPerView: 2 },
                500: { slidesPerView: 2 },
-               900: { slidesPerView: 2.5 },
+               900: { slidesPerView: 3 },
             }}
          >
             {infrastracture?.images.map((item) => (
@@ -113,7 +114,10 @@ const Infrastructure = () => {
             <h2>Маршрут</h2>
 
             <iframe
-               src="https://www.google.com/maps/embed?pb=!1m18..."
+               src={
+                  infrastracture?.map_url ||
+                  'https://www.google.com/maps/embed?pb=!1m18...'
+               }
                width="100%"
                height="300"
                title="место положение стадиона"

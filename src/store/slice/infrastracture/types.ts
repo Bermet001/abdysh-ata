@@ -18,10 +18,10 @@ interface Stadium {
    weave: string
    hectare: string
    image: string
-   map_url: string | null
+   map_url: string
    videos: Video[]
    images: Image[]
-   places:string
+   places: string
 }
 
 interface Infrastructure {
