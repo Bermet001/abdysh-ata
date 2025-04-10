@@ -22,6 +22,8 @@ interface Stadium {
    videos: Video[]
    images: Image[]
    places: string
+   opening: string
+   
 }
 
 interface Infrastructure {
