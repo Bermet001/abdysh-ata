@@ -25,8 +25,7 @@ const getInfrastracture = createAsyncThunk(
       try {
          const { data } = await axiosInstance(
             `infrastructure/infrastructure/${slug}`
-         );
-      
+         )
          return data
       } catch (error) {
          const err = error as AxiosError

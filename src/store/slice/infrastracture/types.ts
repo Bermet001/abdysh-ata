@@ -31,7 +31,6 @@ interface Infrastructure {
    description: string
    region: string
    address: string
-   opening: string
    weave: string
    hectare: string
    image: string
