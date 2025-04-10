@@ -31,7 +31,7 @@ const Infrastructure = () => {
                   <Flex gap={20}>
                      <p className="info">
                         <span>Открытие стадиона: </span>
-                        {infrastracture?.region}
+                        {infrastracture?.opening}
                      </p>
 
                      <p className="info">
@@ -41,7 +41,7 @@ const Infrastructure = () => {
 
                   <Flex gap={20}>
                      <p className="info">
-                        <span>Размер поля: </span> {infrastracture?.hectare}
+                        <span>Размер поля: </span> {infrastracture?.weave}
                      </p>
 
                      <p className="info">
