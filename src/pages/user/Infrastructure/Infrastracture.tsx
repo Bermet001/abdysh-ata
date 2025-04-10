@@ -31,9 +31,10 @@ const Infrastructure = () => {
                <Flex vertical gap={20}>
                   <Flex gap={20}>
                      <p className="info">
-                        <span>Область: </span>
+                        <span>Открытие стадиона: </span>
                         {infrastracture?.region}
                      </p>
+
                      <p className="info">
                         <span>Адрес: </span> {infrastracture?.address}
                      </p>
@@ -41,16 +42,11 @@ const Infrastructure = () => {
 
                   <Flex gap={20}>
                      <p className="info">
-                        <span>Гектар: </span> {infrastracture?.hectare}
+                        <span>Размер поля: </span> {infrastracture?.hectare}
                      </p>
 
                      <p className="info">
-                        <span>Сотка: </span> {infrastracture?.weave}
-                     </p>
-
-                     <p className="info">
-                        <span>Количество трибун: </span>{' '}
-                        {infrastracture?.places}
+                        <span>«Вместимость: </span> {infrastracture?.places}
                      </p>
                   </Flex>
                </Flex>
