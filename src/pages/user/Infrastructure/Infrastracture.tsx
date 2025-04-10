@@ -13,6 +13,8 @@ const Infrastructure = () => {
    const { infrastracture } = useAppSelector((state) => state.infrastracture)
    const dispatch = useAppDispatch()
 
+   console.log(infrastracture, 'fasdlkfals')
+
    useEffect(() => {
       dispatch(getInfrastracture(slug))
    }, [dispatch, slug])
@@ -31,7 +33,7 @@ const Infrastructure = () => {
                   <Flex gap={20}>
                      <p className="info">
                         <span>Открытие стадиона: </span>
-                        {infrastracture?.region}
+                        {infrastracture?.opening}
                      </p>
 
                      <p className="info">
@@ -41,7 +43,7 @@ const Infrastructure = () => {
 
                   <Flex gap={20}>
                      <p className="info">
-                        <span>Размер поля: </span> {infrastracture?.hectare}
+                        <span>Размер поля: </span> {infrastracture?.weave}
                      </p>
 
                      <p className="info">
@@ -105,7 +107,7 @@ const Infrastructure = () => {
             ))}
          </Swiper>
 
-         {/* {infrastracture?.images && infrastracture.images.length > 0 && (
+         {infrastracture?.images && infrastracture.images.length > 0 && (
             <Flex vertical className="gallery-block">
                <h2 className="section-title">Фотографии</h2>
                <Flex wrap="wrap" gap={20}>
@@ -123,7 +125,7 @@ const Infrastructure = () => {
                   ))}
                </Flex>
             </Flex>
-         )} */}
+         )}
 
          <Flex vertical className="map-block">
             <h2>Маршрут</h2>
