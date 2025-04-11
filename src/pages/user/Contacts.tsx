@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import styled from 'styled-components'
 import { useAppDispatch, useAppSelector } from '../../store/store'
 import { CONTACTS_THUNK } from '../../store/slice/contacts/contactsThunk'
-import { Helmet } from 'react-helmet-async' // Импортируйте Helmet
+import { Helmet } from 'react-helmet-async'
 
 export interface ContactData {
    name: string
@@ -32,21 +32,18 @@ const Contacts = () => {
    return (
       <>
          <Helmet>
-            <title>Контакты FC Абдыш ата</title>
+            <title>Контакты Абдыш ата</title>
             <meta
                name="description"
-               content="Свяжитесь с FC Абдыш ата. Узнайте адрес, телефон и режим работы клуба."
+               content="Свяжитесь с Абдыш ата. Узнайте адрес, телефон и режим работы клуба."
             />
             <meta
                name="keywords"
-               content="контакты, FC Абдыш ата, адрес, телефон"
+               content="контакты, Абдыш ата, адрес, телефон"
             />
             <meta name="author" content="Абдыш ата" />
-            <meta property="og:title" content="Контакты FC Абдыш ата" />
-            <meta
-               property="og:description"
-               content="Свяжитесь с FC Абдыш ата."
-            />
+            <meta property="og:title" content="Контакты Абдыш ата" />
+            <meta property="og:description" content="Свяжитесь с Абдыш ата." />
             <meta
                property="og:image"
                content="http://mysite.com/default-image.jpg"
@@ -58,8 +55,8 @@ const Contacts = () => {
                   {
                     "@context": "https://schema.org",
                     "@type": "ContactPage",
-                    "name": "Контакты FC Абдыш ата",
-                    "description": "Свяжитесь с FC Абдыш ата.",
+                    "name": "Контакты Абдыш ата",
+                    "description": "Свяжитесь с Абдыш ата.",
                     "contactPoint": {
                       "@type": "ContactPoint",
                       "telephone": "+996990007088",

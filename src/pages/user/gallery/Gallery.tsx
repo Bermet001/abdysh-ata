@@ -19,14 +19,14 @@ const Gallery = () => {
    return (
       <StyledContainer>
          <Helmet>
-            <title>Галерея FC Абдыш ата</title>
+            <title>Галерея Абдыш ата</title>
             <meta
                name="description"
-               content="Посмотрите галерею FC Абдыш ата, где собраны лучшие моменты команды."
+               content="Посмотрите галерею Абдыш ата, где собраны лучшие моменты команды."
             />
             <meta
                name="keywords"
-               content="галерея, FC Абдыш ата, фотографии, футбол"
+               content="галерея, Абдыш ата, фотографии, футбол"
             />
             <meta name="author" content="Абдыш ата" />
             <link rel="canonical" href="https://abdysh-front.tw1.ru/gallery" />

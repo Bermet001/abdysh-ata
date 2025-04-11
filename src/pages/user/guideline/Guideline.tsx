@@ -19,39 +19,33 @@ const Guideline: FC = () => {
    window.scrollTo(0, 0)
    const { slug } = useParams<{ slug: string }>()
    const { persons } = useAppSelector((state) => state.management)
-
    const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
    const [selectedDirector, setSelectedDirector] = useState<IManagment | null>(
       null
    )
-
    const dispatch = useAppDispatch()
-
    useEffect(() => {
       dispatch(getManagmets())
    }, [dispatch])
-
    const showModal = (director: IManagment) => {
       setSelectedDirector(director)
       setIsModalOpen(true)
    }
-
    const handleCancel = () => {
       setIsModalOpen(false)
       setSelectedDirector(null)
    }
-
    return (
       <StyledContainer slug={slug}>
          <Helmet>
-            <title>Руководство FC Абдыш ата</title>
+            <title>Руководство Абдыш ата</title>
             <meta
                name="description"
-               content="Узнайте о руководстве FC Абдыш ата, их ролях и обязанностях."
+               content="Узнайте о руководстве Абдыш ата, их ролях и обязанностях."
             />
             <meta
                name="keywords"
-               content="руководство, FC Абдыш ата, менеджмент"
+               content="руководство, Абдыш ата, менеджмент"
             />
             <meta name="author" content="Абдыш ата" />
             <link rel="canonical" href="http://mysite.com/guideline" />
@@ -94,18 +88,15 @@ export default Guideline
 const StyledContainer = styled.main<{ slug?: string }>`
    background-color: ${({ slug }) =>
       slug === 'futbolnaya-akademiya' ? 'white' : '#f7f9fc'};
-
    padding: ${({ slug }) =>
-      slug === 'futbolnaya-akademiya' ? '0' : '100px 75px'};
-
+      slug === 'futbolnaya-akademiya' ? '10px 35px' : '100px 75px'};
    > div {
       margin: 0 auto;
       max-width: 1600px;
    }
-
    @media (max-width: 1024px) {
       padding: ${({ slug }) =>
-         slug === 'futbolnaya-akademiya' ? '0' : '10px 20px'};
+         slug === 'futbolnaya-akademiya' ? '0 20px' : '10px 20px'};
    }
 
    @media (max-width: 768px) {
@@ -114,24 +105,19 @@ const StyledContainer = styled.main<{ slug?: string }>`
          font-size: 24px;
       }
    }
-
    .ant-card .ant-card-body {
       padding-top: 15px !important;
-
       @media (max-width: 570px) {
          padding: 13px;
       }
    }
-
    .ant-modal-body {
       font-family: 'Inter', sans-serif !important;
-
       .ant-modal-header {
          .ant-modal-title {
             font-size: 20px !important;
          }
       }
-
       p {
          strong {
             span {
@@ -141,20 +127,16 @@ const StyledContainer = styled.main<{ slug?: string }>`
       }
    }
 `
-
 const StyledCard = styled(Card)`
    border-radius: 15px;
    transition: transform 0.3s, box-shadow 0.3s;
-
    &:hover {
       transform: translateY(-3px);
       box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
    }
-
    @media (max-width: 570px) {
       border-radius: 10px;
    }
-
    .info-icon {
       svg {
          width: 1.5rem;
@@ -163,36 +145,30 @@ const StyledCard = styled(Card)`
          cursor: pointer;
          border-radius: 50%;
          transition: transform 0.3s, box-shadow 0.3s;
-
          &:hover {
             transform: translateY(-2px);
             fill: #ffcc00;
          }
-
          @media (max-width: 570px) {
             width: 1rem;
             height: 1rem;
          }
       }
    }
-
    .name-p {
       font-size: 18px;
       height: 56px;
-
       @media (max-width: 570px) {
          font-size: 13px;
          height: auto;
       }
    }
 `
-
 const CardContent = styled.p`
    font-size: 14px;
    color: #555;
    margin: 10px 0 0;
    height: 29px;
-
    @media (max-width: 550px) {
       min-height: 15px;
       font-size: 10px;
@@ -201,7 +177,6 @@ const CardContent = styled.p`
       min-height: 25px;
    }
 `
-
 const Image = styled.img`
    width: 100%;
    border-radius: 10px 10px 0 0;
@@ -209,11 +184,9 @@ const Image = styled.img`
    object-position: top;
    min-height: 370px;
    height: 370px;
-
    @media (max-width: 1224px) {
       min-height: 300px;
    }
-
    @media (max-width: 768px) {
       max-height: 250px;
       height: 190px;

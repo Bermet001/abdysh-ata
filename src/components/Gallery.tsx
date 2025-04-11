@@ -16,7 +16,7 @@ const Gallery = () => {
    const dispatch = useAppDispatch()
 
    useEffect(() => {
-      dispatch(GALLERY_THUNK.getPhotos())
+      dispatch(GALLERY_THUNK?.getPhotos())
    }, [dispatch])
 
    const handleImageClick = (src: string) => {

@@ -19,7 +19,7 @@ const Slider: FC = () => {
       <section>
          <Helmet>
             {banners?.map((item) => (
-               <link key={item.id} rel="preload" href={item.image} as="image" />
+               <link key={item?.id} rel="preload" href={item?.image} as="image" />
             ))}
          </Helmet>
 
@@ -38,16 +38,16 @@ const Slider: FC = () => {
                        <Overlay />
 
                        <img
-                          src={item.image}
+                          src={item?.image}
                           alt={`Slide ${index + 1}`}
                           width="100%"
                           height="100%"
                        />
 
                        <Flex align="start" vertical className="content">
-                          <h2>{item.title}</h2>
+                          <h2>{item?.title}</h2>
 
-                          <NavLink to={`/banner/${item.slug}`}>
+                          <NavLink to={`/banner/${item?.slug}`}>
                              <StyledButtonView type="primary">
                                 Читать дальше
                              </StyledButtonView>

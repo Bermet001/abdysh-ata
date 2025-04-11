@@ -11,7 +11,7 @@ import { PRODUCT_THUNK } from '../store/slice/shop/shopThunk'
 const ProductSlider = () => {
    const { products, isLoading } = useAppSelector((state) => state.shop)
    const { contacts } = useAppSelector((state) => state.contacts)
-   const contact = contacts.length > 0 ? contacts[0] : null
+   const contact = contacts?.length > 0 ? contacts[0] : null
 
    const dispatch = useAppDispatch()
 
@@ -55,25 +55,23 @@ const ProductSlider = () => {
                   : products?.map((product) => {
                        const message = `Хотела бы узнать подробнее о ${product.title}.`
                        const encodedMessage = encodeURIComponent(message)
-
                        return (
-                          <SwiperSlide key={product.id}>
+                          <SwiperSlide key={product?.id}>
                              <StyledCard
                                 cover={
                                    <img
                                       loading="lazy"
-                                      alt={product.title}
-                                      src={product.image}
+                                      alt={product?.title}
+                                      src={product?.image}
                                    />
                                 }
                              >
-                                <NavLink to={`/shop/${product.slug}`}>
+                                <NavLink to={`/shop/${product?.slug}`}>
                                    <Card.Meta
-                                      title={product.title}
-                                      description={`${product.price} сом`}
+                                      title={product?.title}
+                                      description={`${product?.price} сом`}
                                    />
                                 </NavLink>
-
                                 <a
                                    href={`https://wa.me/${contact?.whatsapp}?text=${encodedMessage}`}
                                    aria-label="перейти в чат"

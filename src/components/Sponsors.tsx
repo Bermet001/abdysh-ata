@@ -14,7 +14,7 @@ const Sponsors = () => {
    }, [dispatch])
 
    const duplicatedPartners =
-      partners.length < 5 ? [...partners, ...partners].slice(0, 5) : partners
+      partners?.length < 5 ? [...partners, ...partners].slice(0, 5) : partners
 
    return (
       <div
@@ -42,18 +42,18 @@ const Sponsors = () => {
                }}
             >
                {duplicatedPartners.map((sponsor, index) => (
-                  <SwiperSlide key={`${sponsor.id}-${index}`}>
+                  <SwiperSlide key={`${sponsor?.id}-${index}`}>
                      <a
-                        key={sponsor.id}
+                        key={sponsor?.id}
                         aria-label="ссылка на сайт спонсора"
-                        href={sponsor.link}
+                        href={sponsor?.link}
                      >
                         <img
                            width="50px"
                            height={53}
                            loading="lazy"
-                           src={sponsor.image}
-                           alt={sponsor.title}
+                           src={sponsor?.image}
+                           alt={sponsor?.title}
                         />
                      </a>
                   </SwiperSlide>

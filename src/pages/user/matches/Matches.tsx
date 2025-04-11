@@ -117,14 +117,14 @@ const SchedulMatches = () => {
    return (
       <StyledMainContainer>
          <Helmet>
-            <title>Расписание матчей FC Абдыш ата</title>
+            <title>Расписание матчей Абдыш ата</title>
             <meta
                name="description"
-               content="Просмотрите расписание матчей FC Абдыш ата. Узнайте, когда и против кого играет команда."
+               content="Просмотрите расписание матчей Абдыш ата. Узнайте, когда и против кого играет команда."
             />
             <meta
                name="keywords"
-               content="расписание матчей, FC Абдыш ата, футбол"
+               content="расписание матчей, Абдыш ата, футбол"
             />
             <meta name="author" content="Абдыш ата" />
             <link rel="canonical" href="http://mysite.com/schedule" />

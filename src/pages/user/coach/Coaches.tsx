@@ -5,6 +5,8 @@ import { useAppSelector } from '../../../store/store'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { FreeMode, Navigation } from 'swiper/modules'
 import { useState } from 'react'
+import Cards from '../../../components/academy/Cards'
+import Academy from '../../../components/academy/Academy'
 
 interface Schedule {
    id: number
@@ -35,100 +37,113 @@ const Coaches = () => {
    const [selectedCoachSchedules, setSelectedCoachSchedules] = useState<
       Schedule[]
    >([])
-
    const linkSlug = slug
-
    const showScheduleModal = (schedules: Schedule[]) => {
       setSelectedCoachSchedules(schedules)
       setIsModalOpen(true)
    }
-
    const handleCancel = () => setIsModalOpen(false)
-
    return (
-      <StyledContainer>
-         <h1 className="main-title">Тренерский штаб</h1>
-         <Swiper
-            navigation
-            slidesPerView={3}
-            spaceBetween={30}
-            breakpoints={{
-               350: { slidesPerView: 1 },
-               500: { slidesPerView: 2 },
-               768: { slidesPerView: 3 },
-            }}
-            pagination={{
-               clickable: true,
-            }}
-            modules={[FreeMode, Navigation]}
-         >
-            {coaches.map(({ name, position, id, image, slug, schedules }) => (
-               <SwiperSlide key={id}>
-                  <StyledCard>
-                     <div className="card-coach">
-                        <img className="coach-photo" src={image} alt={name} />
-                        <h2 className="coach-name">{name}</h2>
-                        <p className="coach-position">{position}</p>
-                        <Button type="primary" className="more-info-btn">
-                           <NavLink to={`/coaches/${slug}`}>
-                              Смотреть профиль
-                           </NavLink>
-                        </Button>
-                        {linkSlug === 'futbolnaya-akademiya' &&
-                           schedules?.length > 0 && (
-                              <Button
-                                 type="default"
-                                 className="schedule-btn"
-                                 onClick={() => showScheduleModal(schedules)}
-                              >
-                                 Расписание
+      <>
+         {slug === 'futbolnaya-akademiya' ? (
+            <>
+               <Academy />
+               <Cards />
+            </>
+         ) : null}
+         <StyledContainer>
+            <h1 className="main-title">Тренерский штаб</h1>
+            <Swiper
+               navigation
+               slidesPerView={3}
+               spaceBetween={30}
+               breakpoints={{
+                  350: { slidesPerView: 1 },
+                  500: { slidesPerView: 2 },
+                  768: { slidesPerView: 3 },
+               }}
+               pagination={{
+                  clickable: true,
+               }}
+               modules={[FreeMode, Navigation]}
+            >
+               {coaches.map(
+                  ({ name, position, id, image, slug, schedules }) => (
+                     <SwiperSlide key={id}>
+                        <StyledCard>
+                           <div className="card-coach">
+                              <img
+                                 className="coach-photo"
+                                 src={image}
+                                 alt={name}
+                              />
+                              <h2 className="coach-name">{name}</h2>
+                              <p className="coach-position">{position}</p>
+                              <Button type="primary" className="more-info-btn">
+                                 <NavLink to={`/coaches/${slug}`}>
+                                    Смотреть профиль
+                                 </NavLink>
                               </Button>
-                           )}
-                     </div>
-                  </StyledCard>
-               </SwiperSlide>
-            ))}
-         </Swiper>
-
-         <Modal
-            title="Расписание тренировок"
-            open={isModalOpen}
-            onCancel={handleCancel}
-            footer={null}
-            width={600}
-            className="modal"
-         >
-            <ScheduleContainer>
-               {selectedCoachSchedules.map((schedule) => (
-                  <ScheduleCard key={schedule.id}>
-                     <ScheduleItem>
-                        <span className="label">День:</span>
-                        <span className="value">
-                           {schedule.day === 'tuesday' ? 'Вторник' : 'Пятница'}
-                        </span>
-                     </ScheduleItem>
-                     <ScheduleItem>
-                        <span className="label">Группа:</span>
-                        <span className="value">{schedule.group}</span>
-                     </ScheduleItem>
-                     <ScheduleItem>
-                        <span className="label">Время:</span>
-                        <span className="value">
-                           {schedule.start_time.slice(0, 5)} -{' '}
-                           {schedule.end_time.slice(0, 5)}
-                        </span>
-                     </ScheduleItem>
-                     <ScheduleItem>
-                        <span className="label">Место:</span>
-                        <span className="value">{schedule.location}</span>
-                     </ScheduleItem>
-                  </ScheduleCard>
-               ))}
-            </ScheduleContainer>
-         </Modal>
-         <br />
-         <br />
-      </StyledContainer>
+                              {linkSlug === 'futbolnaya-akademiya' &&
+                                 schedules?.length > 0 && (
+                                    <Button
+                                       type="default"
+                                       className="schedule-btn"
+                                       onClick={() =>
+                                          showScheduleModal(schedules)
+                                       }
+                                    >
+                                       Расписание
+                                    </Button>
+                                 )}
+                           </div>
+                        </StyledCard>
+                     </SwiperSlide>
+                  )
+               )}
+            </Swiper>
+            <Modal
+               title="Расписание тренировок"
+               open={isModalOpen}
+               onCancel={handleCancel}
+               footer={null}
+               width={600}
+               className="modal"
+            >
+               <ScheduleContainer>
+                  {selectedCoachSchedules.map((schedule) => (
+                     <ScheduleCard key={schedule.id}>
+                        <ScheduleItem>
+                           <span className="label">День:</span>
+                           <span className="value">
+                              {schedule.day === 'tuesday'
+                                 ? 'Вторник'
+                                 : 'Пятница'}
+                           </span>
+                        </ScheduleItem>
+                        <ScheduleItem>
+                           <span className="label">Группа:</span>
+                           <span className="value">{schedule.group}</span>
+                        </ScheduleItem>
+                        <ScheduleItem>
+                           <span className="label">Время:</span>
+                           <span className="value">
+                              {schedule.start_time.slice(0, 5)} -{' '}
+                              {schedule.end_time.slice(0, 5)}
+                           </span>
+                        </ScheduleItem>
+                        <ScheduleItem>
+                           <span className="label">Место:</span>
+                           <span className="value">{schedule.location}</span>
+                        </ScheduleItem>
+                     </ScheduleCard>
+                  ))}
+               </ScheduleContainer>
+            </Modal>
+            <br />
+            <br />
+         </StyledContainer>
+      </>
    )
 }
 
@@ -137,6 +152,12 @@ export default Coaches
 const StyledContainer = styled.section`
    max-width: 1600px;
    margin: 0 auto;
+   padding: 0 75px;
+   margin-top: 30px;
+
+   @media (max-width: 1024px) {
+      padding: 0 30px;
+   }
 
    .swiper-button-prev {
       left: -10px;
@@ -157,7 +178,6 @@ const StyledContainer = styled.section`
       }
    }
 `
-
 const StyledCard = styled.div`
    position: relative;
    display: flex;
@@ -235,21 +255,18 @@ const StyledCard = styled.div`
       transform: translate(-50%, -50%);
    }
 `
-
 const ScheduleContainer = styled.div`
    display: flex;
    flex-direction: column;
    gap: 20px;
    padding: 20px 0;
 `
-
 const ScheduleCard = styled.div`
    background: #f9f9f9;
    padding: 15px;
    border-radius: 8px;
    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 `
-
 const ScheduleItem = styled.div`
    display: flex;
    justify-content: space-between;

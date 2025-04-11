@@ -54,7 +54,7 @@ const News = () => {
                     ))
                   : news
                        ?.slice(0, visibleCount)
-                       .map((item) => <NewsCard key={item.id} {...item} />)}
+                       .map((item) => <NewsCard key={item?.id} {...item} />)}
             </CardsContainer>
          </NewsContainer>
       </div>

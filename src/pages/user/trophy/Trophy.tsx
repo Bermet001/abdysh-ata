@@ -51,20 +51,20 @@ const Trophy = () => {
             <title>Достижения Футбольного Клуба «Абдыш-Ата»</title>
             <meta
                name="description"
-               content="Посмотрите достижения FC Абдыш ата в нашей трофейной комнате. Узнайте о национальных и европейских наградах клуба."
+               content="Посмотрите достижения Абдыш ата в нашей трофейной комнате. Узнайте о национальных и европейских наградах клуба."
             />
             <meta
                name="keywords"
-               content="трофейная комната, достижения, FC Абдыш ата"
+               content="трофейная комната, достижения, Абдыш ата"
             />
             <meta name="author" content="Абдыш ата" />
             <meta
                property="og:title"
-               content="Трофейная комната FC Абдыш ата"
+               content="Трофейная комната Абдыш ата"
             />
             <meta
                property="og:description"
-               content="Посмотрите достижения FC Абдыш ата."
+               content="Посмотрите достижения Абдыш ата."
             />
             <meta property="og:url" content="http://mysite.com/trophy" />
             <meta property="og:type" content="website" />
@@ -73,8 +73,8 @@ const Trophy = () => {
                {
                  "@context": "https://schema.org",
                  "@type": "WebPage",
-                 "name": "Трофейная комната FC Абдыш ата",
-                 "description": "Посмотрите достижения FC Абдыш ата.",
+                 "name": "Трофейная комната Абдыш ата",
+                 "description": "Посмотрите достижения Абдыш ата.",
                  "url": "http://mysite.com/trophy",
                }
             `}

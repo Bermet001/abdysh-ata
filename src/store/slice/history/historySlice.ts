@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { getHistory, getHistoryAcademy } from './historyThunk'
+import { getAcademiaAdvantages, getHistory, getHistoryAcademy } from './historyThunk'
 
 interface ClubHistory {
    id: number
@@ -12,10 +12,18 @@ interface ClubHistory {
    image: string
 }
 
+interface Advantages {
+   id: number
+   title: string
+   icon: string
+   order: number
+}
+
 interface HistoryState {
    isLoading: boolean
    history: ClubHistory[]
    academyHistory: ClubHistory[]
+   advanteges: Advantages[]
 }
 
 interface HistoryState {
@@ -26,6 +34,7 @@ const initialState: HistoryState = {
    isLoading: false,
    history: [],
    academyHistory: [],
+   advanteges: [],
 }
 
 export const historySlice = createSlice({
@@ -59,6 +68,19 @@ export const historySlice = createSlice({
             state.isLoading = true
          })
          .addCase(getHistoryAcademy.rejected, (state) => {
+            state.isLoading = false
+         })
+         .addCase(
+            getAcademiaAdvantages.fulfilled,
+            (state, { payload }: PayloadAction<Advantages[]>) => {
+               state.advanteges = payload
+               state.isLoading = false
+            }
+         )
+         .addCase(getAcademiaAdvantages.pending, (state) => {
+            state.isLoading = true
+         })
+         .addCase(getAcademiaAdvantages.rejected, (state) => {
             state.isLoading = false
          })
    },

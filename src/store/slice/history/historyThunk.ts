@@ -18,6 +18,22 @@ const getHistory = createAsyncThunk(
       }
    }
 )
+const getAcademiaAdvantages = createAsyncThunk(
+   'academia/getAcademiaBanner',
+   async (_, { rejectWithValue }) => {
+      try {
+         const { data } = await axiosInstance(`matches/advantage/`)
+
+         return data
+      } catch (error) {
+         const err = error as AxiosError
+
+         return rejectWithValue({
+            message: err.message,
+         })
+      }
+   }
+)
 
 const getHistoryAcademy = createAsyncThunk(
    'history/getHistoryAcademy',
@@ -36,4 +52,4 @@ const getHistoryAcademy = createAsyncThunk(
    }
 )
 
-export { getHistory, getHistoryAcademy }
+export { getHistory, getHistoryAcademy, getAcademiaAdvantages }

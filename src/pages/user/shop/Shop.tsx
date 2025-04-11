@@ -34,14 +34,14 @@ const Shop = () => {
    return (
       <Container>
          <Helmet>
-            <title>Магазин FC Абдыш ата</title>
+            <title>Магазин Абдыш ата</title>
             <meta
                name="description"
-               content="Откройте для себя товары FC Абдыш ата. Найдите свою любимую экипировку и аксессуары."
+               content="Откройте для себя товары Абдыш ата. Найдите свою любимую экипировку и аксессуары."
             />
             <meta
                name="keywords"
-               content="магазин, товары, FC Абдыш ата, экипировка"
+               content="магазин, товары, Абдыш ата, экипировка"
             />
             <meta name="author" content="Ваше имя или название компании" />
             <link rel="canonical" href="http://mysite.com/shop" />

@@ -21,20 +21,20 @@ const History = () => {
    return (
       <>
          <Helmet>
-            <title>История FC Абдыш ата</title>
+            <title>История Абдыш ата</title>
             <meta
                name="description"
-               content="Узнайте о богатой истории и достижениях FC Абдыш ата, самого любимого многопрофильного спортивного клуба в мире."
+               content="Узнайте о богатой истории и достижениях Абдыш ата, самого любимого многопрофильного спортивного клуба в мире."
             />
             <meta
                name="keywords"
                content="история, Абдыш ата, спортивный клуб"
             />
             <meta name="author" content="Абдыш ата" />
-            <meta property="og:title" content="История FC Абдыш ата" />
+            <meta property="og:title" content="История Абдыш ата" />
             <meta
                property="og:description"
-               content="Узнайте о богатой истории и достижениях FC Абдыш ата."
+               content="Узнайте о богатой истории и достижениях Абдыш ата."
             />
             <meta property="og:url" content="http://mysite.com/history" />
             <meta property="og:type" content="website" />
@@ -43,8 +43,8 @@ const History = () => {
                   {
                     "@context": "https://schema.org",
                     "@type": "WebPage",
-                    "name": "История FC Абдыш ата",
-                    "description": "Узнайте о богатой истории и достижениях FC Абдыш ата.",
+                    "name": "История Абдыш ата",
+                    "description": "Узнайте о богатой истории и достижениях Абдыш ата.",
                     "url": "http://mysite.com/history"
                   }
                `}

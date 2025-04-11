@@ -35,9 +35,7 @@ const New: FC = () => {
                   </Flex>
                   <StyledParagraph
                      dangerouslySetInnerHTML={{
-                        __html:
-                           currentAchievement?.content ||
-                           'loreasdfasdfasjdhfas ajdh fajsdkfkal laksjhdfak aksdhjfa skdhfa ldksfjahsdf laksjdhfajksdha cdjadkschalksdjch',
+                        __html: currentAchievement?.content || '',
                      }}
                   />
                </Flex>

@@ -48,6 +48,7 @@ const NewsPage: FC = () => {
             />
             <meta name="author" content="Абдыш ата" />
          </Helmet>
+
          <NewsContainer>
             <Flex gap={20} vertical align="stretch">
                <Flex className="sort-box" gap={16}>
