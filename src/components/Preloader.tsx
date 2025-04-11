@@ -1,65 +1,81 @@
 import { FC } from 'react'
 import styled, { keyframes } from 'styled-components'
 
-const Preloader: FC = () => (
-   <PreloaderContainer>
-      <AnimationPreloader>
-         <Spinner />
+const Preloader: FC = () => {
+   const text = 'ABDYSH-ATA'
+   const letterDelayIncrement = 0.2
 
-         <TxtLoading>
-            <Letter data-text-preloader="A"> A </Letter>
-            <Letter data-text-preloader="B"> B </Letter>
-            <Letter data-text-preloader="D"> D </Letter>
-            <Letter data-text-preloader="Y"> Y </Letter>
-            <Letter data-text-preloader="S"> S </Letter>
-            <Letter data-text-preloader="H"> H </Letter>
-            <Letter data-text-preloader="-"> - </Letter>
-            <Letter data-text-preloader="A"> A </Letter>
-            <Letter data-text-preloader="T"> T </Letter>
-            <Letter data-text-preloader="A"> A </Letter>
-         </TxtLoading>
-      </AnimationPreloader>
-
-      <Loader>
-         <LoaderRow>
-            {Array.from({ length: 10 }).map((_, index) => (
-               <LoaderSection key={index}>
-                  <Bg />
-               </LoaderSection>
-            ))}
-         </LoaderRow>
-      </Loader>
-   </PreloaderContainer>
+   return (
+      <PreloaderContainer>
+         <AnimationPreloader>
+            <Spinner />
+            <TxtLoading>
+               {text.split('').map((char, index) => (
+                  <Letter key={index} delay={index * letterDelayIncrement}>
+                     {char}
+                  </Letter>
+               ))}
+            </TxtLoading>
+         </AnimationPreloader>
+         <Loader>
+            <LoaderRow>
+               {Array.from({ length: 10 }).map((_, index) => (
+                  <LoaderSection key={index} isDark={index < 2} />
+               ))}
+            </LoaderRow>
+         </Loader>
+      </PreloaderContainer>
+   )
+}
+const Letter: FC<{ children: string; delay: number }> = ({
+   children,
+   delay,
+}) => (
+   <LetterStyled
+      data-text-preloader={children}
+      style={{ animationDelay: `${delay}s` }}
+   >
+      {children}
+   </LetterStyled>
 )
-
 export default Preloader
 
 const fadeIn = keyframes`
-   0% { opacity: 1; }
-   100% { opacity: 1; }
+   from { opacity: 0; }
+   to { opacity: 1; }
 `
-
 const waveOut = keyframes`
-   0% {
+   from {
       transform: translateY(0);
       height: 100vh;
    }
-
-   100% {
+   to {
       transform: translateY(-100vh);
       height: 0;
    }
 `
 
+const spin = keyframes`
+   to { transform: rotate(360deg); }
+`
+
+const lettersLoading = keyframes`
+   0%, 50% {
+      opacity: 0;
+      transform: rotateY(-90deg);
+   }
+   100% {
+      opacity: 1;
+      transform: rotateY(0deg);
+   }
+`
+
 const PreloaderContainer = styled.div`
-   align-items: center;
-   display: flex;
-   height: 100%;
-   justify-content: center;
    position: fixed;
-   left: 0;
-   top: 0;
-   width: 100%;
+   inset: 0;
+   display: flex;
+   align-items: center;
+   justify-content: center;
    z-index: 99999;
    animation: ${fadeIn} 3s forwards;
 
@@ -70,26 +86,26 @@ const PreloaderContainer = styled.div`
 
 const AnimationPreloader = styled.div`
    z-index: 1000;
+   text-align: center;
 `
 
 const Spinner = styled.div`
-   animation: spin 3s infinite linear;
+   width: 9em;
+   height: 9em;
+   margin: 0 auto 3.5em;
    border-radius: 50%;
    border: 3px solid rgba(245, 244, 244, 0.721);
    border-top-color: grey;
-   height: 9em;
-   margin: 0 auto 3.5em;
-   width: 9em;
+   animation: ${spin} 3s infinite linear;
 
    @media (max-width: 767px) {
       width: 7.5em;
       height: 7.5em;
-      margin: 0 auto 1.5em;
+      margin-bottom: 1.5em;
    }
 `
 
 const TxtLoading = styled.div`
-   text-align: center;
    user-select: none;
 
    @media (max-width: 767px) {
@@ -97,62 +113,46 @@ const TxtLoading = styled.div`
    }
 `
 
-const Letter = styled.span`
-   color: white;
+const LetterStyled = styled.span<{ delay?: number }>`
    position: relative;
+   color: white;
+   display: inline-block;
 
    &::before {
-      animation: letters-loading 4s infinite;
-      color: green;
       content: attr(data-text-preloader);
-      left: 0;
-      opacity: 0;
       position: absolute;
+      left: 0;
       top: -3px;
+      color: green;
+      opacity: 0;
       transform: rotateY(-90deg);
-   }
-
-   &:nth-child(2)::before {
-      animation-delay: 0.2s;
-   }
-   &:nth-child(3)::before {
-      animation-delay: 0.4s;
-   }
-   &:nth-child(4)::before {
-      animation-delay: 0.6s;
+      animation: ${lettersLoading} 4s infinite;
+      animation-delay: inherit;
    }
 `
 
 const Loader = styled.div`
    position: fixed;
-   top: 0;
-   left: 0;
-   width: 100%;
-   height: 100%;
+   inset: 0;
    font-size: 0;
    z-index: 1;
    pointer-events: none;
 `
 
 const LoaderRow = styled.div`
-   height: 100%;
    display: flex;
+   height: 100%;
 `
 
-const LoaderSection = styled.div`
+const LoaderSection = styled.div<{ isDark: boolean }>`
    width: 10%;
    height: 100%;
-   padding: 0;
+   background-color: ${({ isDark }) => (isDark ? '#2222' : 'transparent')};
 
-   &:nth-child(1),
-   &:nth-child(2) {
-      background-color: #2222;
+   > div {
+      background-color: #222;
+      height: 100vh;
+      width: 100%;
+      transition: all 800ms cubic-bezier(0.77, 0, 0.175, 1);
    }
-`
-
-const Bg = styled.div`
-   background-color: #222;
-   height: 100vh;
-   width: 100%;
-   transition: all 800ms cubic-bezier(0.77, 0, 0.175, 1);
 `

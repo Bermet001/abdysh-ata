@@ -10,7 +10,6 @@ interface Team {
    is_our_team: boolean
    logo: string
 }
-
 interface Match {
    id: number
    title: string
@@ -45,25 +44,28 @@ const MatchCard: FC<Match> = ({
                   hour12: false,
                })}
             </Time>
-
             <Flex className="main-info" align="center" justify="space-between">
                <Team vertical align="center" justify="center">
-                  <TeamLogo
+                  <img
                      width="50px"
                      height="50px"
+                     className="team-logo"
                      src={home_team?.logo}
                      alt={home_team?.title}
                   />
                </Team>
-
-               <Countdown vertical align="center" justify="center">
+               <Flex
+                  className="count-down"
+                  vertical
+                  align="center"
+                  justify="center"
+               >
                   <p>
                      {home_score} : {away_score}
                   </p>
-               </Countdown>
-
+               </Flex>
                <Team vertical align="center" justify="center">
-                  <TeamLogo
+                  <img
                      height="50px"
                      width="50px"
                      src={away_team?.logo}
@@ -91,11 +93,9 @@ const MatchCardContainer = styled(Flex)`
    border-radius: 10px;
    transition: transform 0.3s ease;
    cursor: pointer;
-
    &:hover {
       transform: translateY(-6px);
    }
-
    > .main-info {
       min-height: 120px;
       padding: 15px;
@@ -106,9 +106,38 @@ const MatchCardContainer = styled(Flex)`
          min-height: 110px;
       }
 
-      @media (max-width: 470px) {
-         padding: 5px;
-         min-height: 60px;
+      .team-logo {
+         height: auto;
+         min-width: 30px;
+
+         @media (max-width: 1050px) {
+            width: 40px;
+         }
+
+         @media (max-width: 768px) {
+            width: 35px;
+         }
+
+         @media (max-width: 380px) {
+            width: 17px;
+         }
+      }
+
+      .count-down {
+         margin: 10px 0;
+
+         > p {
+            font-size: 28px;
+            font-weight: bold;
+
+            @media (max-width: 1200px) {
+               font-size: 26px;
+            }
+
+            @media (max-width: 600px) {
+               font-size: 20px;
+            }
+         }
       }
    }
 
@@ -116,16 +145,26 @@ const MatchCardContainer = styled(Flex)`
       padding: 10px 0px;
       min-width: 230px;
    }
-
    @media (max-width: 880px) {
       padding: 10px;
       max-width: 210px;
       min-width: 200px;
    }
-
    @media (max-width: 470px) {
       max-width: 160px;
       min-width: 150px;
+      > .main-info {
+         padding: 5px;
+         min-height: 60px;
+
+         .team-logo {
+            width: 30px;
+         }
+
+         .count-down {
+            font-size: 18px;
+         }
+      }
    }
 `
 
@@ -139,27 +178,6 @@ const Team = styled(Flex)`
    }
 `
 
-const TeamLogo = styled.img`
-   height: auto;
-   min-width: 30px;
-
-   @media (max-width: 1050px) {
-      width: 40px;
-   }
-
-   @media (max-width: 768px) {
-      width: 35px;
-   }
-
-   @media (max-width: 480px) {
-      width: 30px;
-   }
-
-   @media (max-width: 380px) {
-      width: 17px;
-   }
-`
-
 const Time = styled.h3`
    margin: 10px 0;
 
@@ -169,26 +187,5 @@ const Time = styled.h3`
 
    @media (max-width: 600px) {
       font-size: 13px;
-   }
-`
-
-const Countdown = styled(Flex)`
-   margin: 10px 0;
-
-   > p {
-      font-size: 28px;
-      font-weight: bold;
-
-      @media (max-width: 1200px) {
-         font-size: 26px;
-      }
-
-      @media (max-width: 600px) {
-         font-size: 20px;
-      }
-
-      @media (max-width: 480px) {
-         font-size: 18px;
-      }
    }
 `

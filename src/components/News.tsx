@@ -47,7 +47,7 @@ const News = () => {
                </NavLink>
             </Flex>
 
-            <CardsContainer>
+            <div className="cards-container">
                {isLoading
                   ? [...Array(visibleCount)].map((_, index) => (
                        <Skeleton key={index} active paragraph={{ rows: 4 }} />
@@ -55,7 +55,7 @@ const News = () => {
                   : news
                        ?.slice(0, visibleCount)
                        .map((item) => <NewsCard key={item?.id} {...item} />)}
-            </CardsContainer>
+            </div>
          </NewsContainer>
       </div>
    )
@@ -66,8 +66,17 @@ export default News
 const NewsContainer = styled.section`
    padding: 120px 75px 0;
    max-width: 1600px;
-
    margin: 0 auto;
+
+   .cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+
+      @media (max-width: 900px) {
+         grid-template-columns: repeat(3, 1fr);
+      }
+   }
 
    @media (max-width: 1024px) {
       padding: 60px 20px;
@@ -75,27 +84,15 @@ const NewsContainer = styled.section`
 
    @media (max-width: 768px) {
       padding: 60px 30px;
+      .cards-container {
+         grid-template-columns: repeat(2, 1fr);
+      }
    }
 
    @media (max-width: 480px) {
       padding: 50px 20px;
-   }
-`
-
-const CardsContainer = styled.div`
-   display: grid;
-   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-   gap: 16px;
-
-   @media (max-width: 900px) {
-      grid-template-columns: repeat(3, 1fr);
-   }
-
-   @media (max-width: 600px) {
-      grid-template-columns: repeat(2, 1fr);
-   }
-
-   @media (max-width: 480px) {
-      grid-template-columns: repeat(2, 1fr);
+      .cards-container {
+         grid-template-columns: repeat(2, 1fr);
+      }
    }
 `
