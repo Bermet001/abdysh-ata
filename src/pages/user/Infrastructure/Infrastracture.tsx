@@ -13,8 +13,6 @@ const Infrastructure = () => {
    const { infrastracture } = useAppSelector((state) => state.infrastracture)
    const dispatch = useAppDispatch()
 
-   console.log(infrastracture, 'fasdlkfals')
-
    useEffect(() => {
       dispatch(getInfrastracture(slug))
    }, [dispatch, slug])
@@ -107,25 +105,25 @@ const Infrastructure = () => {
             ))}
          </Swiper>
 
-         {infrastracture?.images && infrastracture.images.length > 0 && (
-            <Flex vertical className="gallery-block">
-               <h2 className="section-title">Фотографии</h2>
-               <Flex wrap="wrap" gap={20}>
-                  {infrastracture.images.map((item) => (
-                     <StyledCard key={item.id}>
-                        <h3 className="card-title">
-                           Поле с естественным покрытием
-                        </h3>
-                        <img
-                           className="card-image"
-                           src={item.image}
-                           alt="стадион"
-                        />
-                     </StyledCard>
-                  ))}
-               </Flex>
-            </Flex>
-         )}
+         <div style={{ marginTop: '60px' }}>
+            {infrastracture?.football_fields &&
+               infrastracture.football_fields.length > 0 && (
+                  <Flex vertical className="gallery-block">
+                     <Flex wrap="wrap" gap={20}>
+                        {infrastracture.football_fields.map((item) => (
+                           <StyledCard key={item.id}>
+                              <img
+                                 className="card-image"
+                                 src={item.image}
+                                 alt="стадион"
+                              />
+                              <h3 className="card-title">{item?.title}</h3>
+                           </StyledCard>
+                        ))}
+                     </Flex>
+                  </Flex>
+               )}
+         </div>
 
          <Flex vertical className="map-block">
             <h2>Маршрут</h2>

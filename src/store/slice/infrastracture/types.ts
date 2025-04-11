@@ -8,6 +8,12 @@ interface Video {
    id: number
 }
 
+interface Fields {
+   id: number
+   title: string
+   image: string
+}
+
 interface Stadium {
    id: number
    title: string
@@ -23,7 +29,7 @@ interface Stadium {
    images: Image[]
    places: string
    opening: string
-   
+   football_fields: Fields[]
 }
 
 interface Infrastructure {

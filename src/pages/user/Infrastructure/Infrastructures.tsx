@@ -77,6 +77,7 @@ export default Infrastructures
 
 const CollageContainer = styled(Flex)`
    gap: 20px;
+
    max-width: 1600px;
    margin: 0 auto;
    padding: 20px;
@@ -88,6 +89,7 @@ const CollageContainer = styled(Flex)`
    @media (max-width: 1024px) {
       margin: 80px 20px;
    }
+
    @media (max-width: 924px) {
       .navlink {
          width: max-content !important;
