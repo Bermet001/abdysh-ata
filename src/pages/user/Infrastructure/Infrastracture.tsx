@@ -107,14 +107,14 @@ const Infrastructure = () => {
 
          <div style={{ marginTop: '60px' }}>
             {infrastracture?.football_fields &&
-               infrastracture.football_fields.length > 0 && (
+               infrastracture?.football_fields?.length > 0 && (
                   <Flex vertical className="gallery-block">
                      <Flex wrap="wrap" gap={20}>
-                        {infrastracture.football_fields.map((item) => (
-                           <StyledCard key={item.id}>
+                        {infrastracture?.football_fields?.map((item) => (
+                           <StyledCard key={item?.id}>
                               <img
                                  className="card-image"
-                                 src={item.image}
+                                 src={item?.image}
                                  alt="стадион"
                               />
                               <h3 className="card-title">{item?.title}</h3>
