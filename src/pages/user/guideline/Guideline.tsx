@@ -82,7 +82,6 @@ const Guideline: FC = () => {
       </StyledContainer>
    )
 }
-
 export default Guideline
 
 const StyledContainer = styled.main<{ slug?: string }>`

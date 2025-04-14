@@ -7,7 +7,6 @@ import { FreeMode, Navigation } from 'swiper/modules'
 import { useState } from 'react'
 import Cards from '../../../components/academy/Cards'
 import Academy from '../../../components/academy/Academy'
-
 interface Schedule {
    id: number
    coach: number
@@ -18,7 +17,6 @@ interface Schedule {
    end_time: string
    location: string
 }
-
 interface Coach {
    name: string
    position: string
@@ -27,7 +25,6 @@ interface Coach {
    slug: string
    schedules: Schedule[]
 }
-
 const Coaches = () => {
    const { slug } = useParams<{ slug: string }>()
    const { coaches } = useAppSelector((state) => state.team) as unknown as {

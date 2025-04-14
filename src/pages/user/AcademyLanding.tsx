@@ -8,20 +8,16 @@ import { getAcademiaBanner } from '../../store/slice/tournamentAcademy/Tournamen
 const AcademyLanding: FC = () => {
    const { first, isLoading } = useAppSelector((state) => state.academy)
    const dispatch = useAppDispatch()
-
    useEffect(() => {
       dispatch(getAcademiaBanner())
    }, [dispatch])
-
    if (isLoading)
       <StyledSection>
          <SkeletonImage active />
       </StyledSection>
-
    if (!first || first.length === 0) {
       return
    }
-
    return (
       <StyledSection>
          {first?.map((item, index) => (
@@ -41,7 +37,6 @@ const AcademyLanding: FC = () => {
 }
 
 export default AcademyLanding
-
 const StyledSection = styled.section`
    position: relative;
    width: 100%;
@@ -49,7 +44,6 @@ const StyledSection = styled.section`
    max-width: 1600px;
    margin: 0 auto;
 `
-
 const BannerContainer = styled.div`
    position: relative;
    height: 600px;
@@ -59,7 +53,6 @@ const BannerContainer = styled.div`
    justify-content: center;
    padding: 0 75px;
    overflow: hidden;
-
    @media (max-width: 1000px) {
       height: 500px;
       padding: 0 40px;
@@ -73,7 +66,6 @@ const BannerContainer = styled.div`
       padding: 0 15px;
    }
 `
-
 const BannerImage = styled.img`
    position: absolute;
    top: 0;
@@ -83,12 +75,10 @@ const BannerImage = styled.img`
    object-fit: cover;
    z-index: 1;
    transition: transform 0.5s ease;
-
    ${BannerContainer}:hover & {
       transform: scale(1.05);
    }
 `
-
 const Overlay = styled.div`
    position: absolute;
    top: 0;
@@ -98,7 +88,6 @@ const Overlay = styled.div`
    background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2));
    z-index: 2;
 `
-
 const ContentWrapper = styled(Flex)`
    position: relative;
    z-index: 3;
@@ -108,7 +97,6 @@ const ContentWrapper = styled(Flex)`
    width: 100%;
    margin: 0 auto;
    animation: fadeInUp 0.8s ease-out;
-
    @keyframes fadeInUp {
       from {
          opacity: 0;
@@ -120,7 +108,6 @@ const ContentWrapper = styled(Flex)`
       }
    }
 `
-
 const Title = styled.h2`
    font-size: 60px;
    font-weight: 700;
@@ -130,7 +117,6 @@ const Title = styled.h2`
    line-height: 1.1;
    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
    letter-spacing: 1px;
-
    @media (max-width: 1000px) {
       font-size: 48px;
       max-width: 500px;
@@ -149,7 +135,6 @@ const Title = styled.h2`
       font-size: 24px;
    }
 `
-
 const StyledButton = styled(Button)`
    padding: 12px 40px;
    font-size: 18px;
@@ -161,14 +146,12 @@ const StyledButton = styled(Button)`
    color: white;
    box-shadow: 0 4px 15px #05a55078;
    transition: all 0.3s ease;
-
    &:hover {
       background: #61e09c78;
       transform: translateY(-2px);
       box-shadow: 0 6px 20px #05a550b3;
       color: white;
    }
-
    @media (max-width: 900px) {
       padding: 10px 30px;
       font-size: 16px;
@@ -178,16 +161,13 @@ const StyledButton = styled(Button)`
       font-size: 14px;
    }
 `
-
 const SkeletonImage = styled(Skeleton)`
    height: 600px;
    width: 100%;
    background: rgba(240, 240, 240, 0.5);
-
    .ant-skeleton-content {
       padding: 75px;
    }
-
    @media (max-width: 1000px) {
       height: 500px;
    }

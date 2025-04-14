@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import { useAppDispatch, useAppSelector } from '../../store/store'
 import { CONTACTS_THUNK } from '../../store/slice/contacts/contactsThunk'
 import { Helmet } from 'react-helmet-async'
-
 export interface ContactData {
    name: string
    last_name: string
@@ -12,23 +11,17 @@ export interface ContactData {
    phone: string
    message: string
 }
-
 const Contacts = () => {
    window.scrollTo(0, 0)
    const { contacts } = useAppSelector((state) => state.contacts)
    const [form] = Form.useForm()
-
    const dispatch = useAppDispatch()
-
    const onFinish = (values: ContactData) =>
       dispatch(CONTACTS_THUNK.sendMessage({ values, reset: form.resetFields }))
-
    useEffect(() => {
       dispatch(CONTACTS_THUNK.getContacts())
    }, [dispatch])
-
    const contact = contacts.length > 0 ? contacts[0] : null
-
    return (
       <>
          <Helmet>

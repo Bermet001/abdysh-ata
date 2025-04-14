@@ -12,7 +12,6 @@ const Infrastructure = () => {
    const { slug } = useParams<{ slug: string }>()
    const { infrastracture } = useAppSelector((state) => state.infrastracture)
    const dispatch = useAppDispatch()
-
    useEffect(() => {
       dispatch(getInfrastracture(slug))
    }, [dispatch, slug])
@@ -23,22 +22,18 @@ const Infrastructure = () => {
             <Flex vertical>
                <Image className="main-image" src={infrastracture?.image} />
             </Flex>
-
             <Flex justify="start" gap={30} vertical>
                <h1 className="main-title">{infrastracture?.title}</h1>
-
                <Flex vertical gap={20}>
                   <Flex gap={20}>
                      <p className="info">
                         <span>Открытие стадиона: </span>
                         {infrastracture?.opening}
                      </p>
-
                      <p className="info">
                         <span>Адрес: </span> {infrastracture?.address}
                      </p>
                   </Flex>
-
                   <Flex gap={20}>
                      <p className="info">
                         <span>Размер поля: </span> {infrastracture?.weave}
@@ -49,14 +44,12 @@ const Infrastructure = () => {
                      </p>
                   </Flex>
                </Flex>
-
                <Flex className="short-info" gap={10} vertical>
                   <h2>Краткое описание</h2>
                   <p>{infrastracture?.description}</p>
                </Flex>
             </Flex>
          </Flex>
-
          <Flex style={{ overflowX: 'scroll' }} gap={20}>
             {infrastracture?.videos?.map(({ video }, index) => {
                const getEmbedUrl = (url: string) => {
@@ -71,7 +64,6 @@ const Infrastructure = () => {
                      return `https://player.vimeo.com/video/${vimeoMatch[1]}`
                   return url
                }
-
                return (
                   <iframe
                      key={index}
@@ -85,7 +77,6 @@ const Infrastructure = () => {
                )
             })}
          </Flex>
-
          <h2 className="main-title">Картинки</h2>
          <Swiper
             navigation
@@ -104,7 +95,6 @@ const Infrastructure = () => {
                </SwiperSlide>
             ))}
          </Swiper>
-
          <div style={{ marginTop: '60px' }}>
             {infrastracture?.football_fields &&
                infrastracture?.football_fields?.length > 0 && (
@@ -124,7 +114,6 @@ const Infrastructure = () => {
                   </Flex>
                )}
          </div>
-
          <Flex vertical className="map-block">
             <h2>Маршрут</h2>
             <iframe
@@ -142,7 +131,6 @@ const Infrastructure = () => {
       </StyledContainer>
    )
 }
-
 export default Infrastructure
 
 const StyledContainer = styled.main`
@@ -151,140 +139,112 @@ const StyledContainer = styled.main`
    margin-top: 80px;
    padding: 20px 75px;
    background-color: #f9f9f9;
-
    .swiper-button-prev,
    .swiper-button-next {
       color: #ed5a0c;
       width: 50px;
       height: 50px;
    }
-
    @media (max-width: 1300px) {
       padding: 20px;
    }
-
    .first-block {
       margin-bottom: 50px;
-
       .main-image {
          object-fit: cover;
          height: 400px;
          width: 650px;
          border-radius: 6px;
-
          @media (max-width: 768px) {
             height: 300px;
             width: 100%;
          }
       }
-
       .main-title {
          margin-bottom: 0px;
          font-size: 40px;
          color: #333;
-
          @media (max-width: 768px) {
             font-size: 30px;
          }
       }
-
       .info {
          span {
             color: grey;
          }
       }
-
       @media (max-width: 1024px) {
          flex-direction: column !important;
          gap: 20px !important;
       }
    }
-
    .gallery-image {
       border-radius: 6px;
       width: 100%;
       height: 230px;
-
       @media (max-width: 768px) {
          height: 170px;
       }
    }
-
    .media {
       .main-title {
          margin-bottom: 30px;
          font-size: 40px;
          color: #333;
-
          @media (max-width: 768px) {
             font-size: 30px;
          }
       }
-
       margin-top: 70px;
-
       .video {
          border-radius: 6px;
          border: none;
-
          @media (max-width: 970px) {
             width: 100% !important;
             height: auto;
          }
       }
    }
-
    .short-info {
       h2 {
          font-size: 25px;
          color: #333;
-
          @media (max-width: 768px) {
             font-size: 20px;
          }
       }
-
       p {
          font-weight: 300;
          font-size: 18px;
-
          @media (max-width: 768px) {
             font-size: 16px;
          }
       }
    }
-
    .map-block {
       margin-top: 80px;
-
       h2 {
          font-size: 40px;
          margin-bottom: 20px;
          color: #333;
-
          @media (max-width: 768px) {
             font-size: 30px;
          }
       }
-
       margin-bottom: 30px;
    }
-
    .gallery-block {
       margin-bottom: 50px;
-
       .section-title {
          font-size: 40px;
          color: #333;
          margin-bottom: 30px;
-
          @media (max-width: 768px) {
             font-size: 30px;
          }
       }
    }
 `
-
 const StyledCard = styled.div`
    background: #fff;
    border: 1px solid #e0e0e0;
@@ -293,7 +253,6 @@ const StyledCard = styled.div`
    border-radius: 8px;
    flex: 1 1 calc(33.333% - 40px / 3);
    box-sizing: border-box;
-
    .card-title {
       font-size: 18px;
       font-weight: 700;
@@ -301,23 +260,19 @@ const StyledCard = styled.div`
       margin: 0 0 15px 0;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-
       @media (max-width: 768px) {
          font-size: 16px;
       }
    }
-
    .card-image {
       width: 100%;
       height: 300px;
       object-fit: cover;
       border-radius: 4px;
-
       @media (max-width: 768px) {
          height: 200px;
       }
    }
-
    @media (max-width: 768px) {
       flex: 1 1 100%;
    }

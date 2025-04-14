@@ -9,13 +9,10 @@ import { Helmet } from 'react-helmet-async'
 const Gallery = () => {
    window.scrollTo(0, 0)
    const { gallery } = useAppSelector((state) => state.gallery)
-
    const dispatch = useAppDispatch()
-
    useEffect(() => {
       dispatch(GALLERY_THUNK.getPhotos())
    }, [dispatch])
-
    return (
       <StyledContainer>
          <Helmet>
@@ -49,26 +46,22 @@ const Gallery = () => {
       </StyledContainer>
    )
 }
-
 export default Gallery
 
 const StyledContainer = styled.main`
    padding: 100px 75px;
    max-width: 1600px;
    margin: 0 auto;
-
    @media (max-width: 1209px) {
       padding: 40px 20px;
    }
 `
-
 const StyledImage = styled(Image)`
    .ant-image-mask {
       object-fit: cover;
       border-radius: 8px !important;
       cursor: pointer;
    }
-
    @media (max-width: 500px) {
       max-width: 100%;
    }

@@ -18,22 +18,17 @@ const NewsPage: FC = () => {
    const [search, setSearch] = useState<string>('')
    const dispatch = useAppDispatch()
    const itemsPerPage = 10
-
    useEffect(() => {
       dispatch(NEWS_THUNK.getNewsPageItem({ itemsPerPage, page: currentPage }))
       dispatch(NEWS_THUNK.allCategories())
    }, [currentPage, itemsPerPage, dispatch])
-
    const onSearch = (e: ChangeEvent<HTMLInputElement>) => {
       dispatch(NEWS_THUNK.searchNew(e.target.value))
       setSearch(e.target.value)
    }
-
    const onPageChange = (page: number) => setCurrentPage(page)
-
    const handleChange = (value: string | unknown) =>
       dispatch(NEWS_THUNK.getCategorizedNew(value))
-
    return (
       <>
          <Helmet>
@@ -48,7 +43,6 @@ const NewsPage: FC = () => {
             />
             <meta name="author" content="Абдыш ата" />
          </Helmet>
-
          <NewsContainer>
             <Flex gap={20} vertical align="stretch">
                <Flex className="sort-box" gap={16}>
@@ -60,7 +54,6 @@ const NewsPage: FC = () => {
                      style={{ flex: 1 }}
                      size="large"
                   />
-
                   <Select
                      defaultValue="Категории"
                      style={{ width: 120 }}
@@ -72,13 +65,11 @@ const NewsPage: FC = () => {
                      }))}
                   />
                </Flex>
-
                <CardsContainer>
                   {allNews?.map((item) => (
                      <NewsCard key={item.id} {...item} />
                   ))}
                </CardsContainer>
-
                <StyledPagination
                   current={currentPage}
                   total={total_page}
@@ -91,7 +82,6 @@ const NewsPage: FC = () => {
       </>
    )
 }
-
 export default NewsPage
 
 const NewsContainer = styled.main`
@@ -103,7 +93,6 @@ const NewsContainer = styled.main`
    display: flex;
    flex-direction: column;
    justify-content: space-between;
-
    .ant-select {
       width: 250px !important;
       height: 40px !important;
@@ -115,21 +104,17 @@ const NewsContainer = styled.main`
             color: white;
          }
       }
-
       .ant-select-arrow .anticon > svg {
          fill: white;
       }
    }
-
    @media (max-width: 1024px) {
       padding: 80px 20px 50px;
    }
-
    @media (max-width: 800px) {
       .sort-box {
          flex-direction: column-reverse !important;
       }
-
       .ant-picker-outlined {
          max-width: 400px;
       }
@@ -140,53 +125,42 @@ const NewsContainer = styled.main`
       }
    }
 `
-
 const CardsContainer = styled.div`
    display: grid;
    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
    gap: 16px;
    margin-top: 30px;
-
    @media (max-width: 768px) {
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
    }
 `
-
 const StyledPagination = styled(AntPagination)`
    display: flex;
    justify-content: center;
    margin-top: 20px;
-
    .ant-pagination-item {
       border-color: #04a54f;
       border-radius: 6px;
-
       &:hover {
          border-color: #04a54f;
       }
    }
-
    .ant-pagination-item-active {
       background-color: #04a54f;
       border-color: #04a54f;
-
       a {
          color: white;
-
          &:hover {
             color: white !important;
          }
       }
    }
 `
-
 const StyledInput = styled(Search)`
    flex: 1;
-
    .ant-input-affix-wrapper {
       border-radius: 6px;
    }
-
    & button:hover {
       transform: translateY(0);
    }

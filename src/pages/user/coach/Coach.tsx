@@ -82,31 +82,25 @@ const fadeIn = keyframes`
    from { opacity: 0; transform: translateY(-20px); }
    to { opacity: 1; transform: translateY(0); }
 `
-
 const slideInLeft = keyframes`
    from { opacity: 0; transform: translateX(-30px); }
    to { opacity: 1; transform: translateX(0); }
 `
-
 const StyledComponent = styled(Flex)`
    margin: 0 auto;
    padding: 100px 0;
-
    .ant-flex-align-stretch {
       width: 100%;
    }
-
    .first-part-coach {
       padding: 0 75px;
       max-width: 1600px;
       width: 100%;
-
       @media (max-width: 1100px) {
          flex-direction: column-reverse;
          gap: 40px;
          align-items: start;
       }
-
       @media (max-width: 600px) {
          padding: 0 20px;
       }
@@ -122,11 +116,9 @@ const StyledComponent = styled(Flex)`
       max-width: 1600px;
       background-color: #f1f4f6;
       margin-top: 30px;
-
       .ant-image {
          .teama-image {
             width: 550px;
-
             @media (max-width: 700px) {
                width: 100% !important;
             }
@@ -135,19 +127,16 @@ const StyledComponent = styled(Flex)`
             width: 100% !important;
          }
       }
-
       @media (max-width: 1100px) {
          padding: 20px;
       }
    }
 `
-
 const StyledCard = styled(Card)`
    width: 220px;
    background-color: #fff;
    border-radius: 6px;
 `
-
 const AnimatedCard = styled(StyledCard)`
    opacity: 0;
    max-width: 520px;
@@ -155,12 +144,10 @@ const AnimatedCard = styled(StyledCard)`
    min-width: 325px;
    animation: ${slideInLeft} 0.9s ease-in-out forwards;
    animation-delay: 0.4s;
-
    @media (max-width: 600px) {
       width: 100%;
    }
 `
-
 const StyledTitle = styled(Title)`
    color: #333;
    font-size: 17px;
@@ -178,7 +165,6 @@ const AnimatedImage = styled.img`
    -webkit-box-shadow: inset 0px -186px 162px -200px rgba(0, 166, 79, 1);
    -moz-box-shadow: inset 0px -186px 162px -200px rgba(0, 166, 79, 1);
    box-shadow: inset 0px -186px 162px -200px rgba(0, 166, 79, 1);
-
    @media (max-width: 1100px) {
       width: 300px;
    }

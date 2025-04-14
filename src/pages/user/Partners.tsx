@@ -11,15 +11,12 @@ import { Helmet } from 'react-helmet-async'
 
 const Partners = () => {
    window.scrollTo(0, 0)
-
    const { partners, banner } = useAppSelector((state) => state.partner)
    const dispatch = useAppDispatch()
-
    useEffect(() => {
       dispatch(getPartnersBanner())
       dispatch(getPartners())
    }, [dispatch])
-
    return (
       <>
          <Helmet>
@@ -68,7 +65,6 @@ const Partners = () => {
                   </Content>
                </div>
             </BackgroundSection>
-
             <Flex gap={40} justify="center" wrap className="partners-container">
                {partners?.map((sponsor) => (
                   <SponsorItem key={sponsor?.id}>
@@ -88,31 +84,25 @@ const Partners = () => {
 }
 
 export default Partners
-
 const StyledContainer = styled.main`
    max-width: 1600px;
    margin: 0 auto;
    margin-top: 30px;
    color: white;
-
    .partners-container {
       padding: 50px 300px 150px;
-
       @media (max-width: 1024px) {
          padding: 20px;
       }
-
       @media (max-width: 500px) {
          gap: 15px !important;
       }
    }
-
    .first-part {
       background: linear-gradient(to top, #ffffff, transparent 50%);
       height: 100%;
    }
 `
-
 const BackgroundSection = styled.div<{ banners: string }>`
    position: relative;
    height: 500px;
@@ -123,29 +113,24 @@ const BackgroundSection = styled.div<{ banners: string }>`
    background-position: center;
    background-repeat: no-repeat;
    margin: 0;
-
    @media (max-width: 768px) {
       padding-top: 170px;
       height: 300px;
    }
 `
-
 const Content = styled.div`
    position: relative;
    z-index: 2;
-
    .main-title {
       margin-bottom: 5px;
       text-transform: uppercase;
       color: white;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
       transition: color 0.3s ease;
-
       @media (max-width: 768px) {
          font-size: 28px;
       }
    }
-
    > p {
       width: 440px;
       text-align: center;
@@ -155,20 +140,17 @@ const Content = styled.div`
       color: white;
       text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
       transition: color 0.3s ease;
-
       @media (max-width: 768px) {
          width: 90%;
          font-size: 10px;
          color: #ffcc00;
       }
    }
-
    &:hover .main-title,
    &:hover > p {
       color: #ffcc00;
    }
 `
-
 const SponsorItem = styled.div`
    flex: 0 0 calc(18% - 40px);
    max-width: calc(25% - 40px);
@@ -177,11 +159,9 @@ const SponsorItem = styled.div`
    align-items: center;
    justify-content: center;
    transition: transform 0.3s ease;
-
    &:hover {
       transform: translateY(-5px);
    }
-
    img {
       display: block;
       padding: 10px;
@@ -191,15 +171,12 @@ const SponsorItem = styled.div`
       cursor: pointer;
       transition: transform 0.3s ease;
    }
-
    img:hover {
       transform: translateY(-6px);
    }
-
    @media (max-width: 500px) {
       flex: 0 0 calc(20% - 10px);
       max-width: 100%;
-
       img {
          width: 110px;
       }

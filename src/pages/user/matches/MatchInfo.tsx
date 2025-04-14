@@ -14,21 +14,16 @@ const MatchInfo = () => {
    const { slug } = useParams<{ slug: string }>()
    const { match } = useAppSelector((state) => state.matches)
    window.scrollTo(0, 0)
-
    const dispatch = useAppDispatch()
-
    useEffect(() => {
       dispatch(getMatch(slug))
    }, [dispatch, slug])
-
    useEffect(() => {
       if (match?.date) {
          const matchDate = new Date(match.date)
-
          const updateCountdown = () => {
             const now = new Date()
             const diff = matchDate.getTime() - now.getTime()
-
             if (diff <= 0) {
                if (match.status_display === 'Завершен') {
                   setCountdown('Матч завершен')
@@ -44,7 +39,6 @@ const MatchInfo = () => {
                   (diff % (1000 * 60 * 60)) / (1000 * 60)
                )
                const seconds = Math.floor((diff % (1000 * 60)) / 1000)
-
                let countdownString = ''
                if (days > 0) {
                   countdownString += `${days} дн `
@@ -54,14 +48,11 @@ const MatchInfo = () => {
                }
                countdownString += `${minutes.toString().padStart(2, '0')} : `
                countdownString += `${seconds.toString().padStart(2, '0')} сек`
-
                setCountdown(countdownString)
             }
          }
-
          updateCountdown()
          const interval = setInterval(updateCountdown, 1000)
-
          return () => clearInterval(interval)
       } else {
          setCountdown('Дата не доступна')
@@ -72,14 +63,12 @@ const MatchInfo = () => {
       const day = String(date.getDate()).padStart(2, '0')
       const month = String(date.getMonth() + 1).padStart(2, '0')
       const year = date.getFullYear()
-
       return `${day}.${month}.${year}`
    }
    return (
       <MatchCard>
          <DarkOverlay />
          <BackgroundImage />
-
          <Content>
             <Flex
                vertical
@@ -95,7 +84,6 @@ const MatchInfo = () => {
                         : 'Дата не доступна'}
                   </Countdown>
                </h4>
-
                <Countdown>
                   <p className="text-state">{countdown} </p>
                </Countdown>
@@ -121,13 +109,11 @@ const MatchInfo = () => {
                      </Team>
                   </TeamCard>
                </Col>
-
                <Flex gap={10} align="center">
                   <Score>{match?.home_score}</Score>
                   <Score>:</Score>
                   <Score>{match?.away_score}</Score>
                </Flex>
-
                <Col>
                   <TeamCard>
                      <Team>
@@ -144,16 +130,13 @@ const MatchInfo = () => {
                   </TeamCard>
                </Col>
             </Flex>
-
             <Flex vertical align="center" gap={10}>
                {match?.stream_link ? (
                   <Button>
                      <a href={match?.stream_link}>Смотреть</a>
                   </Button>
                ) : null}
-
                <Text style={{ color: 'white' }}>{match?.location}</Text>
-
                <Text style={{ color: 'white' }}>
                   Статус матча: {match?.status_display}
                </Text>
@@ -162,7 +145,6 @@ const MatchInfo = () => {
       </MatchCard>
    )
 }
-
 export default MatchInfo
 
 const MatchCard = styled(Card)`
@@ -174,12 +156,10 @@ const MatchCard = styled(Card)`
    text-align: center;
    border-radius: 0 !important;
    margin-top: 50px;
-
    @media (max-width: 768px) {
       padding: 50px 20px;
    }
 `
-
 const BackgroundImage = styled.div`
    background-image: url(${bg});
    background-size: cover;
@@ -187,12 +167,10 @@ const BackgroundImage = styled.div`
    position: absolute;
    width: 100%;
    height: 100%;
-
    top: 0;
    left: 0;
    z-index: 0;
 `
-
 const DarkOverlay = styled.div`
    position: absolute;
    top: 0;
@@ -203,35 +181,29 @@ const DarkOverlay = styled.div`
    z-index: 1;
    height: 100%;
 `
-
 const Content = styled.div`
    position: relative;
    z-index: 2;
    padding: 20px;
-
    .block-container-match-first {
       margin: 0 auto;
       width: 200px;
    }
-
    > .time {
       color: white;
       font-size: 20px;
       font-weight: 600;
       margin-bottom: 10px;
    }
-
    .team-name {
       font-size: 20px;
       color: white;
    }
-
    .text-state {
       font-size: 11px;
       color: #ffcc00;
    }
 `
-
 const Countdown = styled.div`
    font-size: 24px;
    color: #ffff;
@@ -241,35 +213,29 @@ const Countdown = styled.div`
    justify-content: center;
    gap: 5px;
 `
-
 const TeamCard = styled.div`
    text-align: center;
    width: 120px;
    transition: transform 0.3s;
-
    &:hover {
       transform: scale(1.05);
    }
 `
-
 const Team = styled.div`
    display: flex;
    align-items: center;
    gap: 10px;
    flex-direction: column;
 `
-
 const Score = styled.div`
    font-size: 36px;
    font-weight: bold;
    color: white;
 `
-
 const LeagueLogo = styled.img`
    width: 100px;
    height: auto;
    margin: 0 auto;
-
    @media (max-width: 768px) {
       width: 80px;
    }

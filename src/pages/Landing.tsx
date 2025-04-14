@@ -26,7 +26,6 @@ const Landing: FC = () => (
          />
          <meta name="author" content="Абдыш ата" />
       </Helmet>
-
       <main>
          <Slider />
          <MatchInfo />
@@ -42,5 +41,4 @@ const Landing: FC = () => (
       </main>
    </>
 )
-
 export default Landing

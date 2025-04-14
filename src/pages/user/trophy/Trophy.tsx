@@ -16,10 +16,8 @@ const Trophy = () => {
    )
    const isMobile = window.innerWidth <= 768
    const [isUserScrolling, setIsUserScrolling] = useState<boolean>(false)
-
    useEffect(() => {
       const handleScroll = () => setIsUserScrolling(true)
-
       const scrollDown = () =>
          !isUserScrolling && !innerWidth
             ? window.scrollBy({
@@ -28,23 +26,17 @@ const Trophy = () => {
               })
             : null
       window.addEventListener('wheel', handleScroll, { passive: false })
-
       const interval = setInterval(scrollDown, 70)
-
       return () => {
          clearInterval(interval)
          window.removeEventListener('wheel', handleScroll)
       }
    }, [isUserScrolling, isMobile])
-
    const dispatch = useAppDispatch()
-
    useEffect(() => {
       dispatch(getAchievements())
-
       dispatch(getAchievementsBanner())
    }, [dispatch])
-
    return (
       <main>
          <Helmet>
@@ -58,10 +50,7 @@ const Trophy = () => {
                content="трофейная комната, достижения, Абдыш ата"
             />
             <meta name="author" content="Абдыш ата" />
-            <meta
-               property="og:title"
-               content="Трофейная комната Абдыш ата"
-            />
+            <meta property="og:title" content="Трофейная комната Абдыш ата" />
             <meta
                property="og:description"
                content="Посмотрите достижения Абдыш ата."
@@ -85,7 +74,6 @@ const Trophy = () => {
                <div className="first-part">
                   <Flex className="first" align="end">
                      <DarkOverlay />
-
                      <Flex justify="end" vertical className="container">
                         <h2 className="title">
                            ДОСТИЖЕНИЯ ФУТБОЛЬНОГО КЛУБА АБДЫШ-АТА»
@@ -118,7 +106,6 @@ const Trophy = () => {
                   <br />
                   <strong>Вперёд, Абдыш-Ата!</strong>
                </p>
-
                <Flex vertical className="trophy-block-container">
                   {achievements.map((item, index) => (
                      <NavLink to={`/trophy/${item.slug}`} key={item.id}>
@@ -138,13 +125,11 @@ const Trophy = () => {
                               src={item.image}
                               alt={item.title}
                            />
-
                            <Flex gap={40} vertical className="texstovka">
                               <h2>{item.title}</h2>
                               <p className="description-text">
                                  {item.descriptions}
                               </p>
-
                               <p className="read-more">Читать дальше →</p>
                            </Flex>
                         </Flex>
@@ -160,85 +145,66 @@ const Trophy = () => {
 export default Trophy
 
 const fadeInUp = keyframes`
-0% {
-   opacity: 0;
-   transform: translateY(20px);
-}
-100% {
-   opacity: 1;
-   transform: translateY(0);
-}
+0% { opacity: 0; transform: translateY(20px)}
+100% {opacity: 1; transform: translateY(0)}
 `
-
 const StyledContainer = styled(Flex)`
    margin-top: 30px;
    .description-text {
       color: grey;
    }
-
    .read-more {
       color: #ed5a0c !important;
    }
    .read-more:hover {
       color: #f39f71 !important;
    }
-
    @media (max-width: 768px) {
       flex-direction: column;
    }
-
    .second-part-trophy {
       max-width: 1600px;
       margin: 0 auto;
    }
-
    .first-part {
       height: 100%;
       width: 100%;
       position: relative;
       z-index: 9;
       padding: 75px;
-
       .first {
          max-width: 1600px;
          margin: 0 auto;
          height: 100%;
       }
-
       @media (max-width: 1024px) {
          padding: 20px;
       }
    }
-
    .image {
       width: 50%;
       min-width: 50%;
       height: 400px;
       object-fit: cover;
-
       @media (max-width: 768px) {
          height: auto;
          min-width: none;
       }
-
       @media (max-width: 480px) {
          width: 100%;
          height: 250px;
       }
    }
-
    .text {
       padding: 75px;
       padding-bottom: 0;
       height: auto;
       font-size: 20px;
       font-weight: 200;
-
       @media (max-width: 1024px) {
          padding: 20px;
          line-height: 1.5;
       }
-
       @media (max-width: 768px) {
          font-size: 16px;
       }
@@ -247,34 +213,26 @@ const StyledContainer = styled(Flex)`
          padding-bottom: 0;
       }
    }
-
    .trophy-block-container {
       padding: 75px;
-
       @media (max-width: 1024px) {
          padding: 20px;
       }
-
       @media (max-width: 480px) {
          gap: 30px;
       }
-
       .trophy-block {
          &:hover .read-more {
             color: grey;
          }
-
          @media (max-width: 480px) {
             flex-direction: column !important;
          }
-
          @media (max-width: 768px) {
             padding: 0px;
          }
-
          .texstovka {
             padding: 40px;
-
             @media (max-width: 768px) {
                gap: 20px !important;
                padding: 25px;
@@ -282,39 +240,31 @@ const StyledContainer = styled(Flex)`
                   font-size: 14px;
                }
             }
-
             @media (max-width: 610px) {
                gap: 20px !important;
                padding: 10px;
-
                .text-info {
                   gap: 10px !important;
                   font-size: 10px;
                }
             }
-
             @media (max-width: 480px) {
                gap: 10px !important;
-
                .text-info {
                   gap: 10px !important;
                   font-size: 13px;
                }
             }
-
             h2 {
                font-family: 'Inter', serif;
                font-size: 35px;
                font-weight: 600;
-
                @media (max-width: 768px) {
                   font-size: 23px;
                }
-
                @media (max-width: 610px) {
                   font-size: 32px;
                }
-
                @media (max-width: 400px) {
                   font-size: 32px;
                }
@@ -323,7 +273,6 @@ const StyledContainer = styled(Flex)`
       }
    }
 `
-
 const StyledFirstPart = styled(Flex)<{ banner: string | undefined }>`
    position: relative;
    background-image: url(${(props) => props.banner});
@@ -332,12 +281,10 @@ const StyledFirstPart = styled(Flex)<{ banner: string | undefined }>`
    height: 70vh;
    width: 100%;
    color: white;
-
    .container {
       position: relative;
       z-index: 2;
       text-align: start;
-
       .title {
          margin-bottom: 5px;
          text-transform: uppercase;
@@ -348,64 +295,52 @@ const StyledFirstPart = styled(Flex)<{ banner: string | undefined }>`
          animation-name: ${fadeInUp};
          animation-delay: 0.5s;
       }
-
       > p {
          text-align: start;
          font-size: 20px;
          color: white;
          text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
          transition: color 0.3s ease;
-
          @media (max-width: 768px) {
             font-size: 16px;
          }
       }
-
       &:hover .title,
       &:hover > p {
          color: #ffcc00;
       }
    }
-
    @media (max-width: 1024px) {
       height: 60vh;
-
       .container {
          .title {
             font-size: 60px;
          }
-
          > p {
             font-size: 17px;
          }
       }
    }
-
    @media (max-width: 768px) {
       height: 300px;
-
       .container {
          .title {
             font-size: 40px;
          }
       }
    }
-
    @media (max-width: 610px) {
       height: 40vh;
-
       .container {
          .title {
             font-size: 25px;
          }
-
          > p {
             font-size: 12px;
          }
       }
    }
 `
-
 const DarkOverlay = styled.div`
    position: absolute;
    top: 0;

@@ -21,7 +21,6 @@ interface TeamData {
    form_list: string[]
    played: number
 }
-
 const TournamentTable = () => {
    const { currentTeam } = useAppSelector((state) => state.rating)
    const dispatch = useAppDispatch()
@@ -30,11 +29,9 @@ const TournamentTable = () => {
    const isHomePage = location.pathname === '/'
    const defaultSlug = 'kyrygzskaya-premer-liga'
    const currentSlug = isHomePage ? defaultSlug : slug || defaultSlug
-
    useEffect(() => {
       dispatch(getTeamsRating(currentSlug))
    }, [dispatch, currentSlug])
-
    const columns: ColumnsType<TeamData> = [
       {
          title: '',
@@ -137,7 +134,6 @@ const TournamentTable = () => {
             key: team.id || index.toString(),
          }))
          .slice(0, isHomePage ? 6 : undefined) || []
-
    return (
       <StyledComponent $path={isHomePage.toString()}>
          <Flex vertical className="table">
@@ -150,7 +146,6 @@ const TournamentTable = () => {
                   <h1 className="main-title">Турнирная таблица</h1>
                   <p className="sub-title">{currentTeam?.title}</p>
                </Flex>
-
                {isHomePage && (
                   <StyledButton>
                      <NavLink to="tournaments/kyrygzskaya-premer-liga">
@@ -159,7 +154,6 @@ const TournamentTable = () => {
                   </StyledButton>
                )}
             </Flex>
-
             <Table
                dataSource={dataSource}
                columns={columns}
@@ -171,7 +165,6 @@ const TournamentTable = () => {
       </StyledComponent>
    )
 }
-
 export default TournamentTable
 
 const StyledComponent = styled.div<{ $path: string }>`
@@ -183,21 +176,17 @@ const StyledComponent = styled.div<{ $path: string }>`
    background-size: cover;
    background-position: center;
    background-repeat: no-repeat;
-
    @media (max-width: 1024px) {
       padding: 40px 20px;
    }
-
    .header {
       margin-bottom: 20px;
    }
-
    .main-title {
       text-transform: uppercase;
       color: white;
       font-weight: 600;
       margin: 0;
-
       @media (max-width: 768px) {
          font-size: 24px;
       }
@@ -205,7 +194,6 @@ const StyledComponent = styled.div<{ $path: string }>`
          font-size: 20px;
       }
    }
-
    .sub-title {
       color: white;
       font-size: 18px;
@@ -215,7 +203,6 @@ const StyledComponent = styled.div<{ $path: string }>`
       padding: 8px 12px;
       width: max-content;
       margin: 10px 0 0;
-
       @media (max-width: 768px) {
          font-size: 16px;
       }
@@ -228,12 +215,10 @@ const StyledComponent = styled.div<{ $path: string }>`
       margin: 0 auto;
       max-width: 1600px;
    }
-
    .ant-table {
       background: transparent;
       width: 100%;
    }
-
    .ant-table-thead > tr > th {
       background: transparent;
       font-size: 14px;
@@ -241,11 +226,9 @@ const StyledComponent = styled.div<{ $path: string }>`
       border: none;
       padding: 8px;
       text-align: center;
-
       &::before {
          width: 0 !important;
       }
-
       @media (max-width: 768px) {
          font-size: 12px;
          padding: 6px;
@@ -255,14 +238,12 @@ const StyledComponent = styled.div<{ $path: string }>`
          padding: 4px;
       }
    }
-
    .ant-table-tbody > tr > td {
       border: none;
       padding: 8px;
       font-size: 14px;
       background: transparent;
       transition: background-color 0.3s ease;
-
       @media (max-width: 768px) {
          font-size: 12px;
          padding: 6px;
@@ -272,14 +253,12 @@ const StyledComponent = styled.div<{ $path: string }>`
          padding: 4px;
       }
    }
-
    .ant-table-tbody > tr .text-content {
       background: white;
       padding: 8px 12px;
       border-radius: 6px;
       font-weight: 700;
       color: #333;
-
       @media (max-width: 768px) {
          padding: 6px 10px;
       }
@@ -287,27 +266,22 @@ const StyledComponent = styled.div<{ $path: string }>`
          padding: 4px 8px;
       }
    }
-
    .ant-table-tbody > tr:hover {
       background-color: transparent !important;
    }
-
    .ant-table-tbody > tr:hover .text-content {
       background: #00a851;
       color: white;
    }
-
    .ant-table-tbody > tr:hover td {
       background: transparent;
    }
-
    @media (max-width: 768px) {
       padding: 20px 10px;
       .header {
          margin-bottom: 15px;
       }
    }
-
    @media (max-width: 480px) {
       padding: 15px 5px;
       .header {
@@ -315,7 +289,6 @@ const StyledComponent = styled.div<{ $path: string }>`
       }
    }
 `
-
 const StyledButton = styled(Button)`
    background: #00a851;
    border: none;
@@ -329,24 +302,20 @@ const StyledButton = styled(Button)`
    transition: all 0.3s ease;
    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
    align-self: flex-start;
-
    &:hover {
       background: #008f43;
       color: white;
       transform: translateY(-2px);
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
    }
-
    &:active {
       transform: translateY(0);
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
    }
-
    @media (max-width: 768px) {
       padding: 8px 16px;
       font-size: 14px;
    }
-
    @media (max-width: 480px) {
       padding: 6px 12px;
       font-size: 12px;

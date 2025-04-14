@@ -8,7 +8,6 @@ import { Helmet } from 'react-helmet-async'
 interface StyledCardProps {
    bgimage: string
 }
-
 const Infrastructures: FC = () => {
    window.scrollTo(0, 0)
    const { infrastractures } = useAppSelector((state) => state.infrastracture)

@@ -8,22 +8,18 @@ import {
 } from '../../store/slice/tournamentAcademy/TournamentAcademyThunk'
 
 const { Title, Paragraph } = Typography
-
 interface Contact {
    email?: string
    phone?: string
 }
-
 interface ContactsState {
    contacts: Contact[]
 }
-
 const TournamentWrapper = styled.div`
    max-width: 1200px;
    margin: 0 auto;
    padding: 20px 10px;
 `
-
 const StyledBanner = styled.div<{ banner: string | undefined }>`
    width: 100vw;
    position: relative;
@@ -41,7 +37,6 @@ const StyledBanner = styled.div<{ banner: string | undefined }>`
    background-image: url(${(props) => props.banner});
    background-size: cover;
    background-position: center;
-
    &:before {
       content: '';
       position: absolute;
@@ -52,7 +47,6 @@ const StyledBanner = styled.div<{ banner: string | undefined }>`
       background: rgba(0, 0, 0, 0.4);
       z-index: 1;
    }
-
    h1 {
       z-index: 2;
       font-size: 36px;
@@ -62,14 +56,12 @@ const StyledBanner = styled.div<{ banner: string | undefined }>`
       text-align: center;
       margin: 0;
    }
-
    @media (max-width: 768px) {
       height: 300px;
       h1 {
          font-size: 24px;
       }
    }
-
    @media (max-width: 480px) {
       height: 200px;
       h1 {
@@ -77,78 +69,62 @@ const StyledBanner = styled.div<{ banner: string | undefined }>`
       }
    }
 `
-
 const TextContent = styled.div`
    padding: 15px;
    background: #fff;
    border-radius: 8px;
    margin-top: 15px;
 `
-
 const PastTournamentsSection = styled.div`
    margin-top: 20px;
 `
-
 const TournamentItem = styled.div`
    margin-bottom: 15px;
    padding-bottom: 15px;
    border-bottom: 1px solid #e5e5e5;
-
    &:last-child {
       border-bottom: none;
       margin-bottom: 0;
    }
 `
-
 const PhotoCarousel = styled(Carousel)`
    margin-top: 5px;
-
    .slick-slide {
       padding: 0 5px;
    }
-
    .slick-dots li button {
       background: #d21f3c;
    }
-
    .slick-dots li.slick-active button {
       background: #fff;
    }
-
    .slick-arrow {
       color: #d21f3c;
       font-size: 20px;
-
       &:hover {
          color: #fff;
       }
    }
-
    .slick-prev {
       left: 5px;
    }
-
    .slick-next {
       right: 5px;
    }
 `
-
 const PhotoImage = styled.img`
    width: 100%;
    height: 180px;
    object-fit: cover;
    border-radius: 8px;
    border: 2px solid #fff;
-
    @media (max-width: 768px) {
       height: 140px;
    }
-
    @media (max-width: 480px) {
       height: 100px;
    }
 `
-
 const ContactSection = styled.div`
    padding: 15px;
    text-align: center;
@@ -156,22 +132,17 @@ const ContactSection = styled.div`
    border-radius: 8px;
    margin-top: 20px;
 `
-
 const TournamentAcademy = () => {
    const { contacts } = useAppSelector(
       (state: { contacts: ContactsState }) => state.contacts
    )
    const { first, allTeams } = useAppSelector((state) => state.academy)
-
    const contact: Contact | null = contacts.length > 0 ? contacts[0] : null
-
    const dispatch = useAppDispatch()
-
    useEffect(() => {
       dispatch(getAcademiaBanner())
       dispatch(getAllData())
    }, [dispatch])
-
    return (
       <TournamentWrapper>
          {first.map((item, i) => (
@@ -179,7 +150,6 @@ const TournamentAcademy = () => {
                <StyledBanner banner={item?.banner}>
                   <Title>{item?.banner_title}</Title>
                </StyledBanner>
-
                <TextContent>
                   <div
                      dangerouslySetInnerHTML={{ __html: item?.content || '' }}
@@ -189,10 +159,8 @@ const TournamentAcademy = () => {
                         color: '#333',
                      }}
                   />
-
                   <br />
                   <br />
-
                   <Paragraph
                      style={{
                         fontSize: '18px',
@@ -203,7 +171,6 @@ const TournamentAcademy = () => {
                   >
                      {item?.title_below}
                   </Paragraph>
-
                   <Paragraph
                      style={{
                         fontSize: '16px',
@@ -223,7 +190,6 @@ const TournamentAcademy = () => {
                </Title>
             </div>
          ))}
-
          <PastTournamentsSection>
             {allTeams?.map((tournament) => (
                <TournamentItem key={tournament?.id}>
@@ -240,7 +206,6 @@ const TournamentAcademy = () => {
                   />
                   <br />
                   <br />
-
                   <PhotoCarousel
                      slidesToShow={Math.min(
                         4,
@@ -269,7 +234,6 @@ const TournamentAcademy = () => {
                </TournamentItem>
             ))}
          </PastTournamentsSection>
-
          <ContactSection>
             <Paragraph style={{ margin: 0, color: '#333' }}>
                Связь с организаторами:{' '}
@@ -289,5 +253,4 @@ const TournamentAcademy = () => {
       </TournamentWrapper>
    )
 }
-
 export default TournamentAcademy

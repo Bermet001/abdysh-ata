@@ -8,14 +8,11 @@ import { GALLERY_THUNK } from '../../../store/slice/gallery/galleryThunk'
 const Photo: FC = () => {
    const { slug } = useParams<{ slug: string }>()
    window.scrollTo(0, 0)
-
    const { photo } = useAppSelector((state) => state.gallery)
    const dispatch = useAppDispatch()
-
    useEffect(() => {
       dispatch(GALLERY_THUNK.getPhoto(slug))
    }, [dispatch, slug])
-
    return (
       <StyledContainer>
          <img className="main-image" src={photo?.image_main} alt="Background" />
@@ -39,13 +36,11 @@ const Photo: FC = () => {
       </StyledContainer>
    )
 }
-
 export default Photo
 
 const StyledContainer = styled.main`
    padding: 80px 5%;
    max-width: 1600px;
-
    .main-image {
       object-fit: cover;
       height: auto;
@@ -54,19 +49,16 @@ const StyledContainer = styled.main`
       border-radius: 8px;
       object-position: center;
    }
-
    .main-title {
       margin: 60px 0 10px;
       font-size: 2.5rem;
    }
-
    @media (max-width: 768px) {
       .main-title {
          font-size: 2rem;
       }
    }
 `
-
 const ImageWrapper = styled.div`
    position: relative;
    display: flex;
@@ -75,24 +67,20 @@ const ImageWrapper = styled.div`
    height: 230px;
    margin: 10px;
    overflow: hidden;
-
    img {
       object-fit: cover;
       border-radius: 8px;
       transition: transform 0.3s ease;
       width: 100%;
    }
-
    @media (max-width: 1024px) {
       width: calc(34% - 20px);
       height: 170px;
    }
-
    @media (max-width: 768px) {
       width: calc(50% - 20px);
       height: 150px;
    }
-
    @media (max-width: 480px) {
       width: calc(52% - 13px);
       height: 120px;
