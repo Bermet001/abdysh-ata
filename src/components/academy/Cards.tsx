@@ -16,7 +16,6 @@ const Cards = () => {
    useEffect(() => {
       dispatch(getAcademiaAdvantages())
    }, [dispatch])
-
    return (
       <AcademyInfoSection>
          <SectionTitle className="main-title">Наша академия – это</SectionTitle>
@@ -48,7 +47,7 @@ const CardWrapper = styled.div`
    border: 1px solid #e0e0e0;
    padding: 20px;
    width: 100%;
-   max-width: 350px;
+   max-width: 270px;
    height: 180px;
    text-align: start;
    background-color: #fff;

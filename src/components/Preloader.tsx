@@ -20,13 +20,14 @@ const Preloader: FC = () => {
          <Loader>
             <LoaderRow>
                {Array.from({ length: 10 }).map((_, index) => (
-                  <LoaderSection key={index} isDark={index < 2} />
+                  <LoaderSection key={index} isdark={(index < 2).toString()} />
                ))}
             </LoaderRow>
          </Loader>
       </PreloaderContainer>
    )
 }
+
 const Letter: FC<{ children: string; delay: number }> = ({
    children,
    delay,
@@ -38,12 +39,14 @@ const Letter: FC<{ children: string; delay: number }> = ({
       {children}
    </LetterStyled>
 )
+
 export default Preloader
 
 const fadeIn = keyframes`
    from { opacity: 0; }
    to { opacity: 1; }
 `
+
 const waveOut = keyframes`
    from {
       transform: translateY(0);
@@ -144,10 +147,11 @@ const LoaderRow = styled.div`
    height: 100%;
 `
 
-const LoaderSection = styled.div<{ isDark: boolean }>`
+const LoaderSection = styled.div<{ isdark: string }>`
    width: 10%;
    height: 100%;
-   background-color: ${({ isDark }) => (isDark ? '#2222' : 'transparent')};
+   background-color: ${({ isdark }) =>
+      isdark === 'true' ? '#2222' : 'transparent'};
 
    > div {
       background-color: #222;
