@@ -111,7 +111,7 @@ const Coaches = () => {
                className="modal"
             >
                <ScheduleContainer>
-                  {selectedCoachSchedules.map((schedule) => (
+                  {selectedCoachSchedules?.map((schedule) => (
                      <ScheduleCard key={schedule?.id}>
                         <ScheduleItem>
                            <span className="label">День:</span>
@@ -223,9 +223,10 @@ const StyledCard = styled.div`
       width: 300px;
    }
    .coach-position {
-      font-weight: 400;
+      font-weight: 500;
       margin: 0;
-      color: #d1d1d1;
+      font-size: 17px;
+      color: #aeaeae;
    }
    .more-info-btn {
       position: absolute;

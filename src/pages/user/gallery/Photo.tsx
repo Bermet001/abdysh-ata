@@ -18,18 +18,18 @@ const Photo: FC = () => {
 
    return (
       <StyledContainer>
-         <img className="main-image" src={photo.image_main} alt="Background" />
+         <img className="main-image" src={photo?.image_main} alt="Background" />
          <br />
-         <h3>{photo.title}</h3>
+         <h3>{photo?.title}</h3>
          <Flex vertical gap={20}>
             <h1 className="main-title">Картинки с этого события</h1>
             <Flex wrap>
-               {photo.images?.map((item) => (
-                  <ImageWrapper key={item.id}>
+               {photo?.images?.map((item) => (
+                  <ImageWrapper key={item?.id}>
                      <Image
                         height="100%"
                         width="100%"
-                        src={item.images}
+                        src={item?.images}
                         alt="картинка с этого события"
                      />
                   </ImageWrapper>

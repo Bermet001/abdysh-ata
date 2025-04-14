@@ -52,9 +52,9 @@ const Shop = () => {
                defaultValue="Категории"
                style={{ width: 120 }}
                onChange={handleChange}
-               options={categories.map((category) => ({
-                  value: category.title,
-                  label: category.title,
+               options={categories?.map((category) => ({
+                  value: category?.title,
+                  label: category?.title,
                }))}
             />
 
@@ -66,20 +66,20 @@ const Shop = () => {
          </Flex>
 
          <ProductsContainer>
-            {products.map((product) => {
+            {products?.map((product) => {
                const message = `Хотела бы узнать подробнее о ${product?.title}.`
                const encodedMessage = encodeURIComponent(message)
 
                return (
                   <StyledCard
-                     key={product.id}
-                     cover={<img alt={product.title} src={product.image} />}
+                     key={product?.id}
+                     cover={<img alt={product?.title} src={product?.image} />}
                   >
-                     <NavLink to={`/shop/${product.slug}`}>
+                     <NavLink to={`/shop/${product?.slug}`}>
                         <Card.Meta
                            className="product-info"
-                           title={product.title}
-                           description={product.price}
+                           title={product?.title}
+                           description={product?.price}
                         />
                      </NavLink>
 

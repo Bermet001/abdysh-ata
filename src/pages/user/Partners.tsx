@@ -70,13 +70,13 @@ const Partners = () => {
             </BackgroundSection>
 
             <Flex gap={40} justify="center" wrap className="partners-container">
-               {partners.map((sponsor) => (
-                  <SponsorItem key={sponsor.id}>
-                     <a aria-label="партнер" href={sponsor.link}>
+               {partners?.map((sponsor) => (
+                  <SponsorItem key={sponsor?.id}>
+                     <a aria-label="партнер" href={sponsor?.link}>
                         <img
                            height="100%"
-                           src={sponsor.image}
-                           alt={sponsor.title}
+                           src={sponsor?.image}
+                           alt={sponsor?.title}
                         />
                      </a>
                   </SponsorItem>

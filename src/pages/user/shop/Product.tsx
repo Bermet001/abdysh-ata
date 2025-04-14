@@ -50,7 +50,7 @@ const ProductPage = () => {
                <Radio.Group
                   className="detail-info"
                   block
-                  options={product?.product_color.map(({ color, image }) => ({
+                  options={product?.product_color?.map(({ color, image }) => ({
                      label: color,
                      value: image,
                   }))}
@@ -61,7 +61,7 @@ const ProductPage = () => {
                <Radio.Group
                   block
                   className="detail-info"
-                  options={product?.product_size.map(({ size }) => ({
+                  options={product?.product_size?.map(({ size }) => ({
                      label: size,
                      value: size,
                   }))}
@@ -72,9 +72,9 @@ const ProductPage = () => {
             <Section>
                <SectionTitle>Характеристики</SectionTitle>
                <FeatureList>
-                  {product?.product_attribute.map((item) => (
-                     <li key={item.id}>
-                        {item.key} - {item.value}
+                  {product?.product_attribute?.map((item) => (
+                     <li key={item?.id}>
+                        {item?.key} - {item?.value}
                      </li>
                   ))}
                </FeatureList>

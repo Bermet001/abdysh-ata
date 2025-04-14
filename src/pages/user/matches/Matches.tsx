@@ -148,7 +148,7 @@ const SchedulMatches = () => {
                columns={columns}
                dataSource={allMatches?.map((match) => ({
                   ...match,
-                  key: match.id,
+                  key: match?.id,
                }))}
                pagination={false}
                scroll={{ x: 'max-content' }}

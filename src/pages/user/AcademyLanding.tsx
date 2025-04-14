@@ -24,12 +24,12 @@ const AcademyLanding: FC = () => {
 
    return (
       <StyledSection>
-         {first.map((item, index) => (
-            <BannerContainer key={item.banner || index}>
-               <BannerImage src={item.banner} alt={item.title} />
+         {first?.map((item, index) => (
+            <BannerContainer key={item?.banner || index}>
+               <BannerImage src={item?.banner} alt={item?.title} />
                <Overlay />
                <ContentWrapper>
-                  <Title>{item.title}</Title>
+                  <Title>{item?.title}</Title>
                   <NavLink to="/team/futbolnaya-akademiya">
                      <StyledButton type="primary">узнать больше</StyledButton>
                   </NavLink>
