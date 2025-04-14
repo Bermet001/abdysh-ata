@@ -12,13 +12,10 @@ const ProductSlider = () => {
    const { products, isLoading } = useAppSelector((state) => state.shop)
    const { contacts } = useAppSelector((state) => state.contacts)
    const contact = contacts?.length > 0 ? contacts[0] : null
-
    const dispatch = useAppDispatch()
-
    useEffect(() => {
       dispatch(PRODUCT_THUNK.getProducts())
    }, [dispatch])
-
    return (
       <div
          style={{
@@ -28,14 +25,12 @@ const ProductSlider = () => {
          <Container>
             <Flex gap={10} justify="space-between" align="start">
                <h2 className="main-title">НАШ ОНЛАЙН МАГАЗИН</h2>
-
                <NavLink to="/shop">
                   <Button type="primary">
                      Посмотреть все товары <RightOutlined />
                   </Button>
                </NavLink>
             </Flex>
-
             <Swiper
                spaceBetween={10}
                breakpoints={{
@@ -96,11 +91,9 @@ export default ProductSlider
 
 const Container = styled.section`
    margin: auto;
-   /* background:  */
    padding: 120px 75px 0 75px;
    max-width: 1600px;
    min-height: 600px;
-
    @media (max-width: 1024px) {
       padding: 60px 20px 0;
       min-height: 500px;
@@ -110,25 +103,21 @@ const Container = styled.section`
       padding: 30px 20px 0;
    }
 `
-
 const StyledCard = styled(Card)`
    border-radius: 10px;
    transition: transform 0.3s;
    width: 100%;
    cursor: pointer;
-
    .ant-card-cover {
       max-width: 200px;
       width: 100%;
       margin: 0 auto;
-
       img {
          width: 99.9% !important;
          border-top-left-radius: 8px;
          border-top-right-radius: 8px;
          object-fit: scale-down;
          height: 250px;
-
          @media (max-width: 768px) {
             height: 200px;
          }
@@ -136,19 +125,16 @@ const StyledCard = styled(Card)`
    }
    .ant-card-body {
       padding: 15px;
-
       @media (max-width: 768px) {
          padding: 10px;
       }
    }
 `
-
 const StyledButton = styled(AntdButton)`
    margin-top: 10px;
    border: none;
    width: 100%;
    background-color: #00a64f;
-
    &:hover {
       background-color: #03c661 !important;
    }

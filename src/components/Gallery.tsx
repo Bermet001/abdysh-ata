@@ -11,28 +11,22 @@ import { GALLERY_THUNK } from '../store/slice/gallery/galleryThunk'
 const Gallery = () => {
    const [isModalVisible, setIsModalVisible] = useState(false)
    const [selectedImage, setSelectedImage] = useState('')
-
    const { gallery } = useAppSelector((state) => state.gallery)
    const dispatch = useAppDispatch()
-
    useEffect(() => {
       dispatch(GALLERY_THUNK?.getPhotos())
    }, [dispatch])
-
    const handleImageClick = (src: string) => {
       setSelectedImage(src)
       setIsModalVisible(true)
    }
-
    const handleCloseModal = () => {
       setIsModalVisible(false)
       setSelectedImage('')
    }
-
    const image1 = gallery[0] || ''
    const image2 = gallery[1] || ''
    const image3 = gallery[2] || ''
-
    return (
       <div
          style={{
@@ -45,14 +39,12 @@ const Gallery = () => {
                   <h2 className="main-title" style={{ margin: 0 }}>
                      КАДРЫ И ВИДЕО С СОБЫТИЙ
                   </h2>
-
                   <NavLink to="/gallery">
                      <Button type="primary">
                         Посмотреть все <RightOutlined />
                      </Button>
                   </NavLink>
                </Flex>
-
                <Flex gap={20} className="image-gallery">
                   <Flex className="gallery-image" vertical gap={20}>
                      <ImageWrapper justify="center">
@@ -64,7 +56,6 @@ const Gallery = () => {
                            alt="Event 1"
                         />
                         <DarkOverlay />
-
                         <Overlay>
                            <Flex
                               className="overlay-container"
@@ -101,7 +92,6 @@ const Gallery = () => {
                            </Flex>
                         </Overlay>
                      </ImageWrapper>
-
                      <ImageWrapper justify="center">
                         <img
                            loading="lazy"
@@ -111,7 +101,6 @@ const Gallery = () => {
                            alt="Event 2"
                         />
                         <DarkOverlay />
-
                         <Overlay>
                            <Flex
                               className="overlay-container"
@@ -134,7 +123,6 @@ const Gallery = () => {
                                     Посмотреть
                                  </p>
                               </Flex>
-
                               <NavLink to={`/gallery/${image2.slug}`}>
                                  <Flex vertical gap={10} align="center">
                                     <StyledRightSquareOutlined />
@@ -199,7 +187,6 @@ const Gallery = () => {
                   </Flex>
                </Flex>
             </Flex>
-
             <Modal
                open={isModalVisible}
                footer={null}
@@ -217,7 +204,6 @@ const Gallery = () => {
       </div>
    )
 }
-
 export default Gallery
 
 const StyledContainer = styled.section`
@@ -226,56 +212,43 @@ const StyledContainer = styled.section`
    justify-content: center;
    padding: 120px 75px 0 75px;
    margin: 0 auto;
-
    max-width: 1600px;
-
    img {
       object-fit: cover;
       border-radius: 8px;
    }
-
    .ant-modal .ant-modal-content {
       padding: 0;
    }
-
    @media (max-width: 1024px) {
       padding: 40px 20px 0 20px;
    }
-
    @media (max-width: 768px) {
       padding: 10px 30px;
-
       .image-gallery {
          gap: 10px !important;
       }
    }
-
    @media (max-width: 480px) {
       padding: 0 20px;
-
       .overlay-container {
          gap: 9px !important;
-
          p {
             font-size: 11px;
          }
       }
    }
 `
-
 const ImageWrapper = styled(Flex)`
    position: relative;
    cursor: pointer;
-
    img {
       transition: transform 0.3s ease;
    }
-
    &:hover img {
       transform: scale(1.03);
    }
 `
-
 const Overlay = styled.div`
    position: absolute;
    top: 50%;
@@ -292,7 +265,6 @@ const Overlay = styled.div`
    transition: opacity 0.8s ease, transform 0.5s ease;
    border-radius: 8px;
    padding: 5px;
-
    ${ImageWrapper}:hover & {
       opacity: 1;
       bottom: 0;
@@ -301,7 +273,6 @@ const Overlay = styled.div`
       transform: translateY(-50%);
    }
 `
-
 const DarkOverlay = styled.div`
    position: absolute;
    top: 0;
@@ -312,13 +283,11 @@ const DarkOverlay = styled.div`
    opacity: 0;
    transition: opacity 0.3s ease;
    border-radius: 8px;
-
    ${ImageWrapper}:hover & {
       opacity: 1;
       transform: scale(1.03);
    }
 `
-
 const StyledEyeOutlined = styled(EyeOutlined)`
    font-size: 24px;
    color: white;
@@ -326,20 +295,17 @@ const StyledEyeOutlined = styled(EyeOutlined)`
    border-radius: 6px;
    padding: 5px;
    cursor: pointer;
-
    @media (max-width: 768px) {
       padding: 5px;
       border: 2px solid white;
       font-size: 16px;
    }
-
    @media (max-width: 480px) {
       border: 1.5px solid white;
       padding: 5px;
       font-size: 11px;
    }
 `
-
 const StyledRightSquareOutlined = styled(RightOutlined)`
    font-size: 24px;
    color: white;
@@ -347,13 +313,11 @@ const StyledRightSquareOutlined = styled(RightOutlined)`
    border-radius: 6px;
    padding: 5px;
    cursor: pointer;
-
    @media (max-width: 768px) {
       padding: 5px;
       border: 2px solid white;
       font-size: 16px;
    }
-
    @media (max-width: 480px) {
       border: 1.5px solid white;
       padding: 5px;

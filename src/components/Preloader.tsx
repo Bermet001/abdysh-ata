@@ -4,7 +4,6 @@ import styled, { keyframes } from 'styled-components'
 const Preloader: FC = () => {
    const text = 'ABDYSH-ATA'
    const letterDelayIncrement = 0.2
-
    return (
       <PreloaderContainer>
          <AnimationPreloader>
@@ -27,7 +26,6 @@ const Preloader: FC = () => {
       </PreloaderContainer>
    )
 }
-
 const Letter: FC<{ children: string; delay: number }> = ({
    children,
    delay,
@@ -39,14 +37,11 @@ const Letter: FC<{ children: string; delay: number }> = ({
       {children}
    </LetterStyled>
 )
-
 export default Preloader
-
 const fadeIn = keyframes`
    from { opacity: 0; }
    to { opacity: 1; }
 `
-
 const waveOut = keyframes`
    from {
       transform: translateY(0);
@@ -57,11 +52,9 @@ const waveOut = keyframes`
       height: 0;
    }
 `
-
 const spin = keyframes`
    to { transform: rotate(360deg); }
 `
-
 const lettersLoading = keyframes`
    0%, 50% {
       opacity: 0;
@@ -72,7 +65,6 @@ const lettersLoading = keyframes`
       transform: rotateY(0deg);
    }
 `
-
 const PreloaderContainer = styled.div`
    position: fixed;
    inset: 0;
@@ -81,17 +73,14 @@ const PreloaderContainer = styled.div`
    justify-content: center;
    z-index: 99999;
    animation: ${fadeIn} 3s forwards;
-
    &.loaded {
       animation: ${waveOut} 3s forwards;
    }
 `
-
 const AnimationPreloader = styled.div`
    z-index: 1000;
    text-align: center;
 `
-
 const Spinner = styled.div`
    width: 9em;
    height: 9em;
@@ -100,27 +89,22 @@ const Spinner = styled.div`
    border: 3px solid rgba(245, 244, 244, 0.721);
    border-top-color: grey;
    animation: ${spin} 3s infinite linear;
-
    @media (max-width: 767px) {
       width: 7.5em;
       height: 7.5em;
       margin-bottom: 1.5em;
    }
 `
-
 const TxtLoading = styled.div`
    user-select: none;
-
    @media (max-width: 767px) {
       font-size: 2.5em;
    }
 `
-
 const LetterStyled = styled.span<{ delay?: number }>`
    position: relative;
    color: white;
    display: inline-block;
-
    &::before {
       content: attr(data-text-preloader);
       position: absolute;
@@ -133,7 +117,6 @@ const LetterStyled = styled.span<{ delay?: number }>`
       animation-delay: inherit;
    }
 `
-
 const Loader = styled.div`
    position: fixed;
    inset: 0;
@@ -141,18 +124,15 @@ const Loader = styled.div`
    z-index: 1;
    pointer-events: none;
 `
-
 const LoaderRow = styled.div`
    display: flex;
    height: 100%;
 `
-
 const LoaderSection = styled.div<{ isdark: string }>`
    width: 10%;
    height: 100%;
    background-color: ${({ isdark }) =>
       isdark === 'true' ? '#2222' : 'transparent'};
-
    > div {
       background-color: #222;
       height: 100vh;

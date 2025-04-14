@@ -7,24 +7,9 @@ import { FreeMode, Navigation } from 'swiper/modules'
 import { useState } from 'react'
 import Cards from '../../../components/academy/Cards'
 import Academy from '../../../components/academy/Academy'
-interface Schedule {
-   id: number
-   coach: number
-   coach_name: string
-   group: string
-   day: string
-   start_time: string
-   end_time: string
-   location: string
-}
-interface Coach {
-   name: string
-   position: string
-   id: number
-   image: string
-   slug: string
-   schedules: Schedule[]
-}
+import { Schedule } from '../../../store/slice/coach/coachSlice'
+import { Coach } from '../../../store/slice/team/types'
+
 const Coaches = () => {
    const { slug } = useParams<{ slug: string }>()
    const { coaches } = useAppSelector((state) => state.team) as unknown as {
@@ -145,17 +130,14 @@ const Coaches = () => {
 }
 
 export default Coaches
-
 const StyledContainer = styled.section`
    max-width: 1600px;
    margin: 0 auto;
    padding: 0 75px;
    margin-top: 30px;
-
    @media (max-width: 1024px) {
       padding: 0 30px;
    }
-
    .swiper-button-prev {
       left: -10px;
    }

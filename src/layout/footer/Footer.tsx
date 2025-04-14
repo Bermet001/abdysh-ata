@@ -193,15 +193,12 @@ const StyledFooter = styled.footer`
       .column-footer {
          max-width: 145px !important;
       }
-
       .socials {
          gap: 10px !important;
-
          a {
          }
       }
    }
-
    svg {
       width: 20px;
       height: 20px;

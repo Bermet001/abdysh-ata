@@ -6,24 +6,12 @@ export interface Schedule {
    coach: number
    coach_name: string
    group: string
-   monday_start: string
-   monday_end: string
-   tuesday_start: string
-   tuesday_end: string
-   wednesday_start: string
-   wednesday_end: string
-   thursday_start: string
-   thursday_end: string
-   friday_start: string
-   friday_end: string
-   saturday_start: string
-   saturday_end: string
-   sunday_start: string
-   sunday_end: string
+   day: string
+   start_time: string
+   end_time: string
    location: string
 }
-
-interface Coach {
+export interface Coach {
    id: number | null
    name: string
    image: string
@@ -34,13 +22,11 @@ interface Coach {
    schedules: Schedule[]
    team_image: string
 }
-
 interface CoachState {
    coaches: Coach[]
    coach: Coach
    isLoading: boolean
 }
-
 const initialState: CoachState = {
    coaches: [],
    coach: {
@@ -89,19 +75,6 @@ export const coachSlice = createSlice({
          .addCase(getCoach.rejected, (state) => {
             state.isLoading = false
          })
-      // .addCase(
-      //    getSchedules.fulfilled,
-      //    (state, { payload }: PayloadAction<Schedule[]>) => {
-      //       // state.schedules = payload
-      //       state.isLoading = false
-      //    }
-      // )
-      // .addCase(getSchedules.pending, (state) => {
-      //    state.isLoading = true
-      // })
-      // .addCase(getSchedules.rejected, (state) => {
-      //    state.isLoading = false
-      // })
    },
 })
 

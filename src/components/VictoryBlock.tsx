@@ -13,13 +13,10 @@ const VictoryBlock = () => {
    const { achievements, isLoading } = useAppSelector(
       (state) => state.achievements
    )
-
    const dispatch = useAppDispatch()
-
    useEffect(() => {
       dispatch(getAchievements())
    }, [dispatch])
-
    return (
       <Container>
          <VictoryDes className="victory-des">
@@ -85,30 +82,24 @@ const VictoryBlock = () => {
 }
 
 export default VictoryBlock
-
 const Container = styled.section`
    text-align: center;
    padding: 120px 0;
    max-width: 1600px;
    margin: 0 auto;
-
    padding-bottom: 0;
    color: black;
-
    @media (max-width: 1024px) {
       padding: 0;
       padding-top: 60px;
       min-height: 500px;
-
       .swiper {
          padding: 0px !important;
       }
    }
-
    @media (max-width: 600px) {
       min-height: 400px;
    }
-
    & .swiper {
       padding: 0 calc(15px + 1rem);
       position: relative;
@@ -118,44 +109,36 @@ const Container = styled.section`
       max-width: 1600px;
    }
 `
-
 const SliderContainer = styled.div`
    width: 100%;
    max-width: 1600px;
    margin: 0 auto;
    padding: 0 15px;
    margin-top: -60px;
-
    @media (max-width: 768px) {
       margin-top: -50px;
    }
 `
-
 const Title = styled.h1`
    margin-bottom: 20px;
 `
-
 const Description = styled.p`
    margin-bottom: 50px;
    font-size: 1rem;
    color: white;
    width: 700px;
-
    @media (max-width: 1024px) {
       width: 60%;
    }
-
    @media (max-width: 768px) {
       font-size: 0.9rem;
       width: 80%;
    }
-
    @media (max-width: 480px) {
       font-size: 0.6rem;
       margin-bottom: 30px;
    }
 `
-
 const VictoryDes = styled.div`
    width: 100%;
    height: 350px;
@@ -167,7 +150,6 @@ const VictoryDes = styled.div`
    background-repeat: no-repeat;
    position: relative;
    padding: 100px 75px 0 75px;
-
    &::before {
       content: '';
       position: absolute;
@@ -183,33 +165,26 @@ const VictoryDes = styled.div`
    @media (max-width: 1024px) {
       padding: 70px 20px 0 20px;
    }
-
    .inner {
       max-width: 1500px;
       margin: 0 auto;
       width: 100%;
    }
-
    p {
       margin-top: 10px;
    }
-
    h1 {
       font-size: 45px;
-
       @media (max-width: 768px) {
          font-size: 36px;
       }
-
       @media (max-width: 630px) {
          font-size: 30px;
       }
-
       @media (max-width: 480px) {
          font-size: 28px;
       }
    }
-
    h1,
    p {
       position: relative;
@@ -218,7 +193,6 @@ const VictoryDes = styled.div`
       text-align: start;
    }
 `
-
 const StyledButton = styled(Button)`
    border: none;
    position: relative;
@@ -227,22 +201,18 @@ const StyledButton = styled(Button)`
    padding: 25px 40px;
    font-size: 1rem;
    border-radius: 8px;
-
    &:focus {
       outline: none;
    }
-
    @media (max-width: 768px) {
       padding: 20px 30px;
       font-size: 0.9rem;
    }
-
    @media (max-width: 480px) {
       padding: 15px 20px;
       font-size: 0.8rem;
    }
 `
-
 const StyledCard = styled(Card)`
    text-align: start;
    border-radius: 10px;
@@ -250,28 +220,22 @@ const StyledCard = styled(Card)`
    position: relative;
    overflow: hidden;
    border: none;
-
    .contents-trophy {
       padding: 15px !important;
       height: 110px;
-
       @media (max-width: 830px) {
          height: auto;
       }
    }
-
    .ant-card-body {
       padding: 0px !important;
    }
-
    @media (max-width: 830px) {
       margin: 0px;
-
       .contents-trophy {
          padding: 10px !important;
       }
    }
-
    .trophy-image {
       width: 200px;
       height: 230px;
@@ -283,7 +247,6 @@ const StyledCard = styled(Card)`
       transition: transform 0.3s ease-in-out;
       position: relative;
    }
-
    &::before {
       content: '';
       position: absolute;
@@ -296,7 +259,6 @@ const StyledCard = styled(Card)`
       height: 230px;
       transition: opacity 0.3s ease;
    }
-
    &::after {
       content: '';
       position: absolute;
@@ -312,25 +274,21 @@ const StyledCard = styled(Card)`
       z-index: 3;
       transition: opacity 0.3s ease;
    }
-
    @media (max-width: 450px) {
       &::before,
       .trophy-image {
          height: 170px;
       }
    }
-
    &:hover {
       .trophy-image {
          transform: scale(1.1);
       }
-
       &::before,
       &::after {
          opacity: 0;
       }
    }
-
    h2 {
       @media (max-width: 830px) {
          margin-top: 5px;
@@ -338,27 +296,21 @@ const StyledCard = styled(Card)`
          max-height: 45px;
          min-height: 45px;
       }
-
       @media (max-width: 768px) {
          font-size: 1rem;
       }
-
       @media (max-width: 480px) {
          font-size: 0.8rem;
       }
    }
-
    p {
       font-size: 0.9rem;
-
       @media (max-width: 830px) {
          font-size: 0.7rem;
       }
-
       @media (max-width: 768px) {
          font-size: 0.8rem;
       }
-
       @media (max-width: 480px) {
          font-size: 0.5rem;
       }

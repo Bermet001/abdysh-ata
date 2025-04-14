@@ -8,21 +8,22 @@ import { Helmet } from 'react-helmet-async'
 
 const Slider: FC = () => {
    const { banners, isLoading } = useAppSelector((state) => state.banner)
-
    const dispatch = useAppDispatch()
-
    useEffect(() => {
       dispatch(BANNER_THUNK.getBanners())
    }, [dispatch])
-
    return (
       <section>
          <Helmet>
             {banners?.map((item) => (
-               <link key={item?.id} rel="preload" href={item?.image} as="image" />
+               <link
+                  key={item?.id}
+                  rel="preload"
+                  href={item?.image}
+                  as="image"
+               />
             ))}
          </Helmet>
-
          <StyledCarousel
             dots={false}
             arrows
@@ -36,17 +37,14 @@ const Slider: FC = () => {
                : banners?.map((item, index) => (
                     <div className="main-container" key={index}>
                        <Overlay />
-
                        <img
                           src={item?.image}
                           alt={`Slide ${index + 1}`}
                           width="100%"
                           height="100%"
                        />
-
                        <Flex align="start" vertical className="content">
                           <h2>{item?.title}</h2>
-
                           <NavLink to={`/banner/${item?.slug}`}>
                              <StyledButtonView type="primary">
                                 Читать дальше
@@ -61,15 +59,12 @@ const Slider: FC = () => {
 }
 
 export default Slider
-
 const StyledCarousel = styled(Carousel)`
    color: white;
-
    .slick-slide {
       height: 600px;
       position: relative;
    }
-
    .slick-slide img {
       position: absolute;
       top: 0;
@@ -79,7 +74,6 @@ const StyledCarousel = styled(Carousel)`
       object-fit: cover;
       z-index: 0;
    }
-
    .content {
       position: relative;
       z-index: 2;
@@ -88,7 +82,6 @@ const StyledCarousel = styled(Carousel)`
       max-width: 1600px;
       margin: 0 auto;
    }
-
    .content h2 {
       font-size: 60px;
       margin-bottom: 50px;
@@ -96,61 +89,49 @@ const StyledCarousel = styled(Carousel)`
       width: 580px;
       line-height: 1;
    }
-
    .main-container {
       padding: 120px 75px;
    }
-
    @media (max-width: 1000px) {
       .slick-slide {
          height: 500px;
       }
-
       .content h2 {
          font-size: 50px;
          width: 60%;
       }
-
       .main-container {
          padding: 80px 20px;
       }
    }
-
    @media (max-width: 800px) {
       .slick-slide {
          height: 400px;
       }
-
       .content {
          top: 40px;
       }
-
       .content h2 {
          font-size: 40px;
          margin-bottom: 30px;
          width: 70%;
       }
-
       .main-container {
          padding: 60px 20px;
       }
    }
-
    @media (max-width: 600px) {
       .slick-slide {
          height: 300px;
       }
-
       .content h2 {
          font-size: 30px;
          margin-bottom: 20px;
       }
-
       .main-container {
          padding: 40px 20px;
       }
    }
-
    @media (max-width: 500px) {
       .content h2 {
          font-size: 28px;
@@ -159,7 +140,6 @@ const StyledCarousel = styled(Carousel)`
       }
    }
 `
-
 const Overlay = styled.div`
    position: absolute;
    top: 0;
@@ -169,7 +149,6 @@ const Overlay = styled.div`
    background-color: rgba(0, 0, 0, 0.237);
    z-index: 1;
 `
-
 const StyledButtonView = styled(Button)`
    padding: 23px 45px;
    border: none;
@@ -179,7 +158,6 @@ const StyledButtonView = styled(Button)`
    align-items: center;
    justify-content: center;
    font-weight: 500;
-
    @media (max-width: 900px) {
       padding: 20px 35px;
       font-size: 14px;
@@ -189,7 +167,6 @@ const StyledButtonView = styled(Button)`
       font-size: 10px;
    }
 `
-
 const SkeletonImage = styled(Skeleton)`
    height: 600px;
    width: 100%;

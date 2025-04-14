@@ -6,20 +6,38 @@ import { useAppDispatch, useAppSelector } from '../../../store/store'
 import { getCoach } from '../../../store/slice/coach/coachThunk'
 
 const { Title } = Typography
-
+interface ScheduleCardProps {
+   index?: number
+}
 const Coach: FC = () => {
-   const { slug } = useParams()
-
+   const { slug } = useParams<{ slug: string | undefined }>()
    window.scrollTo(0, 0)
    const { coach } = useAppSelector((state) => state.coach)
-
    const dispatch = useAppDispatch()
    useEffect(() => {
-      dispatch(getCoach(slug))
+      if (slug) {
+         dispatch(getCoach(slug))
+      }
    }, [dispatch, slug])
-
-   const { image, name, position, birth_date, bio } = coach
-
+   const { image, name, position, birth_date, bio, schedules, team_image } =
+      coach
+   const formatDay = (day: string): string => {
+      const days: { [key: string]: string } = {
+         monday: 'Понедельник',
+         tuesday: 'Вторник',
+         wednesday: 'Среда',
+         thursday: 'Четверг',
+         friday: 'Пятница',
+         saturday: 'Суббота',
+         sunday: 'Воскресенье',
+      }
+      return days[day.toLowerCase()] || day
+   }
+   const formatTime = (start: string | null, end: string | null): string => {
+      const startTime = start ? start.slice(0, 5) : 'Не указано'
+      const endTime = end ? end.slice(0, 5) : 'Не указано'
+      return `${startTime} - ${endTime}`
+   }
    return (
       <main>
          <StyledComponent>
@@ -36,32 +54,79 @@ const Coach: FC = () => {
                      justify="center"
                   >
                      <h1 className="coach-full-name">
-                        <AnimatedSurname>{name}</AnimatedSurname>
+                        <AnimatedSurname>
+                           {name || 'Имя не указано'}
+                        </AnimatedSurname>
                      </h1>
-
                      <AnimatedCard>
                         <Flex vertical gap={15}>
                            <Flex vertical>
                               <StyledTitle level={5}>Должность</StyledTitle>
-                              <StyledText>{position}</StyledText>
+                              <StyledText>
+                                 {position || 'Не указано'}
+                              </StyledText>
                            </Flex>
                            <Flex vertical>
                               <StyledTitle level={5}>Дата рождения</StyledTitle>
-                              <StyledText>{birth_date}</StyledText>
+                              <StyledText>
+                                 {birth_date || 'Не указано'}
+                              </StyledText>
                            </Flex>
                         </Flex>
                      </AnimatedCard>
                   </Flex>
-                  <AnimatedImage src={image} alt="" />
+                  <AnimatedImage src={image || ''} alt={name || 'Тренер'} />
                </Flex>
-
                <Flex vertical className="biography-box">
                   <h2 className="main-title">Команда</h2>
                   <Image
                      className="teama-image"
-                     src={coach.team_image}
+                     src={team_image || ''}
                      alt="команда"
+                     fallback="https://via.placeholder.com/550"
                   />
+                  <br />
+                  <h2 className="main-title">Расписание</h2>
+                  {schedules && schedules.length > 0 ? (
+                     <ScheduleContainer>
+                        {schedules.map((schedule, index) => (
+                           <AnimatedScheduleCard
+                              key={schedule.id}
+                              index={index}
+                           >
+                              <ScheduleItem>
+                                 <ScheduleLabel>День:</ScheduleLabel>
+                                 <ScheduleValue>
+                                    {formatDay(schedule.day)}
+                                 </ScheduleValue>
+                              </ScheduleItem>
+                              <ScheduleItem>
+                                 <ScheduleLabel>Группа:</ScheduleLabel>
+                                 <ScheduleValue>
+                                    {schedule.group || 'Не указано'}
+                                 </ScheduleValue>
+                              </ScheduleItem>
+                              <ScheduleItem>
+                                 <ScheduleLabel>Время:</ScheduleLabel>
+                                 <ScheduleValue>
+                                    {formatTime(
+                                       schedule?.start_time,
+                                       schedule?.end_time
+                                    )}
+                                 </ScheduleValue>
+                              </ScheduleItem>
+                              <ScheduleItem>
+                                 <ScheduleLabel>Место:</ScheduleLabel>
+                                 <ScheduleValue>
+                                    {schedule.location || 'Не указано'}
+                                 </ScheduleValue>
+                              </ScheduleItem>
+                           </AnimatedScheduleCard>
+                        ))}
+                     </ScheduleContainer>
+                  ) : (
+                     <StyledText>Расписание отсутствует</StyledText>
+                  )}
                   <br />
                   <br />
                   <h2 className="main-title">Биография</h2>
@@ -175,4 +240,56 @@ const AnimatedSurname = styled.p`
    animation-delay: 0.5s;
    line-height: 1;
    width: 100%;
+`
+const ScheduleContainer = styled.div`
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+   gap: 20px;
+   margin-top: 20px;
+   @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+   }
+`
+const AnimatedScheduleCard = styled.div<ScheduleCardProps>`
+   background: linear-gradient(145deg, #ffffff, #f8f8f8);
+   border-radius: 12px;
+   padding: 20px;
+   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+   opacity: 0;
+   animation: ${fadeIn} 0.6s ease-in-out forwards;
+   animation-delay: ${(props) => 0.2 + (props.index || 0) * 0.2}s;
+   transition: transform 0.3s ease, box-shadow 0.3s ease;
+   &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 16px rgba(0, 166, 79, 0.2);
+   }
+`
+const ScheduleItem = styled.div`
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 8px 0;
+   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+   &:last-child {
+      border-bottom: none;
+   }
+`
+const ScheduleLabel = styled.span`
+   font-size: 16px;
+   font-weight: 600;
+   color: #333;
+   text-transform: uppercase;
+   letter-spacing: 0.5px;
+`
+const ScheduleValue = styled.span`
+   font-size: 16px;
+   font-weight: 500;
+   color: #00a64f;
+   background: rgba(0, 166, 79, 0.1);
+   padding: 4px 10px;
+   border-radius: 6px;
+   transition: background 0.3s ease;
+   ${AnimatedScheduleCard}:hover & {
+      background: rgba(0, 166, 79, 0.2);
+   }
 `

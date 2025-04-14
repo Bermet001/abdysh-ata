@@ -13,13 +13,10 @@ const Team = () => {
       (state) => state.team
    )
    const first_team = headerTeam?.length > 0 ? headerTeam[0] : null
-
    const dispatch = useAppDispatch()
-
    useEffect(() => {
       if (first_team?.slug) dispatch(getTeam(first_team.slug))
    }, [dispatch, first_team])
-
    return (
       <Container>
          <Flex justify="space-between" align="start">
@@ -77,21 +74,17 @@ const Team = () => {
 }
 
 export default Team
-
 const Container = styled.section`
    margin: auto;
    padding: 100px 75px 0 75px;
    max-width: 1600px;
-
    @media (max-width: 1024px) {
       padding: 40px 20px 0;
    }
-
    .ant-card .ant-card-body {
       padding: 0;
    }
 `
-
 const StyledCard = styled(Card)`
    border-radius: 6px;
    width: 100%;
@@ -101,19 +94,15 @@ const StyledCard = styled(Card)`
    cursor: pointer;
    height: 400px;
    border: none;
-
    @media (max-width: 768px) {
       min-height: 350px;
    }
-
    @media (max-width: 480px) {
       min-height: 300px;
    }
-
    @media (max-width: 480px) {
    }
 `
-
 const CardBackground = styled.div<{ $image: string }>`
    background-image: url(${(props) => props.$image});
    background-size: cover;
@@ -123,12 +112,10 @@ const CardBackground = styled.div<{ $image: string }>`
    transition: transform 0.3s;
    border-radius: 6px;
    text-align: center;
-
    &:hover {
       transform: scale(1.05);
    }
 `
-
 const Overlay = styled.div`
    width: 100%;
    padding: 20px;
@@ -139,12 +126,10 @@ const Overlay = styled.div`
    border-radius: 6px;
    z-index: 10;
    background: linear-gradient(to top, rgba(0, 0, 0, 0.769), transparent);
-
    @media (max-width: 480px) {
       height: 300px;
    }
 `
-
 const PlayerNumber = styled.div`
    font-size: 120px;
    font-weight: bold;
@@ -152,44 +137,36 @@ const PlayerNumber = styled.div`
    opacity: 0;
    transform: translateY(-30px);
    transition: transform 0.3s, opacity 0.3s;
-
    ${StyledCard}:hover & {
       opacity: 1;
       transform: translateY(30px);
    }
-
    @media (max-width: 768px) {
       font-size: 70px;
    }
 `
-
 const PlayerName = styled.h2`
    font-size: 24px;
    font-weight: bold;
    color: white;
    transform: translateY(10px);
    transition: transform 0.3s;
-
    ${StyledCard}:hover & {
       transform: translateY(5px);
    }
-
    @media (max-width: 768px) {
       font-size: 20px;
    }
 `
-
 const PlayerPosition = styled.h3`
    font-size: 18px;
    font-weight: normal;
    color: white;
    transform: translateY(10px);
    transition: transform 0.3s;
-
    ${StyledCard}:hover & {
       transform: translateY(5px);
    }
-
    @media (max-width: 768px) {
       font-size: 16px;
       opacity: 0.7;

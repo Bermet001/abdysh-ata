@@ -7,13 +7,10 @@ import { getMatches } from '../store/slice/matches/matchesThunk'
 
 const MatchInfo = () => {
    const { matches, isLoading } = useAppSelector((state) => state.matches)
-
    const dispatch = useAppDispatch()
-
    useEffect(() => {
       dispatch(getMatches())
    }, [dispatch])
-
    return (
       <StyledContainer>
          <StyledFlexContainer align="end" justify="center" gap={15}>
@@ -30,7 +27,6 @@ const MatchInfo = () => {
 }
 
 export default MatchInfo
-
 const StyledContainer = styled.section`
    margin: 0 auto;
    margin-top: -100px;
@@ -41,51 +37,40 @@ const StyledContainer = styled.section`
    max-width: 1600px;
    overflow-x: overlay;
    height: 210px;
-
    ::-webkit-scrollbar {
       display: none;
    }
-
    scrollbar-width: none;
-
    @media (max-width: 1450px) {
       padding: 0 20px;
    }
-
    @media (max-width: 600px) {
       margin-top: -60px;
    }
-
    @media (max-width: 480px) {
       height: 150px;
    }
 `
-
 const StyledFlexContainer = styled(Flex)`
    height: 210px;
-
    @media (max-width: 1000px) {
       width: 970px;
    }
-
    @media (max-width: 880px) {
       gap: 5px !important;
       width: 900px;
    }
-
    @media (max-width: 680px) {
       width: 800px;
    }
-
    @media (max-width: 480px) {
       height: 150px;
       width: 600px;
    }
 `
-
 const SkeletonMatchCard = styled(Skeleton)`
-   width: 270px; 
-   height: 120px; 
-   border-radius: 10px; 
-   margin: 0 10px; 
+   width: 270px;
+   height: 120px;
+   border-radius: 10px;
+   margin: 0 10px;
 `

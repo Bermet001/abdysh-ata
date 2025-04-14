@@ -24,7 +24,6 @@ interface Match {
    status_display: string
    stream_link: string | null
 }
-
 const MatchCard: FC<Match> = ({
    home_team,
    away_team,
@@ -100,47 +99,37 @@ const MatchCardContainer = styled(Flex)`
       min-height: 120px;
       padding: 15px;
       width: 100%;
-
       @media (max-width: 1000px) {
          padding: 0px 15px;
          min-height: 110px;
       }
-
       .team-logo {
          height: auto;
          min-width: 30px;
-
          @media (max-width: 1050px) {
             width: 40px;
          }
-
          @media (max-width: 768px) {
             width: 35px;
          }
-
          @media (max-width: 380px) {
             width: 17px;
          }
       }
-
       .count-down {
          margin: 10px 0;
-
          > p {
             font-size: 28px;
             font-weight: bold;
-
             @media (max-width: 1200px) {
                font-size: 26px;
             }
-
             @media (max-width: 600px) {
                font-size: 20px;
             }
          }
       }
    }
-
    @media (max-width: 1325px) {
       padding: 10px 0px;
       min-width: 230px;
@@ -156,35 +145,28 @@ const MatchCardContainer = styled(Flex)`
       > .main-info {
          padding: 5px;
          min-height: 60px;
-
          .team-logo {
             width: 30px;
          }
-
          .count-down {
             font-size: 18px;
          }
       }
    }
 `
-
 const Team = styled(Flex)`
    margin: 10px 0;
    flex-direction: column;
    height: 50px;
-
    @media (max-width: 600px) {
       margin: 5px 0;
    }
 `
-
 const Time = styled.h3`
    margin: 10px 0;
-
    @media (max-width: 768px) {
       font-size: 17px;
    }
-
    @media (max-width: 600px) {
       font-size: 13px;
    }
