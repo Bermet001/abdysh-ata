@@ -19,7 +19,6 @@ const Coaches = () => {
    const [selectedCoachSchedules, setSelectedCoachSchedules] = useState<
       Schedule[]
    >([])
-   const linkSlug = slug
    const showScheduleModal = (schedules: Schedule[]) => {
       setSelectedCoachSchedules(schedules)
       setIsModalOpen(true)
@@ -66,18 +65,15 @@ const Coaches = () => {
                                     Смотреть профиль
                                  </NavLink>
                               </Button>
-                              {linkSlug === 'futbolnaya-akademiya' &&
-                                 schedules?.length > 0 && (
-                                    <Button
-                                       type="default"
-                                       className="schedule-btn"
-                                       onClick={() =>
-                                          showScheduleModal(schedules)
-                                       }
-                                    >
-                                       Расписание
-                                    </Button>
-                                 )}
+                              {schedules?.length > 0 && (
+                                 <Button
+                                    type="default"
+                                    className="schedule-btn"
+                                    onClick={() => showScheduleModal(schedules)}
+                                 >
+                                    Расписание
+                                 </Button>
+                              )}
                            </div>
                         </StyledCard>
                      </SwiperSlide>
