@@ -12,7 +12,6 @@ const Academy = () => {
       dispatch(getHistoryAcademy())
    }, [dispatch, slug])
    const history = academyHistory?.length > 0 ? academyHistory[0] : null
-
    return (
       <BannerContainer banner={history?.banner}>
          <BannerContent>
@@ -35,7 +34,6 @@ const Academy = () => {
 }
 
 export default Academy
-
 const BannerContainer = styled.div<{ banner: string | undefined }>`
    position: relative;
    max-width: 1600px;
@@ -49,7 +47,6 @@ const BannerContainer = styled.div<{ banner: string | undefined }>`
    align-items: center;
    justify-content: space-between;
    padding: 0 50px;
-
    &:before {
       content: '';
       position: absolute;
@@ -60,65 +57,54 @@ const BannerContainer = styled.div<{ banner: string | undefined }>`
       background: rgba(0, 0, 0, 0.5);
       z-index: 1;
    }
-
    @media (max-width: 768px) {
       flex-direction: column;
       height: auto;
       padding: 30px 20px;
    }
-
    @media (max-width: 480px) {
       padding: 20px 15px;
    }
 `
-
 const BannerContent = styled.div`
    position: relative;
    z-index: 2;
    color: white;
    max-width: 50%;
-
    h1 {
       font-size: 36px;
       font-weight: bold;
       line-height: 1.2;
       margin-bottom: 20px;
    }
-
    p {
       font-size: 18px;
       line-height: 1.5;
       margin-bottom: 30px;
    }
-
    @media (max-width: 768px) {
       max-width: 100%;
       text-align: center;
-
       h1 {
          font-size: 28px;
          margin-bottom: 15px;
       }
-
       p {
          font-size: 16px;
          margin-bottom: 20px;
       }
    }
-
    @media (max-width: 480px) {
       h1 {
          font-size: 24px;
          margin-bottom: 10px;
       }
-
       p {
          font-size: 14px;
          margin-bottom: 15px;
       }
    }
 `
-
 const PlayerImage = styled.img`
    position: relative;
    z-index: 2;
@@ -126,12 +112,10 @@ const PlayerImage = styled.img`
    width: auto;
    height: 400px;
    object-fit: contain;
-
    @media (max-width: 768px) {
       height: 250px;
       margin-top: 20px;
    }
-
    @media (max-width: 480px) {
       display: none;
    }
