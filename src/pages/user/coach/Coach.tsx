@@ -79,12 +79,17 @@ const Coach: FC = () => {
                </Flex>
                <Flex vertical className="biography-box">
                   <h2 className="main-title">Команда</h2>
-                  <Image
-                     className="teama-image"
-                     src={team_image || ''}
-                     alt="команда"
-                     fallback="https://via.placeholder.com/550"
-                  />
+                  {team_image ? (
+                     <Image
+                        className="teama-image"
+                        src={team_image}
+                        alt="команда"
+                        width="100%"
+                        fallback="https://via.placeholder.com/550"
+                     />
+                  ) : null}
+                  <br />
+                  <br />
                   <br />
                   <h2 className="main-title">Расписание</h2>
                   {schedules && schedules.length > 0 ? (
@@ -153,9 +158,14 @@ const slideInLeft = keyframes`
 `
 const StyledComponent = styled(Flex)`
    margin: 0 auto;
+   max-width: 1600px;
    padding: 100px 0;
+   padding-bottom: 0;
    .ant-flex-align-stretch {
       width: 100%;
+   }
+   .main-title{
+      margin-bottom: 15px;
    }
    .first-part-coach {
       padding: 0 75px;
@@ -182,7 +192,8 @@ const StyledComponent = styled(Flex)`
       background-color: #f1f4f6;
       margin-top: 30px;
       .ant-image {
-         .teama-image {
+         .teama-image,
+         .ant-image-mask {
             width: 550px;
             @media (max-width: 700px) {
                width: 100% !important;

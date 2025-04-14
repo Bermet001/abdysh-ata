@@ -8,9 +8,11 @@ import { Helmet } from 'react-helmet-async'
 interface StyledCardProps {
    bgimage: string
 }
+
 const Infrastructures: FC = () => {
    window.scrollTo(0, 0)
    const { infrastractures } = useAppSelector((state) => state.infrastracture)
+
    return (
       <main>
          <Helmet>
@@ -29,16 +31,9 @@ const Infrastructures: FC = () => {
                href="https://abdysh-front.tw1.ru/infrastructures"
             />
          </Helmet>
-         <CollageContainer wrap>
-            {infrastractures?.map((item, index) => (
-               <NavLink
-                  style={{
-                     width: index % 2 === 1 ? 'max-content' : '55%',
-                  }}
-                  to={`/infrastructure/${item.slug}`}
-                  key={item.id}
-                  className="navlink"
-               >
+         <CollageContainer>
+            {infrastractures?.map((item) => (
+               <NavLink to={`/infrastructure/${item.slug}`} key={item.id}>
                   <StyledCard bgimage={item.image}>
                      <div className="ant-card-body block">
                         <h1>{item.title}</h1>
@@ -69,27 +64,23 @@ const Infrastructures: FC = () => {
 
 export default Infrastructures
 
-const CollageContainer = styled(Flex)`
+const CollageContainer = styled.div`
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
    gap: 20px;
    max-width: 1600px;
-   margin: 0 auto;
+   margin: 80px auto;
    padding: 20px;
    background-color: #f0f2f5;
    border-radius: 10px;
-   margin-top: 80px;
    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-   @media (max-width: 1024px) {
-      margin: 80px 20px;
+   @media (min-width: 768px) and (max-width: 1600px) {
+      grid-template-columns: repeat(2, 1fr);
    }
-   @media (max-width: 924px) {
-      .navlink {
-         width: max-content !important;
-      }
-   }
-   @media (max-width: 768px) {
-      flex-direction: column;
-      margin: 0;
-      padding: 80px 10px;
+   @media (max-width: 767px) {
+      grid-template-columns: 1fr;
+      margin: 80px 10px;
+      padding: 10px;
    }
 `
 const StyledCard = styled(Card)<StyledCardProps>`
@@ -98,47 +89,50 @@ const StyledCard = styled(Card)<StyledCardProps>`
    background-size: cover;
    background-position: center;
    height: 300px;
-   min-width: 100%;
+   width: 100%;
    color: white;
    transition: transform 0.3s ease, box-shadow 0.3s ease;
-   @media (max-width: 1415px) {
-      .block {
-         padding: 15px !important;
-      }
-      max-width: 360px;
-   }
+   margin: 0 auto;
    .ant-card-body {
       padding: 0;
-   }
-   &:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-   }
-   .ant-card-body {
-      background: rgba(0, 0, 0, 0.151);
+      background: linear-gradient(
+         180deg,
+         rgba(0, 26, 46, 0) 56%,
+         #001a2e7a 97.12%
+      );
       border-radius: 10px;
       width: 100%;
       height: 100%;
       display: flex;
       flex-direction: column;
       justify-content: end;
-      background: linear-gradient(
-         180deg,
-         rgba(0, 26, 46, 0) 56%,
-         #001a2e7a 97.12%
-      );
       .block {
-         padding: 20px 32px;
+         padding: 20px;
          h1 {
             color: white;
             margin: 0;
-            font-size: 2.2rem;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
          }
-         @media (max-width: 768px) {
-            h1 {
-               font-size: 1.3rem;
+         .info-block {
+            p {
+               font-size: 14px;
+               margin: 0;
+               text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
             }
+         }
+      }
+   }
+   &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+   }
+   @media (max-width: 1024px) {
+      max-width: 600px;
+      height: 250px;
+      .block {
+         padding: 15px;
+         h1 {
+            font-size: 1.8rem;
          }
          .info-block {
             p {
@@ -147,17 +141,13 @@ const StyledCard = styled(Card)<StyledCardProps>`
          }
       }
    }
-   p {
-      margin: 0;
-      font-size: 1rem;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
-   }
-   @media (max-width: 768px) {
+   @media (max-width: 767px) {
+      max-width: 100%;
       height: 200px;
       .block {
          padding: 10px;
          h1 {
-            font-size: 1rem;
+            font-size: 1.3rem;
          }
          .info-block {
             p {
@@ -176,7 +166,12 @@ const StyledButton = styled(Button)`
    border: 1px solid white;
    &:hover {
       background-color: transparent !important;
-      color: white;
+      color: white !important;
       border: 1px solid white;
+   }
+   @media (max-width: 767px) {
+      width: 120px;
+      height: 30px;
+      font-size: 12px;
    }
 `

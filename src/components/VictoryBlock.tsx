@@ -84,14 +84,13 @@ const VictoryBlock = () => {
 export default VictoryBlock
 const Container = styled.section`
    text-align: center;
-   padding: 120px 0;
+   padding: 0;
    max-width: 1600px;
    margin: 0 auto;
    padding-bottom: 0;
    color: black;
    @media (max-width: 1024px) {
       padding: 0;
-      padding-top: 60px;
       min-height: 500px;
       .swiper {
          padding: 0px !important;

@@ -15,6 +15,7 @@ const Rating = () => {
    useEffect(() => {
       dispatch(getPartners())
    }, [dispatch, slug])
+
    return (
       <StyledContainer>
          <div className="second-container-table">

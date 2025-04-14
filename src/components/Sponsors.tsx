@@ -28,6 +28,7 @@ const Sponsors = () => {
                   delay: 2500,
                   disableOnInteraction: false,
                }}
+               className="sviper"
                modules={[Pagination, Autoplay]}
                breakpoints={{
                   200: { slidesPerView: 3 },
@@ -71,8 +72,11 @@ const StyledContainer = styled.section`
    @media (max-width: 1024px) {
       padding: 40px 20px 25px;
    }
-   img {
-      object-fit: contain;
+   .sviper {
+      margin-left: 40px;
+      @media (max-width: 800px) {
+         margin-left: 0;
+      }
    }
    .swiper-slide img {
       display: block;
