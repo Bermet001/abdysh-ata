@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../store/store'
 import { BANNER_THUNK } from '../store/slice/banner/bannerThunk'
-import { Helmet } from 'react-helmet-async'
 
 const Slider: FC = () => {
    const { banners, isLoading } = useAppSelector((state) => state.banner)
@@ -14,16 +13,6 @@ const Slider: FC = () => {
    }, [dispatch])
    return (
       <section>
-         <Helmet>
-            {banners?.map((item) => (
-               <link
-                  key={item?.id}
-                  rel="preload"
-                  href={item?.image}
-                  as="image"
-               />
-            ))}
-         </Helmet>
          <StyledCarousel
             dots={false}
             arrows
@@ -46,7 +35,10 @@ const Slider: FC = () => {
                        <Flex align="start" vertical className="content">
                           <h2>{item?.title}</h2>
                           <NavLink to={`/banner/${item?.slug}`}>
-                             <StyledButtonView type="primary">
+                             <StyledButtonView
+                                aria-hidden="true"
+                                type="primary"
+                             >
                                 Читать дальше
                              </StyledButtonView>
                           </NavLink>

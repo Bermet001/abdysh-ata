@@ -2,10 +2,7 @@ import styled from 'styled-components'
 import { Flex } from 'antd'
 import bgImage from '../../assets/images/victory.webp'
 import { useAppDispatch, useAppSelector } from '../../store/store'
-import {
-   getPartners,
-   getPartnersBanner,
-} from '../../store/slice/partners/partnersThunk'
+import { getPartnersBanner } from '../../store/slice/partners/partnersThunk'
 import { useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 
@@ -15,7 +12,6 @@ const Partners = () => {
    const dispatch = useAppDispatch()
    useEffect(() => {
       dispatch(getPartnersBanner())
-      dispatch(getPartners())
    }, [dispatch])
    return (
       <>

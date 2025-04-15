@@ -1,16 +1,10 @@
 import styled from 'styled-components'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Pagination, Autoplay } from 'swiper/modules'
-import { useAppDispatch, useAppSelector } from '../store/store'
-import { useEffect } from 'react'
-import { getPartners } from '../store/slice/partners/partnersThunk'
+import { useAppSelector } from '../store/store'
 
 const Sponsors = () => {
    const { partners } = useAppSelector((state) => state.partner)
-   const dispatch = useAppDispatch()
-   useEffect(() => {
-      dispatch(getPartners())
-   }, [dispatch])
    const duplicatedPartners =
       partners?.length < 5 ? [...partners, ...partners].slice(0, 5) : partners
    return (

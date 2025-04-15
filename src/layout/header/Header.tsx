@@ -18,9 +18,9 @@ import { getAllTeams, getOurTeam } from '../../store/slice/team/teamThunk'
 import { searchGlobal } from '../../store/slice/globalSearch/globalSearchThunk'
 import { getInfrastractures } from '../../store/slice/infrastracture/infrastractureThunk'
 import { getTournaments } from '../../store/slice/rating/ratingThunk'
+import { getPartners } from '../../store/slice/partners/partnersThunk'
 
 type MenuItem = Required<MenuProps>['items'][number]
-
 interface StyledContainerProps {
    isscrolled: string
 }
@@ -145,6 +145,7 @@ const Header = () => {
       dispatch(getOurTeam())
       dispatch(getInfrastractures())
       dispatch(getTournaments())
+      dispatch(getPartners())
    }, [dispatch])
 
    const handleSearchClick = () => {

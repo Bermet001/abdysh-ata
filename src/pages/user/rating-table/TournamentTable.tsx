@@ -147,7 +147,7 @@ const TournamentTable = () => {
                   <p className="sub-title">{currentTeam?.title}</p>
                </Flex>
                {isHomePage && (
-                  <StyledButton>
+                  <StyledButton aria-hidden="true">
                      <NavLink to="tournaments/kyrygzskaya-premer-liga">
                         Узнать больше
                      </NavLink>
