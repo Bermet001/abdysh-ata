@@ -66,6 +66,7 @@ const MatchCard: FC<Match> = ({
                <Team vertical align="center" justify="center">
                   <img
                      height="50px"
+                     className="team-logo"
                      width="50px"
                      src={away_team?.logo}
                      alt={away_team?.title}

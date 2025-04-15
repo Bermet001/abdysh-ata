@@ -38,20 +38,7 @@ const Letter: FC<{ children: string; delay: number }> = ({
    </LetterStyled>
 )
 export default Preloader
-const fadeIn = keyframes`
-   from { opacity: 0; }
-   to { opacity: 1; }
-`
-const waveOut = keyframes`
-   from {
-      transform: translateY(0);
-      height: 100vh;
-   }
-   to {
-      transform: translateY(-100vh);
-      height: 0;
-   }
-`
+
 const spin = keyframes`
    to { transform: rotate(360deg); }
 `
@@ -70,12 +57,9 @@ const PreloaderContainer = styled.div`
    inset: 0;
    display: flex;
    align-items: center;
+   background-color: #272727;
    justify-content: center;
    z-index: 99999;
-   animation: ${fadeIn} 3s forwards;
-   &.loaded {
-      animation: ${waveOut} 3s forwards;
-   }
 `
 const AnimationPreloader = styled.div`
    z-index: 1000;
@@ -103,7 +87,7 @@ const TxtLoading = styled.div`
 `
 const LetterStyled = styled.span<{ delay?: number }>`
    position: relative;
-   color: white;
+   color: transparent;
    display: inline-block;
    &::before {
       content: attr(data-text-preloader);
@@ -112,6 +96,7 @@ const LetterStyled = styled.span<{ delay?: number }>`
       top: -3px;
       color: green;
       opacity: 0;
+      font-size: 20px;
       transform: rotateY(-90deg);
       animation: ${lettersLoading} 4s infinite;
       animation-delay: inherit;
