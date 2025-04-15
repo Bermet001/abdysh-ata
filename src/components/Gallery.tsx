@@ -265,7 +265,9 @@ const Overlay = styled.div`
    transition: opacity 0.8s ease, transform 0.5s ease;
    border-radius: 8px;
    padding: 5px;
+   z-index: -1;
    ${ImageWrapper}:hover & {
+      z-index: 1;
       opacity: 1;
       bottom: 0;
       transform: scale(1.03);
@@ -281,9 +283,11 @@ const DarkOverlay = styled.div`
    bottom: 0;
    background: rgba(0, 0, 0, 0.365);
    opacity: 0;
+   z-index: -1;
    transition: opacity 0.3s ease;
    border-radius: 8px;
    ${ImageWrapper}:hover & {
+      z-index: 1;
       opacity: 1;
       transform: scale(1.03);
    }
