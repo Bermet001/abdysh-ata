@@ -70,7 +70,6 @@ const StyledBanner = styled.div<{ banner: string | undefined }>`
    }
 `
 const TextContent = styled.div`
-   padding: 15px;
    background: #fff;
    border-radius: 8px;
    margin-top: 15px;
