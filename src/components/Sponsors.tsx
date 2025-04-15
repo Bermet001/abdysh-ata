@@ -6,7 +6,7 @@ import { useAppSelector } from '../store/store'
 const Sponsors = () => {
    const { partners } = useAppSelector((state) => state.partner)
    const duplicatedPartners =
-      partners?.length < 5 ? [...partners, ...partners].slice(0, 5) : partners
+      partners?.length < 5 ? [...partners, ...partners].slice(0, 6) : partners
    return (
       <div
          style={{
@@ -27,9 +27,9 @@ const Sponsors = () => {
                breakpoints={{
                   200: { slidesPerView: 3 },
                   768: { slidesPerView: 3 },
-                  1024: { slidesPerView: 3 },
-                  1440: { slidesPerView: 4 },
-                  1600: { slidesPerView: 4 },
+                  1024: { slidesPerView: 4 },
+                  1440: { slidesPerView: 5 },
+                  1600: { slidesPerView: 5 },
                }}
             >
                {duplicatedPartners.map((sponsor, index) => (
@@ -40,6 +40,7 @@ const Sponsors = () => {
                         href={sponsor?.link}
                      >
                         <img
+                           className="sponsor-image"
                            width="50px"
                            height={53}
                            loading="lazy"
@@ -66,17 +67,15 @@ const StyledContainer = styled.section`
    @media (max-width: 1024px) {
       padding: 40px 20px 25px;
    }
-   .sviper {
-      margin-left: 40px;
-      @media (max-width: 800px) {
-         margin-left: 0;
-      }
+   .sponsor-image {
+      width: 200px;
    }
    .swiper-slide img {
       display: block;
       padding: 10px;
       height: auto;
-      width: 180px;
+      width: 150px;
+      margin: 0 auto;
       object-fit: cover;
       cursor: pointer;
       transition: transform 0.3s ease;
