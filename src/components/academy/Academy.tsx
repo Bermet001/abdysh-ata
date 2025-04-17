@@ -43,9 +43,8 @@ const BannerContainer = styled.div<{ banner: string | undefined }>`
    background-position: center;
    background-repeat: no-repeat;
    display: flex;
-   gap: 30px;
-   align-items: center;
    justify-content: space-between;
+   align-items: center;
    padding: 0 50px;
    &:before {
       content: '';
@@ -117,6 +116,7 @@ const PlayerImage = styled.img`
       margin-top: 20px;
    }
    @media (max-width: 480px) {
-      display: none;
+      margin-top: 0px;
+      height: 300px;
    }
 `
