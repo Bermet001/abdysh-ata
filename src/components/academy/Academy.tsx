@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../store/store'
 import { getHistoryAcademy } from '../../store/slice/history/historyThunk'
 import styled from 'styled-components'
 import { useParams } from 'react-router-dom'
+import { Flex } from 'antd'
 
 const Academy = () => {
    const { slug } = useParams<{ slug: string }>()
@@ -14,38 +15,42 @@ const Academy = () => {
    const history = academyHistory?.length > 0 ? academyHistory[0] : null
    return (
       <BannerContainer banner={history?.banner}>
-         <BannerContent>
-            <div>
-               <div
-                  dangerouslySetInnerHTML={{
-                     __html: history?.contend || '',
-                  }}
-               />
-               <div
-                  dangerouslySetInnerHTML={{
-                     __html: history?.content_end || '',
-                  }}
-               />
-            </div>
-         </BannerContent>
-         <PlayerImage src={history?.image} alt="Player" />
+         <Flex
+            justify="space-between"
+            align="center"
+            style={{ maxWidth: '1600px' }}
+         >
+            <BannerContent>
+               <div>
+                  <div
+                     dangerouslySetInnerHTML={{
+                        __html: history?.contend || '',
+                     }}
+                  />
+                  <div
+                     dangerouslySetInnerHTML={{
+                        __html: history?.content_end || '',
+                     }}
+                  />
+               </div>
+            </BannerContent>
+            <PlayerImage src={history?.image} alt="Player" />
+         </Flex>
       </BannerContainer>
    )
 }
 
 export default Academy
+
 const BannerContainer = styled.div<{ banner: string | undefined }>`
    position: relative;
-   max-width: 1600px;
-   height: 500px;
+   height: max-content;
    background-image: url(${(props) => props.banner});
    background-size: cover;
    background-position: center;
    background-repeat: no-repeat;
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
    padding: 0 50px;
+   padding-top: 30px;
    &:before {
       content: '';
       position: absolute;
@@ -70,52 +75,49 @@ const BannerContent = styled.div`
    z-index: 2;
    color: white;
    max-width: 50%;
-   h1 {
-      font-size: 36px;
-      font-weight: bold;
-      line-height: 1.2;
-      margin-bottom: 20px;
-   }
    p {
-      font-size: 18px;
+      font-size: 20px;
       line-height: 1.5;
       margin-bottom: 30px;
-   }
-   @media (max-width: 768px) {
-      max-width: 100%;
-      text-align: center;
-      h1 {
-         font-size: 28px;
-         margin-bottom: 15px;
+      strong {
+         font-size: 50px;
       }
+   }
+   @media (max-width: 1000px) {
+      max-width: 100%;
       p {
          font-size: 16px;
          margin-bottom: 20px;
+         strong {
+            font-size: 35px;
+         }
       }
    }
    @media (max-width: 480px) {
-      h1 {
-         font-size: 24px;
-         margin-bottom: 10px;
-      }
       p {
          font-size: 14px;
          margin-bottom: 15px;
+         strong {
+            font-size: 23px;
+         }
       }
    }
 `
 const PlayerImage = styled.img`
    position: relative;
-   z-index: 2;
-   max-height: 100%;
+   z-index: 3;
    width: auto;
-   height: 400px;
+   height: 700px;
    object-fit: contain;
-   padding-right: 14%;
-   @media (max-width: 768px) {
-      height: 250px;
+   padding-right: 10%;
+   @media (max-width: 1200px) {
+      height: 650px;
+      padding-right: 4%;
+   }
+   @media (max-width: 900px) {
+      height: 550px;
       margin-top: 20px;
-      padding-right: 15%;
+      padding-right: 7%;
    }
    @media (max-width: 480px) {
       margin-top: 0px;
