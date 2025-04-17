@@ -24,6 +24,19 @@ const Coaches = () => {
       setIsModalOpen(true)
    }
    const handleCancel = () => setIsModalOpen(false)
+
+   const formatDay = (day: string): string => {
+      const days: { [key: string]: string } = {
+         monday: 'Понедельник',
+         tuesday: 'Вторник',
+         wednesday: 'Среда',
+         thursday: 'Четверг',
+         friday: 'Пятница',
+         saturday: 'Суббота',
+         sunday: 'Воскресенье',
+      }
+      return days[day.toLowerCase()] || day
+   }
    return (
       <>
          {slug === 'futbolnaya-akademiya' ? (
@@ -89,33 +102,38 @@ const Coaches = () => {
                className="modal"
             >
                <ScheduleContainer>
-                  {selectedCoachSchedules?.map((schedule) => (
-                     <ScheduleCard key={schedule?.id}>
-                        <ScheduleItem>
-                           <span className="label">День:</span>
-                           <span className="value">
-                              {schedule?.day === 'tuesday'
-                                 ? 'Вторник'
-                                 : 'Пятница'}
-                           </span>
-                        </ScheduleItem>
-                        <ScheduleItem>
-                           <span className="label">Группа:</span>
-                           <span className="value">{schedule?.group}</span>
-                        </ScheduleItem>
-                        <ScheduleItem>
-                           <span className="label">Время:</span>
-                           <span className="value">
-                              {schedule?.start_time?.slice(0, 5)} -{' '}
-                              {schedule?.end_time?.slice(0, 5)}
-                           </span>
-                        </ScheduleItem>
-                        <ScheduleItem>
-                           <span className="label">Место:</span>
-                           <span className="value">{schedule?.location}</span>
-                        </ScheduleItem>
-                     </ScheduleCard>
-                  ))}
+                  {selectedCoachSchedules?.map((schedule) => {
+                     console.log(schedule?.end_time)
+
+                     return (
+                        <ScheduleCard key={schedule?.id}>
+                           <ScheduleItem>
+                              <span className="label">День:</span>
+                              <span className="value">
+                                 {formatDay(schedule.day)}
+                              </span>
+                           </ScheduleItem>
+                           <ScheduleItem>
+                              <span className="label">Группа:</span>
+                              <span className="value">{schedule?.group}</span>
+                           </ScheduleItem>
+                           <ScheduleItem>
+                              <span className="label">Время:</span>
+                              <span className="value">
+                                 {schedule?.start_time?.slice(0, 5)}
+                                 {schedule?.end_time ? ', ' : null}
+                                 {schedule?.end_time?.slice(0, 5)}
+                              </span>
+                           </ScheduleItem>
+                           <ScheduleItem>
+                              <span className="label">Место:</span>
+                              <span className="value">
+                                 {schedule?.location}
+                              </span>
+                           </ScheduleItem>
+                        </ScheduleCard>
+                     )
+                  })}
                </ScheduleContainer>
             </Modal>
             <br />
