@@ -111,12 +111,15 @@ const PlayerImage = styled.img`
    width: auto;
    height: 400px;
    object-fit: contain;
+   padding-right: 14%;
    @media (max-width: 768px) {
       height: 250px;
       margin-top: 20px;
+      padding-right: 15%;
    }
    @media (max-width: 480px) {
       margin-top: 0px;
+      padding-right: 0;
       height: 300px;
    }
 `
