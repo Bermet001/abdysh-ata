@@ -18,6 +18,7 @@ const Academy = () => {
          <Flex
             justify="space-between"
             align="center"
+            className="second-academy-container"
             style={{ maxWidth: '1600px' }}
          >
             <BannerContent>
@@ -62,8 +63,10 @@ const BannerContainer = styled.div<{ banner: string | undefined }>`
       z-index: 1;
    }
    @media (max-width: 768px) {
-      flex-direction: column;
-      height: auto;
+      .second-academy-container {
+         flex-direction: column;
+         height: auto;
+      }
       padding: 30px 20px;
    }
    @media (max-width: 480px) {
@@ -76,7 +79,7 @@ const BannerContent = styled.div`
    color: white;
    max-width: 50%;
    p {
-      font-size: 20px;
+      font-size: 22px;
       line-height: 1.5;
       margin-bottom: 30px;
       strong {
@@ -86,7 +89,7 @@ const BannerContent = styled.div`
    @media (max-width: 1000px) {
       max-width: 100%;
       p {
-         font-size: 16px;
+         font-size: 18px;
          margin-bottom: 20px;
          strong {
             font-size: 35px;
@@ -95,7 +98,7 @@ const BannerContent = styled.div`
    }
    @media (max-width: 480px) {
       p {
-         font-size: 14px;
+         font-size: 16px;
          margin-bottom: 15px;
          strong {
             font-size: 23px;
