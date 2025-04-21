@@ -96,7 +96,8 @@ const StyledContainer = styled.main`
    align-items: center;
    justify-content: center;
    min-height: 100vh;
-   max-width: 1600px;
+  
+   margin: 0 auto;
    @media (max-width: 768px) {
       padding: 60px 20px;
    }
