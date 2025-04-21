@@ -2,62 +2,31 @@ import styled from 'styled-components'
 import { Card, Typography, Col, Flex } from 'antd'
 import { useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { getMatch } from '../../../store/slice/matches/matchesThunk'
 import Button from '../../../components/UI/Button'
-import bg from '../../../assets/images/banner.avif'
+import bg from '../../../assets/images/backround-tournaments.jpg'
 
+// Иконки из Ant Design
+import {
+   CheckCircleOutlined,
+   SwapOutlined,
+   WarningOutlined,
+   AimOutlined,
+   FlagOutlined
+} from '@ant-design/icons'
+import { MatchEvent } from '../../../store/slice/matches/mathesSlice'
 const { Title, Text } = Typography
 
 const MatchInfo = () => {
-   const [countdown, setCountdown] = useState('')
-   const { slug } = useParams<{ slug: string }>()
+   const { slug } = useParams()
    const { match } = useAppSelector((state) => state.matches)
    window.scrollTo(0, 0)
    const dispatch = useAppDispatch()
+
    useEffect(() => {
       dispatch(getMatch(slug))
    }, [dispatch, slug])
-   useEffect(() => {
-      if (match?.date) {
-         const matchDate = new Date(match.date)
-         const updateCountdown = () => {
-            const now = new Date()
-            const diff = matchDate.getTime() - now.getTime()
-            if (diff <= 0) {
-               if (match.status_display === 'Завершен') {
-                  setCountdown('Матч завершен')
-               } else {
-                  setCountdown('Матч начался')
-               }
-            } else {
-               const days = Math.floor(diff / (1000 * 60 * 60 * 24))
-               const hours = Math.floor(
-                  (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-               )
-               const minutes = Math.floor(
-                  (diff % (1000 * 60 * 60)) / (1000 * 60)
-               )
-               const seconds = Math.floor((diff % (1000 * 60)) / 1000)
-               let countdownString = ''
-               if (days > 0) {
-                  countdownString += `${days} дн `
-               }
-               if (days > 0 || hours > 0) {
-                  countdownString += `${hours.toString().padStart(2, '0')}: `
-               }
-               countdownString += `${minutes.toString().padStart(2, '0')} : `
-               countdownString += `${seconds.toString().padStart(2, '0')} сек`
-               setCountdown(countdownString)
-            }
-         }
-         updateCountdown()
-         const interval = setInterval(updateCountdown, 1000)
-         return () => clearInterval(interval)
-      } else {
-         setCountdown('Дата не доступна')
-      }
-   }, [match])
 
    const formatDateWithLeadingZeros = (date: Date): string => {
       const day = String(date.getDate()).padStart(2, '0')
@@ -65,6 +34,161 @@ const MatchInfo = () => {
       const year = date.getFullYear()
       return `${day}.${month}.${year}`
    }
+
+   // Функция для определения цвета фона и границы в зависимости от типа события
+   const getEventStyles = (eventType: string) => {
+      switch (eventType.toLowerCase()) {
+         case 'goal':
+         case 'гол':
+            return {
+               background: 'rgba(5, 165, 80, 0.1)',
+               borderColor: '#05a550',
+               textColor: '#05a550'
+            }
+         case 'yellow_card':
+            return {
+               background: 'rgba(255, 193, 7, 0.1)',
+               borderColor: '#FFC107',
+               textColor: '#d19100'
+            }
+         case 'red_card':
+            return {
+               background: 'rgba(255, 0, 0, 0.1)',
+               borderColor: '#FF0000',
+               textColor: '#cc0000'
+            }
+         case 'corner':
+         case 'угловой':
+            return {
+               background: 'rgba(255, 204, 0, 0.1)',
+               borderColor: '#ffcc00',
+               textColor: '#d19100'
+            }
+         case 'substitution':
+            return {
+               background: 'rgba(0, 102, 204, 0.1)',
+               borderColor: '#0066cc',
+               textColor: '#0066cc'
+            }
+         case 'offside':
+         case 'офсайд':
+            return {
+               background: 'rgba(128, 128, 128, 0.1)',
+               borderColor: '#808080',
+               textColor: '#606060'
+            }
+         default:
+            return {
+               background: 'rgba(255, 255, 255, 0.05)',
+               borderColor: '#ffcc00',
+               textColor: '#333333'
+            }
+      }
+   }
+
+   // Функция для выбора иконки в зависимости от типа события
+   const getEventIcon = (eventType: string) => {
+      switch (eventType.toLowerCase()) {
+         case 'goal':
+         case 'гол':
+            return (
+               <CheckCircleOutlined
+                  style={{ fontSize: '20px', color: '#05a550' }}
+               />
+            )
+         case 'yellow_card':
+            return (
+               <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+               >
+                  <rect
+                     x="4"
+                     y="2"
+                     width="12"
+                     height="16"
+                     rx="2"
+                     fill="#FFC107"
+                  />
+               </svg>
+            )
+         case 'red_card':
+            return (
+               <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+               >
+                  <rect
+                     x="4"
+                     y="2"
+                     width="12"
+                     height="16"
+                     rx="2"
+                     fill="#FF0000"
+                  />
+               </svg>
+            )
+         case 'substitution':
+            return <SwapOutlined style={{ fontSize: '20px', color: '#0066cc' }} />
+         case 'foul':
+            return (
+               <WarningOutlined style={{ fontSize: '20px', color: '#ff6600' }} />
+            )
+         case 'corner':
+         case 'угловой':
+            return (
+               <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+               >
+                  <path d="M10 2L10 8L15 4L10 2Z" fill="#ffcc00" />
+                  <rect x="9" y="2" width="2" height="12" fill="#ffcc00" />
+               </svg>
+            )
+         case 'offside':
+         case 'офсайд':
+            return (
+               <FlagOutlined style={{ fontSize: '20px', color: '#808080' }} />
+            )
+         case 'penalty':
+            return <AimOutlined style={{ fontSize: '20px', color: '#ff3300' }} />
+         default:
+            return null
+      }
+   }
+
+   // Функция для формирования описания события
+   const getEventDescription = (event: MatchEvent): string => {
+      if (event.description) return event.description;
+    
+      const eventTypeDisplay: { [key: string]: string } = {
+        goal: 'Гол! Забил',
+        гол: 'Гол! Забил',
+        yellow_card: 'Жёлтую карточку получил',
+        red_card: 'Красную карточку получил',
+        substitution: 'Замена.',
+        foul: 'Фол.',
+        corner: 'Угловой.',
+        угловой: 'Угловой.',
+        offside: 'Офсайд.',
+        офсайд: 'Офсайд.',
+        penalty: 'Пенальти.',
+      };
+    
+      const eventType = event.event_type.toLowerCase();
+      const baseDescription = eventTypeDisplay[eventType] || 'Событие.';
+      return `${baseDescription} ${event.player || ''} в команде ${event.team.title}.`;
+    };
+
    return (
       <MatchCard>
          <DarkOverlay />
@@ -85,7 +209,7 @@ const MatchInfo = () => {
                   </Countdown>
                </h4>
                <Countdown>
-                  <p className="text-state">{countdown} </p>
+                  <p className="text-state">{match?.status_display}</p>
                </Countdown>
             </Flex>
             <Flex
@@ -141,12 +265,50 @@ const MatchInfo = () => {
                   Статус матча: {match?.status_display}
                </Text>
             </Flex>
+
+            {/* Раздел для событий матча */}
+            {match?.events && match.events.length > 0 && (
+               <EventsSection>
+                  <EventsTitle>События матча</EventsTitle>
+                  <EventsList>
+                     {match.events.map((event:any) => {
+                        const eventStyles = getEventStyles(event.event_type);
+                        return (
+                           <EventItem
+                              key={event.id}
+                              style={{ 
+                                 background: eventStyles.background,
+                                 borderLeftColor: eventStyles.borderColor
+                              }}
+                           >
+                              <EventTime color={eventStyles.textColor}>
+                                 {event.minute}'
+                              </EventTime>
+                              <EventIcon>
+                                 {getEventIcon(event.event_type)}
+                              </EventIcon>
+                              <EventContent>
+                                 <EventDescription color={eventStyles.textColor}>
+                                    {event.description || getEventDescription(event)}
+                                 </EventDescription>
+                                 <EventTimestamp>
+                                    {new Date(event.created_at).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+                                 </EventTimestamp>
+                              </EventContent>
+                           </EventItem>
+                        );
+                     })}
+                  </EventsList>
+               </EventsSection>
+            )}
          </Content>
       </MatchCard>
    )
 }
+
 export default MatchInfo
 
+// Стили для компонента
 const MatchCard = styled(Card)`
    position: relative;
    padding: 0 !important;
@@ -160,6 +322,7 @@ const MatchCard = styled(Card)`
       padding: 50px 20px;
    }
 `
+
 const BackgroundImage = styled.div`
    background-image: url(${bg});
    background-size: cover;
@@ -171,6 +334,7 @@ const BackgroundImage = styled.div`
    left: 0;
    z-index: 0;
 `
+
 const DarkOverlay = styled.div`
    position: absolute;
    top: 0;
@@ -181,6 +345,7 @@ const DarkOverlay = styled.div`
    z-index: 1;
    height: 100%;
 `
+
 const Content = styled.div`
    position: relative;
    z-index: 2;
@@ -204,6 +369,7 @@ const Content = styled.div`
       color: #ffcc00;
    }
 `
+
 const Countdown = styled.div`
    font-size: 24px;
    color: #ffff;
@@ -213,6 +379,7 @@ const Countdown = styled.div`
    justify-content: center;
    gap: 5px;
 `
+
 const TeamCard = styled.div`
    text-align: center;
    width: 120px;
@@ -221,17 +388,20 @@ const TeamCard = styled.div`
       transform: scale(1.05);
    }
 `
+
 const Team = styled.div`
    display: flex;
    align-items: center;
    gap: 10px;
    flex-direction: column;
 `
+
 const Score = styled.div`
    font-size: 36px;
    font-weight: bold;
    color: white;
 `
+
 const LeagueLogo = styled.img`
    width: 100px;
    height: auto;
@@ -240,3 +410,148 @@ const LeagueLogo = styled.img`
       width: 80px;
    }
 `
+
+// Стили для раздела событий
+const EventsSection = styled.div`
+   margin-top: 40px;
+   padding: 24px;
+   background: rgba(255, 255, 255, 0.873); 
+   border-radius: 16px; 
+   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+   transition: transform 0.3s ease, box-shadow 0.3s ease;
+   max-width: 800px;
+   margin-left: auto;
+   margin-right: auto;
+   
+   &:hover {
+      transform: translateY(-4px); 
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+   }
+   
+   @media (max-width: 768px) {
+      padding: 16px; 
+      margin-top: 30px;
+      border-radius: 12px;
+   }
+`;
+
+const EventsTitle = styled(Title)`
+   font-size: 22px !important; 
+   margin-bottom: 24px !important;
+   font-weight: 600 !important;
+   text-transform: uppercase; 
+   letter-spacing: 1px; 
+   text-align: center;
+   
+   @media (max-width: 768px) {
+      font-size: 18px !important;
+      margin-bottom: 16px !important;
+   }
+`;
+
+const EventsList = styled.div`
+   display: flex;
+   flex-direction: column;
+   gap: 12px; 
+   max-height: 500px; 
+   overflow-y: auto;
+   padding-right: 8px; 
+   
+   /* Стилизация скроллбара */
+   &::-webkit-scrollbar {
+      width: 6px;
+   }
+   &::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+   }
+   &::-webkit-scrollbar-thumb {
+      background: #05a550;
+      border-radius: 8px;
+   }
+   
+   @media (max-width: 768px) {
+      max-height: 400px;
+      gap: 8px;
+   }
+`;
+
+const EventItem = styled.div`
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+   display: flex;
+   align-items: flex-start; 
+   padding: 12px 16px;
+   border-radius: 12px; 
+   border-left: 4px solid #ffcc00; 
+   transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+   &:hover {
+      transform: translateX(4px); 
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+   }
+   
+   @media (max-width: 768px) {
+      padding: 10px 12px;
+      border-radius: 8px;
+      border-left-width: 3px;
+   }
+`;
+
+const EventTime = styled.div<{ color?: string }>`
+   color: ${props => props.color || '#05a550'}; 
+   font-size: 16px;
+   font-weight: 700;
+   width: 50px; 
+   text-align: right;
+   margin-right: 12px;
+   
+   @media (max-width: 768px) {
+      font-size: 14px;
+      width: 40px;
+      margin-right: 8px;
+   }
+`;
+
+const EventIcon = styled.div`
+   margin: 0 12px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 24px; 
+   height: 24px;
+   
+   @media (max-width: 768px) {
+      margin: 0 8px;
+      width: 20px;
+      height: 20px;
+   }
+`;
+
+const EventContent = styled.div`
+   flex: 1;
+   display: flex;
+   flex-direction: column;
+   gap: 4px;
+`;
+
+const EventDescription = styled.div<{ color?: string }>`
+   font-size: 15px; 
+   line-height: 1.5; 
+   font-weight: 500;
+   color: ${props => props.color || '#333333'};
+   
+   @media (max-width: 768px) {
+      font-size: 14px;
+      line-height: 1.4;
+   }
+`;
+
+const EventTimestamp = styled.div`
+   font-size: 12px;
+   color: #888;
+   font-style: italic;
+   
+   @media (max-width: 768px) {
+      font-size: 11px;
+   }
+`;

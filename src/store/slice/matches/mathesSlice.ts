@@ -21,6 +21,25 @@ interface Liga {
    image: string
 }
 
+interface Team {
+   title: string;
+   logo: string;
+ }
+ 
+ interface Liga {
+   title: string;
+   image: string;
+ }
+ 
+ export interface MatchEvent {
+   id: number;
+   minute: number;
+   event_type: string;
+   player: string;
+   team: Team;
+   description?: string;
+ }
+ 
 export interface Match {
    id: number
    title: string
@@ -35,6 +54,7 @@ export interface Match {
    status: string
    status_display: string
    stream_link: string | null
+   events:MatchEvent[];
 }
 
 interface MatchesState {
