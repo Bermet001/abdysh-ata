@@ -70,6 +70,7 @@ const CollageContainer = styled.div`
    gap: 20px;
    max-width: 1600px;
    margin: 80px auto;
+   margin-bottom: 20px;
    padding: 20px;
    background-color: #f0f2f5;
    border-radius: 10px;
@@ -80,6 +81,7 @@ const CollageContainer = styled.div`
    @media (max-width: 767px) {
       grid-template-columns: 1fr;
       margin: 80px 10px;
+      margin-bottom: 20px;
       padding: 10px;
    }
 `

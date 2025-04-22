@@ -11,6 +11,7 @@ import { Helmet } from 'react-helmet-async'
 import Infrastructures from './user/Infrastructure/Infrastructures'
 import TournamentTable from './user/rating-table/TournamentTable'
 import AcademyLanding from './user/AcademyLanding'
+import SellBlocksBanner from '../components/SellBlocksBanner'
 
 const Landing: FC = () => (
    <>
@@ -32,6 +33,7 @@ const Landing: FC = () => (
          <TournamentTable />
          <AcademyLanding />
          <Infrastructures />
+         <SellBlocksBanner/>
          <VictoryBlock />
          <Team />
          <ProductSlider />
