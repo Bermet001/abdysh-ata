@@ -81,9 +81,41 @@ const StyledButton = styled(Button)`
   }
 `;
 
+const LogoContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 20px;
+  z-index: 1;
+
+  @media (max-width: 768px) {
+    margin-bottom: 16px;
+  }
+`;
+
+const Logo = styled.img`
+  height: 50px;
+  object-fit: contain;
+
+  @media (max-width: 768px) {
+    height: 40px;
+  }
+`;
+
 const TicketBanner = () => {
   return (
     <BannerContainer>
+      <LogoContainer>
+        <Logo
+          src="https://via.placeholder.com/150x50?text=iTicket+Logo"
+          alt="iTicket Logo"
+        />
+        <Logo
+          src="https://via.placeholder.com/150x50?text=Abdy-Ata+Logo"
+          alt="Abdy-Ata Logo"
+        />
+      </LogoContainer>
       <Title>Стань частью триумфа Абдыш-Ата!</Title>
       <Subtitle>
         Поддержи нашу команду на "Нитро Арене"! Купи билеты и почувствуй дух победы.
