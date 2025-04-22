@@ -35,13 +35,17 @@ const Infrastructure = () => {
                      </p>
                   </Flex>
                   <Flex gap={20}>
+                  {infrastracture?.weave &&
                      <p className="info">
                         <span>Размер поля: </span> {infrastracture?.weave}
                      </p>
+                     }
 
+                     {infrastracture?.places &&
                      <p className="info">
                         <span>Вместимость: </span> {infrastracture?.places}
                      </p>
+                     }
                   </Flex>
                </Flex>
                <Flex className="short-info" gap={10} vertical>
