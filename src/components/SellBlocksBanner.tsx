@@ -98,11 +98,11 @@ const LogoContainer = styled.div`
 `;
 
 const Logo = styled.img`
-  height: 50px;
+  height: 70px;
   object-fit: contain;
 
   @media (max-width: 768px) {
-    height: 40px;
+    height: 50px;
   }
 `;
 
