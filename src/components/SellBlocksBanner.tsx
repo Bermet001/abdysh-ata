@@ -1,5 +1,8 @@
 import { Button } from 'antd';
 import styled from 'styled-components';
+import { useAppDispatch, useAppSelector } from '../store/store';
+import { BANNER_THUNK } from '../store/slice/banner/bannerThunk';
+import { useEffect } from 'react';
 
 const BannerContainer = styled.div`
   display: flex;
@@ -104,26 +107,26 @@ const Logo = styled.img`
 `;
 
 const TicketBanner = () => {
+  const { ticket } =useAppSelector(state=>state.banner)
+  const { contacts } =useAppSelector(state=>state.contacts)
+  const dispatch = useAppDispatch()
+
+  useEffect(()=>{
+   dispatch(BANNER_THUNK.getTickets())
+  },[])
+
+  const contact = contacts.length > 0 ? contacts[0] : null
+  const tickets = ticket.length > 0 ? ticket[0] : null
+  
   return (
     <BannerContainer>
       <LogoContainer>
-        <Logo
-          src="https://via.placeholder.com/150x50?text=iTicket+Logo"
-          alt="iTicket Logo"
-        />
-        <Logo
-          src="https://via.placeholder.com/150x50?text=Abdy-Ata+Logo"
-          alt="Abdy-Ata Logo"
-        />
+        <Logo src={tickets?.image} alt="iTicket Logo" />
+        <Logo src={contact?.logo} alt="Abdy-Ata Logo" />
       </LogoContainer>
-      <Title>Стань частью триумфа Абдыш-Ата!</Title>
-      <Subtitle>
-        Поддержи нашу команду на "Нитро Арене"! Купи билеты и почувствуй дух победы.
-      </Subtitle>
-      <StyledButton
-        href="https://ticketon.kz"
-        target="_blank"
-      >
+      <Title>{tickets?.title}</Title>
+      <Subtitle> {tickets?.subtitle} </Subtitle>
+      <StyledButton href={tickets?.link} target="_blank">
         Купить билеты
       </StyledButton>
     </BannerContainer>

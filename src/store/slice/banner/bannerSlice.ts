@@ -9,10 +9,19 @@ interface Banner {
    subtitle: string
 }
 
+interface Ticket{
+   id:number
+   title:string
+   subtitle:string
+   link:string
+   image:string
+}
+
 interface BannerState {
    banners: Banner[]
    banner: Banner
    isLoading: boolean
+   ticket:Ticket[]
 }
 
 const initialState: BannerState = {
@@ -24,6 +33,7 @@ const initialState: BannerState = {
       slug: '',
       subtitle: '',
    },
+   ticket:[],
    isLoading: false,
 }
 
@@ -59,6 +69,19 @@ export const bannerSlice = createSlice({
             state.isLoading = true
          })
          .addCase(BANNER_THUNK.getBanner.rejected, (state) => {
+            state.isLoading = false
+         })
+         .addCase(
+            BANNER_THUNK.getTickets.fulfilled,
+            (state, { payload }: PayloadAction<Ticket[]>) => {
+               state.ticket = payload
+               state.isLoading = false
+            }
+         )
+         .addCase(BANNER_THUNK.getTickets.pending, (state) => {
+            state.isLoading = true
+         })
+         .addCase(BANNER_THUNK.getTickets.rejected, (state) => {
             state.isLoading = false
          })
    },

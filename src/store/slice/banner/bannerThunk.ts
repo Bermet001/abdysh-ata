@@ -35,4 +35,20 @@ const getBanner = createAsyncThunk(
    }
 )
 
-export const BANNER_THUNK = { getBanners, getBanner }
+const getTickets = createAsyncThunk(
+   'banner/getTickets',
+   async (_, { rejectWithValue }) => {
+      try {
+         const response = await axiosInstance(`cms/ticket/`)
+
+         return response.data
+      } catch (error) {
+         const err = error as AxiosError
+         return rejectWithValue({
+            message: err.message,
+         })
+      }
+   }
+)
+
+export const BANNER_THUNK = { getBanners, getBanner,getTickets }
