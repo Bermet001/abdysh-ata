@@ -28,7 +28,7 @@ const sendMessage = createAsyncThunk(
       { rejectWithValue }
    ) => {
       try {
-         const { data } = await axiosInstance.post('settings/contct/', values)
+         const { data } = await axiosInstance.post('settings/contact/', values)
 
          notification.success({
             message: 'Сообщение отправлено!',

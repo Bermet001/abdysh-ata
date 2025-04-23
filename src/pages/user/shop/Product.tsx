@@ -80,7 +80,11 @@ const ProductPage = () => {
             </a>
             <Section>
                <SectionTitle>Описание</SectionTitle>
-               <Description>{product?.description}</Description>
+               <Description
+                     dangerouslySetInnerHTML={{
+                        __html: product?.description || '',
+                     }}
+                  />
             </Section>
          </Details>
       </Container>

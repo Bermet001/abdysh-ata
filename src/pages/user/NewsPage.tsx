@@ -55,14 +55,16 @@ const NewsPage: FC = () => {
                      size="large"
                   />
                   <Select
-                     defaultValue="Категории"
-                     style={{ width: 120 }}
+                     defaultValue=""
                      onChange={handleChange}
                      className="select"
-                     options={categories.map((category) => ({
-                        value: category.title,
-                        label: category.title,
-                     }))}
+                     options={[
+                        { value: '', label: 'Все категории' }, 
+                        ...categories?.map((category) => ({
+                           value: category?.title,
+                           label: category?.title,
+                        })),
+                     ]}
                   />
                </Flex>
                <CardsContainer>

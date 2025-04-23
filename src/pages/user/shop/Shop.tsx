@@ -1,29 +1,41 @@
-import styled from 'styled-components'
-import { Card, Button, Flex, Input, Select } from 'antd'
-import { NavLink } from 'react-router-dom'
-import { useAppDispatch, useAppSelector } from '../../../store/store'
-import { PRODUCT_THUNK } from '../../../store/slice/shop/shopThunk'
-import { ChangeEvent, useEffect, useState } from 'react'
-import { Helmet } from 'react-helmet-async'
+import styled from 'styled-components';
+import { Card, Button, Flex, Input, Select } from 'antd';
+import { NavLink } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../../store/store';
+import { PRODUCT_THUNK } from '../../../store/slice/shop/shopThunk';
+import { ChangeEvent, useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 
-const { Search } = Input
+const { Search } = Input;
+
 const Shop = () => {
-   window.scrollTo(0, 0)
-   const { products, categories } = useAppSelector((state) => state.shop)
-   const { contacts } = useAppSelector((state) => state.contacts)
-   const [search, setSearch] = useState<string>('')
-   const contact = contacts.length > 0 ? contacts[0] : null
-   const dispatch = useAppDispatch()
-   const handleChange = (value: string | unknown) =>
-      dispatch(PRODUCT_THUNK.getCategorizedProduct(value))
+   window.scrollTo(0, 0);
+   const { products, categories } = useAppSelector((state) => state.shop);
+   const { contacts } = useAppSelector((state) => state.contacts);
+   const [search, setSearch] = useState<string>('');
+   const contact = contacts.length > 0 ? contacts[0] : null;
+   const dispatch = useAppDispatch();
+
+   const handleChange = (value: string | unknown) => {
+      if (value === 'all') {
+         // Сбрасываем фильтр, загружаем все продукты
+         dispatch(PRODUCT_THUNK.getProducts());
+      } else {
+         // Загружаем продукты по выбранной категории
+         dispatch(PRODUCT_THUNK.getCategorizedProduct(value));
+      }
+   };
+
    useEffect(() => {
-      dispatch(PRODUCT_THUNK.getProducts())
-      dispatch(PRODUCT_THUNK.allCategories())
-   }, [dispatch])
+      dispatch(PRODUCT_THUNK.getProducts());
+      dispatch(PRODUCT_THUNK.allCategories());
+   }, [dispatch]);
+
    const searchHandler = (e: ChangeEvent<HTMLInputElement>) => {
-      setSearch(e.target.value)
-      dispatch(PRODUCT_THUNK.searchProduct(e.target.value))
-   }
+      setSearch(e.target.value);
+      dispatch(PRODUCT_THUNK.searchProduct(e.target.value));
+   };
+
    return (
       <Container>
          <Helmet>
@@ -41,13 +53,15 @@ const Shop = () => {
          </Helmet>
          <Flex align="center" justify="space-between" gap={50}>
             <StyledSelect
-               defaultValue="Категории"
-               style={{ width: 120 }}
+               defaultValue=""
                onChange={handleChange}
-               options={categories?.map((category) => ({
-                  value: category?.title,
-                  label: category?.title,
-               }))}
+               options={[
+                  { value: '', label: 'Все категории' }, 
+                  ...categories?.map((category) => ({
+                     value: category?.title,
+                     label: category?.title,
+                  })),
+               ]}
             />
             <StyledSearch
                onChange={searchHandler}
@@ -57,8 +71,8 @@ const Shop = () => {
          </Flex>
          <ProductsContainer>
             {products?.map((product) => {
-               const message = `Хотела бы узнать подробнее о ${product?.title}.`
-               const encodedMessage = encodeURIComponent(message)
+               const message = `Хотела бы узнать подробнее о ${product?.title}.`;
+               const encodedMessage = encodeURIComponent(message);
                return (
                   <StyledCard
                      key={product?.id}
@@ -82,14 +96,15 @@ const Shop = () => {
                         </StyledButton>
                      </a>
                   </StyledCard>
-               )
+               );
             })}
          </ProductsContainer>
       </Container>
-   )
-}
+   );
+};
 
-export default Shop
+export default Shop;
+
 const Container = styled.main`
    margin: auto;
    padding: 80px 75px 0 75px;
@@ -107,7 +122,8 @@ const Container = styled.main`
    .product-info {
       cursor: pointer;
    }
-`
+`;
+
 const ProductsContainer = styled.div`
    display: grid;
    grid-template-columns: repeat(5, 1fr);
@@ -122,7 +138,8 @@ const ProductsContainer = styled.div`
       gap: 10px;
       grid-template-columns: repeat(2, 1fr);
    }
-`
+`;
+
 const StyledCard = styled(Card)`
    border-radius: 10px;
    transition: transform 0.3s;
@@ -155,7 +172,8 @@ const StyledCard = styled(Card)`
          padding: 10px;
       }
    }
-`
+`;
+
 const StyledButton = styled(Button)`
    margin-top: 10px;
    border: none;
@@ -164,13 +182,14 @@ const StyledButton = styled(Button)`
    &:hover {
       background-color: #00c166 !important;
    }
-`
+`;
+
 const StyledSelect = styled(Select)`
    padding: 7px;
    height: 44px;
    border-radius: 8px;
-   max-width: 170px;
-   min-width: 150px;
+   max-width: 250px;
+   min-width: 200px;
    border: 1px solid #d9d9d9;
    background-color: #f8f8f8;
    &:hover,
@@ -193,7 +212,8 @@ const StyledSelect = styled(Select)`
       height: auto;
       border: none !important;
    }
-`
+`;
+
 const StyledSearch = styled(Search)`
    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
    transition: border-color 0.3s;
@@ -227,4 +247,4 @@ const StyledSearch = styled(Search)`
    .ant-input::placeholder {
       font-size: 17px;
    }
-`
+`;
