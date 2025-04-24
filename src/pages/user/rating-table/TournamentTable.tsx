@@ -6,7 +6,6 @@ import { useEffect } from 'react';
 import { getTeamsRating } from '../../../store/slice/rating/ratingThunk';
 import { NavLink, useLocation, useParams } from 'react-router-dom';
 import background1 from '../../../assets/images/backround-orange.png'; // Фон для главной страницы
-import background2 from '../../../assets/images/banner-rating.png'; // Фон для других страниц
 
 interface TeamData {
   key: string | number | null | undefined;
