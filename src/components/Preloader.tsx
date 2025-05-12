@@ -4,6 +4,7 @@ import styled, { keyframes } from 'styled-components'
 const Preloader: FC = () => {
    const text = 'ABDYSH-ATA'
    const letterDelayIncrement = 0.2
+   
    return (
       <PreloaderContainer>
          <AnimationPreloader>
