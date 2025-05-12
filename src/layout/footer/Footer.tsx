@@ -11,7 +11,7 @@ import { FC, useEffect } from 'react';
 import { CONTACTS_THUNK } from '../../store/slice/contacts/contactsThunk';
 import FooterSection from './FooterSection';
 import FooterContacts from './FooterContacts';
-import logo from '../../assets/images/white-logo.png';
+import logo from '../../assets/images/white-logo.webp';
 
 const Footer: FC = () => {
    const dispatch = useAppDispatch();
