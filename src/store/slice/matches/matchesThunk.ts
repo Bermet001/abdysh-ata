@@ -18,6 +18,7 @@ const getMatches = createAsyncThunk(
       }
    }
 )
+
 const getAllMatches = createAsyncThunk(
    'matches/geAllMatches',
    async (_, { rejectWithValue }) => {

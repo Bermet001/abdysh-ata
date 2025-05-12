@@ -27,6 +27,7 @@ const MatchInfo = () => {
             <Swiper
                slidesPerView={4}
                spaceBetween={10}
+               autoplay
                pagination={{ clickable: true }}
                breakpoints={{
                   1200: { slidesPerView: 4 },
