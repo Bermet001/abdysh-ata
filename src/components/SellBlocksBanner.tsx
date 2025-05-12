@@ -2,7 +2,20 @@ import { Button } from 'antd';
 import styled from 'styled-components';
 import { useAppDispatch, useAppSelector } from '../store/store';
 import { BANNER_THUNK } from '../store/slice/banner/bannerThunk';
-import { useEffect } from 'react';
+import { FC, useEffect } from 'react';
+
+interface Ticket {
+  image: string;
+  title: string;
+  subtitle: string;
+  link: string;
+}
+
+interface BannerState {
+  ticket: Ticket[];
+  isLoading: boolean;
+  error?: string;
+}
 
 const BannerContainer = styled.div`
   display: flex;
@@ -15,19 +28,6 @@ const BannerContainer = styled.div`
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   text-align: center;
   position: relative;
-  overflow: hidden;
-
-  &:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    opacity: 0.15;
-    z-index: 0;
-  }
 
   @media (max-width: 768px) {
     padding: 24px 16px;
@@ -40,7 +40,6 @@ const Title = styled.h2`
   font-weight: 700;
   color: #ed5a0c;
   margin-bottom: 12px;
-  z-index: 1;
 
   @media (max-width: 768px) {
     font-size: 22px;
@@ -52,7 +51,6 @@ const Subtitle = styled.p`
   color: #333;
   margin-bottom: 20px;
   max-width: 600px;
-  z-index: 1;
 
   @media (max-width: 768px) {
     font-size: 14px;
@@ -62,7 +60,7 @@ const Subtitle = styled.p`
 
 const StyledButton = styled(Button)`
   height: 48px;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
   border-radius: 8px;
   background: #00a64f;
@@ -90,7 +88,6 @@ const LogoContainer = styled.div`
   width: 100%;
   max-width: 600px;
   margin-bottom: 20px;
-  z-index: 1;
 
   @media (max-width: 768px) {
     margin-bottom: 16px;
@@ -98,35 +95,68 @@ const LogoContainer = styled.div`
 `;
 
 const Logo = styled.img`
+  width: 100px;
   height: 70px;
   object-fit: contain;
 
   @media (max-width: 768px) {
+    width: 80px;
     height: 50px;
   }
 `;
 
-const TicketBanner = () => {
-  const { ticket } =useAppSelector(state=>state.banner)
-  const { contacts } =useAppSelector(state=>state.contacts)
-  const dispatch = useAppDispatch()
+const TicketBanner: FC = () => {
+  const dispatch = useAppDispatch();
+  const { ticket, isLoading: bannerLoading, error: bannerError } = useAppSelector(
+    (state: { banner: BannerState }) => state.banner
+  );
+  const { contacts, isLoading: contactsLoading, error: contactsError } = useAppSelector((state) => state.contacts);
 
-  useEffect(()=>{
-   dispatch(BANNER_THUNK.getTickets())
-  },[])
+  useEffect(() => {
+    dispatch(BANNER_THUNK.getTickets());
+  }, [dispatch]);
 
-  const contact = contacts.length > 0 ? contacts[0] : null
-  const tickets = ticket.length > 0 ? ticket[0] : null
-  
+  const ticketData = ticket?.[0];
+  const contactData = contacts?.[0];
+
+  if (bannerLoading || contactsLoading) {
+    return <BannerContainer>Loading...</BannerContainer>;
+  }
+  if (bannerError || contactsError) {
+    return <BannerContainer>Error: {bannerError || contactsError}</BannerContainer>;
+  }
+  if (!ticketData || !contactData) {
+    return null;
+  }
+
   return (
     <BannerContainer>
       <LogoContainer>
-        <Logo loading="lazy" src={tickets?.image} alt="iTicket Logo" />
-        <Logo loading="lazy" src={contact?.logo} alt="Abdy-Ata Logo" />
+        <Logo
+          src={ticketData.image}
+          alt="iTicket Logo"
+          width={100}
+          height={70}
+          loading="lazy"
+          onError={(e) => (e.currentTarget.src = '/path/to/fallback-logo.png')}
+        />
+        <Logo
+          src={contactData.logo}
+          alt="Abdy-Ata Logo"
+          width={100}
+          height={70}
+          loading="lazy"
+          onError={(e) => (e.currentTarget.src = '/path/to/fallback-logo.png')}
+        />
       </LogoContainer>
-      <Title>{tickets?.title}</Title>
-      <Subtitle> {tickets?.subtitle} </Subtitle>
-      <StyledButton href={tickets?.link} target="_blank">
+      <Title>{ticketData.title}</Title>
+      <Subtitle>{ticketData.subtitle}</Subtitle>
+      <StyledButton
+        href={ticketData.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Купить билеты на матч"
+      >
         Купить билеты
       </StyledButton>
     </BannerContainer>
