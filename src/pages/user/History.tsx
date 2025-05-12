@@ -80,6 +80,7 @@ const History = () => {
                            }}
                         />
                         <img
+                        loading="lazy"
                            src={history_text?.image}
                            alt={history_text?.title}
                         />

@@ -67,6 +67,7 @@ const Partners = () => {
                      <a aria-label="партнер" href={sponsor?.link}>
                         <img
                            height="100%"
+                           loading="lazy"
                            src={sponsor?.image}
                            alt={sponsor?.title}
                         />

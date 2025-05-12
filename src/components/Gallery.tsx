@@ -197,6 +197,7 @@ const Gallery = () => {
                <img
                   src={selectedImage}
                   alt="Detailed view"
+                  loading="lazy"
                   style={{ width: '100%' }}
                />
             </Modal>

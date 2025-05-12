@@ -51,6 +51,7 @@ const MatchCard: FC<Match> = ({
                      className="team-logo"
                      src={home_team?.logo}
                      alt={home_team?.title}
+                     loading="lazy"
                   />
                </Team>
                <Flex
@@ -69,6 +70,7 @@ const MatchCard: FC<Match> = ({
                      className="team-logo"
                      width="50px"
                      src={away_team?.logo}
+                     loading="lazy"
                      alt={away_team?.title}
                   />
                </Team>

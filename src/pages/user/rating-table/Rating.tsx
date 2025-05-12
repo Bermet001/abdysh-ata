@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import background1 from '../../../assets/images/banner-rating.png'
+import background1 from '../../../assets/images/banner-rating.webp'
 import { getPartners } from '../../../store/slice/partners/partnersThunk'
 import TournamentTable from './TournamentTable'
 
@@ -23,7 +23,7 @@ const Rating = () => {
                {partners?.slice(0, 3).map((item) => (
                   <a href={item.link} key={item.id}>
                      <div className="partner">
-                        <img src={item.image} alt={item.title} width={70} />
+                        <img loading="lazy" src={item.image} alt={item.title} width={70} />
                      </div>
                   </a>
                ))}

@@ -70,6 +70,7 @@ const Coaches = () => {
                                  className="coach-photo"
                                  src={image}
                                  alt={name}
+                                 loading="lazy"
                               />
                               <h2 className="coach-name">{name}</h2>
                               <p className="coach-position">{position}</p>

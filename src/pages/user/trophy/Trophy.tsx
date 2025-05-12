@@ -122,6 +122,7 @@ const Trophy = () => {
                         >
                            <img
                               className="image"
+                              loading="lazy"
                               src={item.image}
                               alt={item.title}
                            />

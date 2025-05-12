@@ -121,8 +121,8 @@ const TicketBanner = () => {
   return (
     <BannerContainer>
       <LogoContainer>
-        <Logo src={tickets?.image} alt="iTicket Logo" />
-        <Logo src={contact?.logo} alt="Abdy-Ata Logo" />
+        <Logo loading="lazy" src={tickets?.image} alt="iTicket Logo" />
+        <Logo loading="lazy" src={contact?.logo} alt="Abdy-Ata Logo" />
       </LogoContainer>
       <Title>{tickets?.title}</Title>
       <Subtitle> {tickets?.subtitle} </Subtitle>

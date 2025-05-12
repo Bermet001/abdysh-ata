@@ -224,6 +224,7 @@ const TournamentAcademy = () => {
                      {tournament?.academia_images?.map((photo) => (
                         <div key={photo?.id}>
                            <PhotoImage
+                           loading="lazy"
                               src={photo?.image}
                               alt={`Фото ${photo?.id}`}
                            />

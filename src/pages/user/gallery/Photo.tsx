@@ -15,7 +15,7 @@ const Photo: FC = () => {
    }, [dispatch, slug])
    return (
       <StyledContainer>
-         <img className="main-image" src={photo?.image_main} alt="Background" />
+         <img className="main-image"loading="lazy" src={photo?.image_main} alt="Background" />
          <br />
          <h3>{photo?.title}</h3>
          <Flex vertical gap={20}>

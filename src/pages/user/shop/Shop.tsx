@@ -76,7 +76,7 @@ const Shop = () => {
                return (
                   <StyledCard
                      key={product?.id}
-                     cover={<img alt={product?.title} src={product?.image} />}
+                     cover={<img loading="lazy"alt={product?.title} src={product?.image} />}
                   >
                      <NavLink to={`/shop/${product?.slug}`}>
                         <Card.Meta

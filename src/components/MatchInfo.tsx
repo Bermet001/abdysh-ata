@@ -3,16 +3,16 @@ import MatchCard from './MatchCard'
 import styled from 'styled-components'
 import { useAppDispatch, useAppSelector } from '../store/store'
 import { useEffect } from 'react'
-import { getAllMatches } from '../store/slice/matches/matchesThunk'
+import { getMatches } from '../store/slice/matches/matchesThunk'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css/pagination'
 
 const MatchInfo = () => {
-   const { allMatches, isLoading } = useAppSelector((state) => state.matches)
+   const { matches, isLoading } = useAppSelector((state) => state.matches)
    const dispatch = useAppDispatch()
 
    useEffect(() => {
-      dispatch(getAllMatches())
+      dispatch(getMatches())
    }, [dispatch])
 
    return (
@@ -36,7 +36,7 @@ const MatchInfo = () => {
                   0: { slidesPerView: 2 },
                }}
             >
-               {allMatches?.map((match, index) => (
+               {matches?.map((match, index) => (
                   <SwiperSlide key={index}>
                      <MatchCard {...match} />
                   </SwiperSlide>

@@ -15,7 +15,6 @@ const Slider: FC = () => {
       <section>
          <StyledCarousel
             dots={false}
-            arrows
             autoplay
             autoplaySpeed={6000}
             infinite
@@ -31,6 +30,7 @@ const Slider: FC = () => {
                           alt={`Slide ${index + 1}`}
                           width="100%"
                           height="100%"
+                          loading="lazy"
                        />
                        <Flex align="start" vertical className="content">
                           <h2>{item?.title}</h2>

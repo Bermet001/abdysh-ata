@@ -77,6 +77,7 @@ const SchedulMatches = () => {
                   <span className="team-name">{record?.home_team?.title}</span>
                   <div style={{ marginLeft: '10px' }}>
                      <img
+                     loading="lazy"
                         src={record.home_team?.logo}
                         alt={record.home_team?.title}
                      />
@@ -87,7 +88,8 @@ const SchedulMatches = () => {
 
                <TeamWrapper className="team-box">
                   <img
-                     src={record.away_team?.logo}
+loading="lazy"
+src={record.away_team?.logo}
                      alt={record.away_team?.title}
                   />
                   <span className="team-name">{record?.away_team?.title}</span>
@@ -126,6 +128,7 @@ const SchedulMatches = () => {
             <img
                style={{ objectFit: 'cover' }}
                width="100%"
+               loading="lazy"
                className="image-background"
                height={400}
                src={bannerImage}

@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
 import { useEffect } from 'react'
 import { getPlayer } from '../../../store/slice/team/teamThunk'
-import star from '../../../assets/images/start.png'
+import star from '../../../assets/images/start.webp'
 
 const Player = () => {
    const { slug } = useParams<{ slug: string }>()
@@ -19,7 +19,7 @@ const Player = () => {
          <Flex vertical className="main-box">
             <Flex className="content" align="end">
                <Flex vertical className="main-info">
-                  <PlayerImage src={player?.image} alt="Player" />
+                  <PlayerImage loading="lazy" src={player?.image} alt="Player" />
                   <PlayerCard>
                      <PlayerDetails>
                         <PlayerPosition>{player?.position}</PlayerPosition>
@@ -40,6 +40,7 @@ const Player = () => {
                   <h3 className="player-title">Команда</h3>
                   <PlayerBio style={{ display: 'flex', alignItems: 'center' }}>
                      <img
+                     loading="lazy"
                         width={30}
                         src={player.team.logo}
                         alt="логотип команды"
@@ -77,7 +78,7 @@ const Player = () => {
                <ol className="honours-list">
                   {player.achievements.map((item) => (
                      <Flex key={item.id} gap={40}>
-                        <img src={star} alt="star" width={20} height="20" />
+                        <img loading="lazy"src={star} alt="star" width={20} height="20" />
                         <li className="text-honour">{item?.title} </li>
                      </Flex>
                   ))}

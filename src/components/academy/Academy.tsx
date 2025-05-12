@@ -35,7 +35,7 @@ const Academy = () => {
                   />
                </div>
             </BannerContent>
-            <PlayerImage src={history?.image} alt="Player" />
+            <PlayerImage loading="lazy" src={history?.image} alt="Player" />
          </Flex>
       </BannerContainer>
    )

@@ -9,7 +9,7 @@ import {
    MenuProps,
 } from 'antd'
 import { SearchOutlined, MenuOutlined, CloseOutlined } from '@ant-design/icons'
-import Logo from '../../assets/images/main-logo.png'
+import Logo from '../../assets/images/main-logo.webp'
 import styled from 'styled-components'
 import { NavLink, NavLinkProps, useLocation } from 'react-router-dom'
 import { ChangeEvent, useEffect, useState } from 'react'
@@ -296,6 +296,7 @@ const Header = () => {
                         width="50px"
                         height="50px"
                         alt="logo"
+                        loading="lazy"
                      />
                   </NavLink>
                </Flex>
@@ -388,6 +389,7 @@ const Header = () => {
                                  <img
                                     src={item.image}
                                     width="50px"
+                                    loading="lazy"
                                     alt={`партне ${item.title}`}
                                  />
                               </a>
@@ -425,7 +427,7 @@ const Header = () => {
             <Flex wrap style={{ padding: '24px' }} align="center" gap={20}>
                {partners.slice(0, 3).map((item) => (
                   <a aria-label="партнеры" key={item.link} href={item.link}>
-                     <img src={item.image} width="90px" alt="" />
+                     <img src={item.image} loading="lazy" width="90px" alt="" />
                   </a>
                ))}
             </Flex>

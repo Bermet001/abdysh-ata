@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../../store/store'
 import { useEffect } from 'react'
 import { getMatch } from '../../../store/slice/matches/matchesThunk'
 import Button from '../../../components/UI/Button'
-import bg from '../../../assets/images/backround-tournaments.jpg'
+import bg from '../../../assets/images/backround-tournaments.webp'
 
 // Иконки из Ant Design
 import {
@@ -225,6 +225,7 @@ const MatchInfo = () => {
                            src={match?.home_team?.logo}
                            alt={match?.home_team?.title}
                            height="80px"
+                           loading="lazy"
                            style={{ width: '80px', objectFit: 'contain' }}
                         />
                         <Title className="team-name" level={4}>
@@ -245,6 +246,7 @@ const MatchInfo = () => {
                            src={match?.away_team?.logo}
                            alt={match?.away_team?.title}
                            height="80px"
+                           loading="lazy"
                            style={{ width: '80px', objectFit: 'contain' }}
                         />
                         <Title className="team-name" level={4}>

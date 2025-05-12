@@ -29,7 +29,7 @@ const ProductPage = () => {
    return (
       <Container>
          <ImageContainer>
-            <PlaceholderImage src={selectedColor} />
+            <PlaceholderImage loading="lazy" src={selectedColor} />
          </ImageContainer>
          <Details>
             <Title>{product?.title}</Title>

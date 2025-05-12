@@ -57,7 +57,7 @@ const Guideline: FC = () => {
                   <Col xs={12} sm={12} md={8} lg={6} key={director.id}>
                      <StyledCard onClick={() => showModal(director)}>
                         <InfoCircleOutlined className="info-icon" />
-                        <Image src={director.image} alt={director.name} />
+                        <Image loading="lazy" src={director.image} alt={director.name} />
                         <h3 className="name-p">{director.name}</h3>
                         <CardContent>{director.position}</CardContent>
                      </StyledCard>

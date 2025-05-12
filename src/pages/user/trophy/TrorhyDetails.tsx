@@ -41,7 +41,7 @@ const New: FC = () => {
             <h3 className="main-title">Кадры с события</h3>
             <Flex wrap gap={15}>
                {currentAchievement?.images?.map((item) => (
-                  <img src={item} alt="" />
+                  <img loading="lazy" src={item} alt="" />
                ))}
             </Flex>
          </div>

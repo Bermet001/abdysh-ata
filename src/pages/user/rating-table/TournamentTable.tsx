@@ -5,7 +5,7 @@ import { ColumnsType } from 'antd/es/table';
 import { useEffect } from 'react';
 import { getTeamsRating } from '../../../store/slice/rating/ratingThunk';
 import { NavLink, useLocation, useParams } from 'react-router-dom';
-import background1 from '../../../assets/images/backround-orange.png'; // Фон для главной страницы
+import background1 from '../../../assets/images/backround-orange-_1_-_1_.webp'; // Фон для главной страницы
 
 interface TeamData {
   key: string | number | null | undefined;
@@ -53,6 +53,7 @@ const TournamentTable = () => {
         <Flex align="center">
           <div>
             <img
+            loading="lazy"
               src={record}
               alt="team logo"
               style={{

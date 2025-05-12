@@ -19,7 +19,7 @@ const BannerInner: FC = () => {
 
    return (
       <BannerSection>
-         <BannerImage src={banner.image} alt={banner.title} />
+         <BannerImage loading="lazy" src={banner.image} alt={banner.title} />
          <Overlay />
 
          <BannerContent>

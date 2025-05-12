@@ -6,7 +6,7 @@ import { Flex } from 'antd'
 
 const Card = ({ icon, text }: { icon: string; text: string }) => (
    <CardWrapper>
-      <IconWrapper width={50} height={50} src={icon} alt={text} />
+      <IconWrapper loading="lazy" width={50} height={50} src={icon} alt={text} />
       <CardText>{text}</CardText>
    </CardWrapper>
 )

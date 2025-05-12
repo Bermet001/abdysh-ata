@@ -95,7 +95,7 @@ const Infrastructure = () => {
          >
             {infrastracture?.images?.map((item) => (
                <SwiperSlide key={item.id}>
-                  <img className="gallery-image" src={item.image} alt="image" />
+                  <img  loading="lazy" className="gallery-image" src={item.image} alt="image" />
                </SwiperSlide>
             ))}
          </Swiper>
@@ -107,6 +107,7 @@ const Infrastructure = () => {
                         {infrastracture?.football_fields?.map((item) => (
                            <StyledCard key={item?.id}>
                               <img
+                              loading="lazy"
                                  className="card-image"
                                  src={item?.image}
                                  alt="стадион"

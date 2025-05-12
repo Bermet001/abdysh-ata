@@ -75,7 +75,7 @@ const Coach: FC = () => {
                         </Flex>
                      </AnimatedCard>
                   </Flex>
-                  <AnimatedImage src={image || ''} alt={name || 'Тренер'} />
+                  <AnimatedImage loading="lazy" src={image || ''} alt={name || 'Тренер'} />
                </Flex>
                <Flex vertical className="biography-box">
                   <h2 className="main-title">Команда</h2>

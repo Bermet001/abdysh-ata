@@ -22,7 +22,7 @@ const AcademyLanding: FC = () => {
       <StyledSection>
          {first?.map((item, index) => (
             <BannerContainer key={item?.banner || index}>
-               <BannerImage src={item?.banner} alt={item?.title} />
+               <BannerImage loading="lazy" src={item?.banner} alt={item?.title} />
                <Overlay />
                <ContentWrapper>
                   <Title>{item?.title}</Title>
