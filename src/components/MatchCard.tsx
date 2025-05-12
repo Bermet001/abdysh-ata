@@ -86,6 +86,7 @@ const MatchCardContainer = styled(Flex)`
    padding: 20px;
    text-align: center;
    min-width: 270px;
+   width: 270px;
    max-width: 310px;
    width: 100%;
    border: 1px solid #e5e5e5;
@@ -93,9 +94,6 @@ const MatchCardContainer = styled(Flex)`
    border-radius: 10px;
    transition: transform 0.3s ease;
    cursor: pointer;
-   &:hover {
-      transform: translateY(-6px);
-   }
    > .main-info {
       min-height: 120px;
       padding: 15px;

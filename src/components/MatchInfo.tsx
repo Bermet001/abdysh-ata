@@ -1,76 +1,81 @@
-import { Flex, Skeleton } from 'antd'
+import { Skeleton } from 'antd'
 import MatchCard from './MatchCard'
 import styled from 'styled-components'
 import { useAppDispatch, useAppSelector } from '../store/store'
 import { useEffect } from 'react'
 import { getMatches } from '../store/slice/matches/matchesThunk'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/css/pagination'
 
 const MatchInfo = () => {
    const { matches, isLoading } = useAppSelector((state) => state.matches)
    const dispatch = useAppDispatch()
+
    useEffect(() => {
       dispatch(getMatches())
    }, [dispatch])
+
    return (
       <StyledContainer>
-         <StyledFlexContainer align="end" justify="center" gap={15}>
-            {isLoading
-               ? [...Array(4)].map((_, index) => (
-                    <SkeletonMatchCard key={index} />
-                 ))
-               : matches?.map((match, index: number) => (
-                    <MatchCard key={index} {...match} />
-                 ))}
-         </StyledFlexContainer>
+         {isLoading ? (
+            <SkeletonWrapper>
+               {[...Array(4)].map((_, i) => (
+                  <SkeletonMatchCard key={i} />
+               ))}
+            </SkeletonWrapper>
+         ) : (
+            <Swiper
+               slidesPerView={4}
+               pagination={{ clickable: true }}
+               breakpoints={{
+                  1200: { slidesPerView: 4 },
+                  992: { slidesPerView: 3 },
+                  768: { slidesPerView: 2.8 },
+                  0: { slidesPerView: 2 },
+               }}
+            >
+               {matches.map((match, index) => (
+                  <SwiperSlide key={index}>
+                     <MatchCard {...match} />
+                  </SwiperSlide>
+               ))}
+            </Swiper>
+         )}
       </StyledContainer>
    )
 }
 
 export default MatchInfo
+
 const StyledContainer = styled.section`
    margin: 0 auto;
    margin-top: -100px;
    position: relative;
    z-index: 1;
    width: 100%;
-   padding: 0 75px;
    max-width: 1600px;
-   overflow-x: overlay;
-   height: 210px;
-   ::-webkit-scrollbar {
-      display: none;
-   }
-   scrollbar-width: none;
    @media (max-width: 1450px) {
+      padding: 0 75px;
+   }
+   
+   @media (max-width: 726px) {
       padding: 0 20px;
    }
    @media (max-width: 600px) {
       margin-top: -60px;
    }
-   @media (max-width: 480px) {
-      height: 150px;
-   }
 `
-const StyledFlexContainer = styled(Flex)`
-   height: 210px;
-   @media (max-width: 1000px) {
-      width: 970px;
-   }
-   @media (max-width: 880px) {
-      gap: 5px !important;
-      width: 900px;
-   }
-   @media (max-width: 680px) {
-      width: 800px;
-   }
-   @media (max-width: 480px) {
-      height: 150px;
-      width: 600px;
-   }
+
+const SkeletonWrapper = styled.div`
+   display: flex;
+   gap: 15px;
+   overflow-x: auto;
+   /* height: 210px; */
 `
+
 const SkeletonMatchCard = styled(Skeleton)`
    width: 270px;
-   height: 120px;
+   /* height: 120px; */
    border-radius: 10px;
-   margin: 0 10px;
+   flex-shrink: 0;
 `
