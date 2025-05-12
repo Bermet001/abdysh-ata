@@ -2,13 +2,14 @@ import { Flex, Table, Button } from 'antd';
 import styled from 'styled-components';
 import { useAppDispatch, useAppSelector } from '../../../store/store';
 import { ColumnsType } from 'antd/es/table';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { getTeamsRating } from '../../../store/slice/rating/ratingThunk';
 import { NavLink, useLocation, useParams } from 'react-router-dom';
-import background1 from '../../../assets/images/backround-orange-_1_-_1_.webp'; // Фон для главной страницы
+import background1 from '../../../assets/images/backround-orange-_1_-_1_.webp'; 
 
 interface TeamData {
-  key: string | number | null | undefined;
+  key: string; // Убраны null и undefined
+  id?: string; // Добавлено для rowKey
   team_title: string;
   team_logo: string;
   won: number;
@@ -18,7 +19,6 @@ interface TeamData {
   goals_against: number;
   goal_difference: number;
   points: number;
-  form_list: string[];
   played: number;
 }
 
@@ -41,7 +41,7 @@ const TournamentTable = () => {
       dataIndex: 'index',
       key: 'index',
       align: 'center',
-      render: (_text: string, _record: TeamData, index: number) => (
+      render: (_text, _record, index) => (
         <h3 className="text-content">{index + 1}</h3>
       ),
     },
@@ -51,19 +51,14 @@ const TournamentTable = () => {
       key: 'team_logo',
       render: (record: string) => (
         <Flex align="center">
-          <div>
-            <img
+          <img
+            src={record}
+            alt="team logo"
+            width={40}
+            height={40}
             loading="lazy"
-              src={record}
-              alt="team logo"
-              style={{
-                objectFit: 'contain',
-                width: '40px',
-                height: '40px',
-                maxHeight: '40px',
-              }}
-            />
-          </div>
+            style={{ objectFit: 'contain' }}
+          />
         </Flex>
       ),
     },
@@ -131,13 +126,18 @@ const TournamentTable = () => {
     },
   ];
 
-  const dataSource: TeamData[] =
-    currentTeam?.tour_stats
-      ?.map((team, index) => ({
-        ...team,
-        key: team.id || index.toString(),
-      }))
-      .slice(0, isHomePage ? 6 : undefined) || [];
+  // Мемоизация dataSource для оптимизации
+  const dataSource: any = useMemo(
+    () =>
+      currentTeam?.tour_stats
+        ?.map((team, index) => ({
+          ...team,
+          key: team.id || index.toString(), // Гарантируем, что key — строка
+          id: team.id, // Сохраняем id для rowKey
+        }))
+        .slice(0, isHomePage ? 6 : undefined) || [],
+    [currentTeam, isHomePage]
+  );
 
   return (
     <StyledComponent $isHomePage={isHomePage}>
@@ -149,11 +149,11 @@ const TournamentTable = () => {
         >
           <Flex vertical>
             <h1 className="main-title">Турнирная таблица</h1>
-            <p className="sub-title">{currentTeam?.title}</p>
+            <p className="sub-title">{currentTeam?.title || 'Загрузка...'}</p>
           </Flex>
           {isHomePage && (
-            <StyledButton aria-hidden="true">
-              <NavLink to="tournaments/kyrygzskaya-premer-liga">
+            <StyledButton>
+              <NavLink to="/tournaments/kyrygzskaya-premer-liga">
                 Узнать больше
               </NavLink>
             </StyledButton>
@@ -178,17 +178,35 @@ const StyledComponent = styled.div<{ $isHomePage: boolean }>`
   margin: 0 auto;
   margin-top: ${({ $isHomePage }) => ($isHomePage ? '30px' : '0')};
   background-image: ${({ $isHomePage }) =>
-    $isHomePage ? `url(${background1})` : null};
+    $isHomePage ? `url(${background1})` : 'none'};
   background-size: cover;
+  min-height: 676px;
   background-position: center;
   background-repeat: no-repeat;
-
+  
   @media (max-width: 1024px) {
     padding: 40px 20px;
+  }
+  
+  @media (max-width: 768px) {
+    min-height: auto;
+    padding: 20px 10px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 15px 5px;
   }
 
   .header {
     margin-bottom: 20px;
+
+    @media (max-width: 768px) {
+      margin-bottom: 15px;
+    }
+
+    @media (max-width: 480px) {
+      margin-bottom: 10px;
+    }
   }
 
   .main-title {
@@ -196,9 +214,11 @@ const StyledComponent = styled.div<{ $isHomePage: boolean }>`
     color: white;
     font-weight: 600;
     margin: 0;
+
     @media (max-width: 768px) {
       font-size: 24px;
     }
+
     @media (max-width: 480px) {
       font-size: 20px;
     }
@@ -213,9 +233,12 @@ const StyledComponent = styled.div<{ $isHomePage: boolean }>`
     padding: 8px 12px;
     width: max-content;
     margin: 10px 0 0;
+
     @media (max-width: 768px) {
       font-size: 16px;
+      padding: 6px 10px;
     }
+
     @media (max-width: 480px) {
       font-size: 14px;
       padding: 6px 10px;
@@ -239,13 +262,16 @@ const StyledComponent = styled.div<{ $isHomePage: boolean }>`
     border: none;
     padding: 8px;
     text-align: center;
+
     &::before {
-      width: 0 !important;
+      display: none;
     }
+
     @media (max-width: 768px) {
       font-size: 12px;
       padding: 6px;
     }
+
     @media (max-width: 480px) {
       font-size: 10px;
       padding: 4px;
@@ -258,55 +284,37 @@ const StyledComponent = styled.div<{ $isHomePage: boolean }>`
     font-size: 14px;
     background: transparent;
     transition: background-color 0.3s ease;
+
     @media (max-width: 768px) {
       font-size: 12px;
       padding: 6px;
     }
+
     @media (max-width: 480px) {
       font-size: 10px;
       padding: 4px;
     }
   }
 
-  .ant-table-tbody > tr .text-content {
+  .text-content {
     background: white;
     padding: 8px 12px;
     border-radius: 6px;
     font-weight: 700;
     color: #333;
+
     @media (max-width: 768px) {
       padding: 6px 10px;
     }
+
     @media (max-width: 480px) {
       padding: 4px 8px;
     }
   }
 
-  .ant-table-tbody > tr:hover {
-    background-color: transparent !important;
-  }
-
   .ant-table-tbody > tr:hover .text-content {
     background: #00a851;
     color: white;
-  }
-
-  .ant-table-tbody > tr:hover td {
-    background: transparent;
-  }
-
-  @media (max-width: 768px) {
-    padding: 20px 10px;
-    .header {
-      margin-bottom: 15px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    padding: 15px 5px;
-    .header {
-      margin-bottom: 10px;
-    }
   }
 `;
 
