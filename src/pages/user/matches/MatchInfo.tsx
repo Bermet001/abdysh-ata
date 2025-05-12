@@ -403,7 +403,7 @@ const Score = styled.div`
 `
 
 const LeagueLogo = styled.img`
-   width: 100px;
+   width: 150px;
    height: auto;
    margin: 0 auto;
    @media (max-width: 768px) {
