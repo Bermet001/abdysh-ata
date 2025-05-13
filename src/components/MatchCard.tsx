@@ -28,7 +28,6 @@ const MatchCard: FC<Match> = ({
   away_score,
   slug,
 }) => {
-  // Мемоизация форматирования даты
   const formattedDate = useMemo(() => {
     const dateObj = new Date(date);
     return `${dateObj.toLocaleDateString('ru-RU')} ${dateObj.toLocaleTimeString('ky-KG', {
@@ -49,7 +48,7 @@ const MatchCard: FC<Match> = ({
               alt={`${home_team.title} logo`}
               width={50}
               height={50}
-              loading="lazy"
+              // Удаляем loading="lazy" для видимых карточек или используем loading="eager"
             />
           </Team>
           <Flex className="count-down" vertical align="center" justify="center">
@@ -63,7 +62,7 @@ const MatchCard: FC<Match> = ({
               alt={`${away_team.title} logo`}
               width={50}
               height={50}
-              loading="lazy"
+              // Удаляем loading="lazy" для видимых карточек или используем loading="eager"
             />
           </Team>
         </Flex>
@@ -94,8 +93,10 @@ const MatchCardContainer = styled(Flex)`
   }
 
   img {
-    height: auto;
-    max-width: 50px;
+    width: 50px; /* Явно задаем размеры */
+    height: 50px;
+    object-fit: contain; /* Логотипы не искажаются */
+    aspect-ratio: 1/1; /* Гарантируем квадратную форму */
   }
 
   .count-down p {
@@ -118,7 +119,8 @@ const MatchCardContainer = styled(Flex)`
       min-height: 110px;
     }
     img {
-      max-width: 40px;
+      width: 40px;
+      height: 40px;
     }
   }
 
@@ -128,7 +130,8 @@ const MatchCardContainer = styled(Flex)`
       font-size: 20px;
     }
     img {
-      max-width: 35px;
+      width: 35px;
+      height: 35px;
     }
   }
 
@@ -140,7 +143,8 @@ const MatchCardContainer = styled(Flex)`
       min-height: 60px;
     }
     img {
-      max-width: 30px;
+      width: 30px;
+      height: 30px;
     }
     .count-down p {
       font-size: 18px;
@@ -150,7 +154,24 @@ const MatchCardContainer = styled(Flex)`
 
 const Team = styled(Flex)`
   margin: 10px 0;
-  height: 50px;
+  width: 50px; /* Фиксированная ширина для контейнера */
+  height: 50px; /* Фиксированная высота для контейнера */
+  flex-shrink: 0; /* Предотвращаем сжатие */
+
+  @media (max-width: 1000px) {
+    width: 40px;
+    height: 40px;
+  }
+
+  @media (max-width: 768px) {
+    width: 35px;
+    height: 35px;
+  }
+
+  @media (max-width: 470px) {
+    width: 30px;
+    height: 30px;
+  }
 
   @media (max-width: 600px) {
     margin: 5px 0;
