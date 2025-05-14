@@ -21,6 +21,7 @@ export interface Coach {
    birth_date: string | null
    schedules: Schedule[]
    team_image: string
+   achievement:any
 }
 interface CoachState {
    coaches: Coach[]
@@ -39,6 +40,7 @@ const initialState: CoachState = {
       birth_date: null,
       schedules: [],
       team_image: '',
+      achievement:[]
    },
    isLoading: false,
 }

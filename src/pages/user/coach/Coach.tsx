@@ -19,7 +19,7 @@ const Coach: FC = () => {
          dispatch(getCoach(slug))
       }
    }, [dispatch, slug])
-   const { image, name, position, birth_date, bio, schedules, team_image } =
+   const { image, name, position, birth_date, bio, schedules, team_image, achievement } =
       coach
    const formatDay = (day: string): string => {
       const days: { [key: string]: string } = {
@@ -139,6 +139,28 @@ const Coach: FC = () => {
                      dangerouslySetInnerHTML={{ __html: bio || '' }}
                      className="bio"
                   />
+
+{achievement && achievement.length > 0 && (
+   <>
+      <br />
+      <h2 className="main-title">Достижения</h2>
+      <AchievementsSection>
+         {achievement.map((item:any) => (
+            <AchievementCard key={item.id} index={item.id}>
+               <AchievementTitle>{item.title}</AchievementTitle>
+               <AchievementDate>
+                  {new Date(item.date).toLocaleDateString('ru-RU', {
+                     year: 'numeric',
+                     month: 'long',
+                  })}
+               </AchievementDate>
+            </AchievementCard>
+         ))}
+      </AchievementsSection>
+   </>
+)}
+
+
                </Flex>
             </Flex>
          </StyledComponent>
@@ -208,13 +230,12 @@ const StyledComponent = styled(Flex)`
       }
    }
 `
-const StyledCard = styled(Card)`
-   width: 220px;
+
+const AnimatedCard = styled(Card)`
+   opacity: 0;
+    width: 220px;
    background-color: #fff;
    border-radius: 6px;
-`
-const AnimatedCard = styled(StyledCard)`
-   opacity: 0;
    max-width: 520px;
    width: 520px;
    min-width: 325px;
@@ -303,4 +324,46 @@ const ScheduleValue = styled.span`
    ${AnimatedScheduleCard}:hover & {
       background: rgba(0, 166, 79, 0.2);
    }
+`
+const AchievementsSection = styled.div`
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+   gap: 20px;
+   margin-top: 20px;
+`
+
+const AchievementCard = styled.div<{ index: number }>`
+   background: #ffffff;
+   border-radius: 12px;
+   padding: 20px;
+   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   opacity: 0;
+   animation: ${fadeIn} 0.6s ease-in-out forwards;
+   animation-delay: ${(props) => 0.3 + props.index * 0.2}s;
+   border-left: 5px solid #00a64f;
+   transition: transform 0.3s ease, box-shadow 0.3s ease;
+   &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 166, 79, 0.15);
+   }
+`
+
+const AchievementTitle = styled.h3`
+   font-size: 18px;
+   font-weight: 600;
+   color: #333;
+   margin-bottom: 10px;
+`
+
+const AchievementDate = styled.span`
+   font-size: 14px;
+   color: #00a64f;
+   font-weight: 500;
+   background-color: rgba(0, 166, 79, 0.1);
+   padding: 5px 10px;
+   border-radius: 6px;
+   align-self: flex-start;
 `
