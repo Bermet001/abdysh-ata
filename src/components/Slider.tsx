@@ -17,8 +17,9 @@ const Slider: FC = () => {
             dots={false}
             autoplay
             arrows
-            autoplaySpeed={5000}
+            autoplaySpeed={2000}
             infinite
+
             aria-hidden="false"
          >
             {isLoading
@@ -85,6 +86,41 @@ const StyledCarousel = styled(Carousel)`
    .main-container {
       padding: 120px 75px;
    }
+
+   .slick-prev,
+.slick-next {
+   z-index: 5;
+   width: 30px;
+   height: 30px;
+   background-color: rgba(237, 90, 12, 0.8);
+   border-radius: 50%;
+   display: flex !important;
+   align-items: center;
+   justify-content: center;
+   transition: background 0.3s ease;
+}
+
+.slick-prev::before,
+.slick-next::before {
+   font-size: 30px;
+   color: white;
+   opacity: 1;
+}
+
+.slick-prev:hover,
+.slick-next:hover {
+   background-color: rgba(237, 90, 12, 1);
+}
+
+.slick-prev::after {
+   left: 11px;
+   top:10px !important;
+}
+.slick-next::after { 
+   left: 6px !important;
+   top:10px !important;
+}
+
    @media (max-width: 1000px) {
       .slick-slide {
          height: 500px;
