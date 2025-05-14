@@ -8,6 +8,7 @@ import { useEffect } from 'react'
 import { getAchievements } from '../store/slice/ahievements/ahievementsThunk'
 import Person from '../assets/images/person.png'
 import Vicroty from '../assets/images/victory.webp'
+import { Autoplay } from 'swiper/modules'
 
 const VictoryBlock = () => {
    const { achievements, isLoading } = useAppSelector(
@@ -17,7 +18,7 @@ const VictoryBlock = () => {
    useEffect(() => {
       dispatch(getAchievements())
    }, [dispatch])
-   
+
    return (
       <Container>
          <VictoryDes className="victory-des">
@@ -38,16 +39,19 @@ const VictoryBlock = () => {
             </Flex>
          </VictoryDes>
          <SliderContainer>
-            <Swiper
-               spaceBetween={20}
-               slidesPerView={1}
-               breakpoints={{
-                  200: { slidesPerView: 2 },
-                  580: { slidesPerView: 3 },
-                  768: { slidesPerView: 3 },
-                  1130: { slidesPerView: 4 },
-               }}
-            >
+<Swiper
+   spaceBetween={20}
+   slidesPerView={1}
+   autoplay={{ delay: 3000, disableOnInteraction: false }}
+   loop={true}
+   modules={[Autoplay]}
+   breakpoints={{
+      200: { slidesPerView: 2 },
+      580: { slidesPerView: 3 },
+      768: { slidesPerView: 3 },
+      1130: { slidesPerView: 4 },
+   }}
+>
                {isLoading
                   ? Array.from({ length: 4 }).map((_, index) => (
                        <SwiperSlide key={index}>

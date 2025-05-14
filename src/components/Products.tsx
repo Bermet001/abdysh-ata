@@ -7,6 +7,7 @@ import { NavLink } from 'react-router-dom'
 import Button from './UI/Button'
 import { useAppDispatch, useAppSelector } from '../store/store'
 import { PRODUCT_THUNK } from '../store/slice/shop/shopThunk'
+import { Autoplay } from 'swiper/modules'
 
 const ProductSlider = () => {
    const { products, isLoading } = useAppSelector((state) => state.shop)
@@ -31,16 +32,18 @@ const ProductSlider = () => {
                   </Button>
                </NavLink>
             </Flex>
-            <Swiper
-               spaceBetween={10}
-               breakpoints={{
-                  200: { slidesPerView: 2 },
-                  640: { slidesPerView: 2 },
-                  768: { slidesPerView: 3 },
-                  1024: { slidesPerView: 4 },
-                  1440: { slidesPerView: 5 },
-               }}
-            >
+       <Swiper
+   spaceBetween={10}
+   modules={[Autoplay]}
+   autoplay={{ delay: 3000, disableOnInteraction: false }}
+   breakpoints={{
+      200: { slidesPerView: 2 },
+      640: { slidesPerView: 2 },
+      768: { slidesPerView: 3 },
+      1024: { slidesPerView: 4 },
+      1440: { slidesPerView: 5 },
+   }}
+>
                {isLoading
                   ? [...Array(5)].map((_, index) => (
                        <SwiperSlide key={index}>

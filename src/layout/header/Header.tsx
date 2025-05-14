@@ -148,7 +148,7 @@ const Header = () => {
       },
       { path: '/match', title: 'Матчи', id: '4' },
       {
-        path: '/infrastructure',
+        path: '#',
         title: 'Инфраструктура',
         id: '8',
         sub_nav: infrastractures?.map(({ slug, title, id }) => ({

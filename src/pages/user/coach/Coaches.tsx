@@ -3,7 +3,7 @@ import { Button, Modal } from 'antd'
 import { NavLink, useParams } from 'react-router-dom'
 import { useAppSelector } from '../../../store/store'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { FreeMode, Navigation } from 'swiper/modules'
+import { Autoplay, FreeMode, Navigation } from 'swiper/modules'
 import { useState } from 'react'
 import Cards from '../../../components/academy/Cards'
 import Academy from '../../../components/academy/Academy'
@@ -48,19 +48,21 @@ const Coaches = () => {
          <StyledContainer>
             <h1 className="main-title">Тренерский штаб</h1>
             <Swiper
-               navigation
-               slidesPerView={3}
-               spaceBetween={30}
-               breakpoints={{
-                  350: { slidesPerView: 1 },
-                  500: { slidesPerView: 2 },
-                  768: { slidesPerView: 3 },
-               }}
-               pagination={{
-                  clickable: true,
-               }}
-               modules={[FreeMode, Navigation]}
-            >
+   navigation
+   slidesPerView={3}
+   spaceBetween={30}
+   autoplay={{ delay: 3000, disableOnInteraction: false }}
+   loop={true}
+   breakpoints={{
+      350: { slidesPerView: 1 },
+      500: { slidesPerView: 2 },
+      768: { slidesPerView: 3 },
+   }}
+   pagination={{
+      clickable: true,
+   }}
+   modules={[FreeMode, Navigation, Autoplay]}
+>
                {coaches.map(
                   ({ name, position, id, image, slug, schedules }) => (
                      <SwiperSlide key={id}>

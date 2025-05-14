@@ -6,6 +6,7 @@ import { useEffect } from 'react'
 import { getMatches } from '../store/slice/matches/matchesThunk'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css/pagination'
+import { Autoplay } from 'swiper/modules'
 
 const MatchInfo = () => {
    const { matches, isLoading } = useAppSelector((state) => state.matches)
@@ -24,18 +25,19 @@ const MatchInfo = () => {
                ))}
             </SkeletonWrapper>
          ) : (
-            <Swiper
-               slidesPerView={4}
-               spaceBetween={10}
-               autoplay
-               pagination={{ clickable: true }}
-               breakpoints={{
-                  1200: { slidesPerView: 4 },
-                  992: { slidesPerView: 3 },
-                  768: { slidesPerView: 2.8 },
-                  0: { slidesPerView: 2 },
-               }}
-            >
+          <Swiper
+   modules={[Autoplay]}
+   slidesPerView={4}
+   spaceBetween={10}
+   autoplay={{ delay: 3000, disableOnInteraction: false }}
+   pagination={{ clickable: true }}
+   breakpoints={{
+      1200: { slidesPerView: 4 },
+      992: { slidesPerView: 3 },
+      768: { slidesPerView: 2.8 },
+      0: { slidesPerView: 2 },
+   }}
+>
                {matches?.map((match, index) => (
                   <SwiperSlide key={index}>
                      <MatchCard {...match} />

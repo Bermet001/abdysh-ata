@@ -16,7 +16,8 @@ const Slider: FC = () => {
          <StyledCarousel
             dots={false}
             autoplay
-            autoplaySpeed={6000}
+            arrows
+            autoplaySpeed={5000}
             infinite
             aria-hidden="false"
          >

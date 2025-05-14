@@ -205,22 +205,21 @@ const TournamentAcademy = () => {
                   />
                   <br />
                   <br />
-                  <PhotoCarousel
-                     slidesToShow={Math.min(
-                        4,
-                        tournament?.academia_images?.length
-                     )}
-                     dots={true}
-                     arrows={true}
-                     swipe={true}
-                     swipeToSlide={true}
-                     draggable={true}
-                     touchThreshold={10}
-                     responsive={[
-                        { breakpoint: 768, settings: { slidesToShow: 2 } },
-                        { breakpoint: 480, settings: { slidesToShow: 2 } },
-                     ]}
-                  >
+                 <PhotoCarousel
+   autoplay
+   autoplaySpeed={3000}
+   slidesToShow={Math.min(4, tournament?.academia_images?.length)}
+   dots={true}
+   arrows={true}
+   swipe={true}
+   swipeToSlide={true}
+   draggable={true}
+   touchThreshold={10}
+   responsive={[
+      { breakpoint: 768, settings: { slidesToShow: 2 } },
+      { breakpoint: 480, settings: { slidesToShow: 2 } },
+   ]}
+>
                      {tournament?.academia_images?.map((photo) => (
                         <div key={photo?.id}>
                            <PhotoImage

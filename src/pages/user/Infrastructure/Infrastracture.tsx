@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 import { useEffect } from 'react'
 import { getInfrastracture } from '../../../store/slice/infrastracture/infrastractureThunk'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { FreeMode, Navigation } from 'swiper/modules'
+import { Autoplay, FreeMode, Navigation } from 'swiper/modules'
 
 const Infrastructure = () => {
    window.scrollTo(0, 0)
@@ -82,17 +82,19 @@ const Infrastructure = () => {
             })}
          </Flex>
          <h2 className="main-title">Картинки</h2>
-         <Swiper
-            navigation
-            modules={[FreeMode, Navigation]}
-            spaceBetween={10}
-            slidesPerView={4}
-            breakpoints={{
-               350: { slidesPerView: 2 },
-               500: { slidesPerView: 2 },
-               900: { slidesPerView: 3 },
-            }}
-         >
+        <Swiper
+   navigation
+   modules={[FreeMode, Navigation, Autoplay]}
+   spaceBetween={10}
+   autoplay={{ delay: 3000, disableOnInteraction: false }}
+   loop={true}
+   slidesPerView={4}
+   breakpoints={{
+      350: { slidesPerView: 2 },
+      500: { slidesPerView: 2 },
+      900: { slidesPerView: 3 },
+   }}
+>
             {infrastracture?.images?.map((item) => (
                <SwiperSlide key={item.id}>
                   <Image  loading="lazy" className="gallery-image" src={item.image} alt="image" />
