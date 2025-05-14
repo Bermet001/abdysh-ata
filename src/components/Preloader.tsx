@@ -29,6 +29,7 @@ const Preloader: FC = () => {
 }
 const Letter: FC<{ children: string; delay: number }> = ({
    children,
+   
    delay,
 }) => (
    <LetterStyled

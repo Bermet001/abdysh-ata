@@ -17,6 +17,7 @@ const VictoryBlock = () => {
    useEffect(() => {
       dispatch(getAchievements())
    }, [dispatch])
+   
    return (
       <Container>
          <VictoryDes className="victory-des">

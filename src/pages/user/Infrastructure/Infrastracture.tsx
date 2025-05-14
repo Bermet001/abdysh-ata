@@ -95,7 +95,7 @@ const Infrastructure = () => {
          >
             {infrastracture?.images?.map((item) => (
                <SwiperSlide key={item.id}>
-                  <img  loading="lazy" className="gallery-image" src={item.image} alt="image" />
+                  <Image  loading="lazy" className="gallery-image" src={item.image} alt="image" />
                </SwiperSlide>
             ))}
          </Swiper>
