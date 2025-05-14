@@ -15,9 +15,7 @@ const Coach: FC = () => {
    const { coach } = useAppSelector((state) => state.coach)
    const dispatch = useAppDispatch()
    useEffect(() => {
-      if (slug) {
-         dispatch(getCoach(slug))
-      }
+      if (slug) dispatch(getCoach(slug))
    }, [dispatch, slug])
    const { image, name, position, birth_date, bio, schedules, team_image, achievement } =
       coach

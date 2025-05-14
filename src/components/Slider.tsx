@@ -17,7 +17,7 @@ const Slider: FC = () => {
             dots={false}
             autoplay
             arrows
-            autoplaySpeed={2000}
+            autoplaySpeed={4000}
             infinite
 
             aria-hidden="false"

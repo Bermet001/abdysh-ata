@@ -23,9 +23,9 @@ const FooterSection: FC<IPrors> = ({
 }) => (
    <Flex
       className="column-footer"
-      style={{ maxWidth: '195px' }}
+      style={{ maxWidth: '195px' , minWidth: '200px', minHeight: '270px'}}
       vertical
-      gap={20}
+      gap={8}
    >
       <p className="title">{title}</p>
       {isNav ? (
