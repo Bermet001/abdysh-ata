@@ -23,7 +23,7 @@ const FooterSection: FC<IPrors> = ({
 }) => (
    <Flex
       className="column-footer"
-      style={{ maxWidth: '195px' , minWidth: '200px', minHeight: '270px'}}
+      style={{ maxWidth: '195px' , minWidth: '200px'}}
       vertical
       gap={8}
    >

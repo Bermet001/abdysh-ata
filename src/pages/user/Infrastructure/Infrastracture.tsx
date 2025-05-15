@@ -90,7 +90,7 @@ const Infrastructure = () => {
                   {infrastracture?.football_fields.map((item: any) => (
                      <StyledCard key={item.id}>
    <div className="carousel-wrapper">
-      <StyledCarousel autoplay dots={false} arrows>
+      <StyledCarousel autoplay autoplaySpeed={6000} dots={false} arrows>
          {[item.image, ...(item.inf_images || [])].map((img: any, index: number) => (
             <div key={index}>
                <img
