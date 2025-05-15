@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Flex } from 'antd'
+import { Carousel, Flex } from 'antd'
 import styled, { keyframes } from 'styled-components'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
 import {
@@ -120,12 +120,19 @@ const Trophy = () => {
                                  index % 2 === 1 ? 'space-between' : 'start',
                            }}
                         >
-                           <img
+                           <StyledCarousel autoplay dots={false} arrows>
+  {[item.image, ...(item.images || [])].map((img: any, index: number) => (
+            <div key={index}>
+                <img
                               className="image"
                               loading="lazy"
-                              src={item.image}
-                              alt={item.title}
-                           />
+                              src={img.image || item.image}
+                              alt={img.id}
+                              />
+            </div>
+         ))}
+                          
+                              </StyledCarousel>
                            <Flex gap={40} vertical className="texstovka">
                               <h2>{item.title}</h2>
                               <p className="description-text">
@@ -153,6 +160,9 @@ const StyledContainer = styled(Flex)`
    margin-top: 30px;
    .description-text {
       color: grey;
+               @media (max-width: 400px) {
+                  font-size: 13px;
+               }
    }
    .read-more {
       color: #ed5a0c !important;
@@ -179,12 +189,12 @@ const StyledContainer = styled(Flex)`
          height: 100%;
       }
       @media (max-width: 1024px) {
-         padding: 20px;
+         padding: 10px;
       }
    }
    .image {
-      width: 50%;
-      min-width: 50%;
+      /* width: 50%;
+      min-width: 50%; */
       height: 400px;
       object-fit: cover;
       @media (max-width: 768px) {
@@ -203,7 +213,7 @@ const StyledContainer = styled(Flex)`
       font-size: 20px;
       font-weight: 200;
       @media (max-width: 1024px) {
-         padding: 20px;
+         padding: 10px;
          line-height: 1.5;
       }
       @media (max-width: 768px) {
@@ -217,7 +227,7 @@ const StyledContainer = styled(Flex)`
    .trophy-block-container {
       padding: 75px;
       @media (max-width: 1024px) {
-         padding: 20px;
+         padding: 10px;
       }
       @media (max-width: 480px) {
          gap: 30px;
@@ -267,7 +277,7 @@ const StyledContainer = styled(Flex)`
                   font-size: 32px;
                }
                @media (max-width: 400px) {
-                  font-size: 32px;
+                  font-size: 20px;
                }
             }
          }
@@ -350,4 +360,57 @@ const DarkOverlay = styled.div`
    bottom: 0;
    background: linear-gradient(to bottom, #000, transparent 99%);
    z-index: 1;
+`
+
+
+
+const StyledCarousel = styled(Carousel)`
+   width:620px;
+   .slick-slide {
+      text-align: center;
+      line-height: 250px;
+      background: #fff;
+   }
+
+   @media (max-width: 500px) {
+      width: 350px;
+   }
+
+   .slick-slide img {
+      display: block;
+      width: 100%;
+      object-fit: cover;
+   }
+
+   .slick-prev,
+   .slick-next {
+      z-index: 10;
+      width: 30px;
+      height: 30px;
+      background-color: rgba(237, 90, 12, 0.8);
+      border-radius: 50%;
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+   }
+
+   .slick-prev::after,
+   .slick-next::after {
+      font-size: 20px;
+      color: white;
+      opacity: 1;
+      top:9px;
+      left: 6px;
+   }
+   .slick-prev::after{
+      left: 10px;
+
+   }
+   
+   .slick-prev:hover,
+   .slick-next:hover {
+      background-color: rgba(237, 90, 12, 1);
+   }
+
+  
 `
