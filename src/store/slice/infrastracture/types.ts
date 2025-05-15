@@ -8,12 +8,6 @@ interface Video {
    id: number
 }
 
-interface Fields {
-   id: number
-   title: string
-   image: string
-}
-
 interface Stadium {
    id: number
    title: string
@@ -29,7 +23,7 @@ interface Stadium {
    images: Image[]
    places: string
    opening: string
-   football_fields: Fields[]
+   football_fields: any 
 }
 
 interface Infrastructure {
@@ -47,7 +41,7 @@ interface Infrastructure {
 interface InitialState {
    isLoading: boolean
    infrastractures?: Infrastructure[]
-   infrastracture?: Stadium | null | undefined
+   infrastracture?: Stadium | undefined | null
 }
 
 export type { Stadium, InitialState, Infrastructure }

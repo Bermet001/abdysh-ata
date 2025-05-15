@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 import { useEffect } from 'react'
 import { getInfrastracture } from '../../../store/slice/infrastracture/infrastractureThunk'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Autoplay, FreeMode, Navigation } from 'swiper/modules'
+import { FreeMode, Navigation } from 'swiper/modules'
 
 const Infrastructure = () => {
    window.scrollTo(0, 0)
@@ -82,44 +82,56 @@ const Infrastructure = () => {
             })}
          </Flex>
          <h2 className="main-title">Картинки</h2>
-        <Swiper
-   navigation
-   modules={[FreeMode, Navigation, Autoplay]}
-   spaceBetween={10}
-   autoplay={{ delay: 3000, disableOnInteraction: false }}
-   loop={true}
-   slidesPerView={4}
-   breakpoints={{
-      350: { slidesPerView: 2 },
-      500: { slidesPerView: 2 },
-      900: { slidesPerView: 3 },
-   }}
->
+         <Swiper
+            navigation
+            modules={[FreeMode, Navigation]}
+            spaceBetween={10}
+            slidesPerView={4}
+            breakpoints={{
+               350: { slidesPerView: 2 },
+               500: { slidesPerView: 2 },
+               900: { slidesPerView: 3 },
+            }}
+         >
             {infrastracture?.images?.map((item) => (
                <SwiperSlide key={item.id}>
-                  <Image  loading="lazy" className="gallery-image" src={item.image} alt="image" />
+                  <img  loading="lazy" className="gallery-image" src={item.image} alt="image" />
                </SwiperSlide>
             ))}
          </Swiper>
-         <div style={{ marginTop: '60px' }}>
-            {infrastracture?.football_fields &&
-               infrastracture?.football_fields?.length > 0 && (
-                  <Flex vertical className="gallery-block">
-                     <Flex wrap="wrap" gap={20}>
-                        {infrastracture?.football_fields?.map((item) => (
-                           <StyledCard key={item?.id}>
-                              <img
-                              loading="lazy"
-                                 className="card-image"
-                                 src={item?.image}
-                                 alt="стадион"
-                              />
-                              <h3 className="card-title">{item?.title}</h3>
-                           </StyledCard>
-                        ))}
+
+          <div style={{ marginTop: '60px' }}> 
+            {infrastracture?.football_fields?.length > 0 && (
+           <>
+           <h3 className='main-title'>Поля</h3>
+               <Flex vertical className="gallery-block">
+                  {infrastracture?.football_fields.map((item:any, index:number) => (
+                     <Flex
+                     key={item.id}
+                     className="field-block"
+                     style={{
+                        flexDirection: index % 2 === 0 ? 'row' : 'row-reverse',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        marginBottom: '60px',
+                     }}
+                     >
+                        <img
+                           loading="lazy"
+                           className="field-image"
+                           src={item.image}
+                           alt={item.title}
+                           style={{ width: '45%', borderRadius: '8px' }}
+                           />
+                        <div style={{ maxWidth: '50%' }}>
+                           <h2 style={{ fontSize: '30px', marginBottom: '12px' }}>{item.title}</h2>
+                           <p style={{ fontSize: '16px', color: '#333' }}>{item.description}</p>
+                        </div>
                      </Flex>
-                  </Flex>
-               )}
+                  ))}
+               </Flex>
+                  </>
+            )}
          </div>
          <Flex vertical className="map-block">
             <h2>Маршрут</h2>
@@ -251,36 +263,55 @@ const StyledContainer = styled.main`
          }
       }
    }
-`
-const StyledCard = styled.div`
-   background: #fff;
-   border: 1px solid #e0e0e0;
-   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-   padding: 20px;
-   border-radius: 8px;
-   flex: 1 1 calc(33.333% - 40px / 3);
-   box-sizing: border-box;
-   .card-title {
-      font-size: 18px;
-      font-weight: 700;
-      color: #000;
-      margin: 0 0 15px 0;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      @media (max-width: 768px) {
+
+   .field-block {
+      display: flex;
+      align-items: center;
+      margin-bottom: 60px;
+      gap: 40px;
+
+      &.reverse {
+         flex-direction: row-reverse;
+      }
+
+      @media (max-width: 1024px) {
+         flex-direction: column !important;
+         gap: 20px;
+      }
+   }
+
+   .field-image {
+      width: 50%;
+      border-radius: 8px;
+
+      @media (max-width: 1024px) {
+         width: 100%;
+         height: auto;
+      }
+   }
+
+   .field-text {
+      width: 50%;
+
+      h2 {
+         font-size: 30px;
+         color: #ed5a0c;
+         margin-bottom: 12px;
+         @media (max-width: 768px) {
+            font-size: 24px;
+         }
+      }
+
+      p {
          font-size: 16px;
+         color: #333;
+         @media (max-width: 768px) {
+            font-size: 14px;
+         }
       }
-   }
-   .card-image {
-      width: 100%;
-      height: 300px;
-      object-fit: cover;
-      border-radius: 4px;
-      @media (max-width: 768px) {
-         height: 200px;
+
+      @media (max-width: 1024px) {
+         width: 100%;
       }
-   }
-   @media (max-width: 768px) {
-      flex: 1 1 100%;
    }
 `
