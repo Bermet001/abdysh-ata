@@ -26,8 +26,11 @@ const News = () => {
    }, [])
    return (
       <div
-         style={{
-            background: '#e2e2e2',
+         // style={{
+         //    background: '#e2e2e2',
+         // }}
+              style={{
+            background: 'linear-gradient(to top, #e2e2e2, transparent 98%)',
          }}
       >
          <NewsContainer>

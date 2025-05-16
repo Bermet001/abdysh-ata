@@ -51,7 +51,7 @@ const Team = () => {
                     ?.slice(0, 6)
                     .map(({ image, id, name, position, number, slug }) => (
                        <SwiperSlide key={id}>
-                          <NavLink key={slug} to={`/player/${slug}`}>
+                          <NavLink key={slug} to={`/team/player/${slug}`}>
                              <StyledCard>
                                 <CardBackground
                                    $image={`https://abdysh-backend.webtm.ru/${image}`}

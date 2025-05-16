@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { Button, Card, Flex } from 'antd'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
-import { ArrowsAltOutlined, EnvironmentFilled } from '@ant-design/icons'
+// import { ArrowsAltOutlined, EnvironmentFilled } from '@ant-design/icons'
 import { useAppSelector } from '../../../store/store'
 interface StyledCardProps {
    bgimage: string
@@ -23,17 +23,17 @@ const Infrastructures: FC = () => {
                         <Flex
                            gap={20}
                            className="info-block"
-                           justify="space-between"
+                           justify="flex-end"
                            align="end"
                         >
-                           <Flex vertical>
+                           {/* <Flex vertical>
                               <p>
                                  <EnvironmentFilled /> {item.address}
                               </p>
                               <p>
                                  <ArrowsAltOutlined /> {item.weave} м
                               </p>
-                           </Flex>
+                           </Flex> */}
                            <StyledButton>Подробнее</StyledButton>
                         </Flex>
                      </div>

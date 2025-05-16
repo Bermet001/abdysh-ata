@@ -42,9 +42,9 @@ const Header = () => {
     useAppSelector((state) => ({
       headerTeam: state.team.headerTeam as Team[] | undefined,
       infrastractures: state.infrastracture.infrastractures as Infrastructure[] | undefined,
-      global_search: state.global_search as { data:any },
+      global_search: state.global_search as { data: any },
       partners: state.partner.partners as Partner[] | undefined,
-      rating: state.rating as { teams:any },
+      rating: state.rating as { teams: any },
     }));
 
   const [isScrolled, setIsScrolled] = useState(false);
@@ -62,7 +62,7 @@ const Header = () => {
         key: '2',
         label: 'Команды',
         children: headerTeam?.map(({ slug, title }) => ({
-          key: slug, // Убедитесь, что slug — это string
+          key: slug,
           label: <StyledNavLink to={`/team/${slug}`}>{title}</StyledNavLink>,
         })) || [],
       },
@@ -88,7 +88,7 @@ const Header = () => {
       {
         key: '5',
         label: <NavLink to="/rating">Турниры</NavLink>,
-        children: teams?.map(({ slug, title }:any) => ({
+        children: teams?.map(({ slug, title }: any) => ({
           key: slug,
           label: <StyledNavLink to={`/tournaments/${slug}`}>{title}</StyledNavLink>,
         })) || [],
@@ -104,15 +104,15 @@ const Header = () => {
     () =>
       data
         ? [
-            ...data.teams.map((team:any) => ({
+            ...data.teams.map((team: any) => ({
               key: `team-${team.id}`,
               label: <StyledNavLink to={`/team/${team.slug}`}>{team.title}</StyledNavLink>,
             })),
-            ...data.products.map((product:any) => ({
+            ...data.products.map((product: any) => ({
               key: `product-${product.id}`,
               label: <StyledNavLink to={`/shop/${product.slug}`}>{product.title}</StyledNavLink>,
             })),
-            ...data.news.map((news:any) => ({
+            ...data.news.map((news: any) => ({
               key: `news-${news.id}`,
               label: <StyledNavLink to={`/news/${news.slug}`}>{news.title}</StyledNavLink>,
             })),
@@ -148,7 +148,7 @@ const Header = () => {
       },
       { path: '/match', title: 'Матчи', id: '4' },
       {
-        path: '#',
+        path: '/infrastructure',
         title: 'Инфраструктура',
         id: '8',
         sub_nav: infrastractures?.map(({ slug, title, id }) => ({
@@ -161,7 +161,7 @@ const Header = () => {
         path: '/tournaments',
         title: 'Турниры',
         id: '5',
-        sub_nav: teams?.map(({ slug, title, id }:any) => ({
+        sub_nav: teams?.map(({ slug, title, id }: any) => ({
           slug: `/tournaments/${slug}`,
           title,
           id,
@@ -242,7 +242,7 @@ const Header = () => {
                     <Dropdown
                       key={id}
                       menu={{
-                        items: sub_nav?.map(({ slug, title, id }:any) => ({
+                        items: sub_nav?.map(({ slug, title, id }: any) => ({
                           key: id,
                           label: <StyledNavLink to={slug}>{title}</StyledNavLink>,
                         })) || [],
@@ -259,7 +259,7 @@ const Header = () => {
                 <Flex className="header-partners" align="center" gap={20}>
                   {partners?.slice(0, 3).map((item) => (
                     <a aria-label={`Партнер ${item.title}`} key={item.link} href={item.link}>
-                      <img src={item.image} width={50} height={50} style={{objectFit:"contain"}} alt={`Партнер ${item.title}`} loading="lazy" />
+                      <img src={item.image} width={50} height={50} style={{ objectFit: "contain" }} alt={`Партнер ${item.title}`} loading="lazy" />
                     </a>
                   ))}
                 </Flex>
@@ -280,7 +280,7 @@ const Header = () => {
         <Flex wrap style={{ padding: '24px' }} align="center" gap={20}>
           {partners?.slice(0, 3).map((item) => (
             <a aria-label={`Партнер ${item.title}`} key={item.link} href={item.link}>
-              <img width={60} height={50} style={{objectFit:"contain"}} src={item.image}  alt={`Партнер ${item.title}`} loading="lazy" />
+              <img width={60} height={50} style={{ objectFit: "contain" }} src={item.image} alt={`Партнер ${item.title}`} loading="lazy" />
             </a>
           ))}
         </Flex>
@@ -290,8 +290,6 @@ const Header = () => {
 };
 
 export default Header;
-
-// Стили остаются без изменений
 const StyledContainer = styled(Flex)<StyledContainerProps>`
   padding: 5px 30px;
   width: 100%;
@@ -314,6 +312,9 @@ const StyledContainer = styled(Flex)<StyledContainerProps>`
     > a {
       color: ${({ isScrolled }) => (isScrolled === 'true' ? 'black' : 'white')};
       font-weight: 500;
+      overflow-wrap: break-word;
+      white-space: normal;
+      min-height: 2rem;
     }
   }
 
@@ -325,9 +326,16 @@ const StyledContainer = styled(Flex)<StyledContainerProps>`
     display: none;
   }
 
+  .ant-menu-title-content a {
+    overflow-wrap: break-word;
+    white-space: normal;
+    min-height: 2rem;
+  }
+
   @media (max-width: 1360px) {
     .desktop-nav a {
       font-size: 13px;
+      min-height: 1.8rem; 
     }
   }
 
@@ -343,6 +351,14 @@ const StyledContainer = styled(Flex)<StyledContainerProps>`
     .mobile-menu {
       display: block;
     }
+    .ant-menu-title-content a,
+    nav > a {
+      min-height: 1.5rem; 
+    }
+  }
+
+  .ant-menu-inline .ant-menu-item {
+    line-height: 1.5rem !important; 
   }
 
   @media (max-width: 768px) {
@@ -350,6 +366,10 @@ const StyledContainer = styled(Flex)<StyledContainerProps>`
     .mobile-menu svg {
       width: 1.2rem;
       height: 1.2rem;
+    }
+    .ant-menu-title-content a,
+    nav > a {
+      min-height: 1.2rem; 
     }
   }
 `;
@@ -372,6 +392,9 @@ const StyledDrawer = styled(Drawer)`
     flex-direction: row-reverse !important;
   }
 
+    .ant-menu-inline .ant-menu-item {
+    line-height: 1.5rem !important; 
+  }
   span {
     color: #2d2d2d;
     padding: 15px 20px;
@@ -385,9 +408,27 @@ const StyledDrawer = styled(Drawer)`
     font-size: 18px;
   }
 
+  a {
+    overflow-wrap: break-word;
+    white-space: normal;
+    min-height: 2rem; 
+  }
+
   a:hover {
     background-color: rgba(0, 0, 0, 0.05);
     color: green;
+  }
+
+  @media (max-width: 1170px) {
+    a {
+      min-height: 1.5rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    a {
+      min-height: 1.2rem;
+    }
   }
 `;
 
@@ -403,13 +444,42 @@ const StyledDropdown = styled(Dropdown)`
     padding: 10px 16px;
     border-bottom: 1px solid #f0f0f0;
     transition: color 0.3s;
+    overflow-wrap: break-word;
+    white-space: normal;
+  }
+
+    .ant-menu-inline .ant-menu-item {
+    line-height: 1.5rem !important; 
+  }
+
+  @media (max-width: 1170px) {
+    .ant-dropdown-menu-item {
+      min-height: 1.5rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .ant-dropdown-menu-item {
+      min-height: 1.2rem;
+    }
   }
 `;
 
 const StyledNavLink = styled(NavLink)`
   text-decoration: none;
+  overflow-wrap: break-word;
+  white-space: normal;
+  min-height: 2rem; 
 
   &:hover {
     color: #ed5a0c;
+  }
+
+  @media (max-width: 1170px) {
+    min-height: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    min-height: 1.2rem; 
   }
 `;

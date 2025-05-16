@@ -19,7 +19,7 @@ const Photo: FC = () => {
          <br />
          <h3>{photo?.title}</h3>
          <Flex vertical gap={20}>
-            <h1 className="main-title">Картинки с этого события</h1>
+            <h1 className="main-title">Галерея этого события</h1>
             <Flex wrap>
                {photo?.images?.map((item) => (
                   <ImageWrapper key={item?.id}>

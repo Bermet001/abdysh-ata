@@ -90,7 +90,6 @@ export default VictoryBlock
 const Container = styled.section`
    text-align: center;
    padding: 0;
-   max-width: 1600px;
    margin: 0 auto;
    padding-bottom: 0;
    color: black;
@@ -216,14 +215,14 @@ const StyledButton = styled(Button)`
       padding: 15px 20px;
       font-size: 0.8rem;
    }
-`
+   `
+
 const StyledCard = styled(Card)`
    text-align: start;
    border-radius: 10px;
    margin: 10px;
    position: relative;
    overflow: hidden;
-   border: none;
    .contents-trophy {
       padding: 15px !important;
       height: 110px;
@@ -251,6 +250,11 @@ const StyledCard = styled(Card)`
       transition: transform 0.3s ease-in-out;
       position: relative;
    }
+   @media (max-width: 450px) {
+      .trophy-image {
+         height: 170px;
+      }
+   }
    &::before {
       content: '';
       position: absolute;
@@ -261,7 +265,11 @@ const StyledCard = styled(Card)`
       background-color: rgba(237, 91, 12, 0.583);
       z-index: 2;
       height: 230px;
-      transition: opacity 0.3s ease;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+      @media (max-width: 450px) {
+         height: 170px;
+      }
    }
    &::after {
       content: '';
@@ -276,21 +284,18 @@ const StyledCard = styled(Card)`
       background-repeat: no-repeat;
       background-position: center;
       z-index: 3;
-      transition: opacity 0.3s ease;
-   }
-   @media (max-width: 450px) {
-      &::before,
-      .trophy-image {
-         height: 170px;
-      }
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
    }
    &:hover {
       .trophy-image {
-         transform: scale(1.1);
+         transform: scale(1.01);
       }
-      &::before,
+      &::before {
+         opacity: 1;
+      }
       &::after {
-         opacity: 0;
+         opacity: 1;
       }
    }
    h2 {

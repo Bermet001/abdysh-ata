@@ -18,7 +18,7 @@ const History = lazy(() => import('../pages/user/History'))
 const Contacts = lazy(() => import('../pages/user/Contacts'))
 const Partners = lazy(() => import('../pages/user/Partners'))
 const TeamWrapper = lazy(() => import('../pages/user/team/TeamWrapper'))
-const Coach = lazy(() => import('../pages/user/coach/Coach'))
+// const Coach = lazy(() => import('../pages/user/coach/Coach'))
 const Coaches = lazy(() => import('../pages/user/coach/Coaches'))
 const NewsPage = lazy(() => import('../pages/user/NewsPage'))
 const Player = lazy(() => import('../pages/user/team/Player'))
@@ -73,7 +73,7 @@ const AppRouter = () => {
                ),
             },
             {
-               path: 'player/:slug',
+               path: 'team/:type/:slug',
                element: (
                   <Suspense>
                      <Player />
@@ -113,10 +113,10 @@ const AppRouter = () => {
                ),
             },
             {
-               path: 'coaches/:slug',
+               path: 'team/:type/:slug"',
                element: (
                   <Suspense>
-                     <Coach />
+                     <Player />
                   </Suspense>
                ),
             },
@@ -145,7 +145,7 @@ const AppRouter = () => {
                ),
             },
             {
-               path: 'infrastracture',
+               path: '/infrastructure',
                element: (
                   <Suspense>
                      <Infrastructures />

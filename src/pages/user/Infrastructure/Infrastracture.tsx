@@ -33,16 +33,38 @@ const Infrastructure = () => {
             </Flex>
             <Flex justify="start" gap={30} vertical>
                <h1 className="main-title">{infrastracture?.title}</h1>
-               <Flex vertical gap={20}>
-                  <Flex gap={20}>
-                     <p className="info"><span>Открытие стадиона: </span>{infrastracture?.opening}</p>
-                     <p className="info"><span>Адрес: </span> {infrastracture?.address}</p>
-                  </Flex>
-                  <Flex gap={20}>
-                     {infrastracture?.weave && <p className="info"><span>Размер поля: </span> {infrastracture?.weave}</p>}
-                     {infrastracture?.places && <p className="info"><span>Вместимость: </span> {infrastracture?.places}</p>}
-                  </Flex>
-               </Flex>
+              {infrastracture && (
+<Flex vertical gap={20}>
+    <Flex gap={20}>
+      {infrastracture.opening && (
+        <p className="info">
+          <span>Открытие стадиона: </span>
+          {infrastracture.opening}
+        </p>
+      )}
+      {infrastracture.address && (
+        <p className="info">
+          <span>Адрес: </span>
+          {infrastracture.address}
+        </p>
+      )}
+    </Flex>
+    <Flex gap={20}>
+      {infrastracture.weave && (
+        <p className="info">
+          <span>Размер поля: </span>
+          {infrastracture.weave}
+        </p>
+      )}
+      {infrastracture.places && (
+        <p className="info">
+          <span>Вместимость: </span>
+          {infrastracture.places}
+        </p>
+      )}
+    </Flex>
+  </Flex>
+)}
                <Flex className="short-info" gap={10} vertical>
                   <h2>Краткое описание</h2>
                   <p>{infrastracture?.description}</p>
@@ -64,7 +86,7 @@ const Infrastructure = () => {
             ))}
          </Flex>
 
-         <h2 className="main-title">Картинки</h2>
+         <h2 className="main-title">Галерея</h2>
          <Swiper
             navigation
             modules={[FreeMode, Navigation]}
@@ -137,6 +159,7 @@ const StyledCard = styled.div`
    overflow: hidden;
    position: relative;
    box-sizing: border-box;
+   max-width: 1600px;
 
    .carousel-wrapper {
       position: relative;
@@ -232,10 +255,14 @@ const StyledContainer = styled.main`
       .info {
          font-size: 18px;
          width: 330px;
-       @media (max-width: 768px) {
+         @media (max-width: 1400px) {
+         width: auto;
+      }
+
+         @media (max-width: 768px) {
             font-size: 16px;
          }
-
+         
          span {
             color: grey;
          }

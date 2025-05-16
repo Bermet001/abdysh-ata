@@ -19,21 +19,22 @@ const TeamWrapper: FC = () => {
       dispatch(getTeam(slug))
    }, [dispatch, slug])
    const baseItems: TabsProps['items'] = [
+      {
+         key: '1',
+         label: slug === 'futbolnaya-akademiya' ? 'О академия' : 'Тренерский штаб',
+         children: <Сoaches />,
+      },
       ...(slug !== 'futbolnaya-akademiya'
          ? [
               {
-                 key: '1',
+                 key: '2',
                  label: 'Команда',
                  children: <Team />,
               },
            ]
          : []),
-      {
-         key: '2',
-         label: 'Тренерский штаб',
-         children: <Сoaches />,
-      },
    ]
+
    if (slug === 'futbolnaya-akademiya') {
       baseItems.push(
          {
@@ -48,6 +49,7 @@ const TeamWrapper: FC = () => {
          }
       )
    }
+
    return (
       <>
          <Helmet>

@@ -1,7 +1,7 @@
-import { Typography, Carousel } from 'antd'
+import { Typography, Carousel, Modal } from 'antd'
 import styled from 'styled-components'
 import { useAppDispatch, useAppSelector } from '../../store/store'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import {
    getAcademiaBanner,
    getAllData,
@@ -117,12 +117,23 @@ const PhotoImage = styled.img`
    object-fit: cover;
    border-radius: 8px;
    border: 2px solid #fff;
+   cursor: pointer;
+   transition: transform 0.3s ease;
+   &:hover {
+      transform: scale(1.05);
+   }
    @media (max-width: 768px) {
       height: 140px;
    }
    @media (max-width: 480px) {
       height: 100px;
    }
+`
+const ZoomedImage = styled.img`
+   width: 100%;
+   max-width: 90vw;
+   max-height: 90vh;
+   object-fit: contain;
 `
 const ContactSection = styled.div`
    padding: 15px;
@@ -138,10 +149,24 @@ const TournamentAcademy = () => {
    const { first, allTeams } = useAppSelector((state) => state.academy)
    const contact: Contact | null = contacts.length > 0 ? contacts[0] : null
    const dispatch = useAppDispatch()
+   const [isModalVisible, setIsModalVisible] = useState(false)
+   const [selectedImage, setSelectedImage] = useState<string | null>(null)
+
    useEffect(() => {
       dispatch(getAcademiaBanner())
       dispatch(getAllData())
    }, [dispatch])
+
+   const handleImageClick = (imageSrc: string) => {
+      setSelectedImage(imageSrc)
+      setIsModalVisible(true)
+   }
+
+   const handleCancel = () => {
+      setIsModalVisible(false)
+      setSelectedImage(null)
+   }
+
    return (
       <TournamentWrapper>
          {first.map((item, i) => (
@@ -205,27 +230,28 @@ const TournamentAcademy = () => {
                   />
                   <br />
                   <br />
-                 <PhotoCarousel
-   autoplay
-   autoplaySpeed={3000}
-   slidesToShow={Math.min(4, tournament?.academia_images?.length)}
-   dots={true}
-   arrows={true}
-   swipe={true}
-   swipeToSlide={true}
-   draggable={true}
-   touchThreshold={10}
-   responsive={[
-      { breakpoint: 768, settings: { slidesToShow: 2 } },
-      { breakpoint: 480, settings: { slidesToShow: 2 } },
-   ]}
->
+                  <PhotoCarousel
+                     autoplay
+                     autoplaySpeed={3000}
+                     slidesToShow={Math.min(4, tournament?.academia_images?.length)}
+                     dots={true}
+                     arrows={true}
+                     swipe={true}
+                     swipeToSlide={true}
+                     draggable={true}
+                     touchThreshold={10}
+                     responsive={[
+                        { breakpoint: 768, settings: { slidesToShow: 2 } },
+                        { breakpoint: 480, settings: { slidesToShow: 2 } },
+                     ]}
+                  >
                      {tournament?.academia_images?.map((photo) => (
                         <div key={photo?.id}>
                            <PhotoImage
-                           loading="lazy"
+                              loading="lazy"
                               src={photo?.image}
                               alt={`Фото ${photo?.id}`}
+                              onClick={() => handleImageClick(photo?.image)}
                            />
                         </div>
                      ))}
@@ -249,6 +275,14 @@ const TournamentAcademy = () => {
                </span>
             </Paragraph>
          </ContactSection>
+         <Modal
+            open={isModalVisible}
+            onCancel={handleCancel}
+            footer={null}
+            style={{margin:" auto", backgroundColor:"transparent"}}
+         >
+            {selectedImage && <ZoomedImage src={selectedImage} alt="Enlarged Photo" />}
+         </Modal>
       </TournamentWrapper>
    )
 }

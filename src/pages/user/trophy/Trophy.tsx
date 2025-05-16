@@ -108,7 +108,6 @@ const Trophy = () => {
                </p>
                <Flex vertical className="trophy-block-container">
                   {achievements.map((item, index) => (
-                     <NavLink to={`/trophy/${item.slug}`} key={item.id}>
                         <Flex
                            justify="space-between"
                            key={item.id}
@@ -120,7 +119,7 @@ const Trophy = () => {
                                  index % 2 === 1 ? 'space-between' : 'start',
                            }}
                         >
-                           <StyledCarousel autoplay dots={false} arrows>
+                           <StyledCarousel autoplay dots={true}>
   {[item.image, ...(item.images || [])].map((img: any, index: number) => (
             <div key={index}>
                 <img
@@ -138,10 +137,11 @@ const Trophy = () => {
                               <p className="description-text">
                                  {item.descriptions}
                               </p>
+                               <NavLink to={`/trophy/${item.slug}`} key={item.id}>
                               <p className="read-more">Читать дальше →</p>
+                               </NavLink>
                            </Flex>
                         </Flex>
-                     </NavLink>
                   ))}
                </Flex>
             </div>
@@ -193,8 +193,6 @@ const StyledContainer = styled(Flex)`
       }
    }
    .image {
-      /* width: 50%;
-      min-width: 50%; */
       height: 400px;
       object-fit: cover;
       @media (max-width: 768px) {
@@ -274,7 +272,7 @@ const StyledContainer = styled(Flex)`
                   font-size: 23px;
                }
                @media (max-width: 610px) {
-                  font-size: 32px;
+                  font-size: 20px;
                }
                @media (max-width: 400px) {
                   font-size: 20px;

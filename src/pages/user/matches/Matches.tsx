@@ -6,7 +6,7 @@ import {
    getAllMatches,
    getMatchBanner,
 } from '../../../store/slice/matches/matchesThunk'
-import { NavLink } from 'react-router-dom'
+// import { NavLink } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 interface Team {
    id: number
@@ -44,31 +44,7 @@ const SchedulMatches = () => {
       dispatch(getMatchBanner())
    }, [dispatch])
    const columns = [
-      {
-         title: 'Дата',
-         dataIndex: 'date',
-         key: 'date',
-         render: (_text: string, record: Match) => (
-            <DateTimeWrapper>
-               <StyledDate>
-                  {new Date(record?.date).toLocaleDateString('ky-KG')}
-               </StyledDate>
-               <StyledTime>
-                  {new Date(record?.date).toLocaleTimeString([], {
-                     hour: '2-digit',
-                     minute: '2-digit',
-                  })}
-               </StyledTime>
-            </DateTimeWrapper>
-         ),
-      },
-      {
-         title: 'Лига',
-         dataIndex: 'liga',
-         key: 'liga',
-         render: (liga: League) => <League>{liga?.title}</League>,
-      },
-      {
+       {
          title: 'Команды',
          key: 'teams',
          render: (record: Match) => (
@@ -98,13 +74,43 @@ src={record.away_team?.logo}
          ),
       },
       {
+         title: 'Дата',
+         dataIndex: 'date',
+         key: 'date',
+         render: (_text: string, record: Match) => (
+            <DateTimeWrapper>
+               <StyledDate>
+                  {new Date(record?.date).toLocaleDateString('ky-KG')}
+               </StyledDate>
+               <StyledTime>
+                  {new Date(record?.date).toLocaleTimeString([], {
+                     hour: '2-digit',
+                     minute: '2-digit',
+                  })}
+               </StyledTime>
+            </DateTimeWrapper>
+         ),
+      },
+      {
+         title: 'Лига',
+         dataIndex: 'liga',
+         key: 'liga',
+         render: (liga: League) => <League>{liga?.title}</League>,
+      },
+     
+      {
          title: 'Действие',
          key: 'action',
-         render: (record: Match) => (
-            <Button type="primary">
-               <NavLink to={`${record?.slug}`}>Смотреть</NavLink>
+         render: (record: Match) => {
+            
+            return(
+<TeamWrapper>
+<Button type="primary">
+               <a href={`${record.stream_link || "#"}`}>Смотреть</a>
             </Button>
-         ),
+<p style={{marginLeft:"15px"}} className='team-name'>{record.status_display}</p>
+</TeamWrapper>
+         )},
       },
    ]
    const bannerImage = banner[0]?.image || ''
@@ -165,8 +171,8 @@ const StyledMainContainer = styled.main`
       object-fit: cover;
    }
    .team-box {
+   width: 180px;
       display: flex;
-      width: 190px;
    }
    .team-box:first-child {
       display: flex;
@@ -214,7 +220,6 @@ const StyledContainer = styled.div`
    .table-row {
       border-bottom: 1px solid #e0e0e0;
    }
-   .ant-table-thead > tr > th:first-child,
    .ant-table-thead > tr > th:last-child {
       text-align: start;
    }
@@ -234,8 +239,8 @@ const StyledContainer = styled.div`
 `
 const TeamsWrapper = styled.div`
    display: flex;
-   align-items: center;
    justify-content: center;
+   align-items: center;
 `
 const TeamWrapper = styled.div`
    display: flex;
