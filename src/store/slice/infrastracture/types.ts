@@ -23,11 +23,13 @@ interface Stadium {
    images: Image[]
    places: string
    opening: string
+   tabs:any
    football_fields: any 
 }
 
 interface Infrastructure {
    id: number
+   length: number
    title: string
    slug: string
    description: string
@@ -38,10 +40,36 @@ interface Infrastructure {
    image: string
 }
 
-interface InitialState {
+// interface InitialState {
+//    isLoading: boolean
+//    infrastractures?: Infrastructure[]
+//    infrastracture?: Stadium | undefined | null
+// }
+
+
+export interface TabDetail {
+   id: number
+   title: string
+   slug: string
+   content: string
+   type: string
+}
+
+export interface ServiceDetail {
+   id: number
+   title: string
+   slug: string
+   description: string
+   [key: string]: any
+}
+
+
+ interface InitialState {
    isLoading: boolean
-   infrastractures?: Infrastructure[]
-   infrastracture?: Stadium | undefined | null
+   infrastractures: Infrastructure[]
+   infrastracture: Stadium | null
+   tabDetail?: TabDetail | null
+   serviceDetail?: ServiceDetail | null
 }
 
 export type { Stadium, InitialState, Infrastructure }

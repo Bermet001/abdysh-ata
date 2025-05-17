@@ -36,4 +36,53 @@ const getInfrastracture = createAsyncThunk(
    }
 )
 
-export { getInfrastractures, getInfrastracture }
+const getTabDetail = createAsyncThunk(
+   'infrastracture/getTabDetail',
+   async (
+      {
+         slug,
+         tabSlug,
+      }: { slug: string; tabSlug: string },
+      { rejectWithValue }
+   ) => {
+      try {
+         const { data } = await axiosInstance(
+            `infrastructure/infrastructure/${slug}/tabs/${tabSlug}/`
+         )
+         return data
+      } catch (error) {
+         const err = error as AxiosError
+         return rejectWithValue({ message: err.message })
+      }
+   }
+)
+
+const getTabServiceDetail = createAsyncThunk(
+   'infrastracture/getTabServiceDetail',
+   async (
+      {
+         slug,
+         tabSlug,
+         serviceSlug,
+      }: { slug: string; tabSlug: string; serviceSlug: string },
+      { rejectWithValue }
+   ) => {
+      try {
+         const { data } = await axiosInstance(
+            `infrastructure/infrastructure/${slug}/tabs/${tabSlug}/services/${serviceSlug}/`
+         )
+         return data
+      } catch (error) {
+         const err = error as AxiosError
+         return rejectWithValue({ message: err.message })
+      }
+   }
+)
+
+
+export {
+   getInfrastractures,
+   getInfrastracture,
+   getTabDetail,
+   getTabServiceDetail,
+ }

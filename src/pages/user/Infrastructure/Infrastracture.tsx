@@ -1,17 +1,20 @@
 import styled from 'styled-components'
-import { Carousel, Flex, Image } from 'antd'
+import { Carousel, Flex, Image, Tabs } from 'antd'
 import { useAppDispatch, useAppSelector } from '../../../store/store'
-import { useParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
 import { useEffect } from 'react'
-import { getInfrastracture } from '../../../store/slice/infrastracture/infrastractureThunk'
+import { getInfrastracture, getTabDetail } from '../../../store/slice/infrastracture/infrastractureThunk'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { FreeMode, Navigation } from 'swiper/modules'
+import { groupBy } from 'lodash'
 
 const Infrastructure = () => {
-   window.scrollTo(0, 0)
    const { slug } = useParams<{ slug: string }>()
-   const { infrastracture } = useAppSelector((state) => state.infrastracture)
+   const { infrastracture,tabDetail } = useAppSelector((state) => state.infrastracture)
    const dispatch = useAppDispatch()
+
+   const [searchParams, setSearchParams] = useSearchParams()
+   const activeTabKey = searchParams.get('tab') || 'main'
 
    useEffect(() => {
       dispatch(getInfrastracture(slug))
@@ -25,46 +28,54 @@ const Infrastructure = () => {
       return url
    }
 
-   return (
-      <StyledContainer>
+   const handleTabChange = (key: string) => {
+   setSearchParams({ tab: key })
+
+   const [type, slugId] = key.split(':')
+   const tabSlug = slugId?.split('-')[0]
+   if (type && tabSlug && slug) {
+      dispatch(getTabDetail({ slug, tabSlug }))
+   }
+}
+
+   const mainContent = (
+      <>
          <Flex className="first-block" gap={40}>
             <Flex vertical>
                <Image className="main-image" src={infrastracture?.image} />
             </Flex>
             <Flex justify="start" gap={30} vertical>
                <h1 className="main-title">{infrastracture?.title}</h1>
-              {infrastracture && (
-<Flex vertical gap={20}>
-    <Flex gap={20}>
-      {infrastracture.opening && (
-        <p className="info">
-          <span>Открытие стадиона: </span>
-          {infrastracture.opening}
-        </p>
-      )}
-      {infrastracture.address && (
-        <p className="info">
-          <span>Адрес: </span>
-          {infrastracture.address}
-        </p>
-      )}
-    </Flex>
-    <Flex gap={20}>
-      {infrastracture.weave && (
-        <p className="info">
-          <span>Размер поля: </span>
-          {infrastracture.weave}
-        </p>
-      )}
-      {infrastracture.places && (
-        <p className="info">
-          <span>Вместимость: </span>
-          {infrastracture.places}
-        </p>
-      )}
-    </Flex>
-  </Flex>
-)}
+               <Flex vertical gap={20}>
+                  <Flex gap={20}>
+                     {infrastracture?.opening && (
+                        <p className="info">
+                           <span>Открытие стадиона: </span>
+                           {infrastracture.opening}
+                        </p>
+                     )}
+                     {infrastracture?.address && (
+                        <p className="info">
+                           <span>Адрес: </span>
+                           {infrastracture.address}
+                        </p>
+                     )}
+                  </Flex>
+                  <Flex gap={20}>
+                     {infrastracture?.weave && (
+                        <p className="info">
+                           <span>Размер поля: </span>
+                           {infrastracture.weave}
+                        </p>
+                     )}
+                     {infrastracture?.places && (
+                        <p className="info">
+                           <span>Вместимость: </span>
+                           {infrastracture.places}
+                        </p>
+                     )}
+                  </Flex>
+               </Flex>
                <Flex className="short-info" gap={10} vertical>
                   <h2>Краткое описание</h2>
                   <p>{infrastracture?.description}</p>
@@ -72,19 +83,21 @@ const Infrastructure = () => {
             </Flex>
          </Flex>
 
-         <Flex style={{ overflowX: 'scroll' }} gap={20}>
-            {infrastracture?.videos?.map(({ video }, index) => (
-               <iframe
-                  key={index}
-                  width="100%"
-                  height="240"
-                  title={`видео обзор стадиона ${index + 1}`}
-                  src={getEmbedUrl(video)}
-                  className="video"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-               />
-            ))}
-         </Flex>
+         {/* {infrastracture?.videos && ( */}
+            <Flex style={{ overflowX: 'scroll' }} gap={20}>
+               {infrastracture?.videos.map(({ video }, index) => (
+                  <iframe
+                     key={index}
+                     width="100%"
+                     height="240"
+                     title={`видео обзор ${index + 1}`}
+                     src={getEmbedUrl(video)}
+                     className="video"
+                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  />
+               ))}
+            </Flex>
+         {/* )} */}
 
          <h2 className="main-title">Галерея</h2>
          <Swiper
@@ -109,25 +122,25 @@ const Infrastructure = () => {
             <div style={{ marginTop: '60px' }}>
                <h2 className="main-title">Футбольные поля</h2>
                <Flex wrap="wrap" gap={20}>
-                  {infrastracture?.football_fields.map((item: any) => (
+                  {infrastracture?.football_fields.map((item:any) => (
                      <StyledCard key={item.id}>
-   <div className="carousel-wrapper">
-      <StyledCarousel autoplay autoplaySpeed={6000} dots={false} arrows>
-         {[item.image, ...(item.inf_images || [])].map((img: any, index: number) => (
-            <div key={index}>
-               <img
-                  className="card-image"
-                  src={img?.image || img}
-                  alt={`image-${index}`}
-                  loading="lazy"
-               />
-            </div>
-         ))}
-      </StyledCarousel>
-      <div className="overlay" />
-      <h3 className="card-title">{item.title}</h3>
-   </div>
-</StyledCard>
+                        <div className="carousel-wrapper">
+                           <StyledCarousel autoplay autoplaySpeed={6000} dots={false} arrows>
+                              {[item.image, ...(item.inf_images || [])].map((img, index) => (
+                                 <div key={index}>
+                                    <img
+                                       className="card-image"
+                                       src={img?.image || img}
+                                       alt={`image-${index}`}
+                                       loading="lazy"
+                                    />
+                                 </div>
+                              ))}
+                           </StyledCarousel>
+                           <div className="overlay" />
+                           <h3 className="card-title">{item.title}</h3>
+                        </div>
+                     </StyledCard>
                   ))}
                </Flex>
             </div>
@@ -136,17 +149,49 @@ const Infrastructure = () => {
          <Flex vertical className="map-block">
             <h2>Маршрут</h2>
             <iframe
-               src={
-                  infrastracture?.map_url ||
-                  'https://www.google.com/maps/embed?pb=!1m18...'
-               }
+               src={infrastracture?.map_url}
                width="100%"
                height="300"
-               title="место положение стадиона"
+               title="Карта"
                loading="lazy"
                style={{ borderRadius: '6px', border: 'none' }}
             />
          </Flex>
+      </>
+   )
+
+   const groupedTabs = groupBy(infrastracture?.tabs || [], 'type')
+
+  const tabItems = [
+  {
+    key: 'main',
+    label: 'Главная',
+    children: mainContent,
+  },
+  ...Object.entries(groupedTabs).flatMap(([type, tabs]) =>
+    tabs.map((tab) => {
+      const tabKey = `${type}:${tab.slug}-${tab.id}`
+      return {
+        key: tabKey,
+        label: tab.title,
+        children: (
+          <div style={{ padding: '15px 0', fontSize: '16px' }}>
+            <div dangerouslySetInnerHTML={{ __html: tabDetail?.slug === tab.slug ? tabDetail?.content : tab.content }} />
+          </div>
+        ),
+      }
+    })
+  ),
+]
+
+   return (
+      <StyledContainer>
+         <Tabs
+            type="line"
+            items={tabItems}
+            activeKey={activeTabKey}
+            onChange={handleTabChange}
+         />
       </StyledContainer>
    )
 }
